@@ -2,11 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:foodtek/features/auth/views/screens/reset_password_screen.dart';
-import 'package:foodtek/features/splash_screen/splash_screen.dart';
+import 'package:foodtek/features/app/views/screens/app_screen.dart';
+import 'features/app/controllers/bottom_nav_cubit.dart';
 import 'features/auth/controllers/auth_cubit.dart';
 import 'features/auth/controllers/remember_me_cubit.dart';
-import 'features/auth/views/screens/login_screen.dart';
 import 'l10n/app_localizations.dart';
 
 Future<void> main() async {
@@ -28,6 +27,7 @@ class MyApp extends StatelessWidget {
       providers: [
         BlocProvider(create: (context) => AuthCubit()),
         BlocProvider(create: (_) => RememberMeCubit()),
+        BlocProvider(create: (_) => BottomNavCubit()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
@@ -46,7 +46,7 @@ class MyApp extends StatelessWidget {
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
           useMaterial3: true,
         ),
-        home: SplashScreen(),
+        home: AppScreen(),
       ),
     );
   }

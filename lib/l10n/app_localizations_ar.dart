@@ -183,6 +183,9 @@ class AppLocalizationsAr extends AppLocalizations {
   String get order_now => 'اطلب الآن';
 
   @override
+  String get home => 'الرئيسية';
+
+  @override
   String get favorites => 'المفضلة';
 
   @override
@@ -349,4 +352,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get history_empty_message => 'لم تقم بطلب أي أطعمة من قبل';
+
+  @override
+  String get track => 'تتبع';
 }

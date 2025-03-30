@@ -443,6 +443,12 @@ abstract class AppLocalizations {
   /// **'Order Now'**
   String get order_now;
 
+  /// No description provided for @home.
+  ///
+  /// In en, this message translates to:
+  /// **'Home'**
+  String get home;
+
   /// No description provided for @favorites.
   ///
   /// In en, this message translates to:
@@ -778,6 +784,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'You don’t have order any foods before'**
   String get history_empty_message;
+
+  /// No description provided for @track.
+  ///
+  /// In en, this message translates to:
+  /// **'Track'**
+  String get track;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

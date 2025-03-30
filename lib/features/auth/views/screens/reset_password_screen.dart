@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:foodtek/core/extensions/localization_extension.dart';
 import 'package:foodtek/core/utils/app_animation_strings.dart';
 import 'package:foodtek/core/widgets/app_custom_button.dart';
 import 'package:lottie/lottie.dart';
@@ -6,7 +7,6 @@ import '../../../../core/utils/app_colors.dart';
 import '../../../../core/utils/app_icons.dart';
 import '../../../../core/utils/app_text_styles.dart';
 import '../../../../core/utils/responsive.dart';
-import '../../../../l10n/app_localizations.dart';
 import '../widgets/auth_screen_wrapper.dart';
 import '../widgets/auth_text_field.dart';
 import 'new_password_screen.dart';
@@ -30,7 +30,7 @@ class ResetPasswordScreen extends StatelessWidget {
                 onPressed: () => Navigator.pop(context),
               ),
               Text(
-                AppLocalizations.of(context)!.back_to_login,
+                context.l10n.back_to_login,
                 style: AppTextStyles.authSubTitle(context),
               ),
             ],
@@ -39,24 +39,24 @@ class ResetPasswordScreen extends StatelessWidget {
             spacing: responsiveHeight(context, 12),
             children: [
               Text(
-                AppLocalizations.of(context)!.reset_password,
+                context.l10n.reset_password,
                 style: AppTextStyles.authTitle(context),
                 textAlign: TextAlign.center,
               ),
-              Text(AppLocalizations.of(context)!.reset_password_description,
+              Text(context.l10n.reset_password_description,
                   style: AppTextStyles.authSubTitle(context),
                   textAlign: TextAlign.center),
             ],
           ),
           AuthTextField(
             controller: emailController,
-            hintText: AppLocalizations.of(context)!.email,
+            hintText: context.l10n.email,
             hintStyle: AppTextStyles.authTextFieldsHintStyle(context),
             prefixIcon: AppIcons.icon(context, AppIcons.email),
             keyboardType: TextInputType.emailAddress,
           ),
           AppCustomButton(
-            text: AppLocalizations.of(context)!.send,
+            text: context.l10n.send,
             textStyle: AppTextStyles.authButton(context),
             width: double.infinity,
             height: responsiveHeight(context, 48),
@@ -72,7 +72,7 @@ class ResetPasswordScreen extends StatelessWidget {
                       BackdropFilter(
                         filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
                         child: Container(
-                          color: Colors.black.withOpacity(0.6),
+                          color: Colors.black.withValues(alpha: .6),
                         ),
                       ),
                       Center(
@@ -97,7 +97,7 @@ class ResetPasswordScreen extends StatelessWidget {
                                   height: responsiveHeight(context, 160),
                                 ),
                                 Text(
-                                  AppLocalizations.of(context)!.enter_code,
+                                  context.l10n.enter_code,
                                   textAlign: TextAlign.center,
                                   style: AppTextStyles.authSubTitle(context),
                                 ),
@@ -120,7 +120,7 @@ class ResetPasswordScreen extends StatelessWidget {
                                   }),
                                 ),
                                 AppCustomButton(
-                                  text: AppLocalizations.of(context)!.verify,
+                                  text: context.l10n.verify,
                                   textStyle: AppTextStyles.authButton(context),
                                   color: AppColors.primary,
                                   width: double.infinity,

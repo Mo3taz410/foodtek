@@ -1,23 +1,29 @@
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:flutter/material.dart';
+import 'package:lucide_icons/lucide_icons.dart';
 import 'responsive.dart';
 import 'app_colors.dart';
 
 class AppIcons {
-  static const IconData email = FontAwesomeIcons.envelope;
-  static const IconData password = FontAwesomeIcons.lock;
-  static const IconData user = FontAwesomeIcons.user;
-  static const IconData phone = FontAwesomeIcons.phone;
-  static const IconData calendar = FontAwesomeIcons.calendar;
-  static const IconData eye = FontAwesomeIcons.eye;
-  static const IconData eyeSlash = FontAwesomeIcons.eyeSlash;
-  static const IconData arrowLeftLong = FontAwesomeIcons.arrowLeftLong;
+  static const IconData email = LucideIcons.mail;
+  static const IconData password = LucideIcons.lock;
+  static const IconData user = LucideIcons.user;
+  static const IconData phone = LucideIcons.phone;
+  static const IconData calendar = LucideIcons.calendar;
+  static const IconData eye = LucideIcons.eye;
+  static const IconData eyeSlash = LucideIcons.eyeOff;
+  static const IconData arrowLeftLong = LucideIcons.moveLeft;
+  static const IconData home = LucideIcons.home;
+  static const IconData favorite = LucideIcons.heart;
+  static const IconData cart = LucideIcons.shoppingCart;
+  static const IconData location = LucideIcons.mapPin;
+  static const IconData profile = LucideIcons.user;
+  static const IconData notifications = LucideIcons.bell;
 
   static Widget icon(BuildContext context, IconData icon,
-      {Color color = AppColors.secondary, double? size}) {
+      {Color color = AppColors.tertiary, double? size}) {
     return Icon(
       icon,
-      size: size ?? responsiveTextSize(context, 18),
+      size: size ?? responsiveTextSize(context, 22),
       color: color,
     );
   }

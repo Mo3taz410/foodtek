@@ -1,6 +1,6 @@
 import 'dart:ui';
-
 import 'package:flutter/material.dart';
+import 'package:foodtek/core/extensions/localization_extension.dart';
 import 'package:foodtek/core/utils/app_animation_strings.dart';
 import 'package:foodtek/core/widgets/app_custom_button.dart';
 import 'package:foodtek/features/auth/views/widgets/auth_bottom_text_row.dart';
@@ -9,7 +9,6 @@ import '../../../../core/utils/app_colors.dart';
 import '../../../../core/utils/app_icons.dart';
 import '../../../../core/utils/app_text_styles.dart';
 import '../../../../core/utils/responsive.dart';
-import '../../../../l10n/app_localizations.dart';
 import '../widgets/auth_screen_wrapper.dart';
 import '../widgets/auth_text_field.dart';
 import 'login_screen.dart';
@@ -34,11 +33,11 @@ class NewPasswordScreen extends StatelessWidget {
               ),
             ],
           ),
-          Text(AppLocalizations.of(context)!.reset_password,
+          Text(context.l10n.reset_password,
               style: AppTextStyles.authTitle(context)),
           AuthBottomTextRow(
-            label: AppLocalizations.of(context)!.remember_password,
-            actionText: AppLocalizations.of(context)!.log_in,
+            label: context.l10n.remember_password,
+            actionText: context.l10n.log_in,
             onPressed: () {
               Navigator.push(
                 context,
@@ -50,20 +49,20 @@ class NewPasswordScreen extends StatelessWidget {
           ),
           AuthTextField(
             controller: newPasswordController,
-            hintText: AppLocalizations.of(context)!.new_password,
+            hintText: context.l10n.new_password,
             hintStyle: AppTextStyles.authTextFieldsHintStyle(context),
             prefixIcon: AppIcons.icon(context, AppIcons.password),
             suffixIcon: AppIcons.icon(context, AppIcons.eyeSlash),
           ),
           AuthTextField(
             controller: confirmNewPasswordController,
-            hintText: AppLocalizations.of(context)!.confirm_new_password,
+            hintText: context.l10n.confirm_new_password,
             hintStyle: AppTextStyles.authTextFieldsHintStyle(context),
             prefixIcon: AppIcons.icon(context, AppIcons.password),
             suffixIcon: AppIcons.icon(context, AppIcons.eyeSlash),
           ),
           AppCustomButton(
-            text: AppLocalizations.of(context)!.update_password,
+            text: context.l10n.update_password,
             textStyle: AppTextStyles.authButton(context),
             width: double.infinity,
             height: responsiveHeight(context, 48),
@@ -80,7 +79,7 @@ class NewPasswordScreen extends StatelessWidget {
                       BackdropFilter(
                         filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
                         child: Container(
-                          color: Colors.black.withOpacity(0.3),
+                          color: Colors.black.withValues(alpha: 0.3),
                         ),
                       ),
                       Center(
@@ -97,15 +96,14 @@ class NewPasswordScreen extends StatelessWidget {
                               height: responsiveHeight(context, 200),
                             ),
                             Text(
-                              AppLocalizations.of(context)!.congratulations,
+                              context.l10n.congratulations,
                               textAlign: TextAlign.center,
                               style: AppTextStyles.authTitle(context).copyWith(
                                 color: Colors.white,
                               ),
                             ),
                             Text(
-                              AppLocalizations.of(context)!
-                                  .password_reset_success,
+                              context.l10n.password_reset_success,
                               textAlign: TextAlign.center,
                               style: AppTextStyles.authSubTitle(context)
                                   .copyWith(

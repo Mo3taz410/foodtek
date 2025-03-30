@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+import 'package:foodtek/core/extensions/localization_extension.dart';
+import 'package:foodtek/core/helpers/shared_preferences_helper.dart';
 import 'package:foodtek/core/utils/app_animation_strings.dart';
 import 'package:foodtek/core/utils/app_colors.dart';
 import 'package:foodtek/core/utils/responsive.dart';
-import 'package:foodtek/core/utils/shared_preferences_helper.dart';
 import 'package:foodtek/features/onboarding/widgets/onboarding_widget.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import '../../../core/utils/app_image_strings.dart';
-import '../../../l10n/app_localizations.dart';
 import '../../auth/views/screens/login_screen.dart';
 
 class OnboardingScreen extends StatefulWidget {
@@ -81,9 +80,8 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                       OnboardingWidget(
                         animationPath:
                             AppAnimationStrings.deliveryWaitingForOrder,
-                        title: AppLocalizations.of(context)!.welcome_title,
-                        subtitle:
-                            AppLocalizations.of(context)!.welcome_subtitle,
+                        title: context.l10n.welcome_title,
+                        subtitle: context.l10n.welcome_subtitle,
                         onPressed: () => pageController.nextPage(
                           duration: const Duration(milliseconds: 500),
                           curve: Curves.easeIn,
@@ -91,9 +89,8 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                       ),
                       OnboardingWidget(
                         animationPath: AppAnimationStrings.deliveryDriving,
-                        title: AppLocalizations.of(context)!.choose_food,
-                        subtitle:
-                            AppLocalizations.of(context)!.delivery_description,
+                        title: context.l10n.choose_food,
+                        subtitle: context.l10n.delivery_description,
                         onPressed: () => pageController.nextPage(
                           duration: const Duration(milliseconds: 500),
                           curve: Curves.easeIn,
@@ -101,9 +98,8 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                       ),
                       OnboardingWidget(
                         animationPath: AppAnimationStrings.deliveryOnTime,
-                        title: AppLocalizations.of(context)!.delivery_on_time,
-                        subtitle:
-                            AppLocalizations.of(context)!.delivery_description,
+                        title: context.l10n.delivery_on_time,
+                        subtitle: context.l10n.delivery_description,
                         onPressed: () => pageController.nextPage(
                           duration: const Duration(milliseconds: 500),
                           curve: Curves.easeIn,
@@ -111,14 +107,14 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                       ),
                       OnboardingWidget(
                         animationPath: AppAnimationStrings.locationPermission,
-                        title: AppLocalizations.of(context)!.turn_on_location,
-                        subtitle:
-                            AppLocalizations.of(context)!.location_description,
+                        title: context.l10n.turn_on_location,
+                        subtitle: context.l10n.location_description,
                         isLast: true,
                         onPressed: () async {
                           final prefs = SharedPreferencesHelper();
                           await prefs.setPrefBool(
                               key: 'isFirstTime', value: false);
+                          if (!context.mounted) return;
                           Navigator.push(
                             context,
                             MaterialPageRoute(
@@ -145,7 +141,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                               curve: Curves.easeInOut,
                             );
                           },
-                          child: Text(AppLocalizations.of(context)!.skip),
+                          child: Text(context.l10n.skip),
                         ),
                         SmoothPageIndicator(
                             controller: pageController,

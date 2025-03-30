@@ -183,6 +183,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get order_now => 'Order Now';
 
   @override
+  String get home => 'Home';
+
+  @override
   String get favorites => 'Favorites';
 
   @override
@@ -349,4 +352,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get history_empty_message => 'You don’t have order any foods before';
+
+  @override
+  String get track => 'Track';
 }

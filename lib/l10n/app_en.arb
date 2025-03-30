@@ -58,6 +58,7 @@
   "recommend": "Recommend",
   "view_all": "View All",
   "order_now": "Order Now",
+  "home": "Home",
   "favorites": "Favorites",
   "profile": "Profile",
   "notifications": "Notifications",
@@ -113,5 +114,6 @@
   "cart_empty": "Cart Empty",
   "cart_empty_message": "You don’t have add any foods in cart at this time",
   "history_empty": "History Empty",
-  "history_empty_message": "You don’t have order any foods before"
+  "history_empty_message": "You don’t have order any foods before",
+  "track": "Track"
 }

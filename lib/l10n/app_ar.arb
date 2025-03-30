@@ -59,6 +59,7 @@
   "recommend": "مُوصى به",
   "view_all": "عرض الكل",
   "order_now": "اطلب الآن",
+  "home": "الرئيسية",
   "favorites": "المفضلة",
   "history": "السجل",
   "profile": "الملف الشخصي",
@@ -113,5 +114,6 @@
   "cart_empty": "السلة فارغة",
   "cart_empty_message": "لم تقم بإضافة أي أطعمة إلى السلة في الوقت الحالي",
   "history_empty": "السجل فارغ",
-  "history_empty_message": "لم تقم بطلب أي أطعمة من قبل"
+  "history_empty_message": "لم تقم بطلب أي أطعمة من قبل",
+  "track": "تتبع"
 }

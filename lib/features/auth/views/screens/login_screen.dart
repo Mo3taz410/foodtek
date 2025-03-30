@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:foodtek/core/extensions/localization_extension.dart';
 import 'package:foodtek/core/utils/app_colors.dart';
 import 'package:foodtek/core/utils/app_icons.dart';
 import 'package:foodtek/core/utils/app_text_styles.dart';
@@ -10,8 +11,6 @@ import 'package:foodtek/features/auth/models/user_model.dart';
 import 'package:foodtek/core/widgets/app_custom_button.dart';
 import 'package:foodtek/features/auth/views/screens/reset_password_screen.dart';
 import 'package:foodtek/features/auth/views/screens/signup_screen.dart';
-import 'package:foodtek/features/splash_screen/splash_screen.dart';
-import 'package:foodtek/l10n/app_localizations.dart';
 import '../widgets/auth_screen_wrapper.dart';
 import '../widgets/auth_text_field.dart';
 import '../widgets/social_auth_buttons.dart';
@@ -29,11 +28,10 @@ class LoginScreen extends StatelessWidget {
         spacing: responsiveHeight(context, 15),
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Text(AppLocalizations.of(context)!.login,
-              style: AppTextStyles.authTitle(context)),
+          Text(context.l10n.login, style: AppTextStyles.authTitle(context)),
           AuthBottomTextRow(
-            label: AppLocalizations.of(context)!.dont_have_account,
-            actionText: AppLocalizations.of(context)!.sign_up,
+            label: context.l10n.dont_have_account,
+            actionText: context.l10n.sign_up,
             onPressed: () {
               Navigator.push(
                 context,
@@ -45,7 +43,7 @@ class LoginScreen extends StatelessWidget {
           ),
           AuthTextField(
             controller: emailController,
-            hintText: AppLocalizations.of(context)!.email,
+            hintText: context.l10n.email,
             hintStyle: AppTextStyles.authTextFieldsHintStyle(context),
             prefixIcon: AppIcons.icon(context, AppIcons.email),
             keyboardType: TextInputType.emailAddress,
@@ -55,7 +53,7 @@ class LoginScreen extends StatelessWidget {
               final isHidden = state is AuthInitial && state.isPasswordHidden;
               return AuthTextField(
                 controller: passwordController,
-                hintText: AppLocalizations.of(context)!.password,
+                hintText: context.l10n.password,
                 hintStyle: AppTextStyles.authTextFieldsHintStyle(context),
                 prefixIcon: AppIcons.icon(context, AppIcons.password),
                 obscureText: isHidden,
@@ -73,6 +71,7 @@ class LoginScreen extends StatelessWidget {
           BlocBuilder<RememberMeCubit, bool>(
             builder: (context, isChecked) {
               return Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   InkWell(
                     onTap: () {
@@ -88,7 +87,7 @@ class LoginScreen extends StatelessWidget {
                           },
                         ),
                         Text(
-                          AppLocalizations.of(context)!.remember_me,
+                          context.l10n.remember_me,
                           style: AppTextStyles.authSubTitle(context).copyWith(
                             fontWeight: FontWeight.w700,
                           ),
@@ -96,7 +95,6 @@ class LoginScreen extends StatelessWidget {
                       ],
                     ),
                   ),
-                  Spacer(),
                   TextButton(
                     onPressed: () {
                       Navigator.push(
@@ -107,7 +105,7 @@ class LoginScreen extends StatelessWidget {
                       );
                     },
                     child: Text(
-                      AppLocalizations.of(context)!.forgot_password,
+                      context.l10n.forgot_password,
                       style: AppTextStyles.authSubTitle(context).copyWith(
                         color: AppColors.primary,
                         fontWeight: FontWeight.w600,
@@ -150,7 +148,7 @@ class LoginScreen extends StatelessWidget {
                 padding: EdgeInsets.symmetric(
                     horizontal: responsiveWidth(context, 8)),
                 child: Text(
-                  AppLocalizations.of(context)!.or,
+                  context.l10n.or,
                   style: AppTextStyles.authSubTitle(context),
                 ),
               ),

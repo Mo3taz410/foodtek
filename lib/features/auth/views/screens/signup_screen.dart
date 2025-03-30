@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:foodtek/core/extensions/localization_extension.dart';
 import 'package:foodtek/core/utils/app_colors.dart';
 import 'package:foodtek/core/utils/app_icons.dart';
 import 'package:foodtek/core/utils/app_text_styles.dart';
@@ -7,7 +8,6 @@ import 'package:foodtek/core/utils/responsive.dart';
 import 'package:foodtek/core/widgets/app_custom_button.dart';
 import 'package:foodtek/features/auth/controllers/auth_cubit.dart';
 import 'package:foodtek/features/auth/models/user_model.dart';
-import 'package:foodtek/l10n/app_localizations.dart';
 import '../widgets/auth_screen_wrapper.dart';
 import '../widgets/auth_text_field.dart';
 import '../widgets/auth_bottom_text_row.dart';
@@ -57,7 +57,7 @@ class _SignupScreenState extends State<SignupScreen> {
   }
 
   void _validateAndSubmit(BuildContext context, AuthState state) {
-    final loc = AppLocalizations.of(context)!;
+    final loc = context.l10n;
     final birthDate = state is AuthInitial ? state.selectedBirthDate : null;
 
     final user = UserModel(
@@ -113,16 +113,15 @@ class _SignupScreenState extends State<SignupScreen> {
               onPressed: () => Navigator.pop(context),
             ),
           ),
-          Text(AppLocalizations.of(context)!.sign_up,
-              style: AppTextStyles.authTitle(context)),
+          Text(context.l10n.sign_up, style: AppTextStyles.authTitle(context)),
           AuthBottomTextRow(
-            label: AppLocalizations.of(context)!.already_have_account,
-            actionText: AppLocalizations.of(context)!.login,
+            label: context.l10n.already_have_account,
+            actionText: context.l10n.login,
             onPressed: () => Navigator.pop(context),
           ),
           AuthTextField(
             controller: fullNameController,
-            hintText: AppLocalizations.of(context)!.full_name,
+            hintText: context.l10n.full_name,
             hintStyle: AppTextStyles.authTextFieldsHintStyle(context),
             prefixIcon: AppIcons.icon(context, AppIcons.user),
             errorText: errors['fullName'],
@@ -130,7 +129,7 @@ class _SignupScreenState extends State<SignupScreen> {
           ),
           AuthTextField(
             controller: emailController,
-            hintText: AppLocalizations.of(context)!.email,
+            hintText: context.l10n.email,
             hintStyle: AppTextStyles.authTextFieldsHintStyle(context),
             prefixIcon: AppIcons.icon(context, AppIcons.email),
             keyboardType: TextInputType.emailAddress,
@@ -147,6 +146,7 @@ class _SignupScreenState extends State<SignupScreen> {
                 lastDate: DateTime.now(),
               );
               if (picked != null) {
+                if (!context.mounted) return;
                 context.read<AuthCubit>().updateBirthDate(picked);
               }
             },
@@ -161,7 +161,7 @@ class _SignupScreenState extends State<SignupScreen> {
                           ? "${birthDate.toLocal()}".split(" ")[0]
                           : '',
                     ),
-                    hintText: AppLocalizations.of(context)!.birth_date,
+                    hintText: context.l10n.birth_date,
                     hintStyle: AppTextStyles.authTextFieldsHintStyle(context),
                     prefixIcon: AppIcons.icon(context, AppIcons.calendar),
                     errorText: errors['birthDate'],
@@ -172,7 +172,7 @@ class _SignupScreenState extends State<SignupScreen> {
           ),
           AuthTextField(
             controller: phoneController,
-            hintText: AppLocalizations.of(context)!.phone_number,
+            hintText: context.l10n.phone_number,
             hintStyle: AppTextStyles.authTextFieldsHintStyle(context),
             prefixIcon: AppIcons.icon(context, AppIcons.phone),
             keyboardType: TextInputType.phone,
@@ -184,7 +184,7 @@ class _SignupScreenState extends State<SignupScreen> {
               final isHidden = state is AuthInitial && state.isPasswordHidden;
               return AuthTextField(
                 controller: passwordController,
-                hintText: AppLocalizations.of(context)!.set_password,
+                hintText: context.l10n.set_password,
                 hintStyle: AppTextStyles.authTextFieldsHintStyle(context),
                 obscureText: isHidden,
                 prefixIcon: AppIcons.icon(context, AppIcons.password),
@@ -205,7 +205,7 @@ class _SignupScreenState extends State<SignupScreen> {
                   state is AuthInitial && state.isConfirmPasswordHidden;
               return AuthTextField(
                 controller: confirmPasswordController,
-                hintText: AppLocalizations.of(context)!.confirm_new_password,
+                hintText: context.l10n.confirm_new_password,
                 hintStyle: AppTextStyles.authTextFieldsHintStyle(context),
                 obscureText: isHidden,
                 prefixIcon: AppIcons.icon(context, AppIcons.password),
@@ -231,9 +231,8 @@ class _SignupScreenState extends State<SignupScreen> {
             },
             builder: (context, state) {
               return AppCustomButton(
-                text: state is AuthLoading
-                    ? "Loading..."
-                    : AppLocalizations.of(context)!.register,
+                text:
+                    state is AuthLoading ? "Loading..." : context.l10n.register,
                 width: double.infinity,
                 height: responsiveHeight(context, 48),
                 color: AppColors.primary,

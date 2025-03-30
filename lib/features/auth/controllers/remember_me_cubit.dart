@@ -1,5 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:foodtek/core/utils/secure_storage_helper.dart';
+import 'package:foodtek/core/helpers/secure_storage_helper.dart';
 
 class RememberMeCubit extends Cubit<bool> {
   static const _key = 'remember_me';

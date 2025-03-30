@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:foodtek/core/extensions/localization_extension.dart';
 import 'package:foodtek/core/utils/app_text_styles.dart';
 import 'package:foodtek/core/utils/responsive.dart';
 import 'package:foodtek/core/widgets/app_custom_button.dart';
 import 'package:foodtek/core/utils/app_colors.dart';
-import '../../../l10n/app_localizations.dart';
 import 'package:lottie/lottie.dart';
 
 import '../../auth/views/screens/login_screen.dart';
@@ -66,9 +66,8 @@ class OnboardingWidget extends StatelessWidget {
             spacing: responsiveHeight(context, 10),
             children: [
               AppCustomButton(
-                text: isLast
-                    ? AppLocalizations.of(context)!.yes_turn_on
-                    : AppLocalizations.of(context)!.continue_,
+                text:
+                    isLast ? context.l10n.yes_turn_on : context.l10n.continue_,
                 textStyle: AppTextStyles.onboardingButton(context),
                 width: responsiveWidth(context, 307),
                 height: responsiveHeight(context, 48),
@@ -85,7 +84,7 @@ class OnboardingWidget extends StatelessWidget {
               ),
               if (isLast) ...[
                 AppCustomButton(
-                  text: AppLocalizations.of(context)!.cancel,
+                  text: context.l10n.cancel,
                   textStyle: AppTextStyles.onboardingButton(context).copyWith(
                     color: AppColors.secondary,
                   ),
