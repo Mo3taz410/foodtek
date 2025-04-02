@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:foodtek/features/app/views/screens/app_screen.dart';
+import 'package:foodtek/features/app/views/screens/home_screen.dart';
 import 'features/app/controllers/bottom_nav_cubit.dart';
 import 'features/auth/controllers/auth_cubit.dart';
 import 'features/auth/controllers/remember_me_cubit.dart';

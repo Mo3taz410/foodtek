@@ -115,5 +115,6 @@
   "cart_empty_message": "لم تقم بإضافة أي أطعمة إلى السلة في الوقت الحالي",
   "history_empty": "السجل فارغ",
   "history_empty_message": "لم تقم بطلب أي أطعمة من قبل",
-  "track": "تتبع"
+  "track": "تتبع",
+  "search_menu": "البحث في لائحة الطعام "
 }

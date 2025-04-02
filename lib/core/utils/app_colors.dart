@@ -6,4 +6,5 @@ class AppColors {
   static const Color tertiary = Color(0xFF261FB3); // 'bright blue'
   static const Color quaternary = Color(0xFFF38039); // 'bright orange'
   static const Color quinary = Color(0xFFFBE4D6); // 'beige'
+  static const Color senary = Color(0xFF878787);
 }
