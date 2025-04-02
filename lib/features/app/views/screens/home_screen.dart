@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:foodtek/core/widgets/app_custom_header.dart';
+import 'package:foodtek/core/widgets/app_search_bar.dart';
 
 final List<Map<String, String>> categories = [
   {'image': '', 'label': 'All'},
@@ -6,6 +8,7 @@ final List<Map<String, String>> categories = [
   {'image': 'assets/icons/food/pizza.png', 'label': 'Pizza'},
   {'image': 'assets/icons/food/sandwich.png', 'label': 'Sandwich'},
 ];
+TextEditingController searchController = TextEditingController();
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -23,11 +26,13 @@ class _HomeScreenState extends State<HomeScreen> {
       body: SafeArea(
         child: Column(
           children: [
-            Text('3zzz'),
+            AppCustomHeader(),
             SizedBox(
               height: 10,
             ),
-            SearchBar(),
+            AppSearchBar(
+              controller: searchController,
+            ),
             SizedBox(
               height: 10,
             ),

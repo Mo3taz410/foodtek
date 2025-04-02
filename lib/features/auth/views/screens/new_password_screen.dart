@@ -3,10 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:foodtek/core/extensions/localization_extension.dart';
 import 'package:foodtek/core/utils/app_animation_strings.dart';
 import 'package:foodtek/core/widgets/app_custom_button.dart';
+import 'package:foodtek/core/widgets/app_svg_icons.dart';
 import 'package:foodtek/features/auth/views/widgets/auth_bottom_text_row.dart';
 import 'package:lottie/lottie.dart';
 import '../../../../core/utils/app_colors.dart';
-import '../../../../core/utils/app_icons.dart';
+import '../../../../core/utils/app_icon_strings.dart';
 import '../../../../core/utils/app_text_styles.dart';
 import '../../../../core/utils/responsive.dart';
 import '../widgets/auth_screen_wrapper.dart';
@@ -28,7 +29,7 @@ class NewPasswordScreen extends StatelessWidget {
           Row(
             children: [
               IconButton(
-                icon: AppIcons.icon(context, AppIcons.arrowLeftLong),
+                icon: AppSvgIcons(iconPath: AppIconStrings.arrowLeftLong),
                 onPressed: () => Navigator.pop(context),
               ),
             ],
@@ -51,15 +52,11 @@ class NewPasswordScreen extends StatelessWidget {
             controller: newPasswordController,
             hintText: context.l10n.new_password,
             hintStyle: AppTextStyles.authTextFieldsHintStyle(context),
-            prefixIcon: AppIcons.icon(context, AppIcons.password),
-            suffixIcon: AppIcons.icon(context, AppIcons.eyeSlash),
           ),
           AuthTextField(
             controller: confirmNewPasswordController,
             hintText: context.l10n.confirm_new_password,
             hintStyle: AppTextStyles.authTextFieldsHintStyle(context),
-            prefixIcon: AppIcons.icon(context, AppIcons.password),
-            suffixIcon: AppIcons.icon(context, AppIcons.eyeSlash),
           ),
           AppCustomButton(
             text: context.l10n.update_password,

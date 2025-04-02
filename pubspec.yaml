@@ -46,7 +46,7 @@ dependencies:
   flutter_bloc: ^9.1.0
   shared_preferences: ^2.5.2
   universal_platform: ^1.1.0
-  lucide_icons: ^0.257.0
+  flutter_svg: ^2.0.17
 
 
 dev_dependencies:

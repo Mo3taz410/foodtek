@@ -1,3 +1,5 @@
+// ignore: unused_import
+import 'package:intl/intl.dart' as intl;
 import 'app_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -148,7 +150,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get password_reset_success => 'تمت إعادة تعيين كلمة المرور بنجاح';
 
   @override
-  String get search_menu => 'البحث في لائحة الطعام ';
+  String get search_menu => 'ابحث عن قائمة الطعام، المطاعم أو غير ذلك';
 
   @override
   String get all => 'الكل';

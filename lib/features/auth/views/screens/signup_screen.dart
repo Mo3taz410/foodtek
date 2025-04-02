@@ -2,10 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:foodtek/core/extensions/localization_extension.dart';
 import 'package:foodtek/core/utils/app_colors.dart';
-import 'package:foodtek/core/utils/app_icons.dart';
+import 'package:foodtek/core/utils/app_icon_strings.dart';
 import 'package:foodtek/core/utils/app_text_styles.dart';
 import 'package:foodtek/core/utils/responsive.dart';
 import 'package:foodtek/core/widgets/app_custom_button.dart';
+import 'package:foodtek/core/widgets/app_svg_icons.dart';
 import 'package:foodtek/features/auth/controllers/auth_cubit.dart';
 import 'package:foodtek/features/auth/models/user_model.dart';
 import '../widgets/auth_screen_wrapper.dart';
@@ -109,7 +110,7 @@ class _SignupScreenState extends State<SignupScreen> {
           Align(
             alignment: Alignment.centerLeft,
             child: IconButton(
-              icon: AppIcons.icon(context, AppIcons.arrowLeftLong),
+              icon: AppSvgIcons(iconPath: AppIconStrings.arrowLeftLong),
               onPressed: () => Navigator.pop(context),
             ),
           ),
@@ -123,7 +124,6 @@ class _SignupScreenState extends State<SignupScreen> {
             controller: fullNameController,
             hintText: context.l10n.full_name,
             hintStyle: AppTextStyles.authTextFieldsHintStyle(context),
-            prefixIcon: AppIcons.icon(context, AppIcons.user),
             errorText: errors['fullName'],
             focusNode: focusNodes['fullName'],
           ),
@@ -131,7 +131,6 @@ class _SignupScreenState extends State<SignupScreen> {
             controller: emailController,
             hintText: context.l10n.email,
             hintStyle: AppTextStyles.authTextFieldsHintStyle(context),
-            prefixIcon: AppIcons.icon(context, AppIcons.email),
             keyboardType: TextInputType.emailAddress,
             errorText: errors['email'],
             focusNode: focusNodes['email'],
@@ -163,7 +162,6 @@ class _SignupScreenState extends State<SignupScreen> {
                     ),
                     hintText: context.l10n.birth_date,
                     hintStyle: AppTextStyles.authTextFieldsHintStyle(context),
-                    prefixIcon: AppIcons.icon(context, AppIcons.calendar),
                     errorText: errors['birthDate'],
                   );
                 },
@@ -174,7 +172,6 @@ class _SignupScreenState extends State<SignupScreen> {
             controller: phoneController,
             hintText: context.l10n.phone_number,
             hintStyle: AppTextStyles.authTextFieldsHintStyle(context),
-            prefixIcon: AppIcons.icon(context, AppIcons.phone),
             keyboardType: TextInputType.phone,
             errorText: errors['phone'],
             focusNode: focusNodes['phone'],
@@ -187,10 +184,10 @@ class _SignupScreenState extends State<SignupScreen> {
                 hintText: context.l10n.set_password,
                 hintStyle: AppTextStyles.authTextFieldsHintStyle(context),
                 obscureText: isHidden,
-                prefixIcon: AppIcons.icon(context, AppIcons.password),
                 suffixIcon: IconButton(
-                  icon: AppIcons.icon(
-                      context, isHidden ? AppIcons.eye : AppIcons.eyeSlash),
+                  icon: isHidden
+                      ? AppSvgIcons(iconPath: AppIconStrings.eyeOff)
+                      : AppSvgIcons(iconPath: AppIconStrings.eyeOff),
                   onPressed: () =>
                       context.read<AuthCubit>().togglePasswordVisibility(),
                 ),
@@ -208,10 +205,10 @@ class _SignupScreenState extends State<SignupScreen> {
                 hintText: context.l10n.confirm_new_password,
                 hintStyle: AppTextStyles.authTextFieldsHintStyle(context),
                 obscureText: isHidden,
-                prefixIcon: AppIcons.icon(context, AppIcons.password),
                 suffixIcon: IconButton(
-                  icon: AppIcons.icon(
-                      context, isHidden ? AppIcons.eye : AppIcons.eyeSlash),
+                  icon: isHidden
+                      ? AppSvgIcons(iconPath: AppIconStrings.eyeOff)
+                      : AppSvgIcons(iconPath: AppIconStrings.eyeOff),
                   onPressed: () => context
                       .read<AuthCubit>()
                       .toggleConfirmPasswordVisibility(),

@@ -3,7 +3,9 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:foodtek/features/app/views/screens/app_screen.dart';
-import 'package:foodtek/features/app/views/screens/home_screen.dart';
+import 'package:foodtek/features/auth/views/screens/login_screen.dart';
+import 'package:foodtek/features/splash/splash_screen.dart';
+import 'core/utils/app_colors.dart';
 import 'features/app/controllers/bottom_nav_cubit.dart';
 import 'features/auth/controllers/auth_cubit.dart';
 import 'features/auth/controllers/remember_me_cubit.dart';
@@ -44,7 +46,7 @@ class MyApp extends StatelessWidget {
           Locale('ar'),
         ],
         theme: ThemeData(
-          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+          colorScheme: ColorScheme.fromSeed(seedColor: AppColors.primary),
           useMaterial3: true,
         ),
         home: AppScreen(),

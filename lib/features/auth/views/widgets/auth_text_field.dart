@@ -45,7 +45,9 @@ class AuthTextField extends StatelessWidget {
           errorText: errorText,
           filled: true,
           fillColor: Colors.white,
-          contentPadding: EdgeInsets.zero,
+          contentPadding: EdgeInsets.only(
+            left: responsiveWidth(context, 14),
+          ),
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(12),
             borderSide: const BorderSide(color: AppColors.secondary),

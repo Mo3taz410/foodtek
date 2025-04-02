@@ -2,10 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:foodtek/core/extensions/localization_extension.dart';
 import 'package:foodtek/core/utils/app_colors.dart';
-import 'package:foodtek/core/utils/app_icons.dart';
-import 'package:foodtek/core/utils/app_image_strings.dart';
-import 'package:foodtek/core/utils/responsive.dart';
+import 'package:foodtek/core/utils/app_icon_strings.dart';
 import 'package:foodtek/features/app/controllers/bottom_nav_cubit.dart';
+import '../../../../core/widgets/app_svg_icons.dart';
 import 'cart_screen.dart';
 import 'favorites_screen.dart';
 import 'home_screen.dart';
@@ -38,23 +37,23 @@ class AppScreen extends StatelessWidget {
             onTap: (value) => context.read<BottomNavCubit>().updateIndex(value),
             items: [
               BottomNavigationBarItem(
-                icon: AppIcons.icon(context, AppIcons.home),
+                icon: AppSvgIcons(iconPath: AppIconStrings.home),
                 label: context.l10n.home,
               ),
               BottomNavigationBarItem(
-                icon: AppIcons.icon(context, AppIcons.favorite),
+                icon: AppSvgIcons(iconPath: AppIconStrings.favorites),
                 label: context.l10n.favorites,
               ),
               BottomNavigationBarItem(
-                icon: AppIcons.icon(context, AppIcons.cart),
+                icon: AppSvgIcons(iconPath: AppIconStrings.cart),
                 label: context.l10n.cart,
               ),
               BottomNavigationBarItem(
-                icon: AppIcons.icon(context, AppIcons.location),
+                icon: AppSvgIcons(iconPath: AppIconStrings.track),
                 label: context.l10n.track,
               ),
               BottomNavigationBarItem(
-                icon: AppIcons.icon(context, AppIcons.profile),
+                icon: AppSvgIcons(iconPath: AppIconStrings.profile),
                 label: context.l10n.profile,
               ),
             ],

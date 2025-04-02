@@ -1,28 +1,53 @@
 import 'package:flutter/material.dart';
 import 'package:foodtek/core/extensions/localization_extension.dart';
 import 'package:foodtek/core/utils/app_colors.dart';
+import 'package:foodtek/core/utils/app_icon_strings.dart';
 import 'package:foodtek/core/utils/responsive.dart';
+import 'package:foodtek/core/widgets/app_svg_icons.dart';
 
 class AppSearchBar extends StatelessWidget {
-  const AppSearchBar({super.key});
+  final TextEditingController controller;
+
+  const AppSearchBar({
+    super.key,
+    required this.controller,
+  });
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: responsiveWidth(context, 370),
-      height: responsiveHeight(context, 42),
+      width: responsiveWidth(context, 295),
+      height: responsiveHeight(context, 45),
       child: TextField(
-          textAlignVertical: TextAlignVertical.center,
-          decoration: InputDecoration(
-            contentPadding: EdgeInsets.zero,
-            fillColor: Colors.white,
-            filled: true,
-            hintText: context.l10n.search_menu,
-            hintStyle: TextStyle(color: AppColors.senary, fontSize: 16),
-            prefixIcon: Icon(Icons.search, color: AppColors.senary, size: 22),
-            suffixIcon: Icon(Icons.tune, color: AppColors.senary, size: 20),
-            border: OutlineInputBorder(borderRadius: BorderRadius.circular(40)),
-          )),
+        controller: controller,
+        textAlignVertical: TextAlignVertical.center,
+        decoration: InputDecoration(
+          hintText: context.l10n.search_placeholder,
+          // hintStyle: hintStyle,
+          prefixIcon: AppSvgIcons(iconPath: AppIconStrings.search),
+          suffixIcon: AppSvgIcons(iconPath: AppIconStrings.filterSearch),
+          filled: true,
+          fillColor: Colors.white,
+          contentPadding: EdgeInsets.only(
+            left: responsiveWidth(context, 14),
+          ),
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(12),
+            borderSide: const BorderSide(color: AppColors.secondary),
+          ),
+          enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(12),
+            borderSide: const BorderSide(color: AppColors.secondary),
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(12),
+            borderSide: BorderSide(
+              color: AppColors.primary,
+              width: responsiveWidth(context, 1.5),
+            ),
+          ),
+        ),
+      ),
     );
   }
 }

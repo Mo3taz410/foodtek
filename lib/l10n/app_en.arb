@@ -115,6 +115,5 @@
   "cart_empty_message": "You don’t have add any foods in cart at this time",
   "history_empty": "History Empty",
   "history_empty_message": "You don’t have order any foods before",
-  "track": "Track",
-  "search_menu": "Search menu, restaurant or etc"
+  "track": "Track"
 }
