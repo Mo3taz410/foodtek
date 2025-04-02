@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:foodtek/core/extensions/localization_extension.dart';
 import 'package:foodtek/core/utils/app_colors.dart';
+import 'package:foodtek/core/utils/app_icon_strings.dart';
+import 'package:foodtek/core/utils/app_image_strings.dart';
 import 'package:foodtek/core/utils/responsive.dart';
 import 'package:foodtek/core/widgets/app_custom_header.dart';
 import 'package:foodtek/core/widgets/app_search_bar.dart';
 import 'package:foodtek/core/utils/app_text_styles.dart';
+import 'package:foodtek/core/widgets/app_svg_icons.dart';
 
 import '../../../../top_rated_food_list.dart';
 
@@ -33,21 +37,20 @@ class _HomeScreenState extends State<HomeScreen> {
         child: SingleChildScrollView(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
+            spacing: responsiveHeight(context, 16),
             children: [
-              const AppCustomHeader(),
-              const SizedBox(height: 10),
+              AppCustomHeader(),
               AppSearchBar(controller: searchController),
-              const SizedBox(height: 10),
               _buildCategoryList(context),
-              const SizedBox(height: 20),
               _buildPromoBanner(context),
-              const SizedBox(height: 20),
-              _buildSectionTitle(context, 'Top Rated'),
+              _buildSectionTitle(context, context.l10n.top_rated),
               _buildTopRatedList(context),
-              const SizedBox(height: 20),
-              _buildSectionTitle(context, 'Recommend', showViewAll: true),
+              _buildSectionTitle(
+                context,
+                context.l10n.recommend,
+                showViewAll: true,
+              ),
               _buildRecommendList(context),
-              const SizedBox(height: 20),
             ],
           ),
         ),
@@ -107,7 +110,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16),
       child: Image.asset(
-        'assets/images/Frame.png',
+        'assets/images/frame.png',
         width: responsiveWidth(context, 370),
         height: responsiveHeight(context, 137),
         fit: BoxFit.fill,
@@ -129,15 +132,27 @@ class _HomeScreenState extends State<HomeScreen> {
             style: AppTextStyles.authTitle(context),
           ),
           if (showViewAll)
-            Text(
-              'View All',
-              style: TextStyle(
-                fontFamily: 'Poppins',
-                fontSize: responsiveTextSize(context, 14),
-                color: AppColors.tertiary,
-                fontWeight: FontWeight.w500,
+            TextButton(
+              onPressed: () {},
+              child: Row(
+                children: [
+                  Text(
+                    context.l10n.view_all,
+                    style: TextStyle(
+                        color: AppColors.secondary,
+                        fontSize: responsiveTextSize(context, 12)),
+                  ),
+                  IconButton(
+                    onPressed: () {},
+                    icon: AppSvgIcons(
+                      iconPath: AppIconStrings.rightArrow,
+                      width: responsiveWidth(context, 8),
+                      height: responsiveHeight(context, 13),
+                    ),
+                  ),
+                ],
               ),
-            ),
+            )
         ],
       ),
     );
@@ -230,7 +245,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 width: responsiveWidth(context, 72),
                 height: responsiveHeight(context, 108),
                 child: Image.asset(
-                  'assets/images/shusi.png',
+                  AppImageStrings.sushi,
                   fit: BoxFit.cover,
                 ),
               ),

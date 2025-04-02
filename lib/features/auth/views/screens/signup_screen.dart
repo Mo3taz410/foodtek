@@ -110,7 +110,7 @@ class _SignupScreenState extends State<SignupScreen> {
           Align(
             alignment: Alignment.centerLeft,
             child: IconButton(
-              icon: AppSvgIcons(iconPath: AppIconStrings.arrowLeftLong),
+              icon: AppSvgIcons(iconPath: AppIconStrings.leftLongArrow),
               onPressed: () => Navigator.pop(context),
             ),
           ),

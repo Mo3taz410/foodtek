@@ -8,11 +8,13 @@ class AppSvgIcons extends StatelessWidget {
   final String iconPath;
   final Color? color;
   final double? width;
+  final double? height;
   const AppSvgIcons({
     super.key,
     this.color,
     required this.iconPath,
     this.width,
+    this.height,
   });
   @override
   Widget build(BuildContext context) {
@@ -23,6 +25,7 @@ class AppSvgIcons extends StatelessWidget {
         BlendMode.srcIn,
       ),
       width: width ?? responsiveWidth(context, 18),
+      height: height ?? responsiveWidth(context, 18),
     );
   }
 }

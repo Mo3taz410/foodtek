@@ -16,16 +16,22 @@ class AppSearchBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: responsiveWidth(context, 295),
+      width: double.infinity,
       height: responsiveHeight(context, 45),
       child: TextField(
         controller: controller,
         textAlignVertical: TextAlignVertical.center,
         decoration: InputDecoration(
           hintText: context.l10n.search_placeholder,
-          // hintStyle: hintStyle,
-          prefixIcon: AppSvgIcons(iconPath: AppIconStrings.search),
-          suffixIcon: AppSvgIcons(iconPath: AppIconStrings.filterSearch),
+          hintStyle: TextStyle(
+            fontSize: responsiveTextSize(context, 14),
+          ),
+          prefixIcon: IconButton(
+              onPressed: () {},
+              icon: AppSvgIcons(iconPath: AppIconStrings.search)),
+          suffixIcon: IconButton(
+              onPressed: () {},
+              icon: AppSvgIcons(iconPath: AppIconStrings.filterSearch)),
           filled: true,
           fillColor: Colors.white,
           contentPadding: EdgeInsets.only(

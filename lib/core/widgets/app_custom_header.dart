@@ -38,15 +38,23 @@ class AppCustomHeader extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      Row(
-                        spacing: responsiveWidth(context, 4),
-                        children: [
-                          Text(
-                            context.l10n.location,
-                            style: AppTextStyles.authSubTitle(context),
-                          ),
-                          AppSvgIcons(iconPath: AppIconStrings.dropDownCursor),
-                        ],
+                      TextButton(
+                        onPressed: () {},
+                        child: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          spacing: responsiveWidth(context, 4),
+                          children: [
+                            Text(
+                              context.l10n.location,
+                              style: AppTextStyles.authSubTitle(context),
+                            ),
+                            AppSvgIcons(
+                              iconPath: AppIconStrings.dropDownCursor,
+                              width: responsiveWidth(context, 6),
+                              height: responsiveWidth(context, 6),
+                            ),
+                          ],
+                        ),
                       ),
                       const Text(
                         'Jl. Soekarno Hatta 15A...',
@@ -70,7 +78,8 @@ class AppCustomHeader extends StatelessWidget {
                   ),
                   child: IconButton(
                     onPressed: () {},
-                    icon: AppSvgIcons(iconPath: AppIconStrings.calendar),
+                    icon:
+                        AppSvgIcons(iconPath: AppIconStrings.notificationsBell),
                   ),
                 ),
               ],

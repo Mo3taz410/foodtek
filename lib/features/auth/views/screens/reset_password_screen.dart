@@ -27,7 +27,7 @@ class ResetPasswordScreen extends StatelessWidget {
             textDirection: TextDirection.ltr,
             children: [
               IconButton(
-                icon: AppSvgIcons(iconPath: AppIconStrings.arrowLeftLong),
+                icon: AppSvgIcons(iconPath: AppIconStrings.leftLongArrow),
                 onPressed: () => Navigator.pop(context),
               ),
               Text(
