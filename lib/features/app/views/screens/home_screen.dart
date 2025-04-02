@@ -5,6 +5,7 @@ import 'package:foodtek/core/utils/app_icon_strings.dart';
 import 'package:foodtek/core/utils/app_image_strings.dart';
 import 'package:foodtek/core/utils/responsive.dart';
 import 'package:foodtek/core/widgets/app_custom_header.dart';
+import 'package:foodtek/core/widgets/app_custom_image.dart';
 import 'package:foodtek/core/widgets/app_search_bar.dart';
 import 'package:foodtek/core/utils/app_text_styles.dart';
 import 'package:foodtek/core/widgets/app_svg_icons.dart';
@@ -13,9 +14,9 @@ import '../../../../top_rated_food_list.dart';
 
 final List<Map<String, String>> categories = [
   {'image': '', 'label': 'All'},
-  {'image': 'assets/icons/food/burger.png', 'label': 'Burger'},
-  {'image': 'assets/icons/food/pizza.png', 'label': 'Pizza'},
-  {'image': 'assets/icons/food/sandwich.png', 'label': 'Sandwich'},
+  {'image': AppImageStrings.burgerIcon, 'label': 'Burger'},
+  {'image': AppImageStrings.pizza, 'label': 'Pizza'},
+  {'image': AppImageStrings.sandwich, 'label': 'Sandwich'},
 ];
 
 class HomeScreen extends StatefulWidget {
@@ -110,7 +111,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16),
       child: Image.asset(
-        'assets/images/frame.png',
+        AppImageStrings.frame,
         width: responsiveWidth(context, 370),
         height: responsiveHeight(context, 137),
         fit: BoxFit.fill,
@@ -240,15 +241,16 @@ class _HomeScreenState extends State<HomeScreen> {
       child: SizedBox(
           height: responsiveHeight(context, 157),
           child: Row(
+            spacing: responsiveWidth(context, 27.5),
             children: [
-              SizedBox(
-                width: responsiveWidth(context, 72),
-                height: responsiveHeight(context, 108),
-                child: Image.asset(
-                  AppImageStrings.sushi,
-                  fit: BoxFit.cover,
-                ),
-              ),
+              AppCustomImage(
+                  imagePath: AppImageStrings.sushi, tagText: '\$103.0'),
+              AppCustomImage(
+                  imagePath: AppImageStrings.chickenAndRice, tagText: '\$50.0'),
+              AppCustomImage(
+                  imagePath: AppImageStrings.lazania, tagText: '\$12.99'),
+              AppCustomImage(
+                  imagePath: AppImageStrings.cupcake, tagText: '\$8.20'),
             ],
           )),
     );
