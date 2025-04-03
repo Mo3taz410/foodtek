@@ -9,7 +9,7 @@ class NotificationModal extends StatelessWidget {
   Widget build(BuildContext context) {
     return DraggableScrollableSheet(
       expand: false,
-      initialChildSize: 0.8, // الارتفاع (80% من الشاشة)
+      initialChildSize: 0.8,
       minChildSize: 0.6,
       maxChildSize: 0.95,
       builder: (context, scrollController) {

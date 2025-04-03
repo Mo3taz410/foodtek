@@ -218,7 +218,7 @@ class _CartTabState extends State<CartTab> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Image.asset(
-              'assets/empty_cart.png', // ← تأكد من إضافة هذه الصورة في مجلد assets
+              AppImageStrings.emptyCart,
               height: responsiveHeight(context, 200),
             ),
             const SizedBox(height: 24),
