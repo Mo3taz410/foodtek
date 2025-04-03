@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:foodtek/core/utils/app_colors.dart';
+import 'package:foodtek/core/utils/responsive.dart';
 
-import '../utils/app_colors.dart';
-import '../utils/responsive.dart';
-
-class AppCustomImage extends StatelessWidget {
+class RecommendedItem extends StatelessWidget {
   final String imagePath;
   final String tagText;
 
-  const AppCustomImage({
+  const RecommendedItem({
     super.key,
     required this.imagePath,
     required this.tagText,

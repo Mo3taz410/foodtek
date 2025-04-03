@@ -47,6 +47,8 @@ dependencies:
   shared_preferences: ^2.5.2
   universal_platform: ^1.1.0
   flutter_svg: ^2.0.17
+  auto_size_text: ^3.0.0
+  flutter_screenutil: ^5.9.3
 
 
 dev_dependencies:

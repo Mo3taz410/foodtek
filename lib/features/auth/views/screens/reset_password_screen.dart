@@ -27,12 +27,16 @@ class ResetPasswordScreen extends StatelessWidget {
             textDirection: TextDirection.ltr,
             children: [
               IconButton(
-                icon: AppSvgIcons(iconPath: AppIconStrings.leftLongArrow),
+                icon: AppSvgIcons(
+                  iconPath: AppIconStrings.leftLongArrow,
+                  width: responsiveWidth(context, 12),
+                  height: responsiveHeight(context, 12),
+                ),
                 onPressed: () => Navigator.pop(context),
               ),
               Text(
                 context.l10n.back_to_login,
-                style: AppTextStyles.authSubTitle(context),
+                style: AppTextStyles.authSubTitle,
               ),
             ],
           ),
@@ -41,23 +45,23 @@ class ResetPasswordScreen extends StatelessWidget {
             children: [
               Text(
                 context.l10n.reset_password,
-                style: AppTextStyles.authTitle(context),
+                style: AppTextStyles.authTitle,
                 textAlign: TextAlign.center,
               ),
               Text(context.l10n.reset_password_description,
-                  style: AppTextStyles.authSubTitle(context),
+                  style: AppTextStyles.authSubTitle,
                   textAlign: TextAlign.center),
             ],
           ),
           AuthTextField(
             controller: emailController,
             hintText: context.l10n.email,
-            hintStyle: AppTextStyles.authTextFieldsHintStyle(context),
+            hintStyle: AppTextStyles.authTextFieldsHint,
             keyboardType: TextInputType.emailAddress,
           ),
           AppCustomButton(
             text: context.l10n.send,
-            textStyle: AppTextStyles.authButton(context),
+            textStyle: AppTextStyles.authButton,
             width: double.infinity,
             height: responsiveHeight(context, 48),
             color: AppColors.primary,
@@ -99,7 +103,7 @@ class ResetPasswordScreen extends StatelessWidget {
                                 Text(
                                   context.l10n.enter_code,
                                   textAlign: TextAlign.center,
-                                  style: AppTextStyles.authSubTitle(context),
+                                  style: AppTextStyles.authSubTitle,
                                 ),
                                 Row(
                                   mainAxisAlignment:
@@ -121,7 +125,7 @@ class ResetPasswordScreen extends StatelessWidget {
                                 ),
                                 AppCustomButton(
                                   text: context.l10n.verify,
-                                  textStyle: AppTextStyles.authButton(context),
+                                  textStyle: AppTextStyles.authButton,
                                   color: AppColors.primary,
                                   width: double.infinity,
                                   height: responsiveHeight(context, 48),

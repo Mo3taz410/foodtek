@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:foodtek/core/extensions/localization_extension.dart';
 import 'package:foodtek/core/utils/app_colors.dart';
 import 'package:foodtek/core/utils/app_icon_strings.dart';
@@ -16,7 +17,7 @@ class AppSearchBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: double.infinity,
+      width: responsiveWidth(context, 370),
       height: responsiveHeight(context, 45),
       child: TextField(
         controller: controller,
@@ -24,7 +25,7 @@ class AppSearchBar extends StatelessWidget {
         decoration: InputDecoration(
           hintText: context.l10n.search_placeholder,
           hintStyle: TextStyle(
-            fontSize: responsiveTextSize(context, 14),
+            fontSize: 14.sp,
           ),
           prefixIcon: IconButton(
               onPressed: () {},

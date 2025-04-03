@@ -21,13 +21,13 @@ class AuthBottomTextRow extends StatelessWidget {
       children: [
         Text(
           label,
-          style: AppTextStyles.authSubTitle(context),
+          style: AppTextStyles.authSubTitle,
         ),
         TextButton(
           onPressed: onPressed,
           child: Text(
             actionText,
-            style: AppTextStyles.authSubTitle(context).copyWith(
+            style: AppTextStyles.authSubTitle.copyWith(
               color: AppColors.primary,
               fontWeight: FontWeight.w600,
             ),

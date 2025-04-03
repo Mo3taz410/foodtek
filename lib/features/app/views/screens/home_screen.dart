@@ -1,20 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:foodtek/core/extensions/localization_extension.dart';
 import 'package:foodtek/core/utils/app_colors.dart';
 import 'package:foodtek/core/utils/app_icon_strings.dart';
 import 'package:foodtek/core/utils/app_image_strings.dart';
 import 'package:foodtek/core/utils/responsive.dart';
 import 'package:foodtek/core/widgets/app_custom_header.dart';
-import 'package:foodtek/core/widgets/app_custom_image.dart';
+import 'package:foodtek/features/app/controllers/promo_nav_cubit.dart';
+import 'package:foodtek/features/app/views/widgets/recommended__item.dart';
 import 'package:foodtek/core/widgets/app_search_bar.dart';
 import 'package:foodtek/core/utils/app_text_styles.dart';
 import 'package:foodtek/core/widgets/app_svg_icons.dart';
+import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
-import '../../../../top_rated_food_list.dart';
+import '../../models/top_rated_food_list.dart';
 
 final List<Map<String, String>> categories = [
   {'image': '', 'label': 'All'},
-  {'image': AppImageStrings.burgerIcon, 'label': 'Burger'},
+  {'image': AppImageStrings.burger, 'label': 'Burger'},
   {'image': AppImageStrings.pizza, 'label': 'Pizza'},
   {'image': AppImageStrings.sandwich, 'label': 'Sandwich'},
 ];
@@ -28,32 +32,30 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   final TextEditingController searchController = TextEditingController();
+  final PageController promoController = PageController();
   int selectedIndex = 0;
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.white,
-      body: SafeArea(
-        child: SingleChildScrollView(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            spacing: responsiveHeight(context, 16),
-            children: [
-              AppCustomHeader(),
-              AppSearchBar(controller: searchController),
-              _buildCategoryList(context),
-              _buildPromoBanner(context),
-              _buildSectionTitle(context, context.l10n.top_rated),
-              _buildTopRatedList(context),
-              _buildSectionTitle(
-                context,
-                context.l10n.recommend,
-                showViewAll: true,
-              ),
-              _buildRecommendList(context),
-            ],
-          ),
+    return SafeArea(
+      child: SingleChildScrollView(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          spacing: responsiveHeight(context, 16),
+          children: [
+            AppCustomHeader(),
+            AppSearchBar(controller: searchController),
+            _buildCategoryList(context),
+            _buildPromoBanner(context),
+            _buildSectionTitle(context, context.l10n.top_rated),
+            _buildTopRatedList(context),
+            _buildSectionTitle(
+              context,
+              context.l10n.recommend,
+              showViewAll: true,
+            ),
+            _buildRecommendList(context),
+          ],
         ),
       ),
     );
@@ -61,7 +63,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Widget _buildCategoryList(BuildContext context) {
     return SizedBox(
-      height: 50,
+      height: responsiveHeight(context, 50),
       child: ListView.separated(
         scrollDirection: Axis.horizontal,
         padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -74,7 +76,9 @@ class _HomeScreenState extends State<HomeScreen> {
               setState(() => selectedIndex = index);
             },
             child: Container(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
+              padding: EdgeInsets.symmetric(
+                horizontal: responsiveWidth(context, 16),
+              ),
               decoration: BoxDecoration(
                 color: isSelected ? AppColors.secondary : Colors.white,
                 borderRadius: BorderRadius.circular(12),
@@ -108,13 +112,46 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Widget _buildPromoBanner(BuildContext context) {
+    final List<String> promoImages = [
+      AppImageStrings.promo,
+      AppImageStrings.pizza,
+      AppImageStrings.burger,
+    ];
+
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16),
-      child: Image.asset(
-        AppImageStrings.frame,
-        width: responsiveWidth(context, 370),
-        height: responsiveHeight(context, 137),
-        fit: BoxFit.fill,
+      child: Column(
+        spacing: responsiveHeight(context, 10),
+        children: [
+          SizedBox(
+            height: responsiveHeight(context, 137),
+            child: PageView.builder(
+              controller: promoController,
+              itemCount: promoImages.length,
+              itemBuilder: (context, index) {
+                return Image.asset(
+                  promoImages[index],
+                  width: responsiveWidth(context, 370),
+                  height: responsiveHeight(context, 137),
+                  fit: BoxFit.fill,
+                );
+              },
+            ),
+          ),
+          SmoothPageIndicator(
+            controller: promoController,
+            count: promoImages.length,
+            effect: WormEffect(dotColor: AppColors.quinary),
+            onDotClicked: (index) {
+              context.read<PromoNavCubit>().updateIndex(index);
+              promoController.animateToPage(
+                index,
+                duration: const Duration(milliseconds: 500),
+                curve: Curves.easeIn,
+              );
+            },
+          ),
+        ],
       ),
     );
   }
@@ -130,7 +167,7 @@ class _HomeScreenState extends State<HomeScreen> {
         children: [
           Text(
             title,
-            style: AppTextStyles.authTitle(context),
+            style: AppTextStyles.authTitle,
           ),
           if (showViewAll)
             TextButton(
@@ -140,8 +177,9 @@ class _HomeScreenState extends State<HomeScreen> {
                   Text(
                     context.l10n.view_all,
                     style: TextStyle(
-                        color: AppColors.secondary,
-                        fontSize: responsiveTextSize(context, 12)),
+                      color: AppColors.secondary,
+                      fontSize: 12.sp,
+                    ),
                   ),
                   IconButton(
                     onPressed: () {},
@@ -161,68 +199,74 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Widget _buildTopRatedList(BuildContext context) {
     final topRatedList = TopRatedFoodList();
-
     return SizedBox(
-      height: responsiveHeight(context, 248),
-      child: ListView.builder(
+      height: responsiveHeight(context, 300),
+      child: ListView.separated(
         scrollDirection: Axis.horizontal,
         itemCount: topRatedList.topRatedFoodL.length,
-        padding: EdgeInsets.symmetric(horizontal: responsiveWidth(context, 17)),
+        separatorBuilder: (context, index) => SizedBox(
+          width: responsiveWidth(context, 12),
+        ), // spacing
         itemBuilder: (context, index) {
           final food = topRatedList.topRatedFoodL[index];
           return Container(
             width: responsiveWidth(context, 155),
-            height: responsiveHeight(context, 209),
-            margin: const EdgeInsets.only(right: 12),
-            padding: const EdgeInsets.all(8),
+            height: responsiveHeight(context, 210),
+            padding: EdgeInsets.symmetric(
+              horizontal: responsiveWidth(context, 12),
+              vertical: responsiveHeight(context, 8),
+            ),
             decoration: BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.circular(12),
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.black.withOpacity(0.05),
-                  blurRadius: 5,
-                ),
-              ],
             ),
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 Row(
                   children: [
                     Icon(
                       Icons.star,
                       color: AppColors.septenary,
-                      size: responsiveTextSize(context, 16),
+                      size: 16.sp,
                     ),
                     Text(
                       food.rating.toString(),
-                      style: const TextStyle(fontSize: 12, color: Colors.grey),
+                      style: AppTextStyles.authSubTitle,
                     ),
                   ],
                 ),
                 Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Image.asset(food.imagePath,
-                        height: responsiveHeight(context, 70),
-                        width: responsiveWidth(context, 87),
-                        fit: BoxFit.cover),
-                    const SizedBox(height: 6),
-                    Text(food.name,
-                        style: const TextStyle(fontWeight: FontWeight.w600)),
+                    Image.asset(
+                      food.imagePath,
+                      height: responsiveHeight(context, 70),
+                      width: responsiveWidth(context, 87),
+                      fit: BoxFit.cover,
+                    ),
+                    Text(
+                      food.name,
+                      style: AppTextStyles.topRatedFoodName,
+                    ),
                     Text(
                       food.description,
-                      style: const TextStyle(fontSize: 11, color: Colors.grey),
+                      style: AppTextStyles.authSubTitle,
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text('\$${food.price.toStringAsFixed(2)}',
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                color: AppColors.secondary)),
-                        Icon(Icons.add_circle, color: AppColors.secondary),
+                        Text(
+                          '\$${food.price.toStringAsFixed(2)}',
+                          style: AppTextStyles.authSubTitle,
+                        ),
+                        IconButton(
+                          onPressed: () {},
+                          icon: Icon(
+                            Icons.add_circle,
+                            color: AppColors.secondary,
+                          ),
+                        ),
                       ],
                     ),
                   ],
@@ -243,13 +287,13 @@ class _HomeScreenState extends State<HomeScreen> {
           child: Row(
             spacing: responsiveWidth(context, 27.5),
             children: [
-              AppCustomImage(
+              RecommendedItem(
                   imagePath: AppImageStrings.sushi, tagText: '\$103.0'),
-              AppCustomImage(
+              RecommendedItem(
                   imagePath: AppImageStrings.chickenAndRice, tagText: '\$50.0'),
-              AppCustomImage(
+              RecommendedItem(
                   imagePath: AppImageStrings.lazania, tagText: '\$12.99'),
-              AppCustomImage(
+              RecommendedItem(
                   imagePath: AppImageStrings.cupcake, tagText: '\$8.20'),
             ],
           )),

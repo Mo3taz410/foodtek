@@ -1,4 +1,4 @@
-import "package:foodtek/top_rated_food.dart";
+import "package:foodtek/features/app/models/top_rated_food.dart";
 
 class TopRatedFoodList {
   List<TopRatedFood> topRatedFoodL = [

@@ -48,13 +48,12 @@ class OnboardingWidget extends StatelessWidget {
                   children: [
                     Text(
                       title,
-                      style: AppTextStyles.onboardingTitle(
-                          context, isLast ? 3 : 0),
+                      style: AppTextStyles.onboardingTitle(isLast ? 3 : 0),
                       textAlign: TextAlign.center,
                     ),
                     Text(
                       subtitle,
-                      style: AppTextStyles.onboardingSubTitle(context),
+                      style: AppTextStyles.onboardingSubTitle,
                       textAlign: TextAlign.center,
                     ),
                   ],
@@ -68,7 +67,7 @@ class OnboardingWidget extends StatelessWidget {
               AppCustomButton(
                 text:
                     isLast ? context.l10n.yes_turn_on : context.l10n.continue_,
-                textStyle: AppTextStyles.onboardingButton(context),
+                textStyle: AppTextStyles.onboardingButton,
                 width: responsiveWidth(context, 307),
                 height: responsiveHeight(context, 48),
                 borderRadius: 69,
@@ -85,7 +84,7 @@ class OnboardingWidget extends StatelessWidget {
               if (isLast) ...[
                 AppCustomButton(
                   text: context.l10n.cancel,
-                  textStyle: AppTextStyles.onboardingButton(context).copyWith(
+                  textStyle: AppTextStyles.onboardingButton.copyWith(
                     color: AppColors.secondary,
                   ),
                   width: responsiveWidth(context, 307),

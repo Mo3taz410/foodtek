@@ -26,7 +26,7 @@ class AppCustomHeader extends StatelessWidget {
                     horizontal: responsiveWidth(context, 8),
                   ),
                   decoration: BoxDecoration(
-                    color: AppColors.quinary,
+                    color: AppColors.octonary,
                     borderRadius: BorderRadius.circular(4),
                   ),
                   child: AppSvgIcons(
@@ -46,7 +46,7 @@ class AppCustomHeader extends StatelessWidget {
                           children: [
                             Text(
                               context.l10n.location,
-                              style: AppTextStyles.authSubTitle(context),
+                              style: AppTextStyles.authSubTitle,
                             ),
                             AppSvgIcons(
                               iconPath: AppIconStrings.dropDownCursor,
@@ -74,7 +74,7 @@ class AppCustomHeader extends StatelessWidget {
                   // ),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(4),
-                    color: AppColors.quinary,
+                    color: AppColors.octonary,
                   ),
                   child: IconButton(
                     onPressed: () {},

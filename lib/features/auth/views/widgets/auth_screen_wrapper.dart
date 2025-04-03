@@ -32,7 +32,7 @@ class AuthScreenWrapper extends StatelessWidget {
                   ),
                   child: Text(
                     AppStrings.logo,
-                    style: AppTextStyles.logo(context),
+                    style: AppTextStyles.logo,
                   ),
                 ),
                 Expanded(

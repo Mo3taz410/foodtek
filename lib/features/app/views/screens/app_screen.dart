@@ -30,7 +30,7 @@ class AppScreen extends StatelessWidget {
           body: screens[selectedIndex],
           bottomNavigationBar: BottomNavigationBar(
             type: BottomNavigationBarType.fixed,
-            backgroundColor: AppColors.quinary,
+            backgroundColor: AppColors.octonary,
             selectedItemColor: AppColors.primary,
             unselectedItemColor: AppColors.tertiary,
             currentIndex: selectedIndex,

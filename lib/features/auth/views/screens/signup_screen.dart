@@ -27,23 +27,6 @@ class _SignupScreenState extends State<SignupScreen> {
   final passwordController = TextEditingController();
   final confirmPasswordController = TextEditingController();
 
-  final focusNodes = {
-    'fullName': FocusNode(),
-    'email': FocusNode(),
-    'phone': FocusNode(),
-    'password': FocusNode(),
-    'confirm': FocusNode(),
-  };
-
-  final errors = <String, String?>{
-    'fullName': null,
-    'email': null,
-    'phone': null,
-    'password': null,
-    'confirm': null,
-    'birthDate': null,
-  };
-
   @override
   void dispose() {
     fullNameController.dispose();
@@ -51,14 +34,11 @@ class _SignupScreenState extends State<SignupScreen> {
     phoneController.dispose();
     passwordController.dispose();
     confirmPasswordController.dispose();
-    for (final node in focusNodes.values) {
-      node.dispose();
-    }
     super.dispose();
   }
 
-  void _validateAndSubmit(BuildContext context, AuthState state) {
-    final loc = context.l10n;
+  void _validateAndSubmit(BuildContext context) {
+    final state = context.read<AuthCubit>().state;
     final birthDate = state is AuthInitial ? state.selectedBirthDate : null;
 
     final user = UserModel(
@@ -68,36 +48,6 @@ class _SignupScreenState extends State<SignupScreen> {
       phoneNumber: phoneController.text,
       birthDate: birthDate,
     );
-
-    final confirmMatch =
-        passwordController.text == confirmPasswordController.text;
-
-    setState(() {
-      errors['fullName'] = user.isValidFullName ? null : loc.error_invalid_name;
-      errors['email'] = user.isValidEmail ? null : loc.error_invalid_email;
-      errors['phone'] =
-          user.isValidPhoneNumber ? null : loc.error_invalid_phone;
-      errors['password'] =
-          user.isValidPassword ? null : loc.error_invalid_password;
-      errors['confirm'] = confirmMatch ? null : loc.error_passwords_mismatch;
-      errors['birthDate'] =
-          user.isValidBirthDate ? null : loc.error_invalid_birth_date;
-    });
-
-    final firstInvalid = errors.entries.firstWhere(
-      (e) => e.value != null,
-      orElse: () => const MapEntry('', null),
-    );
-
-    if (firstInvalid.key.isNotEmpty) {
-      if (focusNodes[firstInvalid.key] case final node?) {
-        FocusScope.of(context).requestFocus(node);
-      } else {
-        FocusScope.of(context).unfocus();
-      }
-      return;
-    }
-
     context.read<AuthCubit>().signUp(user);
   }
 
@@ -110,11 +60,15 @@ class _SignupScreenState extends State<SignupScreen> {
           Align(
             alignment: Alignment.centerLeft,
             child: IconButton(
-              icon: AppSvgIcons(iconPath: AppIconStrings.leftLongArrow),
+              icon: AppSvgIcons(
+                iconPath: AppIconStrings.leftLongArrow,
+                width: responsiveWidth(context, 12),
+                height: responsiveHeight(context, 12),
+              ),
               onPressed: () => Navigator.pop(context),
             ),
           ),
-          Text(context.l10n.sign_up, style: AppTextStyles.authTitle(context)),
+          Text(context.l10n.sign_up, style: AppTextStyles.authTitle),
           AuthBottomTextRow(
             label: context.l10n.already_have_account,
             actionText: context.l10n.login,
@@ -123,17 +77,13 @@ class _SignupScreenState extends State<SignupScreen> {
           AuthTextField(
             controller: fullNameController,
             hintText: context.l10n.full_name,
-            hintStyle: AppTextStyles.authTextFieldsHintStyle(context),
-            errorText: errors['fullName'],
-            focusNode: focusNodes['fullName'],
+            hintStyle: AppTextStyles.authTextFieldsHint,
           ),
           AuthTextField(
             controller: emailController,
             hintText: context.l10n.email,
-            hintStyle: AppTextStyles.authTextFieldsHintStyle(context),
+            hintStyle: AppTextStyles.authTextFieldsHint,
             keyboardType: TextInputType.emailAddress,
-            errorText: errors['email'],
-            focusNode: focusNodes['email'],
           ),
           GestureDetector(
             onTap: () async {
@@ -161,8 +111,7 @@ class _SignupScreenState extends State<SignupScreen> {
                           : '',
                     ),
                     hintText: context.l10n.birth_date,
-                    hintStyle: AppTextStyles.authTextFieldsHintStyle(context),
-                    errorText: errors['birthDate'],
+                    hintStyle: AppTextStyles.authTextFieldsHint,
                   );
                 },
               ),
@@ -171,10 +120,8 @@ class _SignupScreenState extends State<SignupScreen> {
           AuthTextField(
             controller: phoneController,
             hintText: context.l10n.phone_number,
-            hintStyle: AppTextStyles.authTextFieldsHintStyle(context),
+            hintStyle: AppTextStyles.authTextFieldsHint,
             keyboardType: TextInputType.phone,
-            errorText: errors['phone'],
-            focusNode: focusNodes['phone'],
           ),
           BlocBuilder<AuthCubit, AuthState>(
             builder: (context, state) {
@@ -182,7 +129,7 @@ class _SignupScreenState extends State<SignupScreen> {
               return AuthTextField(
                 controller: passwordController,
                 hintText: context.l10n.set_password,
-                hintStyle: AppTextStyles.authTextFieldsHintStyle(context),
+                hintStyle: AppTextStyles.authTextFieldsHint,
                 obscureText: isHidden,
                 suffixIcon: IconButton(
                   icon: isHidden
@@ -191,8 +138,6 @@ class _SignupScreenState extends State<SignupScreen> {
                   onPressed: () =>
                       context.read<AuthCubit>().togglePasswordVisibility(),
                 ),
-                errorText: errors['password'],
-                focusNode: focusNodes['password'],
               );
             },
           ),
@@ -203,7 +148,7 @@ class _SignupScreenState extends State<SignupScreen> {
               return AuthTextField(
                 controller: confirmPasswordController,
                 hintText: context.l10n.confirm_new_password,
-                hintStyle: AppTextStyles.authTextFieldsHintStyle(context),
+                hintStyle: AppTextStyles.authTextFieldsHint,
                 obscureText: isHidden,
                 suffixIcon: IconButton(
                   icon: isHidden
@@ -213,8 +158,6 @@ class _SignupScreenState extends State<SignupScreen> {
                       .read<AuthCubit>()
                       .toggleConfirmPasswordVisibility(),
                 ),
-                errorText: errors['confirm'],
-                focusNode: focusNodes['confirm'],
               );
             },
           ),
@@ -233,8 +176,8 @@ class _SignupScreenState extends State<SignupScreen> {
                 width: double.infinity,
                 height: responsiveHeight(context, 48),
                 color: AppColors.primary,
-                textStyle: AppTextStyles.authButton(context),
-                onPressed: () => _validateAndSubmit(context, state),
+                textStyle: AppTextStyles.authButton,
+                onPressed: () => _validateAndSubmit(context),
               );
             },
           ),

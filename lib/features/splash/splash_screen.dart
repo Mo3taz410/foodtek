@@ -65,7 +65,7 @@ class _SplashScreenState extends State<SplashScreen> {
           Center(
             child: Text(
               AppStrings.logo,
-              style: AppTextStyles.logo(context),
+              style: AppTextStyles.logo,
             ),
           ),
         ],

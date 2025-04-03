@@ -24,8 +24,8 @@ class AppSvgIcons extends StatelessWidget {
         color ?? AppColors.tertiary,
         BlendMode.srcIn,
       ),
-      width: width ?? responsiveWidth(context, 18),
-      height: height ?? responsiveWidth(context, 18),
+      width: width ?? responsiveWidth(context, 22),
+      height: height ?? responsiveWidth(context, 22),
     );
   }
 }

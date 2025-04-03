@@ -29,7 +29,10 @@ class LoginScreen extends StatelessWidget {
         spacing: responsiveHeight(context, 15),
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Text(context.l10n.login, style: AppTextStyles.authTitle(context)),
+          Text(
+            context.l10n.login,
+            style: AppTextStyles.authTitle,
+          ),
           AuthBottomTextRow(
             label: context.l10n.dont_have_account,
             actionText: context.l10n.sign_up,
@@ -45,7 +48,7 @@ class LoginScreen extends StatelessWidget {
           AuthTextField(
             controller: emailController,
             hintText: context.l10n.email,
-            hintStyle: AppTextStyles.authTextFieldsHintStyle(context),
+            hintStyle: AppTextStyles.authTextFieldsHint,
             keyboardType: TextInputType.emailAddress,
           ),
           BlocBuilder<AuthCubit, AuthState>(
@@ -54,7 +57,7 @@ class LoginScreen extends StatelessWidget {
               return AuthTextField(
                 controller: passwordController,
                 hintText: context.l10n.password,
-                hintStyle: AppTextStyles.authTextFieldsHintStyle(context),
+                hintStyle: AppTextStyles.authTextFieldsHint,
                 obscureText: isHidden,
                 suffixIcon: IconButton(
                   icon: isHidden
@@ -88,7 +91,7 @@ class LoginScreen extends StatelessWidget {
                         ),
                         Text(
                           context.l10n.remember_me,
-                          style: AppTextStyles.authSubTitle(context).copyWith(
+                          style: AppTextStyles.authSubTitle.copyWith(
                             fontWeight: FontWeight.w700,
                           ),
                         ),
@@ -106,7 +109,7 @@ class LoginScreen extends StatelessWidget {
                     },
                     child: Text(
                       context.l10n.forgot_password,
-                      style: AppTextStyles.authSubTitle(context).copyWith(
+                      style: AppTextStyles.authSubTitle.copyWith(
                         color: AppColors.primary,
                         fontWeight: FontWeight.w600,
                       ),
@@ -130,7 +133,7 @@ class LoginScreen extends StatelessWidget {
                 width: double.infinity,
                 height: responsiveHeight(context, 48),
                 color: AppColors.primary,
-                textStyle: AppTextStyles.authButton(context),
+                textStyle: AppTextStyles.authButton,
                 onPressed: () {
                   final user = UserModel(
                     email: emailController.text,
@@ -149,7 +152,7 @@ class LoginScreen extends StatelessWidget {
                     horizontal: responsiveWidth(context, 8)),
                 child: Text(
                   context.l10n.or,
-                  style: AppTextStyles.authSubTitle(context),
+                  style: AppTextStyles.authSubTitle,
                 ),
               ),
               const Expanded(child: Divider(thickness: 1)),

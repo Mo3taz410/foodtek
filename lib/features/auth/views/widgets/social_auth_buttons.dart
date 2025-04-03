@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:foodtek/core/extensions/localization_extension.dart';
 import 'package:foodtek/core/utils/app_colors.dart';
 import 'package:foodtek/core/utils/app_image_strings.dart';
@@ -31,11 +32,11 @@ class SocialAuthButtons extends StatelessWidget {
         onPressed: onTap,
         icon: Image.asset(
           iconPath,
-          height: responsiveTextSize(context, 18),
+          height: 18.sp,
         ),
         label: Text(
           label,
-          style: AppTextStyles.authSocialButton(context),
+          style: AppTextStyles.authSocialButton,
         ),
         style: OutlinedButton.styleFrom(
           backgroundColor: Colors.white,
