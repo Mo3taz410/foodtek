@@ -42,8 +42,11 @@ class _HomeScreenState extends State<HomeScreen> {
         child: Column(
           children: [
             AppCustomHeader(),
+            SizedBox(height: responsiveHeight(context, 22)),
             AppSearchBar(controller: searchController),
+            SizedBox(height: responsiveHeight(context, 30)),
             _buildTabBar(context),
+            SizedBox(height: responsiveHeight(context, 22)),
             Expanded(
               child: TabBarView(
                 children: categories.map((category) {
