@@ -33,82 +33,81 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   final TextEditingController searchController = TextEditingController();
   final PageController promoController = PageController();
-  int selectedIndex = 0;
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: SingleChildScrollView(
+    return DefaultTabController(
+      length: categories.length,
+      child: SafeArea(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          spacing: responsiveHeight(context, 16),
           children: [
             AppCustomHeader(),
             AppSearchBar(controller: searchController),
-            _buildCategoryList(context),
-            _buildPromoBanner(context),
-            _buildSectionTitle(context, context.l10n.top_rated),
-            _buildTopRatedList(context),
-            _buildSectionTitle(
-              context,
-              context.l10n.recommend,
-              showViewAll: true,
-            ),
-            _buildRecommendList(context),
+            _buildTabBar(context),
+            Expanded(
+              child: TabBarView(
+                children: categories.map((category) {
+                  return _buildTabContent(context, category['label']!);
+                }).toList(),
+              ),
+            )
           ],
         ),
       ),
     );
   }
 
-  Widget _buildCategoryList(BuildContext context) {
-    return SizedBox(
-      height: responsiveHeight(context, 50),
-      child: ListView.separated(
-        scrollDirection: Axis.horizontal,
-        padding: const EdgeInsets.symmetric(horizontal: 16),
-        itemCount: categories.length,
-        separatorBuilder: (_, __) => const SizedBox(width: 10),
-        itemBuilder: (context, index) {
-          final isSelected = selectedIndex == index;
-          return GestureDetector(
-            onTap: () {
-              setState(() => selectedIndex = index);
-            },
-            child: Container(
-              padding: EdgeInsets.symmetric(
-                horizontal: responsiveWidth(context, 16),
-              ),
-              decoration: BoxDecoration(
-                color: isSelected ? AppColors.secondary : Colors.white,
-                borderRadius: BorderRadius.circular(12),
-                border: Border.all(color: AppColors.secondary.withOpacity(0.4)),
-              ),
-              child: Row(
-                children: [
-                  if (categories[index]['image']!.isNotEmpty)
-                    Image.asset(
-                      categories[index]['image']!,
-                      width: responsiveWidth(context, 24),
-                      height: responsiveHeight(context, 24),
-                    ),
-                  if (categories[index]['image']!.isNotEmpty)
-                    const SizedBox(width: 6),
-                  Text(
-                    categories[index]['label']!,
-                    style: TextStyle(
-                      color: isSelected ? Colors.white : AppColors.secondary,
-                      fontWeight: FontWeight.w600,
-                      fontFamily: 'Poppins',
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          );
-        },
+  Widget _buildTabBar(BuildContext context) {
+    return TabBar(
+      isScrollable: true,
+      indicator: BoxDecoration(
+        color: AppColors.secondary,
+        borderRadius: BorderRadius.circular(16),
       ),
+      indicatorSize: TabBarIndicatorSize.tab,
+      labelColor: Colors.white,
+      unselectedLabelColor: AppColors.secondary,
+      labelPadding: const EdgeInsets.symmetric(horizontal: 12),
+      tabs: categories.map((category) {
+        final hasImage = category['image']!.isNotEmpty;
+        return Tab(
+          child: Row(
+            children: [
+              if (hasImage)
+                Image.asset(
+                  category['image']!,
+                  width: 24,
+                  height: 24,
+                ),
+              if (hasImage) const SizedBox(width: 6),
+              Text(
+                category['label']!,
+                style: const TextStyle(fontWeight: FontWeight.w600),
+              ),
+            ],
+          ),
+        );
+      }).toList(),
     );
+  }
+
+  Widget _buildTabContent(BuildContext context, String label) {
+    if (label == 'All') {
+      return SingleChildScrollView(
+        child: Column(
+          children: [
+            _buildPromoBanner(context),
+            _buildSectionTitle(context, context.l10n.top_rated),
+            _buildTopRatedList(context),
+            _buildSectionTitle(context, context.l10n.recommend,
+                showViewAll: true),
+            _buildRecommendList(context),
+          ],
+        ),
+      );
+    } else {
+      return Center(child: Text('Display $label items here'));
+    }
   }
 
   Widget _buildPromoBanner(BuildContext context) {
@@ -121,7 +120,6 @@ class _HomeScreenState extends State<HomeScreen> {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16),
       child: Column(
-        spacing: responsiveHeight(context, 10),
         children: [
           SizedBox(
             height: responsiveHeight(context, 137),
@@ -165,10 +163,7 @@ class _HomeScreenState extends State<HomeScreen> {
             ? MainAxisAlignment.spaceBetween
             : MainAxisAlignment.start,
         children: [
-          Text(
-            title,
-            style: AppTextStyles.authTitle,
-          ),
+          Text(title, style: AppTextStyles.authTitle),
           if (showViewAll)
             TextButton(
               onPressed: () {},
@@ -206,7 +201,7 @@ class _HomeScreenState extends State<HomeScreen> {
         itemCount: topRatedList.topRatedFoodL.length,
         separatorBuilder: (context, index) => SizedBox(
           width: responsiveWidth(context, 12),
-        ), // spacing
+        ),
         itemBuilder: (context, index) {
           final food = topRatedList.topRatedFoodL[index];
           return Container(
@@ -283,20 +278,20 @@ class _HomeScreenState extends State<HomeScreen> {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: responsiveWidth(context, 17)),
       child: SizedBox(
-          height: responsiveHeight(context, 157),
-          child: Row(
-            spacing: responsiveWidth(context, 27.5),
-            children: [
-              RecommendedItem(
-                  imagePath: AppImageStrings.sushi, tagText: '\$103.0'),
-              RecommendedItem(
-                  imagePath: AppImageStrings.chickenAndRice, tagText: '\$50.0'),
-              RecommendedItem(
-                  imagePath: AppImageStrings.lazania, tagText: '\$12.99'),
-              RecommendedItem(
-                  imagePath: AppImageStrings.cupcake, tagText: '\$8.20'),
-            ],
-          )),
+        height: responsiveHeight(context, 157),
+        child: Row(
+          children: [
+            RecommendedItem(
+                imagePath: AppImageStrings.sushi, tagText: '\$103.0'),
+            RecommendedItem(
+                imagePath: AppImageStrings.chickenAndRice, tagText: '\$50.0'),
+            RecommendedItem(
+                imagePath: AppImageStrings.lazania, tagText: '\$12.99'),
+            RecommendedItem(
+                imagePath: AppImageStrings.cupcake, tagText: '\$8.20'),
+          ],
+        ),
+      ),
     );
   }
 }

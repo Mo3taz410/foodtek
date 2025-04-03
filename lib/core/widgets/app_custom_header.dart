@@ -5,6 +5,7 @@ import 'package:foodtek/core/utils/app_icon_strings.dart';
 import 'package:foodtek/core/utils/app_text_styles.dart';
 import 'package:foodtek/core/utils/responsive.dart';
 
+import '../../features/app/models/notification_screen.dart';
 import 'app_svg_icons.dart';
 
 class AppCustomHeader extends StatelessWidget {
@@ -77,7 +78,17 @@ class AppCustomHeader extends StatelessWidget {
                     color: AppColors.octonary,
                   ),
                   child: IconButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      showModalBottomSheet(
+                        context: context,
+                        isScrollControlled: true,
+                        shape: const RoundedRectangleBorder(
+                          borderRadius:
+                              BorderRadius.vertical(top: Radius.circular(20)),
+                        ),
+                        builder: (context) => const NotificationModal(),
+                      );
+                    },
                     icon:
                         AppSvgIcons(iconPath: AppIconStrings.notificationsBell),
                   ),
