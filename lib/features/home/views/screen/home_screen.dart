@@ -204,6 +204,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
     return List.generate(images.length, (index) {
       return {
+        'id': '${category.name}_$index',
         'imagePath': images[index],
         'title': titles[index],
         'description': descriptions[index],
