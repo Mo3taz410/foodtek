@@ -16,11 +16,26 @@ import 'package:foodtek/features/home/views/widgets/promo_banner.dart';
 import 'package:foodtek/features/home/views/widgets/recommend_list.dart';
 import 'package:foodtek/features/home/views/widgets/top_rated_list.dart';
 
-class HomeScreen extends StatelessWidget {
-  HomeScreen({super.key});
+class HomeScreen extends StatefulWidget {
+  const HomeScreen({super.key});
 
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
   final TextEditingController searchController = TextEditingController();
   final PageController promoController = PageController();
+  String currentPlaceName = "Set your location";
+
+  Future<void> _goToLocationPicker(BuildContext context) async {
+    final result = await Navigator.pushNamed(context, '/locationPicker');
+    if (result is Map && result['placeName'] != null) {
+      setState(() {
+        currentPlaceName = result['placeName'];
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -30,9 +45,12 @@ class HomeScreen extends StatelessWidget {
         child: Column(
           spacing: responsiveHeight(context, 20),
           children: [
-            AppCustomHeader(),
+            AppCustomHeader(
+              placeName: currentPlaceName,
+              onTap: () => _goToLocationPicker(context),
+            ),
             AppSearchBar(controller: searchController),
-            const CategorySelector(), // Stateless refactored widget
+            const CategorySelector(),
             Expanded(
               child: BlocBuilder<CategoryNavCubit, FoodCategory>(
                 builder: (context, category) {

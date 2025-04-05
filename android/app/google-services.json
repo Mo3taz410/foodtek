@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "341515895249",
+    "project_id": "foodtek-9e598",
+    "storage_bucket": "foodtek-9e598.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:341515895249:android:ab136307962e12c4a3e0f0",
+        "android_client_info": {
+          "package_name": "com.apptrainers.foodtek.foodtek"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD246Wo6HTNfocBVwb7U915DW9RVu0XYms"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

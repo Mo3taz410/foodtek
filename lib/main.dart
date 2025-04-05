@@ -9,6 +9,7 @@ import 'core/utils/app_colors.dart';
 import 'features/app/controllers/bottom_nav_cubit.dart';
 import 'features/auth/controllers/auth_cubit.dart';
 import 'features/auth/controllers/remember_me_cubit.dart';
+import 'features/location/views/screen/location_picker_screen.dart';
 import 'l10n/app_localizations.dart';
 
 Future<void> main() async {
@@ -56,6 +57,9 @@ class MyApp extends StatelessWidget {
               fontFamily: 'Poppins',
             ),
             home: child,
+            routes: {
+              '/locationPicker': (context) => const LocationPickerScreen(),
+            },
           ),
         );
       },

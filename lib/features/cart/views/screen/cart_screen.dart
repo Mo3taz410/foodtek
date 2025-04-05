@@ -5,8 +5,24 @@ import '../../../../core/utils/app_colors.dart';
 import '../../../../core/widgets/app_custom_header.dart';
 import '../widgets/order_history_tab.dart';
 
-class CartScreen extends StatelessWidget {
+class CartScreen extends StatefulWidget {
   const CartScreen({super.key});
+
+  @override
+  State<CartScreen> createState() => _CartScreenState();
+}
+
+class _CartScreenState extends State<CartScreen> {
+  String currentPlaceName = "Set your location";
+
+  Future<void> _goToLocationPicker(BuildContext context) async {
+    final result = await Navigator.pushNamed(context, '/locationPicker');
+    if (result is Map && result['placeName'] != null) {
+      setState(() {
+        currentPlaceName = result['placeName'];
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +32,10 @@ class CartScreen extends StatelessWidget {
         body: SafeArea(
           child: Column(
             children: [
-              AppCustomHeader(),
+              AppCustomHeader(
+                placeName: currentPlaceName,
+                onTap: () => _goToLocationPicker(context),
+              ),
               TabBar(
                 labelColor: AppColors.secondary,
                 unselectedLabelColor: Colors.grey,

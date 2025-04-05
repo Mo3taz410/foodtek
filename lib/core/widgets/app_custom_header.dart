@@ -6,10 +6,18 @@ import 'package:foodtek/core/utils/app_text_styles.dart';
 import 'package:foodtek/core/utils/responsive.dart';
 
 import '../../features/app/models/notification_model.dart';
+import '../../features/location/views/screen/location_picker_screen.dart';
 import 'app_svg_icons.dart';
 
 class AppCustomHeader extends StatelessWidget {
-  const AppCustomHeader({super.key});
+  final String placeName;
+  final VoidCallback? onTap;
+
+  const AppCustomHeader({
+    super.key,
+    required this.placeName,
+    this.onTap,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -40,13 +48,13 @@ class AppCustomHeader extends StatelessWidget {
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       TextButton(
-                        onPressed: () {},
+                        onPressed: onTap,
                         child: Row(
                           mainAxisSize: MainAxisSize.min,
                           spacing: responsiveWidth(context, 4),
                           children: [
                             Text(
-                              context.l10n.current_location,
+                              'Current location',
                               style: AppTextStyles.authSubTitle,
                             ),
                             AppSvgIcons(
@@ -57,22 +65,19 @@ class AppCustomHeader extends StatelessWidget {
                           ],
                         ),
                       ),
-                      const Text(
-                        'Jl. Soekarno Hatta 15A...',
-                        style: TextStyle(
+                      Text(
+                        placeName,
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                        style: const TextStyle(
                           fontSize: 14,
                           fontWeight: FontWeight.bold,
-                          overflow: TextOverflow.ellipsis,
                         ),
                       ),
                     ],
                   ),
                 ),
                 Container(
-                  // padding: EdgeInsets.symmetric(
-                  //   vertical: responsiveHeight(context, 8),
-                  //   horizontal: responsiveWidth(context, 8),
-                  // ),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(4),
                     color: AppColors.octonary,

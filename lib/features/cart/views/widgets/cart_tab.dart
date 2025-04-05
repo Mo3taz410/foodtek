@@ -5,7 +5,10 @@ import 'package:foodtek/core/utils/app_colors.dart';
 import 'package:foodtek/core/utils/app_image_strings.dart';
 import 'package:foodtek/core/utils/responsive.dart';
 import 'package:foodtek/features/cart/models/cart_item.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:lottie/lottie.dart';
+
+import '../../../location/views/screen/location_picker_screen.dart';
 
 class CartTab extends StatefulWidget {
   const CartTab({super.key});
@@ -176,7 +179,47 @@ class _CartTabState extends State<CartTab> {
                 foregroundColor: AppColors.tertiary,
                 minimumSize: const Size(double.infinity, 50),
               ),
-              onPressed: () {},
+              onPressed: () async {
+                bool serviceEnabled =
+                    await Geolocator.isLocationServiceEnabled();
+                if (!serviceEnabled) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(
+                        content: Text('Please enable location services.')),
+                  );
+                  return;
+                }
+
+                LocationPermission permission =
+                    await Geolocator.checkPermission();
+                if (permission == LocationPermission.denied) {
+                  permission = await Geolocator.requestPermission();
+                  if (permission == LocationPermission.denied) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(
+                          content: Text('Location permission denied')),
+                    );
+                    return;
+                  }
+                }
+
+                if (permission == LocationPermission.deniedForever) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(
+                      content: Text(
+                          'Permission permanently denied. Please enable it from settings.'),
+                    ),
+                  );
+                  return;
+                }
+
+                final selectedLocation = await Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const LocationPickerScreen(),
+                  ),
+                );
+              },
               child: Text(context.l10n.place_order),
             ),
           ],
