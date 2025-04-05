@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:foodtek/core/extensions/localization_extension.dart';
+import 'package:foodtek/core/utils/app_animation_strings.dart';
+import 'package:foodtek/core/utils/app_colors.dart';
 import 'package:foodtek/core/utils/app_image_strings.dart';
 import 'package:foodtek/core/utils/responsive.dart';
-
-import '../../../core/utils/app_colors.dart';
-import 'cart_item.dart';
+import 'package:foodtek/features/cart/models/cart_item.dart';
+import 'package:lottie/lottie.dart';
 
 class CartTab extends StatefulWidget {
   const CartTab({super.key});
@@ -39,8 +41,8 @@ class _CartTabState extends State<CartTab> {
     if (cartItems.isEmpty) {
       return _buildEmptyState(
         context,
-        title: 'Cart Empty',
-        subtitle: 'You don’t have add any foods in cart at this time',
+        title: context.l10n.cart_empty,
+        subtitle: context.l10n.cart_empty_message,
       );
     }
 
@@ -51,11 +53,13 @@ class _CartTabState extends State<CartTab> {
           itemCount: cartItems.length,
           itemBuilder: (context, index) {
             final item = cartItems[index];
+            final isRtl = Directionality.of(context) == TextDirection.rtl;
+
             return Dismissible(
               key: Key(item.name),
               direction: DismissDirection.endToStart,
               background: Container(
-                alignment: Alignment.centerRight,
+                alignment: isRtl ? Alignment.centerLeft : Alignment.centerRight,
                 padding: EdgeInsets.symmetric(
                     horizontal: responsiveWidth(context, 20)),
                 margin: EdgeInsets.all(responsiveHeight(context, 20)),
@@ -69,9 +73,6 @@ class _CartTabState extends State<CartTab> {
                 setState(() {
                   cartItems.removeAt(index);
                 });
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(content: Text('${item.name} removed from cart')),
-                );
               },
               child: _buildCartItem(item),
             );
@@ -176,7 +177,7 @@ class _CartTabState extends State<CartTab> {
                 minimumSize: const Size(double.infinity, 50),
               ),
               onPressed: () {},
-              child: const Text("Place My Order"),
+              child: Text(context.l10n.place_order),
             ),
           ],
         ),
@@ -217,9 +218,8 @@ class _CartTabState extends State<CartTab> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Image.asset(
-              AppImageStrings.emptyCart,
-              height: responsiveHeight(context, 200),
+            Lottie.asset(
+              AppAnimationStrings.emptyCart,
             ),
             const SizedBox(height: 24),
             Text(
@@ -230,7 +230,7 @@ class _CartTabState extends State<CartTab> {
             Text(
               subtitle,
               textAlign: TextAlign.center,
-              style: const TextStyle(color: Colors.grey),
+              style: const TextStyle(color: AppColors.senary),
             ),
           ],
         ),

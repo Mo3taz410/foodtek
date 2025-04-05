@@ -1,3 +1,5 @@
+// ignore: unused_import
+import 'package:intl/intl.dart' as intl;
 import 'app_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -343,14 +345,56 @@ class AppLocalizationsEn extends AppLocalizations {
   String get cart_empty => 'Cart Empty';
 
   @override
-  String get cart_empty_message => 'You don’t have add any foods in cart at this time';
+  String get cart_empty_message => 'You didn’t have add any foods in cart at this time';
 
   @override
   String get history_empty => 'History Empty';
 
   @override
-  String get history_empty_message => 'You don’t have order any foods before';
+  String get history_empty_message => 'You didn’t have order any foods before';
 
   @override
   String get track => 'Track';
+
+  @override
+  String get unread => 'unread';
+
+  @override
+  String get read => 'read';
+
+  @override
+  String get my_account => 'My Account';
+
+  @override
+  String get personal_information => 'Personal information';
+
+  @override
+  String get language => 'Language';
+
+  @override
+  String get privacy_policy => 'Privacy Policy';
+
+  @override
+  String get settings => 'Settings';
+
+  @override
+  String get push_notifications => 'Push Notifications';
+
+  @override
+  String get promotional_notifications => 'Promotional Notifications';
+
+  @override
+  String get more => 'More';
+
+  @override
+  String get help_center => 'Help Center';
+
+  @override
+  String get log_out => 'Log Out';
+
+  @override
+  String get address => 'Address';
+
+  @override
+  String get update => 'Update';
 }

@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:foodtek/core/extensions/localization_extension.dart';
+import 'package:foodtek/features/cart/views/widgets/cart_tab.dart';
 import '../../../../core/utils/app_colors.dart';
 import '../../../../core/widgets/app_custom_header.dart';
-import '../../models/cart_tab.dart';
-import '../../models/orderHistoryTab.dart';
+import '../widgets/order_history_tab.dart';
 
 class CartScreen extends StatelessWidget {
   const CartScreen({super.key});
@@ -16,13 +17,15 @@ class CartScreen extends StatelessWidget {
           child: Column(
             children: [
               AppCustomHeader(),
-              const TabBar(
+              TabBar(
                 labelColor: AppColors.secondary,
                 unselectedLabelColor: Colors.grey,
                 indicatorColor: AppColors.secondary,
                 tabs: [
-                  Tab(text: "Cart"),
-                  Tab(text: "History"),
+                  Tab(
+                    text: context.l10n.cart,
+                  ),
+                  Tab(text: context.l10n.history),
                 ],
               ),
               Expanded(

@@ -13,7 +13,7 @@ import 'package:foodtek/core/widgets/app_custom_button.dart';
 import 'package:foodtek/features/auth/views/screens/reset_password_screen.dart';
 import 'package:foodtek/features/auth/views/screens/signup_screen.dart';
 import '../widgets/auth_screen_wrapper.dart';
-import '../widgets/auth_text_field.dart';
+import '../../../../core/widgets/app_custom_text_field.dart';
 import '../widgets/social_auth_buttons.dart';
 import '../widgets/auth_bottom_text_row.dart';
 
@@ -45,19 +45,20 @@ class LoginScreen extends StatelessWidget {
               );
             },
           ),
-          AuthTextField(
+          AppCustomTextField(
             controller: emailController,
             hintText: context.l10n.email,
-            hintStyle: AppTextStyles.authTextFieldsHint,
+            hintStyle: AppTextStyles.appTextFieldsHint,
             keyboardType: TextInputType.emailAddress,
+            label: context.l10n.email,
           ),
           BlocBuilder<AuthCubit, AuthState>(
             builder: (context, state) {
               final isHidden = state is AuthInitial && state.isPasswordHidden;
-              return AuthTextField(
+              return AppCustomTextField(
                 controller: passwordController,
                 hintText: context.l10n.password,
-                hintStyle: AppTextStyles.authTextFieldsHint,
+                hintStyle: AppTextStyles.appTextFieldsHint,
                 obscureText: isHidden,
                 suffixIcon: IconButton(
                   icon: isHidden
@@ -68,6 +69,7 @@ class LoginScreen extends StatelessWidget {
                   onPressed: () =>
                       context.read<AuthCubit>().togglePasswordVisibility(),
                 ),
+                label: context.l10n.password,
               );
             },
           ),

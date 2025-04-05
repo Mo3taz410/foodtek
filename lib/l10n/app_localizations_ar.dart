@@ -1,3 +1,5 @@
+// ignore: unused_import
+import 'package:intl/intl.dart' as intl;
 import 'app_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -187,7 +189,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get favorites => 'المفضلة';
 
   @override
-  String get profile => 'الملف الشخصي';
+  String get profile => 'الملف';
 
   @override
   String get notifications => 'الإشعارات';
@@ -334,7 +336,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get place_order => 'إتمام الطلب';
 
   @override
-  String get reorder => 'إعادة الطلب';
+  String get reorder => 'اطلب مرة أخرى';
 
   @override
   String get load_more => 'عرض المزيد..';
@@ -343,7 +345,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get cart_empty => 'السلة فارغة';
 
   @override
-  String get cart_empty_message => 'لم تقم بإضافة أي أطعمة إلى السلة في الوقت الحالي';
+  String get cart_empty_message => 'لم تقم بإضافة أي أطعمة إلى السلة بعد';
 
   @override
   String get history_empty => 'السجل فارغ';
@@ -353,4 +355,46 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get track => 'تتبع';
+
+  @override
+  String get unread => 'غير مقروئة';
+
+  @override
+  String get read => 'مقروئة';
+
+  @override
+  String get my_account => 'حسابي';
+
+  @override
+  String get personal_information => 'المعلومات الشخصية';
+
+  @override
+  String get language => 'اللغة';
+
+  @override
+  String get privacy_policy => 'سياسة الخصوصية';
+
+  @override
+  String get settings => 'الإعدادات';
+
+  @override
+  String get push_notifications => 'إشعارات الدفع';
+
+  @override
+  String get promotional_notifications => 'الإشعارات الترويجية';
+
+  @override
+  String get more => 'المزيد';
+
+  @override
+  String get help_center => 'مركز المساعدة';
+
+  @override
+  String get log_out => 'تسجيل الخروج';
+
+  @override
+  String get address => 'العنوان';
+
+  @override
+  String get update => 'تحديث';
 }

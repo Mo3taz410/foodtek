@@ -65,17 +65,50 @@ class AppTextStyles {
     fontWeight: FontWeight.w600,
   );
 
-  static final TextStyle authTextFieldsHint = TextStyle(
+  static final TextStyle appTextFieldsHint = TextStyle(
     fontSize: 14.sp,
-    color: AppColors.primary,
+    color: AppColors.tertiary,
     fontFamily: 'Inter',
     fontWeight: FontWeight.w500,
   );
+  static final TextStyle tabBarItemTitle = TextStyle(
+    fontSize: 14.sp,
+    fontFamily: 'Poppins',
+    fontWeight: FontWeight.w500,
+  );
+  static final TextStyle topRated = TextStyle(
+    fontSize: 20.sp,
+    color: AppColors.secondary,
+    fontFamily: 'Inter',
+    fontWeight: FontWeight.w600,
+  );
 
   static final TextStyle topRatedFoodName = TextStyle(
+    fontSize: 18.sp,
+    color: AppColors.secondary,
+    fontFamily: 'Avenir',
+  );
+  static final TextStyle topRatedFoodDescription = TextStyle(
+    fontSize: 12.sp,
+    color: AppColors.secondary,
+    fontFamily: 'Avenir',
+  );
+  static final TextStyle foodCardFoodName = TextStyle(
     fontSize: 14.sp,
-    color: AppColors.primary,
-    fontFamily: 'Inter',
-    fontWeight: FontWeight.w500,
+    color: AppColors.secondary,
+    fontFamily: 'Sora',
+    fontWeight: FontWeight.w600,
+  );
+  static final TextStyle foodCardFoodDescription = TextStyle(
+    fontSize: 10.sp,
+    color: AppColors.secondary,
+    fontFamily: 'Sora',
+    fontWeight: FontWeight.w300,
+  );
+  static final TextStyle foodCardButton = TextStyle(
+    fontSize: 10.sp,
+    color: AppColors.quinary,
+    fontFamily: 'Sora',
+    fontWeight: FontWeight.w400,
   );
 }

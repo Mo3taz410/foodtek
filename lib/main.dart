@@ -3,9 +3,8 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:foodtek/features/home/controllers/category_nav_cubit.dart';
 import 'package:foodtek/features/app/views/screens/app_screen.dart';
-import 'package:foodtek/features/auth/views/screens/login_screen.dart';
-import 'package:foodtek/features/splash/splash_screen.dart';
 import 'core/utils/app_colors.dart';
 import 'features/app/controllers/bottom_nav_cubit.dart';
 import 'features/auth/controllers/auth_cubit.dart';
@@ -36,6 +35,7 @@ class MyApp extends StatelessWidget {
             BlocProvider(create: (_) => AuthCubit()),
             BlocProvider(create: (_) => RememberMeCubit()),
             BlocProvider(create: (_) => BottomNavCubit()),
+            BlocProvider(create: (_) => CategoryNavCubit()),
           ],
           child: MaterialApp(
             debugShowCheckedModeBanner: false,

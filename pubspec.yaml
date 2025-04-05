@@ -79,28 +79,41 @@ flutter:
         - asset: assets/fonts/ProtestRiot-Regular.ttf
     - family: Inter
       fonts:
-        - asset: assets/fonts/Inter-Bold.ttf
+        - asset: assets/fonts/inter/Inter-Bold.ttf
           weight: 700
-        - asset: assets/fonts/Inter-SemiBold.ttf
+        - asset: assets/fonts/inter/Inter-SemiBold.ttf
           weight: 600
-        - asset: assets/fonts/Inter-Medium.ttf
+        - asset: assets/fonts/inter/Inter-Medium.ttf
           weight: 500
-        - asset: assets/fonts/Inter-Regular.ttf
+        - asset: assets/fonts/inter/Inter-Regular.ttf
           weight: 400
     - family: Poppins
       fonts:
-        - asset: assets/fonts/Poppins-Bold.ttf
+        - asset: assets/fonts/poppins/Poppins-Bold.ttf
           weight: 700
-        - asset: assets/fonts/Poppins-Medium.ttf
+        - asset: assets/fonts/poppins/Poppins-Medium.ttf
           weight: 500
-        - asset: assets/fonts/Poppins-Regular.ttf
+        - asset: assets/fonts/poppins/Poppins-Regular.ttf
           weight: 400
-
-  # To add assets to your application, add an assets section, like this:
+    - family: Avenir
+      fonts:
+        - asset: assets/fonts/avenir/AvenirLTStd-Medium.otf
+          weight: 500
+        - asset: assets/fonts/avenir/AvenirLTStd-Book.otf
+          weight: 400
+    - family: Sora
+      fonts:
+        - asset: assets/fonts/sora/Sora-SemiBold.ttf
+          weight: 600
+        - asset: assets/fonts/sora/Sora-Regular.ttf
+          weight: 400
+        - asset: assets/fonts/sora/Sora-Light.ttf
+          weight: 300
   assets:
     - assets/images/
     - assets/animations/onboarding/
     - assets/animations/auth/
+    - assets/animations/cart/
     - assets/icons/
     - assets/icons/food/
 

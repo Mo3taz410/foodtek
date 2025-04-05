@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:foodtek/core/extensions/localization_extension.dart';
 import 'notification_list.dart';
 
 class NotificationModal extends StatelessWidget {
@@ -27,16 +27,17 @@ class NotificationModal extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 12),
-              const Text('Notifications',
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-              const TabBar(
+              Text(context.l10n.notifications,
+                  style: const TextStyle(
+                      fontSize: 18, fontWeight: FontWeight.bold)),
+              TabBar(
                 indicatorColor: Colors.green,
                 labelColor: Colors.green,
                 unselectedLabelColor: Colors.black,
                 tabs: [
-                  Tab(text: 'All'),
-                  Tab(text: 'Unread'),
-                  Tab(text: 'Read'),
+                  Tab(text: context.l10n.all),
+                  Tab(text: context.l10n.unread),
+                  Tab(text: context.l10n.read),
                 ],
               ),
               Expanded(

@@ -9,4 +9,6 @@ class AppAnimationStrings {
       'assets/animations/onboarding/location_permission.json';
   static const otpSent = 'assets/animations/auth/otp_sent.json';
   static const success = 'assets/animations/auth/success.json';
+  static const emptyCart = 'assets/animations/cart/empty_cart.json';
+  static const emptyHistory = 'assets/animations/cart/empty_history.json';
 }

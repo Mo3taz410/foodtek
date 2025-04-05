@@ -12,7 +12,7 @@ import '../../../../core/utils/app_icon_strings.dart';
 import '../../../../core/utils/app_text_styles.dart';
 import '../../../../core/utils/responsive.dart';
 import '../widgets/auth_screen_wrapper.dart';
-import '../widgets/auth_text_field.dart';
+import '../../../../core/widgets/app_custom_text_field.dart';
 import 'login_screen.dart';
 
 class NewPasswordScreen extends StatelessWidget {
@@ -52,15 +52,17 @@ class NewPasswordScreen extends StatelessWidget {
               );
             },
           ),
-          AuthTextField(
+          AppCustomTextField(
             controller: newPasswordController,
             hintText: context.l10n.new_password,
-            hintStyle: AppTextStyles.authTextFieldsHint,
+            hintStyle: AppTextStyles.appTextFieldsHint,
+            label: context.l10n.new_password,
           ),
-          AuthTextField(
+          AppCustomTextField(
             controller: confirmNewPasswordController,
             hintText: context.l10n.confirm_new_password,
-            hintStyle: AppTextStyles.authTextFieldsHint,
+            hintStyle: AppTextStyles.appTextFieldsHint,
+            label: context.l10n.confirm_new_password,
           ),
           AppCustomButton(
             text: context.l10n.update_password,

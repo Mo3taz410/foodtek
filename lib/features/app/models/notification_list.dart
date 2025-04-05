@@ -17,7 +17,6 @@ class NotificationList extends StatelessWidget {
         'message': '🍔 Get 20% off your next order!',
         'time': 'Last Wednesday at 9:42 AM',
       },
-      // ...etc
     ];
 
     return ListView.separated(

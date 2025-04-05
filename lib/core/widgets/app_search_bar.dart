@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:foodtek/core/extensions/localization_extension.dart';
 import 'package:foodtek/core/utils/app_colors.dart';
 import 'package:foodtek/core/utils/app_icon_strings.dart';
+import 'package:foodtek/core/utils/app_text_styles.dart';
 import 'package:foodtek/core/utils/responsive.dart';
 import 'package:foodtek/core/widgets/app_svg_icons.dart';
 
@@ -24,9 +24,7 @@ class AppSearchBar extends StatelessWidget {
         textAlignVertical: TextAlignVertical.center,
         decoration: InputDecoration(
           hintText: context.l10n.search_placeholder,
-          hintStyle: TextStyle(
-            fontSize: 14.sp,
-          ),
+          hintStyle: AppTextStyles.appTextFieldsHint,
           prefixIcon: IconButton(
               onPressed: () {},
               icon: AppSvgIcons(iconPath: AppIconStrings.search)),

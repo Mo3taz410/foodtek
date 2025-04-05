@@ -5,17 +5,17 @@ import 'package:foodtek/core/utils/app_colors.dart';
 import 'package:foodtek/core/utils/app_icon_strings.dart';
 import 'package:foodtek/features/app/controllers/bottom_nav_cubit.dart';
 import '../../../../core/widgets/app_svg_icons.dart';
-import 'cart_screen.dart';
+import '../../../cart/views/screen/cart_screen.dart';
 import 'favorites_screen.dart';
-import 'home_screen.dart';
-import 'profile_screen.dart';
+import '../../../home/views/screen/home_screen.dart';
+import '../../../profile/views/screens/profile_screen.dart';
 import 'track_screen.dart';
 
 class AppScreen extends StatelessWidget {
   const AppScreen({super.key});
 
   static final List<Widget> screens = [
-    const HomeScreen(),
+    HomeScreen(),
     const FavoritesScreen(),
     const CartScreen(),
     const TrackScreen(),

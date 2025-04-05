@@ -770,7 +770,7 @@ abstract class AppLocalizations {
   /// No description provided for @cart_empty_message.
   ///
   /// In en, this message translates to:
-  /// **'You don’t have add any foods in cart at this time'**
+  /// **'You didn’t have add any foods in cart at this time'**
   String get cart_empty_message;
 
   /// No description provided for @history_empty.
@@ -782,7 +782,7 @@ abstract class AppLocalizations {
   /// No description provided for @history_empty_message.
   ///
   /// In en, this message translates to:
-  /// **'You don’t have order any foods before'**
+  /// **'You didn’t have order any foods before'**
   String get history_empty_message;
 
   /// No description provided for @track.
@@ -790,6 +790,90 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Track'**
   String get track;
+
+  /// No description provided for @unread.
+  ///
+  /// In en, this message translates to:
+  /// **'unread'**
+  String get unread;
+
+  /// No description provided for @read.
+  ///
+  /// In en, this message translates to:
+  /// **'read'**
+  String get read;
+
+  /// No description provided for @my_account.
+  ///
+  /// In en, this message translates to:
+  /// **'My Account'**
+  String get my_account;
+
+  /// No description provided for @personal_information.
+  ///
+  /// In en, this message translates to:
+  /// **'Personal information'**
+  String get personal_information;
+
+  /// No description provided for @language.
+  ///
+  /// In en, this message translates to:
+  /// **'Language'**
+  String get language;
+
+  /// No description provided for @privacy_policy.
+  ///
+  /// In en, this message translates to:
+  /// **'Privacy Policy'**
+  String get privacy_policy;
+
+  /// No description provided for @settings.
+  ///
+  /// In en, this message translates to:
+  /// **'Settings'**
+  String get settings;
+
+  /// No description provided for @push_notifications.
+  ///
+  /// In en, this message translates to:
+  /// **'Push Notifications'**
+  String get push_notifications;
+
+  /// No description provided for @promotional_notifications.
+  ///
+  /// In en, this message translates to:
+  /// **'Promotional Notifications'**
+  String get promotional_notifications;
+
+  /// No description provided for @more.
+  ///
+  /// In en, this message translates to:
+  /// **'More'**
+  String get more;
+
+  /// No description provided for @help_center.
+  ///
+  /// In en, this message translates to:
+  /// **'Help Center'**
+  String get help_center;
+
+  /// No description provided for @log_out.
+  ///
+  /// In en, this message translates to:
+  /// **'Log Out'**
+  String get log_out;
+
+  /// No description provided for @address.
+  ///
+  /// In en, this message translates to:
+  /// **'Address'**
+  String get address;
+
+  /// No description provided for @update.
+  ///
+  /// In en, this message translates to:
+  /// **'Update'**
+  String get update;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

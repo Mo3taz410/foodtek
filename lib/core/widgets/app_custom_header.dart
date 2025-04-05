@@ -5,7 +5,7 @@ import 'package:foodtek/core/utils/app_icon_strings.dart';
 import 'package:foodtek/core/utils/app_text_styles.dart';
 import 'package:foodtek/core/utils/responsive.dart';
 
-import '../../features/app/models/notification_screen.dart';
+import '../../features/app/models/notification_model.dart';
 import 'app_svg_icons.dart';
 
 class AppCustomHeader extends StatelessWidget {
@@ -46,13 +46,13 @@ class AppCustomHeader extends StatelessWidget {
                           spacing: responsiveWidth(context, 4),
                           children: [
                             Text(
-                              context.l10n.location,
+                              context.l10n.current_location,
                               style: AppTextStyles.authSubTitle,
                             ),
                             AppSvgIcons(
                               iconPath: AppIconStrings.dropDownCursor,
                               width: responsiveWidth(context, 6),
-                              height: responsiveWidth(context, 6),
+                              height: responsiveHeight(context, 6),
                             ),
                           ],
                         ),

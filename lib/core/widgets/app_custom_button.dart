@@ -8,15 +8,15 @@ class AppCustomButton extends StatelessWidget {
   final Color? color;
   final Gradient? gradient;
   final double borderRadius;
-  final double width;
-  final double height;
+  final double? width;
+  final double? height;
 
   const AppCustomButton({
     super.key,
     required this.text,
     required this.textStyle,
-    required this.width,
-    required this.height,
+    this.width,
+    this.height,
     required this.onPressed,
     this.color,
     this.gradient,
@@ -26,8 +26,8 @@ class AppCustomButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: width,
-      height: height,
+      width: width ?? double.infinity,
+      height: height ?? double.infinity,
       child: TextButton(
         style: TextButton.styleFrom(
           padding: EdgeInsets.zero,

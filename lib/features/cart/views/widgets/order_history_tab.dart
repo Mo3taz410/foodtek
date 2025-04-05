@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:foodtek/core/extensions/localization_extension.dart';
+import 'package:foodtek/core/utils/app_animation_strings.dart';
 import 'package:foodtek/core/utils/app_colors.dart';
 import 'package:foodtek/core/utils/app_image_strings.dart';
 import 'package:foodtek/core/utils/responsive.dart';
+import 'package:foodtek/features/cart/models/order_history_item.dart';
+import 'package:lottie/lottie.dart';
 
 class OrderHistoryTab extends StatelessWidget {
   final List<OrderHistoryItem> orderHistory = [
@@ -35,8 +39,8 @@ class OrderHistoryTab extends StatelessWidget {
     if (orderHistory.isEmpty) {
       return _buildEmptyState(
         context,
-        title: 'History Empty',
-        subtitle: 'You don’t have order any foods before',
+        title: context.l10n.history_empty,
+        subtitle: context.l10n.history_empty_message,
       );
     }
 
@@ -45,12 +49,12 @@ class OrderHistoryTab extends StatelessWidget {
       itemCount: orderHistory.length + 1,
       itemBuilder: (context, index) {
         if (index == orderHistory.length) {
-          return const Center(
+          return Center(
             child: Padding(
-              padding: EdgeInsets.all(12),
+              padding: const EdgeInsets.all(12),
               child: Text(
-                'Load More..',
-                style: TextStyle(color: AppColors.secondary),
+                context.l10n.load_more,
+                style: const TextStyle(color: AppColors.secondary),
               ),
             ),
           );
@@ -62,7 +66,8 @@ class OrderHistoryTab extends StatelessWidget {
           padding: const EdgeInsets.all(12),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(12),
-            border: Border.all(color: AppColors.secondary.withOpacity(0.2)),
+            border:
+                Border.all(color: AppColors.secondary.withValues(alpha: .2)),
           ),
           child: Row(
             children: [
@@ -95,8 +100,8 @@ class OrderHistoryTab extends StatelessWidget {
                   const SizedBox(height: 8),
                   GestureDetector(
                     onTap: () {},
-                    child: const Text(
-                      'Reorder',
+                    child: Text(
+                      context.l10n.reorder,
                       style: TextStyle(
                           color: AppColors.tertiary,
                           fontWeight: FontWeight.bold),
@@ -119,14 +124,19 @@ class OrderHistoryTab extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Image.asset(AppImageStrings.emptyCart,
-                height: responsiveHeight(context, 200)),
-            const SizedBox(height: 24),
+            Lottie.asset(
+              AppAnimationStrings.emptyHistory,
+            ),
+            SizedBox(
+              height: responsiveHeight(context, 24),
+            ),
             Text(
               title,
               style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
             ),
-            const SizedBox(height: 8),
+            SizedBox(
+              height: responsiveHeight(context, 12),
+            ),
             Text(
               subtitle,
               textAlign: TextAlign.center,
@@ -137,20 +147,4 @@ class OrderHistoryTab extends StatelessWidget {
       ),
     );
   }
-}
-
-class OrderHistoryItem {
-  final String name;
-  final String restaurant;
-  final double price;
-  final String date;
-  final String image;
-
-  OrderHistoryItem({
-    required this.name,
-    required this.restaurant,
-    required this.price,
-    required this.date,
-    required this.image,
-  });
 }

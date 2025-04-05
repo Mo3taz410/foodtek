@@ -1,7 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:foodtek/core/utils/responsive.dart';
-
 import '../utils/app_colors.dart';
 
 class AppSvgIcons extends StatelessWidget {
@@ -24,8 +22,8 @@ class AppSvgIcons extends StatelessWidget {
         color ?? AppColors.tertiary,
         BlendMode.srcIn,
       ),
-      width: width ?? responsiveWidth(context, 22),
-      height: height ?? responsiveWidth(context, 22),
+      width: width ?? 22,
+      height: height ?? 22,
     );
   }
 }

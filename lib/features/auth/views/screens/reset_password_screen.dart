@@ -9,7 +9,7 @@ import '../../../../core/utils/app_icon_strings.dart';
 import '../../../../core/utils/app_text_styles.dart';
 import '../../../../core/utils/responsive.dart';
 import '../widgets/auth_screen_wrapper.dart';
-import '../widgets/auth_text_field.dart';
+import '../../../../core/widgets/app_custom_text_field.dart';
 import 'new_password_screen.dart';
 import 'dart:ui';
 
@@ -53,11 +53,12 @@ class ResetPasswordScreen extends StatelessWidget {
                   textAlign: TextAlign.center),
             ],
           ),
-          AuthTextField(
+          AppCustomTextField(
             controller: emailController,
             hintText: context.l10n.email,
-            hintStyle: AppTextStyles.authTextFieldsHint,
+            hintStyle: AppTextStyles.appTextFieldsHint,
             keyboardType: TextInputType.emailAddress,
+            label: context.l10n.email,
           ),
           AppCustomButton(
             text: context.l10n.send,
