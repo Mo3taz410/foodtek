@@ -213,7 +213,7 @@ class _CartTabState extends State<CartTab> {
                   return;
                 }
 
-                final selectedLocation = await Navigator.push(
+                Navigator.push(
                   context,
                   MaterialPageRoute(
                     builder: (context) => const LocationPickerScreen(),

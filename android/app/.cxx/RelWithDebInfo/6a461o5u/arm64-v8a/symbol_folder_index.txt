@@ -1,0 +1,1 @@
+C:\Users\abood\AndroidStudioProjects\foodtek\build\app\intermediates\cxx\RelWithDebInfo\6a461o5u\obj\arm64-v8a

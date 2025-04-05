@@ -16,7 +16,7 @@ class AppScreen extends StatelessWidget {
 
   static final List<Widget> screens = [
     HomeScreen(),
-    const FavoritesScreen(),
+    FavoritesScreen(),
     const CartScreen(),
     const TrackScreen(),
     const ProfileScreen(),
