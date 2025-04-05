@@ -32,7 +32,7 @@ class HomeScreen extends StatelessWidget {
           children: [
             AppCustomHeader(),
             AppSearchBar(controller: searchController),
-            const CategorySelector(), // Stateless refactored widget
+            const CategorySelector(),
             Expanded(
               child: BlocBuilder<CategoryNavCubit, FoodCategory>(
                 builder: (context, category) {
@@ -186,6 +186,7 @@ class HomeScreen extends StatelessWidget {
 
     return List.generate(images.length, (index) {
       return {
+        'id': '${category.name}_$index',
         'imagePath': images[index],
         'title': titles[index],
         'description': descriptions[index],

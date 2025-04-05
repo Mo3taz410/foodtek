@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:foodtek/core/extensions/localization_extension.dart';
 import 'package:foodtek/core/utils/app_colors.dart';
-import 'package:foodtek/core/utils/app_icon_strings.dart';
 import 'package:foodtek/core/utils/app_text_styles.dart';
 import 'package:foodtek/core/utils/responsive.dart';
 import 'package:foodtek/core/widgets/app_custom_button.dart';
-import 'package:foodtek/core/widgets/app_svg_icons.dart';
 
 class FoodCard extends StatelessWidget {
   final String imagePath;
@@ -13,6 +11,7 @@ class FoodCard extends StatelessWidget {
   final String description;
   final double price;
   final VoidCallback onOrder;
+  final VoidCallback? onFavoriteTap;
   final bool isFavorite;
 
   const FoodCard({
@@ -23,6 +22,7 @@ class FoodCard extends StatelessWidget {
     required this.price,
     required this.onOrder,
     this.isFavorite = false,
+    this.onFavoriteTap,
   });
 
   @override
@@ -101,10 +101,10 @@ class FoodCard extends StatelessWidget {
             ),
             child: IconButton(
               padding: EdgeInsets.zero,
-              onPressed: () {},
-              icon: AppSvgIcons(
-                iconPath: AppIconStrings.favorites,
-              ),
+              onPressed: onFavoriteTap,
+              icon: isFavorite
+                  ? Icon(Icons.favorite, color: Colors.red)
+                  : Icon(Icons.favorite_border),
             ),
           ),
         ),

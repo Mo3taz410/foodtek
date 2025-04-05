@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:foodtek/features/favorites/controllers/favorites_cubit.dart';
 import 'package:foodtek/features/home/controllers/category_nav_cubit.dart';
 import 'package:foodtek/features/app/views/screens/app_screen.dart';
 import 'core/utils/app_colors.dart';
@@ -36,6 +37,7 @@ class MyApp extends StatelessWidget {
             BlocProvider(create: (_) => RememberMeCubit()),
             BlocProvider(create: (_) => BottomNavCubit()),
             BlocProvider(create: (_) => CategoryNavCubit()),
+            BlocProvider(create: (_) => FavoritesCubit()),
           ],
           child: MaterialApp(
             debugShowCheckedModeBanner: false,
