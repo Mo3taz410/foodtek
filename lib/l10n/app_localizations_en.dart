@@ -397,4 +397,25 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get update => 'Update';
+
+  @override
+  String get location_service_disabled => 'Location services are disabled.';
+
+  @override
+  String get location_permission_denied => 'Permission denied.';
+
+  @override
+  String get location_permission_denied_forever => 'Permission denied forever.';
+
+  @override
+  String get location_unknown => 'Unknown location';
+
+  @override
+  String get no_favorites_yet => 'No favorites yet';
+
+  @override
+  String get no_food_founds_in_this_category => 'No food found in this category';
+
+  @override
+  String get remove_from_cart => 'Are you sure you want to remove it from cart?';
 }

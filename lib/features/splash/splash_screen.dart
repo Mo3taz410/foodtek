@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:foodtek/core/helpers/shared_preferences_helper.dart';
-import 'package:foodtek/core/utils/app_colors.dart';
-import 'package:foodtek/core/utils/app_image_strings.dart';
-import 'package:foodtek/core/utils/app_strings.dart';
 import 'package:foodtek/core/utils/app_text_styles.dart';
-import 'package:foodtek/features/auth/views/screens/login_screen.dart';
-import 'package:foodtek/features/onboarding/screen/onboarding_screen.dart';
+import '../../core/constants/app_colors.dart';
+import '../../core/constants/app_image_strings.dart';
+import '../../core/constants/app_strings.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -23,29 +21,17 @@ class _SplashScreenState extends State<SplashScreen> {
 
   void _navigateToNextScreen() async {
     final prefs = SharedPreferencesHelper();
-
-    // Wait 3 seconds first
     await Future.delayed(const Duration(seconds: 3));
-
-    // Then get the value
     bool isFirstTime = await prefs.getPrefBool(
       key: 'isFirstTime',
       defaultValue: true,
     );
 
-    if (!mounted) return; // Check if widget is still in the tree
-
-    // Then navigate
+    if (!mounted) return;
     if (isFirstTime) {
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(builder: (_) => const OnboardingScreen()),
-      );
+      Navigator.pushReplacementNamed(context, '/onboarding');
     } else {
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(builder: (_) => const LoginScreen()),
-      );
+      Navigator.pushReplacementNamed(context, '/login');
     }
   }
 

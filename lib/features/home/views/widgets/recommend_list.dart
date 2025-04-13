@@ -1,21 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:foodtek/core/utils/app_image_strings.dart';
-import 'package:foodtek/features/home/views/widgets/recommended__item.dart';
+import 'package:foodtek/core/dummy_data/food_dummy_data.dart';
+import 'package:foodtek/core/models/food_model.dart';
+import 'recommended_food_card.dart';
 
 class RecommendList extends StatelessWidget {
   const RecommendList({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final List<FoodModel> recommendedFoods =
+        dummyFoods.where((f) => f.isRecommended).take(4).toList();
+
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: const [
-        RecommendedItem(imagePath: AppImageStrings.sushi, tagText: '\$103.0'),
-        RecommendedItem(
-            imagePath: AppImageStrings.chickenAndRice, tagText: '\$50.0'),
-        RecommendedItem(imagePath: AppImageStrings.lazania, tagText: '\$12.99'),
-        RecommendedItem(imagePath: AppImageStrings.cupcake, tagText: '\$8.20'),
-      ],
+      children: recommendedFoods.map((food) {
+        return RecommendedFoodCard(food: food);
+      }).toList(),
     );
   }
 }

@@ -1,22 +1,45 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:foodtek/core/dummy_data/food_dummy_data.dart';
+import 'package:foodtek/core/extensions/localization_extension.dart';
+import 'package:foodtek/core/models/food_model.dart';
+import 'package:foodtek/features/home/controllers/category_nav_cubit.dart';
+import 'package:foodtek/features/home/views/widgets/category_food_card.dart';
 import 'package:foodtek/core/utils/responsive.dart';
-import 'package:foodtek/features/favorites/controllers/favorites_cubit.dart';
-import 'package:foodtek/features/home/views/widgets/food_card.dart';
+import 'package:foodtek/core/utils/app_text_styles.dart';
 
 class CategoryGridView extends StatelessWidget {
-  final List<Map<String, dynamic>> items;
-
-  const CategoryGridView({super.key, required this.items});
+  const CategoryGridView({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<FavoritesCubit, Set<String>>(
-      builder: (context, favorites) {
+    return BlocBuilder<CategoryNavCubit, FoodCategory>(
+      builder: (context, selectedCategory) {
+        final List<FoodModel> filteredFoods = selectedCategory ==
+                FoodCategory.all
+            ? dummyFoods
+            : dummyFoods.where((f) => f.category == selectedCategory).toList();
+
+        if (filteredFoods.isEmpty) {
+          return Center(
+            child: Padding(
+              padding: EdgeInsets.symmetric(
+                vertical: responsiveHeight(context, 40),
+              ),
+              child: Text(
+                context.l10n.no_food_founds_in_this_category,
+                style: AppTextStyles.appSubTitle,
+                textAlign: TextAlign.center,
+              ),
+            ),
+          );
+        }
+
         return GridView.builder(
           physics: const BouncingScrollPhysics(),
           shrinkWrap: true,
-          itemCount: items.length,
+          padding: EdgeInsets.only(top: responsiveHeight(context, 20)),
+          itemCount: filteredFoods.length,
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 2,
             mainAxisExtent: responsiveHeight(context, 320),
@@ -24,21 +47,8 @@ class CategoryGridView extends StatelessWidget {
             crossAxisSpacing: responsiveWidth(context, 16),
           ),
           itemBuilder: (context, index) {
-            final item = items[index];
-            final String id = item['id']; // id is now guaranteed
-
-            return FoodCard(
-              imagePath: item['imagePath'],
-              title: item['title'],
-              description: item['description'],
-              price: item['price'],
-              isFavorite: favorites.contains(id),
-              onFavoriteTap: () =>
-                  context.read<FavoritesCubit>().toggleFavorite(id),
-              onOrder: () {
-                // Handle order action
-              },
-            );
+            final food = filteredFoods[index];
+            return CategoryFoodCard(food: food);
           },
         );
       },

@@ -2,18 +2,17 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:foodtek/core/extensions/localization_extension.dart';
-import 'package:foodtek/core/utils/app_animation_strings.dart';
+import 'package:foodtek/core/constants/app_animation_strings.dart';
 import 'package:foodtek/core/widgets/app_custom_button.dart';
 import 'package:foodtek/core/widgets/app_svg_icons.dart';
 import 'package:foodtek/features/auth/views/widgets/auth_bottom_text_row.dart';
 import 'package:lottie/lottie.dart';
-import '../../../../core/utils/app_colors.dart';
-import '../../../../core/utils/app_icon_strings.dart';
+import '../../../../core/constants/app_colors.dart';
+import '../../../../core/constants/app_icon_strings.dart';
 import '../../../../core/utils/app_text_styles.dart';
 import '../../../../core/utils/responsive.dart';
 import '../widgets/auth_screen_wrapper.dart';
 import '../../../../core/widgets/app_custom_text_field.dart';
-import 'login_screen.dart';
 
 class NewPasswordScreen extends StatelessWidget {
   const NewPasswordScreen({super.key});
@@ -39,17 +38,12 @@ class NewPasswordScreen extends StatelessWidget {
               ),
             ],
           ),
-          Text(context.l10n.reset_password, style: AppTextStyles.authTitle),
+          Text(context.l10n.reset_password, style: AppTextStyles.appTitle),
           AuthBottomTextRow(
             label: context.l10n.remember_password,
             actionText: context.l10n.log_in,
             onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => LoginScreen(),
-                ),
-              );
+              Navigator.pushNamed(context, '/login');
             },
           ),
           AppCustomTextField(
@@ -66,7 +60,7 @@ class NewPasswordScreen extends StatelessWidget {
           ),
           AppCustomButton(
             text: context.l10n.update_password,
-            textStyle: AppTextStyles.authButton,
+            textStyle: AppTextStyles.appButton,
             width: double.infinity,
             height: responsiveHeight(context, 48),
             color: AppColors.primary,
@@ -101,14 +95,14 @@ class NewPasswordScreen extends StatelessWidget {
                             Text(
                               context.l10n.congratulations,
                               textAlign: TextAlign.center,
-                              style: AppTextStyles.authTitle.copyWith(
+                              style: AppTextStyles.appTitle.copyWith(
                                 color: Colors.white,
                               ),
                             ),
                             Text(
                               context.l10n.password_reset_success,
                               textAlign: TextAlign.center,
-                              style: AppTextStyles.authSubTitle.copyWith(
+                              style: AppTextStyles.appSubTitle.copyWith(
                                 color: Colors.white,
                                 fontSize: 16.sp,
                               ),

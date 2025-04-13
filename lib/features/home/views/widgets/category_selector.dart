@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:foodtek/core/utils/app_colors.dart';
-import 'package:foodtek/core/utils/app_image_strings.dart';
+import 'package:foodtek/core/extensions/localization_extension.dart';
 import 'package:foodtek/core/utils/app_text_styles.dart';
 import 'package:foodtek/core/utils/responsive.dart';
 import 'package:foodtek/features/home/controllers/category_nav_cubit.dart';
-import 'package:foodtek/core/extensions/localization_extension.dart';
-import 'package:foodtek/features/home/models/food_category.dart';
+
+import '../../../../core/constants/app_colors.dart';
+import '../../../../core/constants/app_image_strings.dart';
+import '../../../../core/models/food_model.dart';
 
 class CategorySelector extends StatelessWidget {
   const CategorySelector({super.key});
@@ -38,15 +39,15 @@ class CategorySelector extends StatelessWidget {
             itemCount: categories.length,
             itemBuilder: (context, index) {
               final category = categories[index];
-              final isSelected = selectedIndex == FoodCategory.values[index];
+              final isSelected = selectedIndex == category;
 
               return GestureDetector(
                 onTap: () {
-                  context
-                      .read<CategoryNavCubit>()
-                      .updateCategory(FoodCategory.values[index]);
+                  context.read<CategoryNavCubit>().updateCategory(category);
                 },
-                child: Container(
+                child: AnimatedContainer(
+                  duration: const Duration(milliseconds: 400),
+                  curve: Curves.easeInOut,
                   padding: EdgeInsets.symmetric(
                     horizontal: responsiveHeight(context, 14),
                     vertical: responsiveHeight(context, 8),
@@ -56,25 +57,32 @@ class CategorySelector extends StatelessWidget {
                     color:
                         isSelected ? AppColors.secondary : Colors.transparent,
                     border: Border.all(color: AppColors.quinary),
-                    borderRadius: BorderRadius.circular(6),
+                    borderRadius: BorderRadius.circular(12),
                   ),
                   child: Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       if (images[category]!.isNotEmpty)
-                        Image.asset(
-                          images[category]!,
-                          width: responsiveWidth(context, 20),
-                          height: responsiveHeight(context, 20),
+                        AnimatedScale(
+                          scale: isSelected ? 1.1 : 1.0,
+                          duration: const Duration(milliseconds: 500),
+                          child: Image.asset(
+                            images[category]!,
+                            width: responsiveWidth(context, 20),
+                            height: responsiveHeight(context, 20),
+                          ),
                         ),
                       if (images[category]!.isNotEmpty)
                         SizedBox(width: responsiveWidth(context, 6)),
-                      Text(
-                        labels[category]!,
+                      AnimatedDefaultTextStyle(
+                        duration: const Duration(milliseconds: 500),
                         style: AppTextStyles.tabBarItemTitle.copyWith(
                           color:
                               isSelected ? Colors.white : AppColors.secondary,
+                          fontWeight:
+                              isSelected ? FontWeight.bold : FontWeight.normal,
                         ),
+                        child: Text(labels[category]!),
                       ),
                     ],
                   ),

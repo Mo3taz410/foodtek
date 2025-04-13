@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:foodtek/core/utils/app_colors.dart';
-import 'package:foodtek/core/utils/app_image_strings.dart';
-import 'package:foodtek/core/utils/app_strings.dart';
 import 'package:foodtek/core/utils/app_text_styles.dart';
 import 'package:foodtek/core/utils/responsive.dart';
+
+import '../../../../core/constants/app_colors.dart';
+import '../../../../core/constants/app_image_strings.dart';
+import '../../../../core/constants/app_strings.dart';
 
 class AuthScreenWrapper extends StatelessWidget {
   final Widget child;

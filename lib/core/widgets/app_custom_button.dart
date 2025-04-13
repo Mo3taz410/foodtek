@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:foodtek/core/utils/app_colors.dart';
+import 'package:foodtek/core/constants/app_colors.dart';
 
 class AppCustomButton extends StatelessWidget {
   final String text;

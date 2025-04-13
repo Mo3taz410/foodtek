@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:foodtek/core/extensions/localization_extension.dart';
-import 'package:foodtek/core/utils/app_colors.dart';
 import 'package:foodtek/core/utils/app_text_styles.dart';
 import 'package:foodtek/core/utils/responsive.dart';
-import 'package:foodtek/core/utils/app_image_strings.dart';
 import 'package:foodtek/core/widgets/app_custom_button.dart';
 import 'package:foodtek/core/widgets/app_custom_text_field.dart';
+
+import '../../../../core/constants/app_colors.dart';
+import '../../../../core/constants/app_image_strings.dart';
 
 class EditProfileScreen extends StatelessWidget {
   EditProfileScreen({super.key});
@@ -107,7 +108,7 @@ class EditProfileScreen extends StatelessWidget {
                 ),
                 AppCustomButton(
                   text: context.l10n.update,
-                  textStyle: AppTextStyles.authButton,
+                  textStyle: AppTextStyles.appButton,
                   onPressed: () {},
                   height: responsiveHeight(context, 48),
                   width: responsiveWidth(context, 300),

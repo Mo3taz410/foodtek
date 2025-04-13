@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:foodtek/core/extensions/localization_extension.dart';
-import 'package:foodtek/core/utils/app_colors.dart';
-import 'package:foodtek/core/utils/app_icon_strings.dart';
 import 'package:foodtek/core/utils/app_text_styles.dart';
 import 'package:foodtek/core/utils/responsive.dart';
 import 'package:foodtek/core/widgets/app_svg_icons.dart';
@@ -10,8 +8,8 @@ import 'package:foodtek/features/auth/controllers/auth_cubit.dart';
 import 'package:foodtek/features/auth/controllers/remember_me_cubit.dart';
 import 'package:foodtek/features/auth/models/user_model.dart';
 import 'package:foodtek/core/widgets/app_custom_button.dart';
-import 'package:foodtek/features/auth/views/screens/reset_password_screen.dart';
-import 'package:foodtek/features/auth/views/screens/signup_screen.dart';
+import '../../../../core/constants/app_colors.dart';
+import '../../../../core/constants/app_icon_strings.dart';
 import '../widgets/auth_screen_wrapper.dart';
 import '../../../../core/widgets/app_custom_text_field.dart';
 import '../widgets/social_auth_buttons.dart';
@@ -31,18 +29,13 @@ class LoginScreen extends StatelessWidget {
         children: [
           Text(
             context.l10n.login,
-            style: AppTextStyles.authTitle,
+            style: AppTextStyles.appTitle,
           ),
           AuthBottomTextRow(
             label: context.l10n.dont_have_account,
             actionText: context.l10n.sign_up,
             onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => const SignupScreen(),
-                ),
-              );
+              Navigator.pushNamed(context, '/signup');
             },
           ),
           AppCustomTextField(
@@ -93,7 +86,7 @@ class LoginScreen extends StatelessWidget {
                         ),
                         Text(
                           context.l10n.remember_me,
-                          style: AppTextStyles.authSubTitle.copyWith(
+                          style: AppTextStyles.appSubTitle.copyWith(
                             fontWeight: FontWeight.w700,
                           ),
                         ),
@@ -102,16 +95,11 @@ class LoginScreen extends StatelessWidget {
                   ),
                   TextButton(
                     onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => ResetPasswordScreen(),
-                        ),
-                      );
+                      Navigator.pushNamed(context, '/reset_password');
                     },
                     child: Text(
                       context.l10n.forgot_password,
-                      style: AppTextStyles.authSubTitle.copyWith(
+                      style: AppTextStyles.appSubTitle.copyWith(
                         color: AppColors.primary,
                         fontWeight: FontWeight.w600,
                       ),
@@ -135,13 +123,15 @@ class LoginScreen extends StatelessWidget {
                 width: double.infinity,
                 height: responsiveHeight(context, 48),
                 color: AppColors.primary,
-                textStyle: AppTextStyles.authButton,
+                textStyle: AppTextStyles.appButton,
                 onPressed: () {
                   final user = UserModel(
                     email: emailController.text,
                     password: passwordController.text,
                   );
                   context.read<AuthCubit>().login(user);
+                  Navigator.pushReplacementNamed(
+                      context, '/app'); // just for testing
                 },
               );
             },
@@ -154,7 +144,7 @@ class LoginScreen extends StatelessWidget {
                     horizontal: responsiveWidth(context, 8)),
                 child: Text(
                   context.l10n.or,
-                  style: AppTextStyles.authSubTitle,
+                  style: AppTextStyles.appSubTitle,
                 ),
               ),
               const Expanded(child: Divider(thickness: 1)),

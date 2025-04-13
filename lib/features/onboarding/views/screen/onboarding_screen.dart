@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:foodtek/core/extensions/localization_extension.dart';
 import 'package:foodtek/core/helpers/shared_preferences_helper.dart';
-import 'package:foodtek/core/utils/app_animation_strings.dart';
-import 'package:foodtek/core/utils/app_colors.dart';
+import 'package:foodtek/core/constants/app_animation_strings.dart';
 import 'package:foodtek/core/utils/responsive.dart';
-import 'package:foodtek/features/onboarding/widgets/onboarding_widget.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
-import '../../../core/utils/app_image_strings.dart';
-import '../../auth/views/screens/login_screen.dart';
+import '../../../../core/constants/app_colors.dart';
+import '../../../../core/constants/app_image_strings.dart';
+import '../../../../core/helpers/location_helper.dart';
+import '../widgets/onboarding_widget.dart';
 
 class OnboardingScreen extends StatefulWidget {
   const OnboardingScreen({super.key});
@@ -106,23 +106,22 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                         ),
                       ),
                       OnboardingWidget(
-                        animationPath: AppAnimationStrings.locationPermission,
-                        title: context.l10n.turn_on_location,
-                        subtitle: context.l10n.location_description,
-                        isLast: true,
-                        onPressed: () async {
-                          final prefs = SharedPreferencesHelper();
-                          await prefs.setPrefBool(
-                              key: 'isFirstTime', value: false);
-                          if (!context.mounted) return;
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => LoginScreen(),
-                            ),
-                          );
-                        },
-                      ),
+                          animationPath: AppAnimationStrings.locationPermission,
+                          title: context.l10n.turn_on_location,
+                          subtitle: context.l10n.location_description,
+                          isLast: true,
+                          onPressed: () async {
+                            final prefs = SharedPreferencesHelper();
+                            await prefs.setPrefBool(
+                                key: 'isFirstTime', value: false);
+                            if (!context.mounted) return;
+                            final address =
+                                await LocationHelper.getCurrentAddress(context);
+                            await prefs.setPrefString(
+                                key: 'userAddress', value: address ?? '');
+                            if (!context.mounted) return;
+                            Navigator.pushReplacementNamed(context, '/login');
+                          }),
                     ],
                   ),
                 ),

@@ -14,7 +14,7 @@ class AppImageStrings {
   static const String pizza = 'assets/icons/food/pizza.png';
   static const String burger = 'assets/icons/food/burger.png';
   static const String burgerFactory = 'assets/images/burger_factory.png';
-  static const String onionPizza = 'assets/images/onionPizza.png';
+  static const String onionPizza = 'assets/images/onion_pizza.png';
   static const String shawarma = 'assets/images/shawarma.png';
   static const String pepperoniPizza = 'assets/images/pepperoni_pizza.png';
   static const String cheesePizza = 'assets/images/cheese_pizza.png';
@@ -22,4 +22,6 @@ class AppImageStrings {
   static const String mexicanGreenWavePizza =
       'assets/images/mexican_green_wave_pizza.png';
   static const String profilePicture = 'assets/images/profile_picture.png';
+  static const String checkoutBackgroundPattern =
+      'assets/images/checkout_background_pattern.png';
 }

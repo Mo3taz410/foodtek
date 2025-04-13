@@ -129,5 +129,12 @@
   "help_center": "Help Center",
   "log_out": "Log Out",
   "address": "Address",
-  "update": "Update"
+  "update": "Update",
+  "location_service_disabled": "Location services are disabled.",
+  "location_permission_denied": "Permission denied.",
+  "location_permission_denied_forever": "Permission denied forever.",
+  "location_unknown": "Unknown location",
+  "no_favorites_yet": "No favorites yet",
+  "no_food_founds_in_this_category": "No food found in this category",
+  "remove_from_cart": "Are you sure you want to remove it from cart?"
 }

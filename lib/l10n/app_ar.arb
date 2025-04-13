@@ -129,5 +129,12 @@
   "help_center": "مركز المساعدة",
   "log_out": "تسجيل الخروج",
   "address": "العنوان",
-  "update": "تحديث"
+  "update": "تحديث",
+  "location_service_disabled": "خدمات الموقع غير مفعلة.",
+  "location_permission_denied": "تم رفض الإذن.",
+  "location_permission_denied_forever": "تم رفض الإذن بشكل دائم.",
+  "location_unknown": "موقع غير محدد",
+  "no_favorites_yet": "لا يوجد أطعمة مفضلة",
+  "no_food_founds_in_this_category": "لا يوجد أطعمة من هذا الصنف",
+  "remove_from_cart": "هل أنت متأكد أنك تريد إزالته من السلة؟"
 }

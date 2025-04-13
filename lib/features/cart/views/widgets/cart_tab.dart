@@ -1,92 +1,115 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:foodtek/core/extensions/localization_extension.dart';
-import 'package:foodtek/core/utils/app_animation_strings.dart';
-import 'package:foodtek/core/utils/app_colors.dart';
-import 'package:foodtek/core/utils/app_image_strings.dart';
+import 'package:foodtek/core/constants/app_colors.dart';
+import 'package:foodtek/core/constants/app_animation_strings.dart';
+import 'package:foodtek/core/utils/app_text_styles.dart';
 import 'package:foodtek/core/utils/responsive.dart';
-import 'package:foodtek/features/cart/models/cart_item.dart';
-import 'package:geolocator/geolocator.dart';
+import 'package:foodtek/core/widgets/app_custom_button.dart';
 import 'package:lottie/lottie.dart';
+import 'package:foodtek/core/models/food_model.dart';
+import 'package:foodtek/features/cart/controllers/cart_cubit.dart';
+import 'cart_summary_box.dart';
 
-import '../../../location/views/screen/location_picker_screen.dart';
-
-class CartTab extends StatefulWidget {
+class CartTab extends StatelessWidget {
   const CartTab({super.key});
 
   @override
-  State<CartTab> createState() => _CartTabState();
-}
-
-class _CartTabState extends State<CartTab> {
-  List<CartItem> cartItems = [
-    CartItem(
-      name: 'Chicken Burger',
-      restaurant: 'Burger Factory LTD',
-      price: 20,
-      image: AppImageStrings.cheeseBurger,
-    ),
-    CartItem(
-      name: 'Onion Pizza',
-      restaurant: 'Pizza Palace',
-      price: 15,
-      image: AppImageStrings.onionPizza,
-    ),
-    CartItem(
-      name: 'Spicy Shawarma',
-      restaurant: 'Hot Cool Spot',
-      price: 15,
-      image: AppImageStrings.shawarma,
-    ),
-  ];
-
-  @override
   Widget build(BuildContext context) {
-    if (cartItems.isEmpty) {
-      return _buildEmptyState(
-        context,
-        title: context.l10n.cart_empty,
-        subtitle: context.l10n.cart_empty_message,
-      );
-    }
+    return BlocBuilder<CartCubit, List<FoodModel>>(
+      builder: (context, cartItems) {
+        if (cartItems.isEmpty) {
+          return _buildEmptyState(
+            context,
+            title: context.l10n.cart_empty,
+            subtitle: context.l10n.cart_empty_message,
+          );
+        }
 
-    return Stack(
-      children: [
-        ListView.builder(
-          padding: const EdgeInsets.only(bottom: 200),
-          itemCount: cartItems.length,
-          itemBuilder: (context, index) {
-            final item = cartItems[index];
-            final isRtl = Directionality.of(context) == TextDirection.rtl;
-
-            return Dismissible(
-              key: Key(item.name),
-              direction: DismissDirection.endToStart,
-              background: Container(
-                alignment: isRtl ? Alignment.centerLeft : Alignment.centerRight,
-                padding: EdgeInsets.symmetric(
-                    horizontal: responsiveWidth(context, 20)),
-                margin: EdgeInsets.all(responsiveHeight(context, 20)),
-                decoration: BoxDecoration(
-                  color: Colors.orange,
-                  borderRadius: BorderRadius.circular(12),
-                ),
-                child: const Icon(Icons.delete, color: Colors.white),
-              ),
-              onDismissed: (_) {
-                setState(() {
-                  cartItems.removeAt(index);
-                });
+        return Stack(
+          children: [
+            ListView.builder(
+              padding: const EdgeInsets.only(bottom: 220),
+              itemCount: cartItems.length,
+              itemBuilder: (context, index) {
+                final item = cartItems[index];
+                return Dismissible(
+                  key: Key(item.id),
+                  direction: DismissDirection.endToStart,
+                  background: _buildSwipeDelete(context),
+                  confirmDismiss: (_) async {
+                    final shouldDelete = await showDialog<bool>(
+                      context: context,
+                      barrierDismissible: true,
+                      builder: (context) {
+                        return Dialog(
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(20)),
+                          child: Padding(
+                            padding: EdgeInsets.symmetric(
+                              horizontal: responsiveWidth(context, 24),
+                              vertical: responsiveHeight(context, 24),
+                            ),
+                            child: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Text(
+                                  context.l10n.remove_from_cart,
+                                  textAlign: TextAlign.center,
+                                  style: AppTextStyles.appSubTitle,
+                                ),
+                                SizedBox(height: responsiveHeight(context, 30)),
+                                AppCustomButton(
+                                  text: context.l10n.yes,
+                                  textStyle: AppTextStyles.appButton,
+                                  color: AppColors.primary,
+                                  width: double.infinity,
+                                  height: responsiveHeight(context, 48),
+                                  onPressed: () => Navigator.pop(context, true),
+                                ),
+                              ],
+                            ),
+                          ),
+                        );
+                      },
+                    );
+                    return shouldDelete ?? false;
+                  },
+                  onDismissed: (_) {
+                    context.read<CartCubit>().removeCompletely(item);
+                  },
+                  child: _buildCartItem(context, item),
+                );
               },
-              child: _buildCartItem(item),
-            );
-          },
-        ),
-        _buildBottomSummary(),
-      ],
+            ),
+            Positioned(
+              left: 0,
+              right: 0,
+              bottom: 0,
+              child: CartSummaryBox(cartItems: cartItems),
+            ),
+            // Custom widget
+          ],
+        );
+      },
     );
   }
 
-  Widget _buildCartItem(CartItem item) {
+  Widget _buildSwipeDelete(BuildContext context) {
+    final isRtl = Directionality.of(context) == TextDirection.rtl;
+    return Container(
+      alignment: isRtl ? Alignment.centerLeft : Alignment.centerRight,
+      padding: EdgeInsets.symmetric(horizontal: responsiveWidth(context, 20)),
+      margin: EdgeInsets.all(responsiveHeight(context, 20)),
+      decoration: BoxDecoration(
+        color: Colors.orange,
+        borderRadius: BorderRadius.circular(12),
+      ),
+      child: const Icon(Icons.delete, color: Colors.white),
+    );
+  }
+
+  Widget _buildCartItem(BuildContext context, FoodModel food) {
     return Card(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       margin: EdgeInsets.all(responsiveHeight(context, 20)),
@@ -95,7 +118,7 @@ class _CartTabState extends State<CartTab> {
         child: Row(
           children: [
             Image.asset(
-              item.image,
+              food.image,
               width: responsiveWidth(context, 62),
               height: responsiveHeight(context, 62),
               fit: BoxFit.cover,
@@ -105,14 +128,15 @@ class _CartTabState extends State<CartTab> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(item.name,
+                  Text(food.name,
                       style: const TextStyle(fontWeight: FontWeight.bold)),
-                  Text(item.restaurant,
-                      style: const TextStyle(color: Colors.grey)),
-                  Text('\$${item.price}',
-                      style: const TextStyle(
-                          color: AppColors.tertiary,
-                          fontWeight: FontWeight.bold)),
+                  Text(
+                    '\$${food.currentPrice.toStringAsFixed(2)}',
+                    style: const TextStyle(
+                      color: AppColors.tertiary,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
                 ],
               ),
             ),
@@ -121,134 +145,25 @@ class _CartTabState extends State<CartTab> {
                 IconButton(
                   icon: const Icon(Icons.remove, color: AppColors.secondary),
                   onPressed: () {
-                    setState(() {
-                      item.quantity =
-                          (item.quantity > 1) ? item.quantity - 1 : 1;
-                    });
+                    final newQty =
+                        (food.inCartQuantity > 1) ? food.inCartQuantity - 1 : 1;
+                    context.read<CartCubit>().updateQuantity(food, newQty);
                   },
                 ),
-                Text('${item.quantity}', style: const TextStyle(fontSize: 16)),
+                Text('${food.inCartQuantity}',
+                    style: const TextStyle(fontSize: 16)),
                 IconButton(
                   icon: const Icon(Icons.add, color: AppColors.secondary),
                   onPressed: () {
-                    setState(() {
-                      item.quantity++;
-                    });
+                    context
+                        .read<CartCubit>()
+                        .updateQuantity(food, food.inCartQuantity + 1);
                   },
                 ),
               ],
             ),
           ],
         ),
-      ),
-    );
-  }
-
-  Widget _buildBottomSummary() {
-    final subtotal = cartItems.fold<double>(
-      0,
-      (sum, item) => sum + item.price * item.quantity,
-    );
-    const delivery = 10.0;
-    const discount = 10.0;
-    final total = subtotal + delivery - discount;
-
-    return Align(
-      alignment: Alignment.bottomCenter,
-      child: Container(
-        margin: const EdgeInsets.all(12),
-        padding: const EdgeInsets.all(16),
-        decoration: BoxDecoration(
-          color: AppColors.secondary,
-          borderRadius: BorderRadius.circular(20),
-        ),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            _buildSummaryRow('Sub-Total', '\$${subtotal.toStringAsFixed(0)}'),
-            _buildSummaryRow(
-                'Delivery Charge', '\$${delivery.toStringAsFixed(0)}'),
-            _buildSummaryRow('Discount', '-\$${discount.toStringAsFixed(0)}'),
-            const Divider(color: Colors.white),
-            _buildSummaryRow('Total:', '\$${total.toStringAsFixed(0)}',
-                bold: true),
-            const SizedBox(height: 10),
-            ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                backgroundColor: AppColors.octonary,
-                foregroundColor: AppColors.tertiary,
-                minimumSize: const Size(double.infinity, 50),
-              ),
-              onPressed: () async {
-                bool serviceEnabled =
-                    await Geolocator.isLocationServiceEnabled();
-                if (!serviceEnabled) {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(
-                        content: Text('Please enable location services.')),
-                  );
-                  return;
-                }
-
-                LocationPermission permission =
-                    await Geolocator.checkPermission();
-                if (permission == LocationPermission.denied) {
-                  permission = await Geolocator.requestPermission();
-                  if (permission == LocationPermission.denied) {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(
-                          content: Text('Location permission denied')),
-                    );
-                    return;
-                  }
-                }
-
-                if (permission == LocationPermission.deniedForever) {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(
-                      content: Text(
-                          'Permission permanently denied. Please enable it from settings.'),
-                    ),
-                  );
-                  return;
-                }
-
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const LocationPickerScreen(),
-                  ),
-                );
-              },
-              child: Text(context.l10n.place_order),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget _buildSummaryRow(String label, String value, {bool bold = false}) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 4),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Text(
-            label,
-            style: TextStyle(
-              color: Colors.white,
-              fontWeight: bold ? FontWeight.bold : FontWeight.normal,
-            ),
-          ),
-          Text(
-            value,
-            style: TextStyle(
-              color: Colors.white,
-              fontWeight: bold ? FontWeight.bold : FontWeight.normal,
-            ),
-          ),
-        ],
       ),
     );
   }
@@ -261,20 +176,15 @@ class _CartTabState extends State<CartTab> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Lottie.asset(
-              AppAnimationStrings.emptyCart,
-            ),
+            Lottie.asset(AppAnimationStrings.emptyCart, repeat: false),
             const SizedBox(height: 24),
-            Text(
-              title,
-              style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-            ),
+            Text(title,
+                style:
+                    const TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
             const SizedBox(height: 8),
-            Text(
-              subtitle,
-              textAlign: TextAlign.center,
-              style: const TextStyle(color: AppColors.senary),
-            ),
+            Text(subtitle,
+                textAlign: TextAlign.center,
+                style: const TextStyle(color: AppColors.senary)),
           ],
         ),
       ),

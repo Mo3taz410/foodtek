@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:foodtek/core/utils/app_colors.dart';
+import 'package:foodtek/core/constants/app_colors.dart';
 
 class AppTextStyles {
   static final TextStyle logo = TextStyle(
@@ -37,21 +37,21 @@ class AppTextStyles {
     fontWeight: FontWeight.w400,
   );
 
-  static final TextStyle authTitle = TextStyle(
+  static final TextStyle appTitle = TextStyle(
     fontSize: 32.sp,
     color: AppColors.secondary,
     fontFamily: 'Inter',
     fontWeight: FontWeight.w700,
   );
 
-  static final TextStyle authSubTitle = TextStyle(
+  static final TextStyle appSubTitle = TextStyle(
     fontSize: 12.sp,
     color: AppColors.secondary,
     fontFamily: 'Inter',
     fontWeight: FontWeight.w500,
   );
 
-  static final TextStyle authButton = TextStyle(
+  static final TextStyle appButton = TextStyle(
     fontSize: 14.sp,
     color: AppColors.quinary,
     fontFamily: 'Inter',
@@ -84,17 +84,17 @@ class AppTextStyles {
   );
 
   static final TextStyle topRatedFoodName = TextStyle(
-    fontSize: 18.sp,
+    fontSize: 14.sp,
     color: AppColors.secondary,
     fontFamily: 'Avenir',
   );
   static final TextStyle topRatedFoodDescription = TextStyle(
-    fontSize: 12.sp,
+    fontSize: 8.sp,
     color: AppColors.secondary,
     fontFamily: 'Avenir',
   );
   static final TextStyle foodCardFoodName = TextStyle(
-    fontSize: 14.sp,
+    fontSize: 10.sp,
     color: AppColors.secondary,
     fontFamily: 'Sora',
     fontWeight: FontWeight.w600,

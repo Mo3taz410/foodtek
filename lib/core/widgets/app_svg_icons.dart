@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_svg/svg.dart';
-import '../utils/app_colors.dart';
+
+import '../constants/app_colors.dart';
 
 class AppSvgIcons extends StatelessWidget {
   final String iconPath;

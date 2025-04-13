@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:foodtek/core/extensions/localization_extension.dart';
-import 'package:foodtek/core/utils/app_image_strings.dart';
 import 'package:foodtek/core/utils/responsive.dart';
-import 'package:foodtek/features/profile/views/screens/edit_profile_screen.dart';
+import '../../../../core/constants/app_image_strings.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
@@ -60,12 +59,7 @@ class ProfileScreen extends StatelessWidget {
                     Icons.person,
                     context.l10n.personal_information,
                     onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => EditProfileScreen(),
-                        ),
-                      );
+                      Navigator.pushNamed(context, '/edit_profile');
                     },
                   ),
                   _buildTile(

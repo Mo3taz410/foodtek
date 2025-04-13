@@ -3,10 +3,8 @@ import 'package:foodtek/core/extensions/localization_extension.dart';
 import 'package:foodtek/core/utils/app_text_styles.dart';
 import 'package:foodtek/core/utils/responsive.dart';
 import 'package:foodtek/core/widgets/app_custom_button.dart';
-import 'package:foodtek/core/utils/app_colors.dart';
 import 'package:lottie/lottie.dart';
-
-import '../../auth/views/screens/login_screen.dart';
+import '../../../../core/constants/app_colors.dart';
 
 class OnboardingWidget extends StatelessWidget {
   final String animationPath;
@@ -92,12 +90,7 @@ class OnboardingWidget extends StatelessWidget {
                   color: AppColors.quinary,
                   borderRadius: 69,
                   onPressed: () {
-                    Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(
-                        builder: (_) => LoginScreen(),
-                      ),
-                    );
+                    Navigator.pushReplacementNamed(context, '/login');
                   },
                 ),
               ],

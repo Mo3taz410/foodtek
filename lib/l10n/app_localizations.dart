@@ -874,6 +874,48 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Update'**
   String get update;
+
+  /// No description provided for @location_service_disabled.
+  ///
+  /// In en, this message translates to:
+  /// **'Location services are disabled.'**
+  String get location_service_disabled;
+
+  /// No description provided for @location_permission_denied.
+  ///
+  /// In en, this message translates to:
+  /// **'Permission denied.'**
+  String get location_permission_denied;
+
+  /// No description provided for @location_permission_denied_forever.
+  ///
+  /// In en, this message translates to:
+  /// **'Permission denied forever.'**
+  String get location_permission_denied_forever;
+
+  /// No description provided for @location_unknown.
+  ///
+  /// In en, this message translates to:
+  /// **'Unknown location'**
+  String get location_unknown;
+
+  /// No description provided for @no_favorites_yet.
+  ///
+  /// In en, this message translates to:
+  /// **'No favorites yet'**
+  String get no_favorites_yet;
+
+  /// No description provided for @no_food_founds_in_this_category.
+  ///
+  /// In en, this message translates to:
+  /// **'No food found in this category'**
+  String get no_food_founds_in_this_category;
+
+  /// No description provided for @remove_from_cart.
+  ///
+  /// In en, this message translates to:
+  /// **'Are you sure you want to remove it from cart?'**
+  String get remove_from_cart;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

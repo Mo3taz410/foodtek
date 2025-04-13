@@ -397,4 +397,25 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get update => 'تحديث';
+
+  @override
+  String get location_service_disabled => 'خدمات الموقع غير مفعلة.';
+
+  @override
+  String get location_permission_denied => 'تم رفض الإذن.';
+
+  @override
+  String get location_permission_denied_forever => 'تم رفض الإذن بشكل دائم.';
+
+  @override
+  String get location_unknown => 'موقع غير محدد';
+
+  @override
+  String get no_favorites_yet => 'لا يوجد أطعمة مفضلة';
+
+  @override
+  String get no_food_founds_in_this_category => 'لا يوجد أطعمة من هذا الصنف';
+
+  @override
+  String get remove_from_cart => 'هل أنت متأكد أنك تريد إزالته من السلة؟';
 }

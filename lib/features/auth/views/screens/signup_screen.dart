@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:foodtek/core/extensions/localization_extension.dart';
-import 'package:foodtek/core/utils/app_colors.dart';
-import 'package:foodtek/core/utils/app_icon_strings.dart';
 import 'package:foodtek/core/utils/app_text_styles.dart';
 import 'package:foodtek/core/utils/responsive.dart';
 import 'package:foodtek/core/widgets/app_custom_button.dart';
 import 'package:foodtek/core/widgets/app_svg_icons.dart';
 import 'package:foodtek/features/auth/controllers/auth_cubit.dart';
 import 'package:foodtek/features/auth/models/user_model.dart';
+import '../../../../core/constants/app_colors.dart';
+import '../../../../core/constants/app_icon_strings.dart';
 import '../widgets/auth_screen_wrapper.dart';
 import '../../../../core/widgets/app_custom_text_field.dart';
 import '../widgets/auth_bottom_text_row.dart';
@@ -68,7 +68,7 @@ class _SignupScreenState extends State<SignupScreen> {
               onPressed: () => Navigator.pop(context),
             ),
           ),
-          Text(context.l10n.sign_up, style: AppTextStyles.authTitle),
+          Text(context.l10n.sign_up, style: AppTextStyles.appTitle),
           AuthBottomTextRow(
             label: context.l10n.already_have_account,
             actionText: context.l10n.login,
@@ -182,7 +182,7 @@ class _SignupScreenState extends State<SignupScreen> {
                 width: double.infinity,
                 height: responsiveHeight(context, 48),
                 color: AppColors.primary,
-                textStyle: AppTextStyles.authButton,
+                textStyle: AppTextStyles.appButton,
                 onPressed: () => _validateAndSubmit(context),
               );
             },

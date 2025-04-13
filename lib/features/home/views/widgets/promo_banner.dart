@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:foodtek/core/utils/app_colors.dart';
-import 'package:foodtek/core/utils/app_image_strings.dart';
 import 'package:foodtek/core/utils/responsive.dart';
 import 'package:foodtek/features/home/controllers/promo_nav_cubit.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+
+import '../../../../core/constants/app_colors.dart';
+import '../../../../core/constants/app_image_strings.dart';
 
 class PromoBanner extends StatelessWidget {
   final PageController controller;

@@ -1,5 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:foodtek/features/home/models/food_category.dart';
+
+import '../../../core/models/food_model.dart';
 
 class CategoryNavCubit extends Cubit<FoodCategory> {
   CategoryNavCubit() : super(FoodCategory.all);

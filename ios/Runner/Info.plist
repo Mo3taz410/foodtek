@@ -9,9 +9,13 @@
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>We need your location to show nearby places on the map.</string>
+	<string>We need your location to help you find and set your address.</string>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string>This app needs location access to help you find and set your address.</string>
+	<string>We need your location to help you find and set your address.</string>
+	<key>UIBackgroundModes</key>
+	<array>
+	<string>location</string>
+	<array/>
 	<key>io.flutter.embedded_views_preview</key>
 	<true/>
 	<key>CFBundleIdentifier</key>

@@ -1,16 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:foodtek/core/extensions/localization_extension.dart';
-import 'package:foodtek/core/utils/app_animation_strings.dart';
+import 'package:foodtek/core/constants/app_animation_strings.dart';
 import 'package:foodtek/core/widgets/app_custom_button.dart';
 import 'package:foodtek/core/widgets/app_svg_icons.dart';
 import 'package:lottie/lottie.dart';
-import '../../../../core/utils/app_colors.dart';
-import '../../../../core/utils/app_icon_strings.dart';
+import '../../../../core/constants/app_colors.dart';
+import '../../../../core/constants/app_icon_strings.dart';
 import '../../../../core/utils/app_text_styles.dart';
 import '../../../../core/utils/responsive.dart';
 import '../widgets/auth_screen_wrapper.dart';
 import '../../../../core/widgets/app_custom_text_field.dart';
-import 'new_password_screen.dart';
 import 'dart:ui';
 
 class ResetPasswordScreen extends StatelessWidget {
@@ -36,7 +35,7 @@ class ResetPasswordScreen extends StatelessWidget {
               ),
               Text(
                 context.l10n.back_to_login,
-                style: AppTextStyles.authSubTitle,
+                style: AppTextStyles.appSubTitle,
               ),
             ],
           ),
@@ -45,11 +44,11 @@ class ResetPasswordScreen extends StatelessWidget {
             children: [
               Text(
                 context.l10n.reset_password,
-                style: AppTextStyles.authTitle,
+                style: AppTextStyles.appTitle,
                 textAlign: TextAlign.center,
               ),
               Text(context.l10n.reset_password_description,
-                  style: AppTextStyles.authSubTitle,
+                  style: AppTextStyles.appSubTitle,
                   textAlign: TextAlign.center),
             ],
           ),
@@ -62,14 +61,14 @@ class ResetPasswordScreen extends StatelessWidget {
           ),
           AppCustomButton(
             text: context.l10n.send,
-            textStyle: AppTextStyles.authButton,
+            textStyle: AppTextStyles.appButton,
             width: double.infinity,
             height: responsiveHeight(context, 48),
             color: AppColors.primary,
             onPressed: () {
               showDialog(
                 context: context,
-                // barrierDismissible: false,
+                barrierDismissible: false,
                 barrierColor: Colors.transparent,
                 builder: (BuildContext context) {
                   return Stack(
@@ -104,7 +103,7 @@ class ResetPasswordScreen extends StatelessWidget {
                                 Text(
                                   context.l10n.enter_code,
                                   textAlign: TextAlign.center,
-                                  style: AppTextStyles.authSubTitle,
+                                  style: AppTextStyles.appSubTitle,
                                 ),
                                 Row(
                                   mainAxisAlignment:
@@ -126,17 +125,13 @@ class ResetPasswordScreen extends StatelessWidget {
                                 ),
                                 AppCustomButton(
                                   text: context.l10n.verify,
-                                  textStyle: AppTextStyles.authButton,
+                                  textStyle: AppTextStyles.appButton,
                                   color: AppColors.primary,
                                   width: double.infinity,
                                   height: responsiveHeight(context, 48),
                                   onPressed: () {
-                                    Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                          builder: (context) =>
-                                              NewPasswordScreen(),
-                                        ));
+                                    Navigator.pushNamed(
+                                        context, '/new_password');
                                   },
                                 )
                               ],
