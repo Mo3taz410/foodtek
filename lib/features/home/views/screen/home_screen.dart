@@ -60,7 +60,7 @@ class _HomeScreenState extends State<HomeScreen> {
     if (category == FoodCategory.all) {
       return SingleChildScrollView(
         child: Column(
-          spacing: responsiveHeight(context, 20),
+          spacing: responsiveHeight(context, 15),
           children: [
             PromoBanner(controller: promoController),
             Column(
@@ -108,6 +108,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 const RecommendList(),
               ],
             ),
+            SizedBox(height: responsiveHeight(context, 20)),
           ],
         ),
       );

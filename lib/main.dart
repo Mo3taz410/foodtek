@@ -75,6 +75,7 @@ class MyApp extends StatelessWidget {
               Locale('en'),
               Locale('ar'),
             ],
+            themeMode: ThemeMode.system,
             theme: ThemeData(
               colorScheme: ColorScheme.fromSeed(seedColor: AppColors.primary),
               useMaterial3: true,
