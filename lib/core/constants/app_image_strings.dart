@@ -10,9 +10,9 @@ class AppImageStrings {
   static const String chickenAndRice = 'assets/images/chicken_and_rice.png';
   static const String cheeseBurger = 'assets/images/chicken_burger.png';
   static const String chickenBurger = 'assets/images/cheese_burger.png';
-  static const String sandwich = 'assets/icons/food/sandwich.png';
-  static const String pizza = 'assets/icons/food/pizza.png';
-  static const String burger = 'assets/icons/food/burger.png';
+  static const String sandwich = 'assets/icons/food_categories/sandwich.png';
+  static const String pizza = 'assets/icons/food_categories/pizza.png';
+  static const String burger = 'assets/icons/food_categories/burger.png';
   static const String burgerFactory = 'assets/images/burger_factory.png';
   static const String onionPizza = 'assets/images/onion_pizza.png';
   static const String shawarma = 'assets/images/shawarma.png';

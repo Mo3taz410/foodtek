@@ -119,7 +119,9 @@ flutter:
     - assets/animations/auth/
     - assets/animations/cart/
     - assets/icons/
-    - assets/icons/food/
+    - assets/icons/food_categories/
+    - assets/icons/profile/
+    - assets/icons/bottom_nav_bar/
 
 
 

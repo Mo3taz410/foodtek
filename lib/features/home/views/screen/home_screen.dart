@@ -32,8 +32,10 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       body: SafeArea(
         child: Padding(
-          padding:
-              EdgeInsets.symmetric(horizontal: responsiveWidth(context, 30)),
+          padding: EdgeInsets.symmetric(
+            horizontal: responsiveWidth(context, 30),
+            vertical: responsiveHeight(context, 30),
+          ),
           child: Column(
             spacing: responsiveHeight(context, 20),
             children: [
@@ -110,11 +112,12 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
       );
     }
-
-    return const SingleChildScrollView(
+    return SingleChildScrollView(
       child: Column(
         children: [
-          SizedBox(height: 100),
+          SizedBox(
+            height: responsiveHeight(context, 50),
+          ),
           CategoryGridView(),
         ],
       ),

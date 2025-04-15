@@ -7,6 +7,7 @@ import 'package:foodtek/core/models/food_model.dart';
 import 'package:foodtek/features/auth/views/screens/login_screen.dart';
 import 'package:foodtek/features/auth/views/screens/reset_password_screen.dart';
 import 'package:foodtek/features/cart/controllers/cart_cubit.dart';
+import 'package:foodtek/features/checkout/views/screens/checkout_screen.dart';
 import 'package:foodtek/features/favorites/controllers/favorites_cubit.dart';
 import 'package:foodtek/features/food_details/controllers/food_details_cubit.dart';
 import 'package:foodtek/features/food_details/views/screen/food_details_screen.dart';
@@ -103,6 +104,7 @@ class MyApp extends StatelessWidget {
                   child: FoodDetailsScreen(food: food),
                 );
               },
+              '/checkout': (context) => CheckoutScreen(),
             },
           ),
         );

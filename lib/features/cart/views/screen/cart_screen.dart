@@ -5,14 +5,9 @@ import '../../../../core/constants/app_colors.dart';
 import '../../../app/views/widgets/app_custom_header.dart';
 import '../widgets/order_history_tab.dart';
 
-class CartScreen extends StatefulWidget {
+class CartScreen extends StatelessWidget {
   const CartScreen({super.key});
 
-  @override
-  State<CartScreen> createState() => _CartScreenState();
-}
-
-class _CartScreenState extends State<CartScreen> {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(

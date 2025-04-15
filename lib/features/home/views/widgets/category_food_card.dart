@@ -7,7 +7,6 @@ import 'package:foodtek/core/models/food_model.dart';
 import 'package:foodtek/core/utils/app_text_styles.dart';
 import 'package:foodtek/core/utils/responsive.dart';
 import 'package:foodtek/core/widgets/app_custom_button.dart';
-import 'package:foodtek/features/cart/controllers/cart_cubit.dart';
 import 'package:foodtek/features/favorites/controllers/favorites_cubit.dart';
 
 class CategoryFoodCard extends StatelessWidget {

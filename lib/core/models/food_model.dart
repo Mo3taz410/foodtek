@@ -48,7 +48,7 @@ class FoodModel {
     return percent > 0 ? percent : null;
   }
 
-  /// for reordering
+  // for reordering (in history tab)
   FoodModel copyWith({
     int? inCartQuantity,
     DateTime? orderedAt,

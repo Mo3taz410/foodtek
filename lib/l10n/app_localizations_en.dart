@@ -418,4 +418,10 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get remove_from_cart => 'Are you sure you want to remove it from cart?';
+
+  @override
+  String get checkout => 'Checkout';
+
+  @override
+  String get add_card => 'Add Card';
 }

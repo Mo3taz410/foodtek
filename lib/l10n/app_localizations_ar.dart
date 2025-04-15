@@ -418,4 +418,10 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get remove_from_cart => 'هل أنت متأكد أنك تريد إزالته من السلة؟';
+
+  @override
+  String get checkout => 'الدفع';
+
+  @override
+  String get add_card => 'أضف بطاقة';
 }

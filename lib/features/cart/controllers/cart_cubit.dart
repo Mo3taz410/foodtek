@@ -62,8 +62,8 @@ import 'package:foodtek/core/models/food_model.dart';
 class CartCubit extends Cubit<List<FoodModel>> {
   CartCubit() : super([]);
 
-  void addToCart(FoodModel food, {int quantity = 1}) {
-    final existingIndex = state.indexWhere((item) => item.id == food.id);
+  void addToCart(FoodModel food_categories, {int quantity = 1}) {
+    final existingIndex = state.indexWhere((item) => item.id == food_categories.id);
     if (existingIndex != -1) {
       final updatedItem = state[existingIndex].copyWith(
         inCartQuantity: state[existingIndex].inCartQuantity + quantity,
@@ -72,7 +72,7 @@ class CartCubit extends Cubit<List<FoodModel>> {
       updatedList[existingIndex] = updatedItem;
       emit(updatedList);
     } else {
-      emit([...state, food.copyWith(inCartQuantity: quantity)]);
+      emit([...state, food_categories.copyWith(inCartQuantity: quantity)]);
     }
   }
 

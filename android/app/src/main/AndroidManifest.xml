@@ -14,6 +14,7 @@
         android:value="AIzaSyBeRbg12YBySXsCX2dqXpn9vpURSAoo4pg"/>
         <activity
             android:name=".MainActivity"
+            android:screenOrientation="portrait"
             android:exported="true"
             android:launchMode="singleTop"
             android:taskAffinity=""

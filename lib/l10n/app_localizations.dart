@@ -916,6 +916,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Are you sure you want to remove it from cart?'**
   String get remove_from_cart;
+
+  /// No description provided for @checkout.
+  ///
+  /// In en, this message translates to:
+  /// **'Checkout'**
+  String get checkout;
+
+  /// No description provided for @add_card.
+  ///
+  /// In en, this message translates to:
+  /// **'Add Card'**
+  String get add_card;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

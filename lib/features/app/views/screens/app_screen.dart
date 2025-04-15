@@ -6,6 +6,7 @@ import 'package:foodtek/features/app/views/widgets/floating_cart_icon.dart';
 import '../../../../core/constants/app_colors.dart';
 import '../../../../core/constants/app_icon_strings.dart';
 import '../../../../core/widgets/app_svg_icons.dart';
+import '../../../cart/controllers/cart_cubit.dart';
 import '../../../cart/views/screen/cart_screen.dart';
 import '../../../favorites/views/screen/favorites_screen.dart';
 import '../../../home/views/screen/home_screen.dart';
@@ -34,6 +35,7 @@ class AppScreen extends StatelessWidget {
             onTap: () {
               context.read<BottomNavCubit>().updateIndex(2);
             },
+            itemCount: context.watch<CartCubit>().state.length,
           ),
           floatingActionButtonLocation:
               FloatingActionButtonLocation.centerDocked,

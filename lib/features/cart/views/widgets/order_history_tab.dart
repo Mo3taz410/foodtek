@@ -107,7 +107,10 @@ class OrderHistoryTab extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Lottie.asset(AppAnimationStrings.emptyHistory),
+            Lottie.asset(
+              AppAnimationStrings.emptyHistory,
+              repeat: false,
+            ),
             SizedBox(height: responsiveHeight(context, 24)),
             Text(
               title,

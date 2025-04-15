@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:foodtek/core/constants/app_icon_strings.dart';
 import 'package:foodtek/core/extensions/localization_extension.dart';
 import 'package:foodtek/core/utils/responsive.dart';
+import 'package:foodtek/core/widgets/app_svg_icons.dart';
 import '../../../../core/constants/app_image_strings.dart';
 
 class ProfileScreen extends StatelessWidget {
@@ -56,7 +58,7 @@ class ProfileScreen extends StatelessWidget {
                 children: [
                   _buildTile(
                     context,
-                    Icons.person,
+                    AppIconStrings.personalInformation,
                     context.l10n.personal_information,
                     onTap: () {
                       Navigator.pushNamed(context, '/edit_profile');
@@ -64,25 +66,40 @@ class ProfileScreen extends StatelessWidget {
                   ),
                   _buildTile(
                     context,
-                    Icons.language,
+                    AppIconStrings.language,
                     context.l10n.language,
-                    trailing: Text('English',
-                        style:
-                            TextStyle(fontSize: responsiveHeight(context, 14))),
+                    trailing: Text(
+                      'English',
+                      style: TextStyle(
+                        fontSize: responsiveHeight(context, 14),
+                      ),
+                    ),
                   ),
                   _buildTile(
-                      context, Icons.privacy_tip, context.l10n.privacy_policy),
-                  _buildTile(context, Icons.settings, context.l10n.settings),
+                    context,
+                    AppIconStrings.privacyPolicy,
+                    context.l10n.privacy_policy,
+                  ),
+                  _buildTile(
+                      context, AppIconStrings.profile, context.l10n.settings),
                 ],
               ),
               _buildCard(
                 context,
-                title: context.l10n.notifications,
+                title: context.l10n.push_notifications,
                 children: [
-                  _buildSwitchTile(context, Icons.notifications,
-                      context.l10n.push_notifications, true),
-                  _buildSwitchTile(context, Icons.notifications_none,
-                      context.l10n.promotional_notifications, false),
+                  _buildSwitchTile(
+                    context,
+                    Icons.notifications,
+                    context.l10n.push_notifications,
+                    true,
+                  ),
+                  _buildSwitchTile(
+                    context,
+                    Icons.notifications_none,
+                    context.l10n.promotional_notifications,
+                    false,
+                  ),
                 ],
               ),
               _buildCard(
@@ -90,10 +107,13 @@ class ProfileScreen extends StatelessWidget {
                 title: context.l10n.more,
                 children: [
                   _buildTile(
-                      context, Icons.help_outline, context.l10n.help_center),
+                    context,
+                    AppIconStrings.helpCenter,
+                    context.l10n.help_center,
+                  ),
                   _buildTile(
                     context,
-                    Icons.logout,
+                    AppIconStrings.logOut,
                     context.l10n.log_out,
                     iconColor: Colors.red,
                     textColor: Colors.red,
@@ -141,7 +161,7 @@ class ProfileScreen extends StatelessWidget {
 
   Widget _buildTile(
     BuildContext context,
-    IconData icon,
+    String iconPath,
     String title, {
     Widget? trailing,
     Color? iconColor,
@@ -150,9 +170,9 @@ class ProfileScreen extends StatelessWidget {
   }) {
     return ListTile(
       contentPadding: EdgeInsets.zero,
-      leading: Icon(icon,
-          color: iconColor ?? Colors.black,
-          size: responsiveHeight(context, 22)),
+      leading: AppSvgIcons(
+        iconPath: iconPath,
+      ),
       title: Text(
         title,
         style: TextStyle(
