@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:foodtek/core/helpers/shared_preferences_helper.dart';
 import 'package:foodtek/core/utils/app_text_styles.dart';
-import '../../core/constants/app_colors.dart';
+import '../../core/theme/app_colors/app_light_colors.dart';
 import '../../core/constants/app_image_strings.dart';
 import '../../core/constants/app_strings.dart';
 
@@ -44,14 +44,13 @@ class _SplashScreenState extends State<SplashScreen> {
             child: Image.asset(
               AppImageStrings.backgroundPattern,
               fit: BoxFit.cover,
-              color: AppColors.primary,
               colorBlendMode: BlendMode.dstATop,
             ),
           ),
           Center(
             child: Text(
               AppStrings.logo,
-              style: AppTextStyles.logo,
+              style: Theme.of(context).textTheme.headlineLarge,
             ),
           ),
         ],

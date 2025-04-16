@@ -108,7 +108,6 @@ class _HomeScreenState extends State<HomeScreen> {
                 const RecommendList(),
               ],
             ),
-            SizedBox(height: responsiveHeight(context, 20)),
           ],
         ),
       );

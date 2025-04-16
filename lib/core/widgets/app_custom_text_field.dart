@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:foodtek/core/constants/app_colors.dart';
+import 'package:foodtek/core/theme/app_colors/app_light_colors.dart';
 import 'package:foodtek/core/utils/app_text_styles.dart';
 import 'package:foodtek/core/utils/responsive.dart';
 
@@ -41,7 +41,7 @@ class AppCustomTextField extends StatelessWidget {
           ),
           child: Text(
             label!,
-            style: AppTextStyles.appTextFieldsHint,
+            style: Theme.of(context).textTheme.labelMedium, // ensure....
           ),
         ),
         SizedBox(
@@ -55,7 +55,7 @@ class AppCustomTextField extends StatelessWidget {
             textAlignVertical: TextAlignVertical.center,
             decoration: InputDecoration(
               hintText: hintText,
-              hintStyle: hintStyle ?? AppTextStyles.appTextFieldsHint,
+              hintStyle: hintStyle ?? Theme.of(context).textTheme.labelMedium,
               prefixIcon: prefixIcon,
               suffixIcon: suffixIcon,
               errorText: errorText,
@@ -66,16 +66,16 @@ class AppCustomTextField extends StatelessWidget {
               ),
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(12),
-                borderSide: const BorderSide(color: AppColors.quinary),
+                borderSide: const BorderSide(color: AppLightColors.quinary),
               ),
               enabledBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(12),
-                borderSide: const BorderSide(color: AppColors.quinary),
+                borderSide: const BorderSide(color: AppLightColors.quinary),
               ),
               focusedBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(12),
                 borderSide: BorderSide(
-                  color: AppColors.quinary,
+                  color: AppLightColors.quinary,
                   width: responsiveWidth(context, 1.5),
                 ),
               ),

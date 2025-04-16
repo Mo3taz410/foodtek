@@ -8,7 +8,7 @@ import 'package:foodtek/features/auth/controllers/auth_cubit.dart';
 import 'package:foodtek/features/auth/controllers/remember_me_cubit.dart';
 import 'package:foodtek/features/auth/models/user_model.dart';
 import 'package:foodtek/core/widgets/app_custom_button.dart';
-import '../../../../core/constants/app_colors.dart';
+import '../../../../core/theme/app_colors/app_light_colors.dart';
 import '../../../../core/constants/app_icon_strings.dart';
 import '../widgets/auth_screen_wrapper.dart';
 import '../../../../core/widgets/app_custom_text_field.dart';
@@ -29,7 +29,7 @@ class LoginScreen extends StatelessWidget {
         children: [
           Text(
             context.l10n.login,
-            style: AppTextStyles.appTitle,
+            style: Theme.of(context).textTheme.titleLarge,
           ),
           AuthBottomTextRow(
             label: context.l10n.dont_have_account,
@@ -100,7 +100,7 @@ class LoginScreen extends StatelessWidget {
                     child: Text(
                       context.l10n.forgot_password,
                       style: AppTextStyles.appSubTitle.copyWith(
-                        color: AppColors.primary,
+                        color: AppLightColors.primary,
                         fontWeight: FontWeight.w600,
                       ),
                     ),
@@ -122,7 +122,7 @@ class LoginScreen extends StatelessWidget {
                 text: state is AuthLoading ? "Loading..." : "Log In",
                 width: double.infinity,
                 height: responsiveHeight(context, 48),
-                color: AppColors.primary,
+                color: AppLightColors.primary,
                 textStyle: AppTextStyles.appButton,
                 onPressed: () {
                   final user = UserModel(

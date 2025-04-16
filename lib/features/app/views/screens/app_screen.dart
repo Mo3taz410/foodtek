@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:foodtek/core/extensions/localization_extension.dart';
 import 'package:foodtek/features/app/controllers/bottom_nav_cubit.dart';
 import 'package:foodtek/features/app/views/widgets/floating_cart_icon.dart';
-import '../../../../core/constants/app_colors.dart';
+import '../../../../core/theme/app_colors/app_light_colors.dart';
 import '../../../../core/constants/app_icon_strings.dart';
 import '../../../../core/widgets/app_svg_icons.dart';
 import '../../../cart/controllers/cart_cubit.dart';
@@ -40,11 +40,11 @@ class AppScreen extends StatelessWidget {
           floatingActionButtonLocation:
               FloatingActionButtonLocation.centerDocked,
           bottomNavigationBar: BottomNavigationBar(
-            backgroundColor: AppColors.octonary,
+            backgroundColor: AppLightColors.octonary,
             type: BottomNavigationBarType.fixed,
             elevation: 0,
-            selectedItemColor: AppColors.primary,
-            unselectedItemColor: AppColors.tertiary,
+            selectedItemColor: AppLightColors.primary,
+            unselectedItemColor: AppLightColors.tertiary,
             currentIndex: selectedIndex,
             onTap: (index) {
               if (index != 2) {

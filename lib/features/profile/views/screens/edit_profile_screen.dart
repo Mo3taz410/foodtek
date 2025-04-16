@@ -5,7 +5,7 @@ import 'package:foodtek/core/utils/responsive.dart';
 import 'package:foodtek/core/widgets/app_custom_button.dart';
 import 'package:foodtek/core/widgets/app_custom_text_field.dart';
 
-import '../../../../core/constants/app_colors.dart';
+import '../../../../core/theme/app_colors/app_light_colors.dart';
 import '../../../../core/constants/app_image_strings.dart';
 
 class EditProfileScreen extends StatelessWidget {
@@ -112,7 +112,7 @@ class EditProfileScreen extends StatelessWidget {
                   onPressed: () {},
                   height: responsiveHeight(context, 48),
                   width: responsiveWidth(context, 300),
-                  color: AppColors.primary,
+                  color: AppLightColors.primary,
                 ),
               ],
             ),

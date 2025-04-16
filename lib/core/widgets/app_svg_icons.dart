@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_svg/svg.dart';
 
-import '../constants/app_colors.dart';
+import '../theme/app_colors/app_light_colors.dart';
 
 class AppSvgIcons extends StatelessWidget {
   final String iconPath;
@@ -20,7 +20,7 @@ class AppSvgIcons extends StatelessWidget {
     return SvgPicture.asset(
       iconPath,
       colorFilter: ColorFilter.mode(
-        color ?? AppColors.tertiary,
+        color ?? AppLightColors.tertiary,
         BlendMode.srcIn,
       ),
       width: width ?? 22,

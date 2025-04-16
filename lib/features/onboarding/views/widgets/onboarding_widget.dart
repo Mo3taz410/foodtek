@@ -4,7 +4,7 @@ import 'package:foodtek/core/utils/app_text_styles.dart';
 import 'package:foodtek/core/utils/responsive.dart';
 import 'package:foodtek/core/widgets/app_custom_button.dart';
 import 'package:lottie/lottie.dart';
-import '../../../../core/constants/app_colors.dart';
+import '../../../../core/theme/app_colors/app_light_colors.dart';
 
 class OnboardingWidget extends StatelessWidget {
   final String animationPath;
@@ -46,12 +46,12 @@ class OnboardingWidget extends StatelessWidget {
                   children: [
                     Text(
                       title,
-                      style: AppTextStyles.onboardingTitle(isLast ? 3 : 0),
+                      style: Theme.of(context).textTheme.headlineMedium,
                       textAlign: TextAlign.center,
                     ),
                     Text(
                       subtitle,
-                      style: AppTextStyles.onboardingSubTitle,
+                      style: Theme.of(context).textTheme.headlineSmall,
                       textAlign: TextAlign.center,
                     ),
                   ],
@@ -71,8 +71,8 @@ class OnboardingWidget extends StatelessWidget {
                 borderRadius: 69,
                 gradient: const LinearGradient(
                   colors: [
-                    AppColors.primary,
-                    AppColors.tertiary,
+                    AppLightColors.primary,
+                    AppLightColors.tertiary,
                   ],
                   begin: Alignment.centerLeft,
                   end: Alignment.centerRight,
@@ -83,11 +83,11 @@ class OnboardingWidget extends StatelessWidget {
                 AppCustomButton(
                   text: context.l10n.cancel,
                   textStyle: AppTextStyles.onboardingButton.copyWith(
-                    color: AppColors.secondary,
+                    color: AppLightColors.secondary,
                   ),
                   width: responsiveWidth(context, 307),
                   height: responsiveHeight(context, 48),
-                  color: AppColors.quinary,
+                  color: AppLightColors.quinary,
                   borderRadius: 69,
                   onPressed: () {
                     Navigator.pushReplacementNamed(context, '/login');

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:foodtek/core/constants/app_colors.dart';
+import 'package:foodtek/core/theme/app_colors/app_light_colors.dart';
 import 'package:foodtek/core/constants/app_image_strings.dart';
 import 'package:foodtek/core/extensions/localization_extension.dart';
 import 'package:foodtek/core/models/food_model.dart';
@@ -34,7 +34,7 @@ class CartSummaryBox extends StatelessWidget {
           image: AssetImage(AppImageStrings.checkoutBackgroundPattern),
           fit: BoxFit.cover,
         ),
-        color: AppColors.secondary,
+        color: AppLightColors.secondary,
         borderRadius: BorderRadius.circular(20),
       ),
       child: Column(
@@ -54,7 +54,7 @@ class CartSummaryBox extends StatelessWidget {
           AppCustomButton(
             text: context.l10n.place_order,
             textStyle:
-                AppTextStyles.appButton.copyWith(color: AppColors.primary),
+                AppTextStyles.appButton.copyWith(color: AppLightColors.primary),
             onPressed: () {
               Navigator.pushNamed(context, '/checkout');
             },

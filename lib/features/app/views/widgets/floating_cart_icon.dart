@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:foodtek/core/constants/app_colors.dart';
+import 'package:foodtek/core/theme/app_colors/app_light_colors.dart';
 import 'package:foodtek/core/constants/app_icon_strings.dart';
 import 'package:foodtek/core/widgets/app_svg_icons.dart';
 
@@ -28,11 +28,11 @@ class FloatingCartIcon extends StatelessWidget {
             onPressed: onTap,
             elevation: 0,
             backgroundColor:
-                isSelected ? AppColors.primary : AppColors.secondary,
+                isSelected ? AppLightColors.primary : AppLightColors.secondary,
             shape: RoundedRectangleBorder(
               side: BorderSide(
                 width: 4,
-                color: AppColors.octonary,
+                color: AppLightColors.octonary,
               ),
               borderRadius: BorderRadius.circular(100),
             ),

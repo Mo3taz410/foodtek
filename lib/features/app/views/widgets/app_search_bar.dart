@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:foodtek/core/constants/app_colors.dart';
+import 'package:foodtek/core/theme/app_colors/app_light_colors.dart';
 import 'package:foodtek/core/constants/app_icon_strings.dart';
 import 'package:foodtek/core/extensions/localization_extension.dart';
 import 'package:foodtek/core/utils/app_text_styles.dart';
@@ -24,7 +24,7 @@ class AppSearchBar extends StatelessWidget {
         textAlignVertical: TextAlignVertical.center,
         decoration: InputDecoration(
           hintText: context.l10n.search_placeholder,
-          hintStyle: AppTextStyles.appTextFieldsHint,
+          hintStyle: Theme.of(context).textTheme.labelMedium,
           prefixIcon: IconButton(
               onPressed: () {},
               icon: AppSvgIcons(iconPath: AppIconStrings.search)),
@@ -38,16 +38,16 @@ class AppSearchBar extends StatelessWidget {
           ),
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(40),
-            borderSide: const BorderSide(color: AppColors.secondary),
+            borderSide: const BorderSide(color: AppLightColors.secondary),
           ),
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(40),
-            borderSide: const BorderSide(color: AppColors.secondary),
+            borderSide: const BorderSide(color: AppLightColors.secondary),
           ),
           focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(40),
             borderSide: BorderSide(
-              color: AppColors.primary,
+              color: AppLightColors.primary,
               width: responsiveWidth(context, 1.5),
             ),
           ),

@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:foodtek/core/models/food_model.dart';
+import 'package:foodtek/core/theme/app_themes.dart';
 import 'package:foodtek/features/auth/views/screens/login_screen.dart';
 import 'package:foodtek/features/auth/views/screens/reset_password_screen.dart';
 import 'package:foodtek/features/cart/controllers/cart_cubit.dart';
@@ -16,7 +17,6 @@ import 'package:foodtek/features/app/views/screens/app_screen.dart';
 import 'package:foodtek/features/home/views/screen/home_screen.dart';
 import 'package:foodtek/features/profile/views/screens/edit_profile_screen.dart';
 import 'package:foodtek/features/splash/splash_screen.dart';
-import 'core/constants/app_colors.dart';
 import 'features/app/controllers/bottom_nav_cubit.dart';
 import 'features/app/views/screens/track_screen.dart';
 import 'features/auth/controllers/auth_cubit.dart';
@@ -76,12 +76,9 @@ class MyApp extends StatelessWidget {
               Locale('ar'),
             ],
             themeMode: ThemeMode.system,
-            theme: ThemeData(
-              colorScheme: ColorScheme.fromSeed(seedColor: AppColors.primary),
-              useMaterial3: true,
-              fontFamily: 'Poppins',
-            ),
-            home: AppScreen(), // home: const FoodDetailsPreview(),
+            theme: AppThemes.lightTheme,
+            darkTheme: AppThemes.darkTheme,
+            home: SplashScreen(),
             routes: {
               ///  '/': (context) => SplashScreen(),
               '/onboarding': (context) => OnboardingScreen(),

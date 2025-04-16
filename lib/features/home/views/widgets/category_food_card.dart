@@ -1,7 +1,7 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:foodtek/core/constants/app_colors.dart';
+import 'package:foodtek/core/theme/app_colors/app_light_colors.dart';
 import 'package:foodtek/core/extensions/localization_extension.dart';
 import 'package:foodtek/core/models/food_model.dart';
 import 'package:foodtek/core/utils/app_text_styles.dart';
@@ -51,7 +51,7 @@ class CategoryFoodCard extends StatelessWidget {
                         AppCustomButton(
                           text: context.l10n.yes,
                           textStyle: AppTextStyles.appButton,
-                          color: AppColors.primary,
+                          color: AppLightColors.primary,
                           width: double.infinity,
                           height: responsiveHeight(context, 48),
                           onPressed: () {
@@ -91,7 +91,7 @@ class CategoryFoodCard extends StatelessWidget {
               ),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(25),
-                border: Border.all(color: AppColors.quinary),
+                border: Border.all(color: AppLightColors.quinary),
               ),
               child: Column(
                 spacing: responsiveHeight(context, 15),
@@ -120,14 +120,14 @@ class CategoryFoodCard extends StatelessWidget {
               ),
             ),
             Positioned(
-              top: -50,
+              top: responsiveHeight(context, -50),
               left: 0,
-              right: 15,
+              right: responsiveWidth(context, 15),
               child: Container(
                 width: responsiveWidth(context, 100),
                 height: responsiveHeight(context, 100),
                 decoration: BoxDecoration(
-                  color: AppColors.quinary,
+                  color: AppLightColors.quinary,
                   shape: BoxShape.circle,
                 ),
                 child: Center(
@@ -146,13 +146,13 @@ class CategoryFoodCard extends StatelessWidget {
               ),
             ),
             Positioned(
-              top: -10,
-              right: 10,
+              top: responsiveHeight(context, -10),
+              right: responsiveWidth(context, 10),
               child: Container(
-                width: responsiveWidth(context, 25),
-                height: responsiveHeight(context, 25),
+                width: responsiveWidth(context, 30),
+                height: responsiveHeight(context, 30),
                 decoration: const BoxDecoration(
-                  color: AppColors.quinary,
+                  color: AppLightColors.quinary,
                   shape: BoxShape.circle,
                 ),
                 child: IconButton(
@@ -167,7 +167,7 @@ class CategoryFoodCard extends StatelessWidget {
               ),
             ),
             Positioned(
-              bottom: 100,
+              bottom: responsiveHeight(context, 100),
               left: 0,
               right: 0,
               child: Center(
@@ -182,7 +182,7 @@ class CategoryFoodCard extends StatelessWidget {
                   },
                   height: responsiveHeight(context, 40),
                   width: responsiveWidth(context, 100),
-                  color: AppColors.secondary,
+                  color: AppLightColors.secondary,
                   borderRadius: 30,
                   textStyle: AppTextStyles.foodCardButton,
                 ),

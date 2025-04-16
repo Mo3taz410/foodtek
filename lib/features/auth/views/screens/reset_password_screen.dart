@@ -4,7 +4,7 @@ import 'package:foodtek/core/constants/app_animation_strings.dart';
 import 'package:foodtek/core/widgets/app_custom_button.dart';
 import 'package:foodtek/core/widgets/app_svg_icons.dart';
 import 'package:lottie/lottie.dart';
-import '../../../../core/constants/app_colors.dart';
+import '../../../../core/theme/app_colors/app_light_colors.dart';
 import '../../../../core/constants/app_icon_strings.dart';
 import '../../../../core/utils/app_text_styles.dart';
 import '../../../../core/utils/responsive.dart';
@@ -64,7 +64,7 @@ class ResetPasswordScreen extends StatelessWidget {
             textStyle: AppTextStyles.appButton,
             width: double.infinity,
             height: responsiveHeight(context, 48),
-            color: AppColors.primary,
+            color: AppLightColors.primary,
             onPressed: () {
               showDialog(
                 context: context,
@@ -126,7 +126,7 @@ class ResetPasswordScreen extends StatelessWidget {
                                 AppCustomButton(
                                   text: context.l10n.verify,
                                   textStyle: AppTextStyles.appButton,
-                                  color: AppColors.primary,
+                                  color: AppLightColors.primary,
                                   width: double.infinity,
                                   height: responsiveHeight(context, 48),
                                   onPressed: () {

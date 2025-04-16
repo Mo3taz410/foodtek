@@ -4,7 +4,7 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:foodtek/core/utils/responsive.dart';
-import '../../../../core/constants/app_colors.dart';
+import '../../../../core/theme/app_colors/app_light_colors.dart';
 
 class LocationPickerScreen extends StatefulWidget {
   const LocationPickerScreen({super.key});
@@ -117,7 +117,8 @@ class _LocationPickerScreenState extends State<LocationPickerScreen> {
             },
           ),
           const Center(
-            child: Icon(Icons.location_on, size: 40, color: AppColors.tertiary),
+            child: Icon(Icons.location_on,
+                size: 40, color: AppLightColors.tertiary),
           ),
           Positioned(
             top: responsiveHeight(context, 10),
@@ -183,7 +184,8 @@ class _LocationPickerScreenState extends State<LocationPickerScreen> {
                 children: [
                   Row(
                     children: [
-                      const Icon(Icons.location_pin, color: AppColors.tertiary),
+                      const Icon(Icons.location_pin,
+                          color: AppLightColors.tertiary),
                       const SizedBox(width: 10),
                       Expanded(
                         child: Text(
@@ -198,7 +200,7 @@ class _LocationPickerScreenState extends State<LocationPickerScreen> {
                   const SizedBox(height: 12),
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: AppColors.tertiary,
+                      backgroundColor: AppLightColors.tertiary,
                       minimumSize: const Size(double.infinity, 48),
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(12)),

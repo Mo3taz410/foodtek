@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:foodtek/core/extensions/localization_extension.dart';
-import 'package:foodtek/core/constants/app_colors.dart';
+import 'package:foodtek/core/theme/app_colors/app_light_colors.dart';
 import 'package:foodtek/core/constants/app_animation_strings.dart';
 import 'package:foodtek/core/utils/app_text_styles.dart';
 import 'package:foodtek/core/utils/responsive.dart';
@@ -62,7 +62,7 @@ class CartTab extends StatelessWidget {
                                 AppCustomButton(
                                   text: context.l10n.yes,
                                   textStyle: AppTextStyles.appButton,
-                                  color: AppColors.primary,
+                                  color: AppLightColors.primary,
                                   width: double.infinity,
                                   height: responsiveHeight(context, 48),
                                   onPressed: () => Navigator.pop(context, true),
@@ -133,7 +133,7 @@ class CartTab extends StatelessWidget {
                   Text(
                     '\$${food.currentPrice.toStringAsFixed(2)}',
                     style: const TextStyle(
-                      color: AppColors.tertiary,
+                      color: AppLightColors.tertiary,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
@@ -143,7 +143,8 @@ class CartTab extends StatelessWidget {
             Row(
               children: [
                 IconButton(
-                  icon: const Icon(Icons.remove, color: AppColors.secondary),
+                  icon:
+                      const Icon(Icons.remove, color: AppLightColors.secondary),
                   onPressed: () {
                     final newQty =
                         (food.inCartQuantity > 1) ? food.inCartQuantity - 1 : 1;
@@ -153,7 +154,7 @@ class CartTab extends StatelessWidget {
                 Text('${food.inCartQuantity}',
                     style: const TextStyle(fontSize: 16)),
                 IconButton(
-                  icon: const Icon(Icons.add, color: AppColors.secondary),
+                  icon: const Icon(Icons.add, color: AppLightColors.secondary),
                   onPressed: () {
                     context
                         .read<CartCubit>()
@@ -184,7 +185,7 @@ class CartTab extends StatelessWidget {
             const SizedBox(height: 8),
             Text(subtitle,
                 textAlign: TextAlign.center,
-                style: const TextStyle(color: AppColors.senary)),
+                style: const TextStyle(color: AppLightColors.senary)),
           ],
         ),
       ),

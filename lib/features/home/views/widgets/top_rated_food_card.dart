@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:foodtek/core/constants/app_colors.dart';
+import 'package:foodtek/core/theme/app_colors/app_light_colors.dart';
 import 'package:foodtek/core/models/food_model.dart';
 import 'package:foodtek/core/utils/app_text_styles.dart';
 import 'package:foodtek/core/utils/responsive.dart';
@@ -30,13 +30,14 @@ class TopRatedFoodCard extends StatelessWidget {
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(12),
-          border: Border.all(color: AppColors.quinary, width: 1.5),
+          border: Border.all(color: AppLightColors.quinary, width: 1.5),
         ),
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Row(
               children: [
-                Icon(Icons.star, color: AppColors.septenary, size: 16),
+                Icon(Icons.star, color: AppLightColors.septenary, size: 16),
                 Text(food.rating.toString(), style: AppTextStyles.appSubTitle),
               ],
             ),
@@ -70,7 +71,8 @@ class TopRatedFoodCard extends StatelessWidget {
                       onPressed: () {
                         context.read<CartCubit>().addToCart(food);
                       },
-                      icon: Icon(Icons.add_circle, color: AppColors.secondary),
+                      icon: Icon(Icons.add_circle,
+                          color: AppLightColors.secondary),
                     ),
                   ],
                 ),

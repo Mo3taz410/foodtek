@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:foodtek/core/extensions/localization_extension.dart';
 import 'package:foodtek/core/utils/responsive.dart';
 import 'package:universal_platform/universal_platform.dart';
-import '../../../../core/constants/app_colors.dart';
+import '../../../../core/theme/app_colors/app_light_colors.dart';
 import '../../../../core/constants/app_image_strings.dart';
 import '../../../../core/utils/app_text_styles.dart';
 
@@ -40,7 +40,8 @@ class SocialAuthButtons extends StatelessWidget {
         ),
         style: OutlinedButton.styleFrom(
           backgroundColor: Colors.white,
-          side: BorderSide(color: AppColors.secondary.withValues(alpha: .2)),
+          side:
+              BorderSide(color: AppLightColors.secondary.withValues(alpha: .2)),
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
         ),

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:foodtek/core/constants/app_colors.dart';
+import 'package:foodtek/core/theme/app_colors/app_light_colors.dart';
 import 'package:foodtek/core/constants/app_icon_strings.dart';
 import 'package:foodtek/core/extensions/localization_extension.dart';
 import 'package:foodtek/core/utils/app_text_styles.dart';
@@ -27,7 +27,7 @@ class CheckoutScreen extends StatelessWidget {
                 Container(
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(4),
-                    color: AppColors.octonary,
+                    color: AppLightColors.octonary,
                   ),
                   child: IconButton(
                     onPressed: () {

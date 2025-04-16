@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:foodtek/core/constants/app_colors.dart';
+import 'package:foodtek/core/theme/app_colors/app_light_colors.dart';
 
 class AppCustomButton extends StatelessWidget {
   final String text;
@@ -38,7 +38,7 @@ class AppCustomButton extends StatelessWidget {
         onPressed: onPressed,
         child: Container(
           decoration: BoxDecoration(
-            color: gradient == null ? color ?? AppColors.quaternary : null,
+            color: gradient == null ? color ?? AppLightColors.quaternary : null,
             gradient: gradient,
             borderRadius: BorderRadius.circular(borderRadius),
           ),

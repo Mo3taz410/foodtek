@@ -7,7 +7,7 @@ import 'package:foodtek/core/widgets/app_custom_button.dart';
 import 'package:foodtek/core/widgets/app_svg_icons.dart';
 import 'package:foodtek/features/auth/views/widgets/auth_bottom_text_row.dart';
 import 'package:lottie/lottie.dart';
-import '../../../../core/constants/app_colors.dart';
+import '../../../../core/theme/app_colors/app_light_colors.dart';
 import '../../../../core/constants/app_icon_strings.dart';
 import '../../../../core/utils/app_text_styles.dart';
 import '../../../../core/utils/responsive.dart';
@@ -63,7 +63,7 @@ class NewPasswordScreen extends StatelessWidget {
             textStyle: AppTextStyles.appButton,
             width: double.infinity,
             height: responsiveHeight(context, 48),
-            color: AppColors.primary,
+            color: AppLightColors.primary,
             onPressed: () {
               showGeneralDialog(
                 context: context,

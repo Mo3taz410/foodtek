@@ -7,7 +7,7 @@ import 'package:foodtek/core/widgets/app_custom_button.dart';
 import 'package:foodtek/core/widgets/app_svg_icons.dart';
 import 'package:foodtek/features/auth/controllers/auth_cubit.dart';
 import 'package:foodtek/features/auth/models/user_model.dart';
-import '../../../../core/constants/app_colors.dart';
+import '../../../../core/theme/app_colors/app_light_colors.dart';
 import '../../../../core/constants/app_icon_strings.dart';
 import '../widgets/auth_screen_wrapper.dart';
 import '../../../../core/widgets/app_custom_text_field.dart';
@@ -181,7 +181,7 @@ class _SignupScreenState extends State<SignupScreen> {
                     state is AuthLoading ? "Loading..." : context.l10n.register,
                 width: double.infinity,
                 height: responsiveHeight(context, 48),
-                color: AppColors.primary,
+                color: AppLightColors.primary,
                 textStyle: AppTextStyles.appButton,
                 onPressed: () => _validateAndSubmit(context),
               );

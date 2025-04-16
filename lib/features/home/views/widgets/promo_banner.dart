@@ -4,7 +4,7 @@ import 'package:foodtek/core/utils/responsive.dart';
 import 'package:foodtek/features/home/controllers/promo_nav_cubit.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
-import '../../../../core/constants/app_colors.dart';
+import '../../../../core/theme/app_colors/app_light_colors.dart';
 import '../../../../core/constants/app_image_strings.dart';
 
 class PromoBanner extends StatelessWidget {
@@ -38,8 +38,8 @@ class PromoBanner extends StatelessWidget {
           effect: SlideEffect(
             dotHeight: responsiveHeight(context, 4),
             dotWidth: responsiveWidth(context, 20),
-            activeDotColor: AppColors.secondary,
-            dotColor: AppColors.quinary,
+            activeDotColor: AppLightColors.secondary,
+            dotColor: AppLightColors.quinary,
             spacing: responsiveWidth(context, 4),
           ),
           onDotClicked: (index) {

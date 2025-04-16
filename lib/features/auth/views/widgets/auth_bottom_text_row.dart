@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:foodtek/core/utils/app_text_styles.dart';
 
-import '../../../../core/constants/app_colors.dart';
+import '../../../../core/theme/app_colors/app_light_colors.dart';
 
 class AuthBottomTextRow extends StatelessWidget {
   final String label;
@@ -29,7 +29,7 @@ class AuthBottomTextRow extends StatelessWidget {
           child: Text(
             actionText,
             style: AppTextStyles.appSubTitle.copyWith(
-              color: AppColors.primary,
+              color: AppLightColors.primary,
               fontWeight: FontWeight.w600,
             ),
           ),

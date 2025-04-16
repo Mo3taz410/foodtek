@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:foodtek/core/constants/app_colors.dart';
+import 'package:foodtek/core/theme/app_colors/app_light_colors.dart';
 import 'package:foodtek/core/extensions/localization_extension.dart';
 import 'package:foodtek/core/models/food_model.dart';
 import 'package:foodtek/core/utils/app_text_styles.dart';
@@ -170,7 +170,7 @@ class FoodDetailsScreen extends StatelessWidget {
                           quantity:
                               context.read<FoodDetailsCubit>().state.quantity);
                     },
-                    color: AppColors.secondary,
+                    color: AppLightColors.secondary,
                     height: responsiveHeight(context, 48),
                     width: double.infinity,
                     textStyle: AppTextStyles.appButton,
