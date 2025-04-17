@@ -82,7 +82,7 @@ class OnboardingWidget extends StatelessWidget {
                   width: responsiveWidth(context, 307),
                   height: responsiveHeight(context, 48),
                   borderRadius: 69,
-                  textStyle: Theme.of(context).textTheme.labelMedium,
+                  // textStyle: Theme.of(context).textTheme.labelMedium,
                   onPressed: () {
                     Navigator.pushReplacementNamed(context, '/login');
                   },

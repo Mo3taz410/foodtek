@@ -141,5 +141,6 @@
   "add_card": "Add Card",
   "choose_language": "Choose Language",
   "top_recommendations": "Top Recommendations",
-  "loading": "Loading..."
+  "loading": "Loading...",
+  "dark_mode": "Dark Mode"
 }

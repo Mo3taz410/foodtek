@@ -7,6 +7,7 @@ import 'package:foodtek/core/localization/localization_cubit.dart';
 import 'package:foodtek/core/localization/localization_repository.dart';
 import 'package:foodtek/core/models/food_model.dart';
 import 'package:foodtek/core/theme/app_themes.dart';
+import 'package:foodtek/core/theme/theme_cubit.dart';
 import 'package:foodtek/features/auth/views/screens/login_screen.dart';
 import 'package:foodtek/features/auth/views/screens/reset_password_screen.dart';
 import 'package:foodtek/features/cart/controllers/cart_cubit.dart';
@@ -20,17 +21,17 @@ import 'package:foodtek/features/home/views/screen/home_screen.dart';
 import 'package:foodtek/features/profile/views/screens/edit_profile_screen.dart';
 import 'package:foodtek/features/splash/splash_screen.dart';
 import 'package:foodtek/l10n/app_localizations.dart';
-import 'features/app/controllers/bottom_nav_cubit.dart';
-import 'features/app/views/screens/track_screen.dart';
-import 'features/auth/controllers/auth_cubit.dart';
-import 'features/auth/controllers/remember_me_cubit.dart';
-import 'features/auth/views/screens/new_password_screen.dart';
-import 'features/auth/views/screens/signup_screen.dart';
-import 'features/cart/views/screen/cart_screen.dart';
-import 'features/favorites/views/screen/favorites_screen.dart';
-import 'features/location/views/screen/location_picker_screen.dart';
-import 'features/onboarding/views/screen/onboarding_screen.dart';
-import 'features/profile/views/screens/profile_screen.dart';
+import 'package:foodtek/features/app/controllers/bottom_nav_cubit.dart';
+import 'package:foodtek/features/app/views/screens/track_screen.dart';
+import 'package:foodtek/features/auth/controllers/auth_cubit.dart';
+import 'package:foodtek/features/auth/controllers/remember_me_cubit.dart';
+import 'package:foodtek/features/auth/views/screens/new_password_screen.dart';
+import 'package:foodtek/features/auth/views/screens/signup_screen.dart';
+import 'package:foodtek/features/cart/views/screen/cart_screen.dart';
+import 'package:foodtek/features/favorites/views/screen/favorites_screen.dart';
+import 'package:foodtek/features/location/views/screen/location_picker_screen.dart';
+import 'package:foodtek/features/onboarding/views/screen/onboarding_screen.dart';
+import 'package:foodtek/features/profile/views/screens/profile_screen.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -63,52 +64,58 @@ class MyApp extends StatelessWidget {
             BlocProvider(create: (_) => FavoritesCubit()),
             BlocProvider(create: (_) => FoodDetailsCubit()),
             BlocProvider(create: (_) => CartCubit()),
+            BlocProvider(create: (_) => ThemeCubit()),
             BlocProvider(
                 create: (_) => LocalizationCubit(LocalizationRepository())),
           ],
-          child: BlocBuilder<LocalizationCubit, Locale>(
-            builder: (context, locale) {
-              return MaterialApp(
-                debugShowCheckedModeBanner: false,
-                title: 'Foodtek',
-                locale: locale,
-                localizationsDelegates: const [
-                  AppLocalizations.delegate,
-                  GlobalMaterialLocalizations.delegate,
-                  GlobalWidgetsLocalizations.delegate,
-                  GlobalCupertinoLocalizations.delegate,
-                ],
-                supportedLocales: const [
-                  Locale('en'),
-                  Locale('ar'),
-                ],
-                themeMode: ThemeMode.system,
-                theme: AppThemes.lightTheme,
-                darkTheme: AppThemes.darkTheme,
-                home: SplashScreen(),
-                routes: {
-                  '/onboarding': (context) => OnboardingScreen(),
-                  '/login': (context) => LoginScreen(),
-                  '/signup': (context) => SignupScreen(),
-                  '/reset_password': (context) => ResetPasswordScreen(),
-                  '/new_password': (context) => NewPasswordScreen(),
-                  '/app': (context) => AppScreen(),
-                  '/home': (context) => HomeScreen(),
-                  '/favorites': (context) => FavoritesScreen(),
-                  '/cart': (context) => CartScreen(),
-                  '/track': (context) => TrackScreen(),
-                  '/profile': (context) => ProfileScreen(),
-                  '/edit_profile': (context) => EditProfileScreen(),
-                  '/locationPicker': (context) => const LocationPickerScreen(),
-                  '/food_details': (context) {
-                    final food =
-                        ModalRoute.of(context)!.settings.arguments as FoodModel;
-                    return BlocProvider.value(
-                      value: BlocProvider.of<FoodDetailsCubit>(context),
-                      child: FoodDetailsScreen(food: food),
-                    );
-                  },
-                  '/checkout': (context) => CheckoutScreen(),
+          child: BlocBuilder<ThemeCubit, ThemeMode>(
+            builder: (context, themeMode) {
+              return BlocBuilder<LocalizationCubit, Locale>(
+                builder: (context, locale) {
+                  return MaterialApp(
+                    debugShowCheckedModeBanner: false,
+                    title: 'Foodtek',
+                    locale: locale,
+                    localizationsDelegates: const [
+                      AppLocalizations.delegate,
+                      GlobalMaterialLocalizations.delegate,
+                      GlobalWidgetsLocalizations.delegate,
+                      GlobalCupertinoLocalizations.delegate,
+                    ],
+                    supportedLocales: const [
+                      Locale('en'),
+                      Locale('ar'),
+                    ],
+                    themeMode: themeMode,
+                    theme: AppThemes.lightTheme,
+                    darkTheme: AppThemes.darkTheme,
+                    home: SplashScreen(),
+                    routes: {
+                      '/onboarding': (context) => OnboardingScreen(),
+                      '/login': (context) => LoginScreen(),
+                      '/signup': (context) => SignupScreen(),
+                      '/reset_password': (context) => ResetPasswordScreen(),
+                      '/new_password': (context) => NewPasswordScreen(),
+                      '/app': (context) => AppScreen(),
+                      '/home': (context) => HomeScreen(),
+                      '/favorites': (context) => FavoritesScreen(),
+                      '/cart': (context) => CartScreen(),
+                      '/track': (context) => TrackScreen(),
+                      '/profile': (context) => ProfileScreen(),
+                      '/edit_profile': (context) => EditProfileScreen(),
+                      '/locationPicker': (context) =>
+                          const LocationPickerScreen(),
+                      '/food_details': (context) {
+                        final food = ModalRoute.of(context)!.settings.arguments
+                            as FoodModel;
+                        return BlocProvider.value(
+                          value: BlocProvider.of<FoodDetailsCubit>(context),
+                          child: FoodDetailsScreen(food: food),
+                        );
+                      },
+                      '/checkout': (context) => CheckoutScreen(),
+                    },
+                  );
                 },
               );
             },

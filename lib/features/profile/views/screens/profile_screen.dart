@@ -7,6 +7,8 @@ import 'package:foodtek/core/localization/localization_extension.dart';
 import 'package:foodtek/core/utils/responsive.dart';
 import 'package:foodtek/core/widgets/app_svg_icons.dart';
 
+import '../../../../core/theme/theme_cubit.dart';
+
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
 
@@ -34,10 +36,10 @@ class ProfileScreen extends StatelessWidget {
                       backgroundImage:
                           AssetImage(AppImageStrings.profilePicture),
                     ),
-                    Text('Ahmad Daboor',
+                    Text('Waseem Samour',
                         style: Theme.of(context).textTheme.titleMedium),
                     Text(
-                      'ahmad1709@gmail.com',
+                      'waseemsamour@gmail.com',
                       style: Theme.of(context).textTheme.bodySmall,
                     ),
                   ],
@@ -55,6 +57,16 @@ class ProfileScreen extends StatelessWidget {
                   ),
                   _buildTile(
                     context,
+                    AppIconStrings.privacyPolicy,
+                    context.l10n.privacy_policy,
+                  ),
+                  _buildTile(
+                    context,
+                    AppIconStrings.profile,
+                    context.l10n.settings,
+                  ),
+                  _buildTile(
+                    context,
                     AppIconStrings.language,
                     context.l10n.language,
                     trailing: Text(
@@ -65,15 +77,14 @@ class ProfileScreen extends StatelessWidget {
                     ),
                     onTap: () => _showLanguagePicker(context),
                   ),
-                  _buildTile(
+                  _buildThemeSwitchTile(
                     context,
-                    AppIconStrings.privacyPolicy,
-                    context.l10n.privacy_policy,
-                  ),
-                  _buildTile(
-                    context,
-                    AppIconStrings.profile,
-                    context.l10n.settings,
+                    Icons.dark_mode,
+                    context.l10n.dark_mode,
+                    _isDarkMode(context),
+                    onChanged: (value) {
+                      context.read<ThemeCubit>().toggleTheme(value);
+                    },
                   ),
                 ],
               ),
@@ -175,6 +186,21 @@ class ProfileScreen extends StatelessWidget {
     );
   }
 
+  Widget _buildThemeSwitchTile(
+    BuildContext context,
+    IconData icon,
+    String title,
+    bool value, {
+    void Function(bool)? onChanged,
+  }) {
+    return ListTile(
+      contentPadding: EdgeInsets.zero,
+      leading: Icon(icon, size: responsiveHeight(context, 22)),
+      title: Text(title, style: Theme.of(context).textTheme.bodyMedium),
+      trailing: Switch(value: value, onChanged: onChanged),
+    );
+  }
+
   Widget _buildSwitchTile(
       BuildContext context, IconData icon, String title, bool value) {
     return ListTile(
@@ -183,6 +209,17 @@ class ProfileScreen extends StatelessWidget {
       title: Text(title, style: Theme.of(context).textTheme.bodyMedium),
       trailing: Switch(value: value, onChanged: (v) {}),
     );
+  }
+
+  bool _isDarkMode(BuildContext context) {
+    final themeMode = context.watch<ThemeCubit>().state;
+
+    if (themeMode == ThemeMode.system) {
+      final brightness = MediaQuery.of(context).platformBrightness;
+      return brightness == Brightness.dark;
+    }
+
+    return themeMode == ThemeMode.dark;
   }
 
   void _showLanguagePicker(BuildContext context) {

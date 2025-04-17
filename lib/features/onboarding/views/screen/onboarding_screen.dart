@@ -42,7 +42,10 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                 return LinearGradient(
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter,
-                  colors: [],
+                  colors: [
+                    Colors.black,
+                    Colors.transparent,
+                  ],
                   stops: [0.0, 0.3],
                 ).createShader(bounds);
               },

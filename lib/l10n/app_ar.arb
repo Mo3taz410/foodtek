@@ -141,5 +141,6 @@
   "add_card": "أضف بطاقة",
   "choose_language": "اختر اللغة",
   "top_recommendations": "أكثر العناصر الموصى بها",
-  "loading": "جار التحميل..."
+  "loading": "جار التحميل...",
+  "dark_mode": "الوضع الليلي"
 }
