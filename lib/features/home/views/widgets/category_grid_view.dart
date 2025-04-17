@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:foodtek/core/dummy_data/food_dummy_data.dart';
-import 'package:foodtek/core/extensions/localization_extension.dart';
+import 'package:foodtek/core/localization/localization_extension.dart';
 import 'package:foodtek/core/models/food_model.dart';
 import 'package:foodtek/features/home/controllers/category_nav_cubit.dart';
 import 'package:foodtek/features/home/views/widgets/category_food_card.dart';
 import 'package:foodtek/core/utils/responsive.dart';
-import 'package:foodtek/core/utils/app_text_styles.dart';
 
 class CategoryGridView extends StatelessWidget {
   const CategoryGridView({super.key});
@@ -28,7 +27,7 @@ class CategoryGridView extends StatelessWidget {
               ),
               child: Text(
                 context.l10n.no_food_founds_in_this_category,
-                style: AppTextStyles.appSubTitle,
+                style: Theme.of(context).textTheme.labelMedium,
                 textAlign: TextAlign.center,
               ),
             ),

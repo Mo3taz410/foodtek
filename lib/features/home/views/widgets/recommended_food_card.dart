@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:foodtek/core/theme/app_colors/app_light_colors.dart';
 import 'package:foodtek/core/models/food_model.dart';
-import 'package:foodtek/core/utils/app_text_styles.dart';
 import 'package:foodtek/core/utils/responsive.dart';
 
 class RecommendedFoodCard extends StatelessWidget {
@@ -35,13 +33,12 @@ class RecommendedFoodCard extends StatelessWidget {
               child: Container(
                 padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                 decoration: BoxDecoration(
-                  color: AppLightColors.secondary,
+                  color: Theme.of(context).colorScheme.primary,
                   borderRadius: BorderRadius.circular(8),
                 ),
                 child: Text(
                   '\$${food.discountedPrice?.toStringAsFixed(2) ?? food.originalPrice.toStringAsFixed(2)}',
-                  style:
-                      AppTextStyles.appSubTitle.copyWith(color: Colors.white),
+                  style: Theme.of(context).textTheme.labelMedium,
                 ),
               ),
             ),

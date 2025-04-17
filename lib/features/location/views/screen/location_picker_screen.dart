@@ -4,7 +4,6 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:foodtek/core/utils/responsive.dart';
-import '../../../../core/theme/app_colors/app_light_colors.dart';
 
 class LocationPickerScreen extends StatefulWidget {
   const LocationPickerScreen({super.key});
@@ -36,16 +35,13 @@ class _LocationPickerScreenState extends State<LocationPickerScreen> {
     }
 
     if (permission == LocationPermission.deniedForever) {
-      return Future.error(
-          'Location permissions are permanently denied, we cannot request permissions.');
+      return Future.error('Location permissions are permanently denied.');
     }
 
     Position position = await Geolocator.getCurrentPosition();
     LatLng current = LatLng(position.latitude, position.longitude);
 
-    setState(() {
-      _selectedLocation = current;
-    });
+    setState(() => _selectedLocation = current);
 
     final GoogleMapController controller = await _controller.future;
     controller.animateCamera(CameraUpdate.newLatLngZoom(current, 16));
@@ -63,7 +59,7 @@ class _LocationPickerScreenState extends State<LocationPickerScreen> {
               "${place.street}, ${place.subLocality}, ${place.locality}, ${place.country}";
         });
       }
-    } catch (e) {
+    } catch (_) {
       setState(() {
         _placeName = "";
       });
@@ -79,21 +75,14 @@ class _LocationPickerScreenState extends State<LocationPickerScreen> {
       if (locations.isNotEmpty) {
         LatLng searchedLocation =
             LatLng(locations[0].latitude, locations[0].longitude);
-
-        setState(() {
-          _selectedLocation = searchedLocation;
-        });
+        setState(() => _selectedLocation = searchedLocation);
 
         final GoogleMapController controller = await _controller.future;
-        controller.animateCamera(
-          CameraUpdate.newLatLngZoom(searchedLocation, 16),
-        );
-
+        controller
+            .animateCamera(CameraUpdate.newLatLngZoom(searchedLocation, 16));
         _getPlaceName(searchedLocation);
       }
-    } catch (e) {
-      // Handle error
-    }
+    } catch (_) {}
   }
 
   @override
@@ -103,22 +92,19 @@ class _LocationPickerScreenState extends State<LocationPickerScreen> {
         children: [
           GoogleMap(
             mapType: MapType.normal,
-            initialCameraPosition: CameraPosition(
-              target: _selectedLocation,
-              zoom: 16,
-            ),
-            onMapCreated: (GoogleMapController controller) {
-              _controller.complete(controller);
-            },
+            initialCameraPosition:
+                CameraPosition(target: _selectedLocation, zoom: 16),
+            onMapCreated: (GoogleMapController controller) =>
+                _controller.complete(controller),
             myLocationEnabled: true,
             onCameraIdle: () => _getPlaceName(_selectedLocation),
-            onCameraMove: (position) {
-              _selectedLocation = position.target;
-            },
+            onCameraMove: (position) => _selectedLocation = position.target,
           ),
-          const Center(
-            child: Icon(Icons.location_on,
-                size: 40, color: AppLightColors.tertiary),
+          Center(
+            child: Icon(
+              Icons.location_on,
+              size: 40,
+            ),
           ),
           Positioned(
             top: responsiveHeight(context, 10),
@@ -130,15 +116,13 @@ class _LocationPickerScreenState extends State<LocationPickerScreen> {
                 vertical: responsiveHeight(context, 17),
               ),
               decoration: BoxDecoration(
-                color: Colors.white,
                 borderRadius:
                     BorderRadius.circular(responsiveWidth(context, 40)),
-                border: Border.all(color: const Color(0xFFD6D6D6), width: 1),
+                border: Border.all(width: 1),
               ),
               child: Row(
                 children: [
-                  Icon(Icons.search,
-                      color: Colors.grey, size: responsiveWidth(context, 20)),
+                  Icon(Icons.search),
                   SizedBox(width: responsiveWidth(context, 8)),
                   Expanded(
                     child: TextField(
@@ -146,10 +130,8 @@ class _LocationPickerScreenState extends State<LocationPickerScreen> {
                       onSubmitted: (_) => _searchLocation(),
                       decoration: InputDecoration(
                         hintText: 'Find your location',
-                        hintStyle: TextStyle(
-                          fontSize: responsiveWidth(context, 14),
-                          color: Colors.grey,
-                        ),
+                        hintStyle:
+                            Theme.of(context).textTheme.bodySmall?.copyWith(),
                         border: InputBorder.none,
                         isDense: true,
                         contentPadding: EdgeInsets.zero,
@@ -164,7 +146,7 @@ class _LocationPickerScreenState extends State<LocationPickerScreen> {
             top: responsiveHeight(context, 14),
             left: responsiveWidth(context, 2),
             child: IconButton(
-              icon: const Icon(Icons.arrow_back, color: Colors.black),
+              icon: Icon(Icons.arrow_back),
               onPressed: () => Navigator.pop(context),
             ),
           ),
@@ -175,7 +157,6 @@ class _LocationPickerScreenState extends State<LocationPickerScreen> {
             child: Container(
               padding: const EdgeInsets.all(16),
               decoration: BoxDecoration(
-                color: Colors.white,
                 borderRadius: BorderRadius.circular(16),
                 boxShadow: [BoxShadow(color: Colors.black12, blurRadius: 8)],
               ),
@@ -184,15 +165,17 @@ class _LocationPickerScreenState extends State<LocationPickerScreen> {
                 children: [
                   Row(
                     children: [
-                      const Icon(Icons.location_pin,
-                          color: AppLightColors.tertiary),
+                      Icon(Icons.location_pin),
                       const SizedBox(width: 10),
                       Expanded(
                         child: Text(
                           _placeName.isNotEmpty
                               ? _placeName
                               : 'Loading address...',
-                          style: const TextStyle(fontWeight: FontWeight.w500),
+                          style: Theme.of(context)
+                              .textTheme
+                              .labelMedium
+                              ?.copyWith(fontWeight: FontWeight.w500),
                         ),
                       ),
                     ],
@@ -200,7 +183,6 @@ class _LocationPickerScreenState extends State<LocationPickerScreen> {
                   const SizedBox(height: 12),
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: AppLightColors.tertiary,
                       minimumSize: const Size(double.infinity, 48),
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(12)),
@@ -211,8 +193,11 @@ class _LocationPickerScreenState extends State<LocationPickerScreen> {
                         'placeName': _placeName,
                       });
                     },
-                    child: const Text("Set Location",
-                        style: TextStyle(color: Colors.white)),
+                    child: Text("Set Location",
+                        style: Theme.of(context)
+                            .textTheme
+                            .labelMedium
+                            ?.copyWith(color: Colors.white)),
                   ),
                 ],
               ),

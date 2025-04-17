@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:foodtek/core/extensions/localization_extension.dart';
+import 'package:foodtek/core/localization/localization_extension.dart';
 import 'package:foodtek/core/helpers/shared_preferences_helper.dart';
 import 'package:foodtek/core/constants/app_animation_strings.dart';
 import 'package:foodtek/core/utils/responsive.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
-import '../../../../core/theme/app_colors/app_light_colors.dart';
 import '../../../../core/constants/app_image_strings.dart';
 import '../../../../core/helpers/location_helper.dart';
 import '../widgets/onboarding_widget.dart';
@@ -28,7 +27,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
 
   @override
   Widget build(BuildContext context) {
-    double topOffset = responsiveHeight(context, 300) * 0.3; // 30% from top
+    double topOffset = responsiveHeight(context, 300) * 0.3;
 
     return Scaffold(
       body: Stack(
@@ -43,10 +42,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                 return LinearGradient(
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter,
-                  colors: [
-                    AppLightColors.tertiary,
-                    AppLightColors.quinary,
-                  ],
+                  colors: [],
                   stops: [0.0, 0.3],
                 ).createShader(bounds);
               },
@@ -57,6 +53,8 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               ),
             ),
           ),
+
+          // Main onboarding content
           Positioned(
             top: topOffset,
             left: 0,
@@ -106,25 +104,30 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                         ),
                       ),
                       OnboardingWidget(
-                          animationPath: AppAnimationStrings.locationPermission,
-                          title: context.l10n.turn_on_location,
-                          subtitle: context.l10n.location_description,
-                          isLast: true,
-                          onPressed: () async {
-                            final prefs = SharedPreferencesHelper();
-                            await prefs.setPrefBool(
-                                key: 'isFirstTime', value: false);
-                            if (!context.mounted) return;
-                            final address =
-                                await LocationHelper.getCurrentAddress(context);
-                            await prefs.setPrefString(
-                                key: 'userAddress', value: address ?? '');
-                            if (!context.mounted) return;
-                            Navigator.pushReplacementNamed(context, '/login');
-                          }),
+                        animationPath: AppAnimationStrings.locationPermission,
+                        title: context.l10n.turn_on_location,
+                        subtitle: context.l10n.location_description,
+                        isLast: true,
+                        onPressed: () async {
+                          final prefs = SharedPreferencesHelper();
+                          await prefs.setPrefBool(
+                              key: 'isFirstTime', value: false);
+                          if (!context.mounted) return;
+
+                          final address =
+                              await LocationHelper.getCurrentAddress(context);
+                          await prefs.setPrefString(
+                              key: 'userAddress', value: address ?? '');
+                          if (!context.mounted) return;
+
+                          Navigator.pushReplacementNamed(context, '/login');
+                        },
+                      ),
                     ],
                   ),
                 ),
+
+                // Bottom indicators & skip
                 if (currentIndex < 3)
                   Padding(
                     padding:
@@ -140,19 +143,21 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                               curve: Curves.easeInOut,
                             );
                           },
-                          child: Text(context.l10n.skip),
+                          child: Text(
+                            context.l10n.skip,
+                            style: Theme.of(context).textTheme.labelLarge,
+                          ),
                         ),
                         SmoothPageIndicator(
-                            controller: pageController,
-                            count: 3,
-                            effect:
-                                WormEffect(dotColor: AppLightColors.quinary),
-                            onDotClicked: (index) =>
-                                pageController.animateToPage(
-                                  index,
-                                  duration: const Duration(milliseconds: 500),
-                                  curve: Curves.easeIn,
-                                )),
+                          controller: pageController,
+                          count: 3,
+                          effect: WormEffect(),
+                          onDotClicked: (index) => pageController.animateToPage(
+                            index,
+                            duration: const Duration(milliseconds: 500),
+                            curve: Curves.easeIn,
+                          ),
+                        ),
                         IconButton(
                           onPressed: currentIndex == 2
                               ? null
@@ -160,9 +165,8 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                                     duration: const Duration(milliseconds: 500),
                                     curve: Curves.easeIn,
                                   ),
-                          icon: const Icon(
+                          icon: Icon(
                             Icons.arrow_forward,
-                            color: AppLightColors.primary,
                           ),
                         ),
                       ],

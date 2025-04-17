@@ -424,4 +424,13 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get add_card => 'Add Card';
+
+  @override
+  String get choose_language => 'Choose Language';
+
+  @override
+  String get top_recommendations => 'Top Recommendations';
+
+  @override
+  String get loading => 'Loading...';
 }

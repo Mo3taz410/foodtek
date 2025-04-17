@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:foodtek/core/theme/app_colors/app_light_colors.dart';
 import 'package:foodtek/core/constants/app_icon_strings.dart';
-import 'package:foodtek/core/extensions/localization_extension.dart';
+import 'package:foodtek/core/localization/localization_extension.dart';
 import 'package:foodtek/core/helpers/location_helper.dart';
 import 'package:foodtek/core/helpers/shared_preferences_helper.dart';
-import 'package:foodtek/core/utils/app_text_styles.dart';
 import 'package:foodtek/core/utils/responsive.dart';
 import '../../models/notification_model.dart';
 import '../../../../core/widgets/app_svg_icons.dart';
@@ -27,10 +25,8 @@ class _AppCustomHeaderState extends State<AppCustomHeader> {
 
   Future<void> _loadStoredAddress() async {
     final prefs = SharedPreferencesHelper();
-    final stored = await prefs.getPrefString(
-      key: 'userAddress',
-      defaultValue: '',
-    );
+    final stored =
+        await prefs.getPrefString(key: 'userAddress', defaultValue: '');
     setState(() {
       placeName = stored;
     });
@@ -39,16 +35,11 @@ class _AppCustomHeaderState extends State<AppCustomHeader> {
   Future<void> _fetchLocationAndUpdate() async {
     final address = await LocationHelper.getCurrentAddress(context);
     if (!context.mounted) return;
-
     setState(() {
       placeName = address ?? context.l10n.location_unknown;
     });
-
-    final prefs = SharedPreferencesHelper();
-    await prefs.setPrefString(
-      key: 'userAddress',
-      value: placeName,
-    );
+    await SharedPreferencesHelper()
+        .setPrefString(key: 'userAddress', value: placeName);
   }
 
   @override
@@ -57,36 +48,26 @@ class _AppCustomHeaderState extends State<AppCustomHeader> {
       children: [
         Expanded(
           child: Row(
-            spacing: responsiveWidth(context, 10),
             children: [
               Container(
-                padding: EdgeInsets.symmetric(
-                  vertical: responsiveHeight(context, 8),
-                  horizontal: responsiveWidth(context, 8),
-                ),
+                padding: EdgeInsets.all(responsiveWidth(context, 8)),
                 decoration: BoxDecoration(
-                  color: AppLightColors.octonary,
                   borderRadius: BorderRadius.circular(4),
                 ),
-                child: AppSvgIcons(
-                  iconPath: AppIconStrings.mapPinUnderlined,
-                ),
+                child: AppSvgIcons(iconPath: AppIconStrings.mapPinUnderlined),
               ),
+              const SizedBox(width: 8),
               Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisSize: MainAxisSize.min,
                   children: [
                     TextButton(
                       onPressed: _fetchLocationAndUpdate,
                       child: Row(
-                        mainAxisSize: MainAxisSize.min,
-                        spacing: responsiveWidth(context, 4),
                         children: [
-                          Text(
-                            context.l10n.current_location,
-                            style: AppTextStyles.appSubTitle,
-                          ),
+                          Text(context.l10n.current_location,
+                              style: Theme.of(context).textTheme.labelMedium),
+                          const SizedBox(width: 4),
                           AppSvgIcons(
                             iconPath: AppIconStrings.dropDownCursor,
                             width: responsiveWidth(context, 6),
@@ -99,9 +80,9 @@ class _AppCustomHeaderState extends State<AppCustomHeader> {
                       placeName.isNotEmpty
                           ? placeName
                           : context.l10n.location_unknown,
-                      maxLines: 1,
                       overflow: TextOverflow.ellipsis,
-                      style: AppTextStyles.appSubTitle,
+                      maxLines: 1,
+                      style: Theme.of(context).textTheme.labelMedium,
                     ),
                   ],
                 ),
@@ -109,9 +90,9 @@ class _AppCustomHeaderState extends State<AppCustomHeader> {
               Container(
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(4),
-                  color: AppLightColors.octonary,
                 ),
                 child: IconButton(
+                  icon: AppSvgIcons(iconPath: AppIconStrings.notificationsBell),
                   onPressed: () {
                     showModalBottomSheet(
                       context: context,
@@ -120,12 +101,11 @@ class _AppCustomHeaderState extends State<AppCustomHeader> {
                         borderRadius:
                             BorderRadius.vertical(top: Radius.circular(20)),
                       ),
-                      builder: (context) => const NotificationModal(),
+                      builder: (_) => const NotificationModal(),
                     );
                   },
-                  icon: AppSvgIcons(iconPath: AppIconStrings.notificationsBell),
                 ),
-              ),
+              )
             ],
           ),
         ),

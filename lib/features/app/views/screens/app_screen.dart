@@ -1,16 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:foodtek/core/extensions/localization_extension.dart';
+import 'package:foodtek/core/localization/localization_extension.dart';
 import 'package:foodtek/features/app/controllers/bottom_nav_cubit.dart';
 import 'package:foodtek/features/app/views/widgets/floating_cart_icon.dart';
-import '../../../../core/theme/app_colors/app_light_colors.dart';
-import '../../../../core/constants/app_icon_strings.dart';
-import '../../../../core/widgets/app_svg_icons.dart';
-import '../../../cart/controllers/cart_cubit.dart';
-import '../../../cart/views/screen/cart_screen.dart';
-import '../../../favorites/views/screen/favorites_screen.dart';
-import '../../../home/views/screen/home_screen.dart';
-import '../../../profile/views/screens/profile_screen.dart';
+import 'package:foodtek/core/constants/app_icon_strings.dart';
+import 'package:foodtek/core/widgets/app_svg_icons.dart';
+import 'package:foodtek/features/cart/controllers/cart_cubit.dart';
+import 'package:foodtek/features/cart/views/screen/cart_screen.dart';
+import 'package:foodtek/features/favorites/views/screen/favorites_screen.dart';
+import 'package:foodtek/features/home/views/screen/home_screen.dart';
+import 'package:foodtek/features/profile/views/screens/profile_screen.dart';
 import 'track_screen.dart';
 
 class AppScreen extends StatelessWidget {
@@ -40,11 +39,8 @@ class AppScreen extends StatelessWidget {
           floatingActionButtonLocation:
               FloatingActionButtonLocation.centerDocked,
           bottomNavigationBar: BottomNavigationBar(
-            backgroundColor: AppLightColors.octonary,
             type: BottomNavigationBarType.fixed,
             elevation: 0,
-            selectedItemColor: AppLightColors.primary,
-            unselectedItemColor: AppLightColors.tertiary,
             currentIndex: selectedIndex,
             onTap: (index) {
               if (index != 2) {
@@ -53,15 +49,20 @@ class AppScreen extends StatelessWidget {
             },
             items: [
               BottomNavigationBarItem(
-                icon: AppSvgIcons(iconPath: AppIconStrings.home),
+                icon: AppSvgIcons(
+                  iconPath: AppIconStrings.home,
+                  color: selectedIndex == 0
+                      ? Theme.of(context).colorScheme.primary
+                      : Theme.of(context).colorScheme.secondary,
+                ),
                 label: context.l10n.home,
               ),
               BottomNavigationBarItem(
                 icon: AppSvgIcons(iconPath: AppIconStrings.favorites),
                 label: context.l10n.favorites,
               ),
-              BottomNavigationBarItem(
-                icon: const SizedBox.shrink(), // Center icon is FAB now
+              const BottomNavigationBarItem(
+                icon: SizedBox.shrink(), // FAB takes the center
                 label: '',
               ),
               BottomNavigationBarItem(

@@ -1,17 +1,20 @@
 import 'package:flutter/material.dart';
 
 class AppDarkColors {
-  static const Color primary =
-      Color(0xFF0A083A); // Deep Navy for branding elements
-  static const Color secondary =
-      Color(0xFFEAEAEA); // Light Grey for primary text
-  static const Color tertiary =
-      Color(0xFFCCCCCC); // Slightly dimmer text (subtitles etc.)
-  static const Color quaternary = Color(0xFFE26A2C); // Accent color for buttons
-  static const Color quinary = Color(0xFFF8F8F8); // Almost white for headings
-  static const Color senary = Color(0xFFAAAAAA); // Muted Grey for descriptions
-  static const Color septenary =
-      Color(0xFFFFCC4D); // Gold for badges/highlights
-  static const Color octonary =
-      Color(0xFF1A2B33); // Dark background for surfaces
+  static const Color primary = Color(0xFFE4E981);
+  static const Color secondary = Color(0xFFEFF3AA);
+  static const Color scaffold = Color(0xFFF6F8C7);
+  static const Color surface = Color(0xFF4F5F69);
+
+  static const Color textTitle = Colors.white;
+  static const Color textBody = Color(0xFFB7B7B7);
+  static const Color textHint = Color(0xFF939393);
+
+  static const Color onPrimary = Colors.black;
+  static const Color onSecondary = Colors.black;
+
+  static const Color error = Colors.redAccent;
+  static const Color onError = Colors.black;
+
+  static const Color ratingStar = Colors.amber;
 }

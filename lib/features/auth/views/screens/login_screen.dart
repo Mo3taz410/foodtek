@@ -1,15 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:foodtek/core/extensions/localization_extension.dart';
-import 'package:foodtek/core/utils/app_text_styles.dart';
+import 'package:foodtek/core/constants/app_icon_strings.dart';
+import 'package:foodtek/core/localization/localization_extension.dart';
 import 'package:foodtek/core/utils/responsive.dart';
 import 'package:foodtek/core/widgets/app_svg_icons.dart';
 import 'package:foodtek/features/auth/controllers/auth_cubit.dart';
 import 'package:foodtek/features/auth/controllers/remember_me_cubit.dart';
 import 'package:foodtek/features/auth/models/user_model.dart';
 import 'package:foodtek/core/widgets/app_custom_button.dart';
-import '../../../../core/theme/app_colors/app_light_colors.dart';
-import '../../../../core/constants/app_icon_strings.dart';
 import '../widgets/auth_screen_wrapper.dart';
 import '../../../../core/widgets/app_custom_text_field.dart';
 import '../widgets/social_auth_buttons.dart';
@@ -19,18 +17,17 @@ class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
 
   @override
-  build(BuildContext context) {
+  Widget build(BuildContext context) {
     final TextEditingController emailController = TextEditingController();
     final TextEditingController passwordController = TextEditingController();
+
     return AuthScreenWrapper(
       child: Column(
         spacing: responsiveHeight(context, 15),
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Text(
-            context.l10n.login,
-            style: Theme.of(context).textTheme.titleLarge,
-          ),
+          Text(context.l10n.login,
+              style: Theme.of(context).textTheme.titleLarge),
           AuthBottomTextRow(
             label: context.l10n.dont_have_account,
             actionText: context.l10n.sign_up,
@@ -41,7 +38,7 @@ class LoginScreen extends StatelessWidget {
           AppCustomTextField(
             controller: emailController,
             hintText: context.l10n.email,
-            hintStyle: AppTextStyles.appTextFieldsHint,
+            hintStyle: Theme.of(context).textTheme.bodySmall,
             keyboardType: TextInputType.emailAddress,
             label: context.l10n.email,
           ),
@@ -51,14 +48,10 @@ class LoginScreen extends StatelessWidget {
               return AppCustomTextField(
                 controller: passwordController,
                 hintText: context.l10n.password,
-                hintStyle: AppTextStyles.appTextFieldsHint,
+                hintStyle: Theme.of(context).textTheme.bodySmall,
                 obscureText: isHidden,
                 suffixIcon: IconButton(
-                  icon: isHidden
-                      ? AppSvgIcons(iconPath: AppIconStrings.eyeOff)
-                      : AppSvgIcons(
-                          iconPath: AppIconStrings.eyeOff,
-                        ),
+                  icon: AppSvgIcons(iconPath: AppIconStrings.eyeOff),
                   onPressed: () =>
                       context.read<AuthCubit>().togglePasswordVisibility(),
                 ),
@@ -76,7 +69,6 @@ class LoginScreen extends StatelessWidget {
                       context.read<RememberMeCubit>().toggle();
                     },
                     child: Row(
-                      mainAxisSize: MainAxisSize.min,
                       children: [
                         Checkbox(
                           value: isChecked,
@@ -86,9 +78,10 @@ class LoginScreen extends StatelessWidget {
                         ),
                         Text(
                           context.l10n.remember_me,
-                          style: AppTextStyles.appSubTitle.copyWith(
-                            fontWeight: FontWeight.w700,
-                          ),
+                          style:
+                              Theme.of(context).textTheme.labelMedium?.copyWith(
+                                    fontWeight: FontWeight.w600,
+                                  ),
                         ),
                       ],
                     ),
@@ -99,10 +92,7 @@ class LoginScreen extends StatelessWidget {
                     },
                     child: Text(
                       context.l10n.forgot_password,
-                      style: AppTextStyles.appSubTitle.copyWith(
-                        color: AppLightColors.primary,
-                        fontWeight: FontWeight.w600,
-                      ),
+                      style: Theme.of(context).textTheme.bodySmall,
                     ),
                   ),
                 ],
@@ -112,26 +102,26 @@ class LoginScreen extends StatelessWidget {
           BlocConsumer<AuthCubit, AuthState>(
             listener: (context, state) {
               if (state is AuthFailure) {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(content: Text(state.errorMessage)),
-                );
+                // ScaffoldMessenger.of(context).showSnackBar(
+                //   SnackBar(content: Text(state.errorMessage)),
+                // );
               }
             },
             builder: (context, state) {
               return AppCustomButton(
-                text: state is AuthLoading ? "Loading..." : "Log In",
+                text: state is AuthLoading
+                    ? context.l10n.loading
+                    : context.l10n.login,
                 width: double.infinity,
                 height: responsiveHeight(context, 48),
-                color: AppLightColors.primary,
-                textStyle: AppTextStyles.appButton,
+                textStyle: Theme.of(context).textTheme.labelMedium,
                 onPressed: () {
                   final user = UserModel(
                     email: emailController.text,
                     password: passwordController.text,
                   );
                   context.read<AuthCubit>().login(user);
-                  Navigator.pushReplacementNamed(
-                      context, '/app'); // just for testing
+                  Navigator.pushReplacementNamed(context, '/app');
                 },
               );
             },
@@ -144,7 +134,7 @@ class LoginScreen extends StatelessWidget {
                     horizontal: responsiveWidth(context, 8)),
                 child: Text(
                   context.l10n.or,
-                  style: AppTextStyles.appSubTitle,
+                  style: Theme.of(context).textTheme.labelMedium,
                 ),
               ),
               const Expanded(child: Divider(thickness: 1)),

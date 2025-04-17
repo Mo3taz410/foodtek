@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:foodtek/core/extensions/localization_extension.dart';
-import 'package:foodtek/core/theme/app_colors/app_light_colors.dart';
+import 'package:foodtek/core/localization/localization_extension.dart';
 import 'package:foodtek/core/constants/app_animation_strings.dart';
 import 'package:foodtek/core/dummy_data/food_dummy_data.dart';
 import 'package:foodtek/core/models/food_model.dart';
@@ -8,7 +7,7 @@ import 'package:foodtek/core/utils/responsive.dart';
 import 'package:lottie/lottie.dart';
 
 class OrderHistoryTab extends StatelessWidget {
-  final List<String> orderHistoryIds = ['b2', 'p1', 'b3']; // just example IDs
+  final List<String> orderHistoryIds = ['b2', 'p1', 'b3']; // Example IDs
 
   OrderHistoryTab({super.key});
 
@@ -35,22 +34,21 @@ class OrderHistoryTab extends StatelessWidget {
               padding: const EdgeInsets.all(12),
               child: Text(
                 context.l10n.load_more,
-                style: const TextStyle(color: AppLightColors.secondary),
+                style: Theme.of(context).textTheme.bodyMedium,
               ),
             ),
           );
         }
 
         final food = orderHistory[index];
-        final String date = "25.3.2024"; // for now hardcoded
+        const String date = "25.3.2024"; // Hardcoded for now
 
         return Container(
           margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
           padding: const EdgeInsets.all(12),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(12),
-            border: Border.all(
-                color: AppLightColors.secondary.withValues(alpha: .2)),
+            border: Border.all(),
           ),
           child: Row(
             children: [
@@ -61,12 +59,14 @@ class OrderHistoryTab extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(food.name,
-                        style: const TextStyle(fontWeight: FontWeight.bold)),
+                        style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                              fontWeight: FontWeight.bold,
+                            )),
                     const SizedBox(height: 6),
-                    Text('\$${food.currentPrice.toStringAsFixed(2)}',
-                        style: const TextStyle(
-                          color: AppLightColors.tertiary,
-                        )),
+                    Text(
+                      '\$${food.currentPrice.toStringAsFixed(2)}',
+                      style: Theme.of(context).textTheme.bodyMedium,
+                    ),
                   ],
                 ),
               ),
@@ -74,10 +74,12 @@ class OrderHistoryTab extends StatelessWidget {
                 children: [
                   Row(
                     children: [
-                      const Icon(Icons.access_time,
-                          size: 16, color: AppLightColors.tertiary),
+                      Icon(
+                        Icons.access_time,
+                        size: 16,
+                      ),
                       const SizedBox(width: 4),
-                      Text(date, style: const TextStyle(fontSize: 12)),
+                      Text(date, style: Theme.of(context).textTheme.bodySmall),
                     ],
                   ),
                   const SizedBox(height: 8),
@@ -87,9 +89,7 @@ class OrderHistoryTab extends StatelessWidget {
                     },
                     child: Text(
                       context.l10n.reorder,
-                      style: const TextStyle(
-                          color: AppLightColors.tertiary,
-                          fontWeight: FontWeight.bold),
+                      style: Theme.of(context).textTheme.labelMedium,
                     ),
                   )
                 ],
@@ -109,20 +109,19 @@ class OrderHistoryTab extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Lottie.asset(
-              AppAnimationStrings.emptyHistory,
-              repeat: false,
-            ),
+            Lottie.asset(AppAnimationStrings.emptyHistory, repeat: false),
             SizedBox(height: responsiveHeight(context, 24)),
             Text(
               title,
-              style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+              style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                    fontWeight: FontWeight.bold,
+                  ),
             ),
             SizedBox(height: responsiveHeight(context, 12)),
             Text(
               subtitle,
               textAlign: TextAlign.center,
-              style: const TextStyle(color: Colors.grey),
+              style: Theme.of(context).textTheme.bodySmall,
             ),
           ],
         ),

@@ -23,19 +23,35 @@ class NotificationList extends StatelessWidget {
       controller: controller,
       padding: const EdgeInsets.all(16),
       itemCount: notifications.length,
-      separatorBuilder: (_, __) => const Divider(),
+      separatorBuilder: (_, __) =>
+          Divider(color: Theme.of(context).colorScheme.outline),
       itemBuilder: (context, index) {
         final item = notifications[index];
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(item['title']!,
-                style: const TextStyle(fontWeight: FontWeight.bold)),
+            Text(
+              item['title']!,
+              style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                    fontWeight: FontWeight.bold,
+                    color: Theme.of(context).colorScheme.onSurface,
+                  ),
+            ),
             const SizedBox(height: 4),
-            Text(item['message']!),
+            Text(
+              item['message']!,
+              style: Theme.of(context).textTheme.bodyMedium,
+            ),
             const SizedBox(height: 4),
-            Text(item['time']!,
-                style: TextStyle(color: Colors.grey[600], fontSize: 12)),
+            Text(
+              item['time']!,
+              style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                    color: Theme.of(context)
+                        .colorScheme
+                        .onSurface
+                        .withValues(alpha: .6),
+                  ),
+            ),
           ],
         );
       },

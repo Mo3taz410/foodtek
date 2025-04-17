@@ -928,6 +928,24 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Add Card'**
   String get add_card;
+
+  /// No description provided for @choose_language.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose Language'**
+  String get choose_language;
+
+  /// No description provided for @top_recommendations.
+  ///
+  /// In en, this message translates to:
+  /// **'Top Recommendations'**
+  String get top_recommendations;
+
+  /// No description provided for @loading.
+  ///
+  /// In en, this message translates to:
+  /// **'Loading...'**
+  String get loading;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

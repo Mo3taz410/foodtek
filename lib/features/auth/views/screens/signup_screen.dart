@@ -1,16 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:foodtek/core/extensions/localization_extension.dart';
-import 'package:foodtek/core/utils/app_text_styles.dart';
+import 'package:foodtek/core/localization/localization_extension.dart';
 import 'package:foodtek/core/utils/responsive.dart';
 import 'package:foodtek/core/widgets/app_custom_button.dart';
 import 'package:foodtek/core/widgets/app_svg_icons.dart';
 import 'package:foodtek/features/auth/controllers/auth_cubit.dart';
 import 'package:foodtek/features/auth/models/user_model.dart';
-import '../../../../core/theme/app_colors/app_light_colors.dart';
 import '../../../../core/constants/app_icon_strings.dart';
-import '../widgets/auth_screen_wrapper.dart';
 import '../../../../core/widgets/app_custom_text_field.dart';
+import '../widgets/auth_screen_wrapper.dart';
 import '../widgets/auth_bottom_text_row.dart';
 
 class SignupScreen extends StatefulWidget {
@@ -48,6 +46,7 @@ class _SignupScreenState extends State<SignupScreen> {
       phoneNumber: phoneController.text,
       birthDate: birthDate,
     );
+
     context.read<AuthCubit>().signUp(user);
   }
 
@@ -68,7 +67,8 @@ class _SignupScreenState extends State<SignupScreen> {
               onPressed: () => Navigator.pop(context),
             ),
           ),
-          Text(context.l10n.sign_up, style: AppTextStyles.appTitle),
+          Text(context.l10n.sign_up,
+              style: Theme.of(context).textTheme.titleLarge),
           AuthBottomTextRow(
             label: context.l10n.already_have_account,
             actionText: context.l10n.login,
@@ -77,13 +77,11 @@ class _SignupScreenState extends State<SignupScreen> {
           AppCustomTextField(
             controller: fullNameController,
             hintText: context.l10n.full_name,
-            hintStyle: AppTextStyles.appTextFieldsHint,
             label: context.l10n.full_name,
           ),
           AppCustomTextField(
             controller: emailController,
             hintText: context.l10n.email,
-            hintStyle: AppTextStyles.appTextFieldsHint,
             keyboardType: TextInputType.emailAddress,
             label: context.l10n.email,
           ),
@@ -113,7 +111,6 @@ class _SignupScreenState extends State<SignupScreen> {
                           : '',
                     ),
                     hintText: context.l10n.birth_date,
-                    hintStyle: AppTextStyles.appTextFieldsHint,
                     label: context.l10n.birth_date,
                   );
                 },
@@ -123,7 +120,6 @@ class _SignupScreenState extends State<SignupScreen> {
           AppCustomTextField(
             controller: phoneController,
             hintText: context.l10n.phone_number,
-            hintStyle: AppTextStyles.appTextFieldsHint,
             keyboardType: TextInputType.phone,
             label: context.l10n.phone_number,
           ),
@@ -133,12 +129,9 @@ class _SignupScreenState extends State<SignupScreen> {
               return AppCustomTextField(
                 controller: passwordController,
                 hintText: context.l10n.set_password,
-                hintStyle: AppTextStyles.appTextFieldsHint,
                 obscureText: isHidden,
                 suffixIcon: IconButton(
-                  icon: isHidden
-                      ? AppSvgIcons(iconPath: AppIconStrings.eyeOff)
-                      : AppSvgIcons(iconPath: AppIconStrings.eyeOff),
+                  icon: AppSvgIcons(iconPath: AppIconStrings.eyeOff),
                   onPressed: () =>
                       context.read<AuthCubit>().togglePasswordVisibility(),
                 ),
@@ -153,12 +146,9 @@ class _SignupScreenState extends State<SignupScreen> {
               return AppCustomTextField(
                 controller: confirmPasswordController,
                 hintText: context.l10n.confirm_new_password,
-                hintStyle: AppTextStyles.appTextFieldsHint,
                 obscureText: isHidden,
                 suffixIcon: IconButton(
-                  icon: isHidden
-                      ? AppSvgIcons(iconPath: AppIconStrings.eyeOff)
-                      : AppSvgIcons(iconPath: AppIconStrings.eyeOff),
+                  icon: AppSvgIcons(iconPath: AppIconStrings.eyeOff),
                   onPressed: () => context
                       .read<AuthCubit>()
                       .toggleConfirmPasswordVisibility(),
@@ -170,9 +160,9 @@ class _SignupScreenState extends State<SignupScreen> {
           BlocConsumer<AuthCubit, AuthState>(
             listener: (context, state) {
               if (state is AuthFailure) {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(content: Text(state.errorMessage)),
-                );
+                // ScaffoldMessenger.of(context).showSnackBar(
+                //   SnackBar(content: Text(state.errorMessage)),
+                // );
               }
             },
             builder: (context, state) {
@@ -181,8 +171,7 @@ class _SignupScreenState extends State<SignupScreen> {
                     state is AuthLoading ? "Loading..." : context.l10n.register,
                 width: double.infinity,
                 height: responsiveHeight(context, 48),
-                color: AppLightColors.primary,
-                textStyle: AppTextStyles.appButton,
+                textStyle: Theme.of(context).textTheme.labelMedium,
                 onPressed: () => _validateAndSubmit(context),
               );
             },

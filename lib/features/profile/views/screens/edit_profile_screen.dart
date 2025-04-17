@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:foodtek/core/extensions/localization_extension.dart';
-import 'package:foodtek/core/utils/app_text_styles.dart';
+import 'package:foodtek/core/localization/localization_extension.dart';
 import 'package:foodtek/core/utils/responsive.dart';
 import 'package:foodtek/core/widgets/app_custom_button.dart';
 import 'package:foodtek/core/widgets/app_custom_text_field.dart';
 
-import '../../../../core/theme/app_colors/app_light_colors.dart';
 import '../../../../core/constants/app_image_strings.dart';
 
 class EditProfileScreen extends StatelessWidget {
@@ -37,10 +35,7 @@ class EditProfileScreen extends StatelessWidget {
                       BackButton(onPressed: () => Navigator.pop(context)),
                       Text(
                         context.l10n.profile,
-                        style: TextStyle(
-                          fontSize: responsiveHeight(context, 24),
-                          fontWeight: FontWeight.bold,
-                        ),
+                        style: Theme.of(context).textTheme.titleLarge,
                       ),
                     ],
                   ),
@@ -51,17 +46,13 @@ class EditProfileScreen extends StatelessWidget {
                 ),
                 Text(
                   'Ahmad Daboor',
-                  style: TextStyle(
-                    fontSize: responsiveHeight(context, 18),
-                    fontWeight: FontWeight.w600,
-                  ),
+                  style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                        fontWeight: FontWeight.w600,
+                      ),
                 ),
                 Text(
                   'emmie1709@gmail.com',
-                  style: TextStyle(
-                    fontSize: responsiveHeight(context, 14),
-                    color: Colors.grey,
-                  ),
+                  style: Theme.of(context).textTheme.bodySmall,
                 ),
                 Container(
                   padding: EdgeInsets.symmetric(
@@ -69,7 +60,6 @@ class EditProfileScreen extends StatelessWidget {
                     horizontal: responsiveWidth(context, 12),
                   ),
                   decoration: BoxDecoration(
-                    color: Colors.white,
                     borderRadius:
                         BorderRadius.circular(responsiveWidth(context, 12)),
                   ),
@@ -108,11 +98,10 @@ class EditProfileScreen extends StatelessWidget {
                 ),
                 AppCustomButton(
                   text: context.l10n.update,
-                  textStyle: AppTextStyles.appButton,
+                  textStyle: Theme.of(context).textTheme.labelMedium,
                   onPressed: () {},
                   height: responsiveHeight(context, 48),
                   width: responsiveWidth(context, 300),
-                  color: AppLightColors.primary,
                 ),
               ],
             ),

@@ -22,4 +22,5 @@ class AppIconStrings {
       'assets/icons/profile/push_notifications.svg';
   static const String helpCenter = 'assets/icons/profile/help_center.svg';
   static const String logOut = 'assets/icons/profile/log_out.svg';
+  static const String delete = 'assets/icons/delete.svg';
 }

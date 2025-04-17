@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:foodtek/core/constants/app_icon_strings.dart';
-import 'package:foodtek/core/extensions/localization_extension.dart';
+import 'package:foodtek/core/constants/app_image_strings.dart';
+import 'package:foodtek/core/localization/localization_cubit.dart';
+import 'package:foodtek/core/localization/localization_extension.dart';
 import 'package:foodtek/core/utils/responsive.dart';
 import 'package:foodtek/core/widgets/app_svg_icons.dart';
-import '../../../../core/constants/app_image_strings.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
@@ -21,10 +23,7 @@ class ProfileScreen extends StatelessWidget {
               Center(
                 child: Text(
                   context.l10n.profile,
-                  style: TextStyle(
-                    fontSize: responsiveHeight(context, 24),
-                    fontWeight: FontWeight.bold,
-                  ),
+                  style: Theme.of(context).textTheme.titleLarge,
                 ),
               ),
               Center(
@@ -35,19 +34,11 @@ class ProfileScreen extends StatelessWidget {
                       backgroundImage:
                           AssetImage(AppImageStrings.profilePicture),
                     ),
-                    Text(
-                      'Ahmad Daboor',
-                      style: TextStyle(
-                        fontSize: responsiveHeight(context, 18),
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
+                    Text('Ahmad Daboor',
+                        style: Theme.of(context).textTheme.titleMedium),
                     Text(
                       'ahmad1709@gmail.com',
-                      style: TextStyle(
-                        color: Colors.grey,
-                        fontSize: responsiveHeight(context, 14),
-                      ),
+                      style: Theme.of(context).textTheme.bodySmall,
                     ),
                   ],
                 ),
@@ -60,20 +51,19 @@ class ProfileScreen extends StatelessWidget {
                     context,
                     AppIconStrings.personalInformation,
                     context.l10n.personal_information,
-                    onTap: () {
-                      Navigator.pushNamed(context, '/edit_profile');
-                    },
+                    onTap: () => Navigator.pushNamed(context, '/edit_profile'),
                   ),
                   _buildTile(
                     context,
                     AppIconStrings.language,
                     context.l10n.language,
                     trailing: Text(
-                      'English',
-                      style: TextStyle(
-                        fontSize: responsiveHeight(context, 14),
-                      ),
+                      Localizations.localeOf(context).languageCode == 'ar'
+                          ? 'العربية'
+                          : 'English',
+                      style: Theme.of(context).textTheme.bodyMedium,
                     ),
+                    onTap: () => _showLanguagePicker(context),
                   ),
                   _buildTile(
                     context,
@@ -81,7 +71,10 @@ class ProfileScreen extends StatelessWidget {
                     context.l10n.privacy_policy,
                   ),
                   _buildTile(
-                      context, AppIconStrings.profile, context.l10n.settings),
+                    context,
+                    AppIconStrings.profile,
+                    context.l10n.settings,
+                  ),
                 ],
               ),
               _buildCard(
@@ -116,7 +109,8 @@ class ProfileScreen extends StatelessWidget {
                     AppIconStrings.logOut,
                     context.l10n.log_out,
                     iconColor: Colors.red,
-                    textColor: Colors.red,
+                    titleColor: Colors.red,
+                    onTap: () => Navigator.pushNamed(context, '/login'),
                   ),
                 ],
               ),
@@ -133,26 +127,19 @@ class ProfileScreen extends StatelessWidget {
       margin: EdgeInsets.only(bottom: responsiveHeight(context, 16)),
       padding: EdgeInsets.all(responsiveWidth(context, 16)),
       decoration: BoxDecoration(
-        color: Colors.white,
         borderRadius: BorderRadius.circular(responsiveWidth(context, 16)),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black12,
-            blurRadius: 4,
-            offset: Offset(0, 2),
-          ),
+        boxShadow: const [
+          BoxShadow(color: Colors.black12, blurRadius: 4, offset: Offset(0, 2)),
         ],
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            title,
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-              fontSize: responsiveHeight(context, 16),
-            ),
-          ),
+          Text(title,
+              style: Theme.of(context)
+                  .textTheme
+                  .titleSmall
+                  ?.copyWith(fontWeight: FontWeight.bold)),
           ...children,
         ],
       ),
@@ -165,23 +152,26 @@ class ProfileScreen extends StatelessWidget {
     String title, {
     Widget? trailing,
     Color? iconColor,
-    Color? textColor,
+    Color? titleColor,
     VoidCallback? onTap,
   }) {
-    return ListTile(
-      contentPadding: EdgeInsets.zero,
-      leading: AppSvgIcons(
-        iconPath: iconPath,
-      ),
-      title: Text(
-        title,
-        style: TextStyle(
-          color: textColor ?? Colors.black,
-          fontSize: responsiveHeight(context, 16),
+    return GestureDetector(
+      onTap: onTap,
+      child: ListTile(
+        contentPadding: EdgeInsets.zero,
+        leading: AppSvgIcons(
+          iconPath: iconPath,
+          color: iconColor,
         ),
+        title: Text(
+          title,
+          style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                color: titleColor,
+              ),
+        ),
+        trailing: trailing,
+        onTap: onTap ?? () {},
       ),
-      trailing: trailing,
-      onTap: onTap ?? () {},
     );
   }
 
@@ -190,11 +180,49 @@ class ProfileScreen extends StatelessWidget {
     return ListTile(
       contentPadding: EdgeInsets.zero,
       leading: Icon(icon, size: responsiveHeight(context, 22)),
-      title: Text(
-        title,
-        style: TextStyle(fontSize: responsiveHeight(context, 16)),
-      ),
+      title: Text(title, style: Theme.of(context).textTheme.bodyMedium),
       trailing: Switch(value: value, onChanged: (v) {}),
+    );
+  }
+
+  void _showLanguagePicker(BuildContext context) {
+    showModalBottomSheet(
+      context: context,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+      ),
+      builder: (context) {
+        return Padding(
+          padding: EdgeInsets.all(responsiveHeight(context, 16)),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text(
+                context.l10n.choose_language,
+                style: Theme.of(context)
+                    .textTheme
+                    .titleMedium
+                    ?.copyWith(fontWeight: FontWeight.bold),
+              ),
+              const Divider(),
+              ListTile(
+                title: const Text('English'),
+                onTap: () {
+                  context.read<LocalizationCubit>().changeLocale('en');
+                  Navigator.pop(context);
+                },
+              ),
+              ListTile(
+                title: const Text('العربية'),
+                onTap: () {
+                  context.read<LocalizationCubit>().changeLocale('ar');
+                  Navigator.pop(context);
+                },
+              ),
+            ],
+          ),
+        );
+      },
     );
   }
 }

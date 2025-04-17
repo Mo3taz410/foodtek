@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:foodtek/core/extensions/localization_extension.dart';
-import 'package:foodtek/core/utils/app_text_styles.dart';
+import 'package:foodtek/core/localization/localization_extension.dart';
 import 'package:foodtek/core/utils/responsive.dart';
 import 'package:foodtek/features/app/views/widgets/app_custom_header.dart';
 import 'package:foodtek/features/app/views/widgets/app_search_bar.dart';
@@ -39,13 +38,16 @@ class _HomeScreenState extends State<HomeScreen> {
           child: Column(
             spacing: responsiveHeight(context, 20),
             children: [
-              AppCustomHeader(),
+              const AppCustomHeader(),
               AppSearchBar(controller: searchController),
               const CategorySelector(),
               Expanded(
                 child: BlocBuilder<CategoryNavCubit, FoodCategory>(
                   builder: (context, category) {
-                    return _buildTabContent(context, category);
+                    return _buildTabContent(
+                      context,
+                      category,
+                    );
                   },
                 ),
               ),
@@ -56,7 +58,10 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  Widget _buildTabContent(BuildContext context, FoodCategory category) {
+  Widget _buildTabContent(
+    BuildContext context,
+    FoodCategory category,
+  ) {
     if (category == FoodCategory.all) {
       return SingleChildScrollView(
         child: Column(
@@ -67,17 +72,18 @@ class _HomeScreenState extends State<HomeScreen> {
               spacing: responsiveHeight(context, 10),
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(context.l10n.top_rated, style: AppTextStyles.topRated),
+                Text(context.l10n.top_rated,
+                    style: Theme.of(context).textTheme.bodyLarge),
                 const TopRatedList(),
               ],
             ),
             Column(
-              spacing: responsiveHeight(context, 10),
               children: [
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text(context.l10n.recommend, style: AppTextStyles.topRated),
+                    Text(context.l10n.recommend,
+                        style: Theme.of(context).textTheme.bodyLarge),
                     TextButton(
                       onPressed: () {
                         showModalBottomSheet(
@@ -92,8 +98,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         children: [
                           Text(
                             context.l10n.view_all,
-                            style:
-                                AppTextStyles.topRated.copyWith(fontSize: 12),
+                            style: Theme.of(context).textTheme.labelMedium,
                           ),
                           AppSvgIcons(
                             iconPath: AppIconStrings.rightArrow,
@@ -115,10 +120,8 @@ class _HomeScreenState extends State<HomeScreen> {
     return SingleChildScrollView(
       child: Column(
         children: [
-          SizedBox(
-            height: responsiveHeight(context, 50),
-          ),
-          CategoryGridView(),
+          SizedBox(height: responsiveHeight(context, 50)),
+          const CategoryGridView(),
         ],
       ),
     );

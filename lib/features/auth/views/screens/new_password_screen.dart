@@ -1,18 +1,16 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:foodtek/core/extensions/localization_extension.dart';
 import 'package:foodtek/core/constants/app_animation_strings.dart';
+import 'package:foodtek/core/constants/app_icon_strings.dart';
+import 'package:foodtek/core/localization/localization_extension.dart';
+import 'package:foodtek/core/utils/responsive.dart';
 import 'package:foodtek/core/widgets/app_custom_button.dart';
+import 'package:foodtek/core/widgets/app_custom_text_field.dart';
 import 'package:foodtek/core/widgets/app_svg_icons.dart';
 import 'package:foodtek/features/auth/views/widgets/auth_bottom_text_row.dart';
-import 'package:lottie/lottie.dart';
-import '../../../../core/theme/app_colors/app_light_colors.dart';
-import '../../../../core/constants/app_icon_strings.dart';
-import '../../../../core/utils/app_text_styles.dart';
-import '../../../../core/utils/responsive.dart';
 import '../widgets/auth_screen_wrapper.dart';
-import '../../../../core/widgets/app_custom_text_field.dart';
+import 'package:lottie/lottie.dart';
 
 class NewPasswordScreen extends StatelessWidget {
   const NewPasswordScreen({super.key});
@@ -21,6 +19,7 @@ class NewPasswordScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final newPasswordController = TextEditingController();
     final confirmNewPasswordController = TextEditingController();
+
     return AuthScreenWrapper(
       child: Column(
         spacing: responsiveHeight(context, 10),
@@ -38,32 +37,30 @@ class NewPasswordScreen extends StatelessWidget {
               ),
             ],
           ),
-          Text(context.l10n.reset_password, style: AppTextStyles.appTitle),
+          Text(
+            context.l10n.reset_password,
+            style: Theme.of(context).textTheme.titleLarge,
+          ),
           AuthBottomTextRow(
             label: context.l10n.remember_password,
             actionText: context.l10n.log_in,
-            onPressed: () {
-              Navigator.pushNamed(context, '/login');
-            },
+            onPressed: () => Navigator.pushNamed(context, '/login'),
           ),
           AppCustomTextField(
             controller: newPasswordController,
             hintText: context.l10n.new_password,
-            hintStyle: AppTextStyles.appTextFieldsHint,
             label: context.l10n.new_password,
           ),
           AppCustomTextField(
             controller: confirmNewPasswordController,
             hintText: context.l10n.confirm_new_password,
-            hintStyle: AppTextStyles.appTextFieldsHint,
             label: context.l10n.confirm_new_password,
           ),
           AppCustomButton(
             text: context.l10n.update_password,
-            textStyle: AppTextStyles.appButton,
+            textStyle: Theme.of(context).textTheme.labelMedium,
             width: double.infinity,
             height: responsiveHeight(context, 48),
-            color: AppLightColors.primary,
             onPressed: () {
               showGeneralDialog(
                 context: context,
@@ -76,7 +73,7 @@ class NewPasswordScreen extends StatelessWidget {
                       BackdropFilter(
                         filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
                         child: Container(
-                          color: Colors.black.withValues(alpha: 0.3),
+                          color: Colors.black.withValues(alpha: .3),
                         ),
                       ),
                       Center(
@@ -88,24 +85,29 @@ class NewPasswordScreen extends StatelessWidget {
                             Lottie.asset(
                               AppAnimationStrings.success,
                               fit: BoxFit.contain,
-                              width: responsiveWidth(
-                                  context, 200), // Adjust according to design
+                              width: responsiveWidth(context, 200),
                               height: responsiveHeight(context, 200),
                             ),
                             Text(
                               context.l10n.congratulations,
                               textAlign: TextAlign.center,
-                              style: AppTextStyles.appTitle.copyWith(
-                                color: Colors.white,
-                              ),
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .titleLarge
+                                  ?.copyWith(
+                                    color: Colors.white,
+                                  ),
                             ),
                             Text(
                               context.l10n.password_reset_success,
                               textAlign: TextAlign.center,
-                              style: AppTextStyles.appSubTitle.copyWith(
-                                color: Colors.white,
-                                fontSize: 16.sp,
-                              ),
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodySmall
+                                  ?.copyWith(
+                                    color: Colors.white,
+                                    fontSize: 16.sp,
+                                  ),
                             ),
                           ],
                         ),
@@ -115,7 +117,7 @@ class NewPasswordScreen extends StatelessWidget {
                 ),
               );
             },
-          )
+          ),
         ],
       ),
     );

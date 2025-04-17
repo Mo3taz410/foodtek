@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:foodtek/core/extensions/localization_extension.dart';
-import 'package:foodtek/core/theme/app_colors/app_light_colors.dart';
+import 'package:foodtek/core/constants/app_icon_strings.dart';
+import 'package:foodtek/core/localization/localization_extension.dart';
 import 'package:foodtek/core/constants/app_animation_strings.dart';
-import 'package:foodtek/core/utils/app_text_styles.dart';
 import 'package:foodtek/core/utils/responsive.dart';
 import 'package:foodtek/core/widgets/app_custom_button.dart';
+import 'package:foodtek/core/widgets/app_svg_icons.dart';
 import 'package:lottie/lottie.dart';
 import 'package:foodtek/core/models/food_model.dart';
 import 'package:foodtek/features/cart/controllers/cart_cubit.dart';
@@ -38,42 +38,7 @@ class CartTab extends StatelessWidget {
                   direction: DismissDirection.endToStart,
                   background: _buildSwipeDelete(context),
                   confirmDismiss: (_) async {
-                    final shouldDelete = await showDialog<bool>(
-                      context: context,
-                      barrierDismissible: true,
-                      builder: (context) {
-                        return Dialog(
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(20)),
-                          child: Padding(
-                            padding: EdgeInsets.symmetric(
-                              horizontal: responsiveWidth(context, 24),
-                              vertical: responsiveHeight(context, 24),
-                            ),
-                            child: Column(
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                Text(
-                                  context.l10n.remove_from_cart,
-                                  textAlign: TextAlign.center,
-                                  style: AppTextStyles.appSubTitle,
-                                ),
-                                SizedBox(height: responsiveHeight(context, 30)),
-                                AppCustomButton(
-                                  text: context.l10n.yes,
-                                  textStyle: AppTextStyles.appButton,
-                                  color: AppLightColors.primary,
-                                  width: double.infinity,
-                                  height: responsiveHeight(context, 48),
-                                  onPressed: () => Navigator.pop(context, true),
-                                ),
-                              ],
-                            ),
-                          ),
-                        );
-                      },
-                    );
-                    return shouldDelete ?? false;
+                    return await _showRemoveDialog(context);
                   },
                   onDismissed: (_) {
                     context.read<CartCubit>().removeCompletely(item);
@@ -88,7 +53,6 @@ class CartTab extends StatelessWidget {
               bottom: 0,
               child: CartSummaryBox(cartItems: cartItems),
             ),
-            // Custom widget
           ],
         );
       },
@@ -97,15 +61,15 @@ class CartTab extends StatelessWidget {
 
   Widget _buildSwipeDelete(BuildContext context) {
     final isRtl = Directionality.of(context) == TextDirection.rtl;
+
     return Container(
       alignment: isRtl ? Alignment.centerLeft : Alignment.centerRight,
       padding: EdgeInsets.symmetric(horizontal: responsiveWidth(context, 20)),
       margin: EdgeInsets.all(responsiveHeight(context, 20)),
       decoration: BoxDecoration(
-        color: Colors.orange,
         borderRadius: BorderRadius.circular(12),
       ),
-      child: const Icon(Icons.delete, color: Colors.white),
+      child: AppSvgIcons(iconPath: AppIconStrings.delete),
     );
   }
 
@@ -129,13 +93,16 @@ class CartTab extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(food.name,
-                      style: const TextStyle(fontWeight: FontWeight.bold)),
+                      style: Theme.of(context)
+                          .textTheme
+                          .bodyLarge
+                          ?.copyWith(fontWeight: FontWeight.bold)),
                   Text(
                     '\$${food.currentPrice.toStringAsFixed(2)}',
-                    style: const TextStyle(
-                      color: AppLightColors.tertiary,
-                      fontWeight: FontWeight.bold,
-                    ),
+                    style: Theme.of(context)
+                        .textTheme
+                        .bodyMedium
+                        ?.copyWith(fontWeight: FontWeight.bold),
                   ),
                 ],
               ),
@@ -143,8 +110,7 @@ class CartTab extends StatelessWidget {
             Row(
               children: [
                 IconButton(
-                  icon:
-                      const Icon(Icons.remove, color: AppLightColors.secondary),
+                  icon: Icon(Icons.remove),
                   onPressed: () {
                     final newQty =
                         (food.inCartQuantity > 1) ? food.inCartQuantity - 1 : 1;
@@ -152,9 +118,11 @@ class CartTab extends StatelessWidget {
                   },
                 ),
                 Text('${food.inCartQuantity}',
-                    style: const TextStyle(fontSize: 16)),
+                    style: Theme.of(context).textTheme.bodyMedium),
                 IconButton(
-                  icon: const Icon(Icons.add, color: AppLightColors.secondary),
+                  icon: Icon(
+                    Icons.add,
+                  ),
                   onPressed: () {
                     context
                         .read<CartCubit>()
@@ -169,6 +137,43 @@ class CartTab extends StatelessWidget {
     );
   }
 
+  Future<bool?> _showRemoveDialog(BuildContext context) {
+    return showDialog<bool>(
+      context: context,
+      barrierDismissible: true,
+      builder: (context) {
+        return Dialog(
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+          child: Padding(
+            padding: EdgeInsets.symmetric(
+              horizontal: responsiveWidth(context, 24),
+              vertical: responsiveHeight(context, 24),
+            ),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text(
+                  context.l10n.remove_from_cart,
+                  textAlign: TextAlign.center,
+                  style: Theme.of(context).textTheme.bodyMedium,
+                ),
+                SizedBox(height: responsiveHeight(context, 30)),
+                AppCustomButton(
+                  text: context.l10n.yes,
+                  textStyle: Theme.of(context).textTheme.labelMedium,
+                  width: double.infinity,
+                  height: responsiveHeight(context, 48),
+                  onPressed: () => Navigator.pop(context, true),
+                ),
+              ],
+            ),
+          ),
+        );
+      },
+    );
+  }
+
   Widget _buildEmptyState(BuildContext context,
       {required String title, required String subtitle}) {
     return Center(
@@ -179,13 +184,13 @@ class CartTab extends StatelessWidget {
           children: [
             Lottie.asset(AppAnimationStrings.emptyCart, repeat: false),
             const SizedBox(height: 24),
-            Text(title,
-                style:
-                    const TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
+            Text(title, style: Theme.of(context).textTheme.titleMedium),
             const SizedBox(height: 8),
-            Text(subtitle,
-                textAlign: TextAlign.center,
-                style: const TextStyle(color: AppLightColors.senary)),
+            Text(
+              subtitle,
+              textAlign: TextAlign.center,
+              style: Theme.of(context).textTheme.bodySmall,
+            ),
           ],
         ),
       ),

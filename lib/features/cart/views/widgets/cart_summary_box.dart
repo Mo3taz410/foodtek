@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:foodtek/core/theme/app_colors/app_light_colors.dart';
 import 'package:foodtek/core/constants/app_image_strings.dart';
-import 'package:foodtek/core/extensions/localization_extension.dart';
+import 'package:foodtek/core/localization/localization_extension.dart';
 import 'package:foodtek/core/models/food_model.dart';
-import 'package:foodtek/core/utils/app_text_styles.dart';
 import 'package:foodtek/core/utils/responsive.dart';
 import 'package:foodtek/core/widgets/app_custom_button.dart';
 
@@ -34,7 +32,6 @@ class CartSummaryBox extends StatelessWidget {
           image: AssetImage(AppImageStrings.checkoutBackgroundPattern),
           fit: BoxFit.cover,
         ),
-        color: AppLightColors.secondary,
         borderRadius: BorderRadius.circular(20),
       ),
       child: Column(
@@ -48,34 +45,21 @@ class CartSummaryBox extends StatelessWidget {
               '-\$${discount.toStringAsFixed(2)}'),
           const SizedBox(height: 12),
           _summaryRow(
-              context, context.l10n.total, '\$${total.toStringAsFixed(2)}',
-              isBold: true),
+            context,
+            context.l10n.total,
+            '\$${total.toStringAsFixed(2)}',
+            isBold: true,
+          ),
           const SizedBox(height: 16),
           AppCustomButton(
             text: context.l10n.place_order,
-            textStyle:
-                AppTextStyles.appButton.copyWith(color: AppLightColors.primary),
+            textStyle: Theme.of(context).textTheme.labelMedium,
             onPressed: () {
               Navigator.pushNamed(context, '/checkout');
             },
             width: responsiveWidth(context, 360),
             height: responsiveHeight(context, 50),
-            color: Colors.white,
           ),
-          // ElevatedButton(
-          //   style: ElevatedButton.styleFrom(
-          //     backgroundColor: Colors.white,
-          //     foregroundColor: AppColors.secondary,
-          //     shape: RoundedRectangleBorder(
-          //       borderRadius: BorderRadius.circular(12),
-          //     ),
-          //   ),
-          //   onPressed: () {
-          //     ////// Navigator.pushNamed(context, '/location_picker');
-          //     Navigator.pushNamed(context, '/checkout');
-          //   },
-          //   child: Text(context.l10n.place_order),
-          // ),
         ],
       ),
     );
@@ -88,18 +72,20 @@ class CartSummaryBox extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Text(label,
-              style: TextStyle(
-                color: Colors.white,
-                fontWeight: isBold ? FontWeight.bold : FontWeight.normal,
-                fontSize: isBold ? 18 : 14,
-              )),
-          Text(value,
-              style: TextStyle(
-                color: Colors.white,
-                fontWeight: isBold ? FontWeight.bold : FontWeight.normal,
-                fontSize: isBold ? 18 : 14,
-              )),
+          Text(
+            label,
+            style: (isBold
+                    ? Theme.of(context).textTheme.titleMedium
+                    : Theme.of(context).textTheme.bodyMedium)
+                ?.copyWith(color: Colors.white),
+          ),
+          Text(
+            value,
+            style: (isBold
+                    ? Theme.of(context).textTheme.titleMedium
+                    : Theme.of(context).textTheme.bodyMedium)
+                ?.copyWith(color: Colors.white),
+          ),
         ],
       ),
     );

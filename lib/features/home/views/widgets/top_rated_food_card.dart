@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:foodtek/core/theme/app_colors/app_light_colors.dart';
 import 'package:foodtek/core/models/food_model.dart';
-import 'package:foodtek/core/utils/app_text_styles.dart';
 import 'package:foodtek/core/utils/responsive.dart';
 import 'package:foodtek/features/cart/controllers/cart_cubit.dart';
 
@@ -28,21 +26,24 @@ class TopRatedFoodCard extends StatelessWidget {
           vertical: responsiveHeight(context, 8),
         ),
         decoration: BoxDecoration(
-          color: Colors.white,
           borderRadius: BorderRadius.circular(12),
-          border: Border.all(color: AppLightColors.quinary, width: 1.5),
+          border: Border.all(width: 1.5),
         ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Row(
               children: [
-                Icon(Icons.star, color: AppLightColors.septenary, size: 16),
-                Text(food.rating.toString(), style: AppTextStyles.appSubTitle),
+                Icon(
+                  Icons.star,
+                  color: Colors.amber,
+                ),
+                const SizedBox(width: 4),
+                Text(food.rating.toString(),
+                    style: Theme.of(context).textTheme.labelMedium),
               ],
             ),
             Column(
-              mainAxisAlignment: MainAxisAlignment.start,
               spacing: responsiveHeight(context, 3),
               children: [
                 Image.asset(
@@ -52,12 +53,12 @@ class TopRatedFoodCard extends StatelessWidget {
                 ),
                 Text(
                   food.name,
-                  style: AppTextStyles.topRatedFoodName,
+                  style: Theme.of(context).textTheme.bodyMedium,
                   overflow: TextOverflow.ellipsis,
                 ),
                 Text(
                   food.description,
-                  style: AppTextStyles.appSubTitle,
+                  style: Theme.of(context).textTheme.bodySmall,
                   overflow: TextOverflow.ellipsis,
                 ),
                 Row(
@@ -65,14 +66,15 @@ class TopRatedFoodCard extends StatelessWidget {
                   children: [
                     Text(
                       '\$${food.currentPrice.toStringAsFixed(2)}',
-                      style: AppTextStyles.appSubTitle,
+                      style: Theme.of(context).textTheme.labelMedium,
                     ),
                     IconButton(
                       onPressed: () {
                         context.read<CartCubit>().addToCart(food);
                       },
-                      icon: Icon(Icons.add_circle,
-                          color: AppLightColors.secondary),
+                      icon: Icon(
+                        Icons.add_circle,
+                      ),
                     ),
                   ],
                 ),

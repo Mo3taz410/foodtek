@@ -1,24 +1,25 @@
 import 'package:flutter/material.dart';
-import 'package:foodtek/core/extensions/localization_extension.dart';
+import 'package:foodtek/core/localization/localization_extension.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:geocoding/geocoding.dart';
 
 class LocationHelper {
   static Future<String?> getCurrentAddress(BuildContext context) async {
+    final l10n = context.l10n; // for build context async gaps
     bool serviceEnabled = await Geolocator.isLocationServiceEnabled();
     if (!serviceEnabled) {
-      return context.l10n.location_service_disabled;
+      return l10n.location_service_disabled;
     }
     LocationPermission permission = await Geolocator.checkPermission();
     if (permission == LocationPermission.denied) {
       permission = await Geolocator.requestPermission();
       if (permission == LocationPermission.denied) {
-        return context.l10n.location_permission_denied;
+        return l10n.location_permission_denied;
       }
     }
 
     if (permission == LocationPermission.deniedForever) {
-      return context.l10n.location_permission_denied_forever;
+      return l10n.location_permission_denied_forever;
     }
 
     Position position = await Geolocator.getCurrentPosition(
@@ -39,6 +40,6 @@ class LocationHelper {
         place.locality,
       ].where((part) => part != null && part.isNotEmpty).join(", ");
     }
-    return context.l10n.location_unknown;
+    return l10n.location_unknown;
   }
 }

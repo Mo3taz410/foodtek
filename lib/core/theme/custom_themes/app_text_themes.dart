@@ -1,58 +1,106 @@
 import 'package:flutter/material.dart';
-import 'package:foodtek/core/theme/app_colors/app_dark_colors.dart';
-import 'package:foodtek/core/utils/app_text_styles.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class AppTextThemes {
   static TextTheme lightTextTheme = TextTheme(
-    // Logo and onboarding
-    headlineLarge: AppTextStyles.logo,
-    headlineMedium: AppTextStyles.onboardingTitle,
-    headlineSmall: AppTextStyles.onboardingSubTitle,
-
-    // Main titles and buttons
-    titleLarge: AppTextStyles.appTitle,
-    titleMedium: AppTextStyles.appSubTitle,
-    titleSmall: AppTextStyles.tabBarItemTitle,
-
-    // Body text
-    bodyLarge: AppTextStyles.topRated,
-    bodyMedium: AppTextStyles.topRatedFoodName,
-    bodySmall: AppTextStyles.topRatedFoodDescription,
-
-    // Labels, buttons, fields
-    labelLarge: AppTextStyles.onboardingButton,
-    labelMedium: AppTextStyles.appButton,
-    labelSmall: AppTextStyles.foodCardButton,
+    headlineLarge: TextStyle(
+      fontSize: 80.sp,
+      fontFamily: 'ProtestRiot',
+      color: Colors.black,
+    ),
+    headlineMedium: TextStyle(
+      fontSize: 32.sp,
+      fontFamily: 'Poppins',
+      fontWeight: FontWeight.w700,
+      color: Colors.black,
+    ),
+    // subtitles
+    headlineSmall: TextStyle(
+      fontSize: 14.sp,
+      fontFamily: 'Poppins',
+      fontWeight: FontWeight.w400,
+      color: Colors.black,
+    ),
+    bodyLarge: TextStyle(
+      fontSize: 16.sp,
+      fontFamily: 'Inter',
+      fontWeight: FontWeight.w600,
+      color: Colors.black,
+    ),
+    bodyMedium: TextStyle(
+      fontSize: 12.sp,
+      fontFamily: 'Sora',
+      fontWeight: FontWeight.w600,
+      color: Colors.black,
+    ),
+    bodySmall: TextStyle(
+      fontSize: 10.sp,
+      fontFamily: 'Sora',
+      fontWeight: FontWeight.w300,
+      color: Colors.black,
+    ),
+    labelMedium: TextStyle(
+      fontSize: 14.sp,
+      fontFamily: 'Inter',
+      fontWeight: FontWeight.w700,
+      color: Colors.black,
+    ),
+    labelSmall: TextStyle(
+      fontSize: 10.sp,
+      fontFamily: 'Sora',
+      fontWeight: FontWeight.w400,
+      color: Colors.black,
+    ),
   );
 
   static TextTheme darkTextTheme = TextTheme(
-    // Logo and onboarding
-    headlineLarge: AppTextStyles.logo.copyWith(color: AppDarkColors.quinary),
-    headlineMedium:
-        AppTextStyles.onboardingTitle.copyWith(color: AppDarkColors.secondary),
-    headlineSmall: AppTextStyles.onboardingSubTitle
-        .copyWith(color: AppDarkColors.tertiary),
-
-    // Main titles and buttons
-    titleLarge: AppTextStyles.appTitle.copyWith(color: AppDarkColors.quinary),
-    titleMedium:
-        AppTextStyles.appSubTitle.copyWith(color: AppDarkColors.secondary),
-    titleSmall:
-        AppTextStyles.tabBarItemTitle.copyWith(color: AppDarkColors.secondary),
-
-    // Body text
-    bodyLarge: AppTextStyles.topRated.copyWith(color: AppDarkColors.secondary),
-    bodyMedium:
-        AppTextStyles.topRatedFoodName.copyWith(color: AppDarkColors.tertiary),
-    bodySmall: AppTextStyles.topRatedFoodDescription
-        .copyWith(color: AppDarkColors.senary),
-
-    // Labels, buttons, fields
-    labelLarge: AppTextStyles.onboardingButton
-        .copyWith(color: AppDarkColors.quaternary),
-    labelMedium:
-        AppTextStyles.appButton.copyWith(color: AppDarkColors.quaternary),
-    labelSmall:
-        AppTextStyles.foodCardButton.copyWith(color: AppDarkColors.quaternary),
+    headlineLarge: TextStyle(
+      fontSize: 80.sp,
+      fontFamily: 'ProtestRiot',
+      color: Colors.white,
+    ),
+    headlineMedium: TextStyle(
+      fontSize: 32.sp,
+      fontFamily: 'Poppins',
+      fontWeight: FontWeight.w700,
+      color: Colors.white,
+    ),
+    // subtitles
+    headlineSmall: TextStyle(
+      fontSize: 14.sp,
+      fontFamily: 'Poppins',
+      fontWeight: FontWeight.w400,
+      color: Colors.white,
+    ),
+    bodyLarge: TextStyle(
+      fontSize: 16.sp,
+      fontFamily: 'Inter',
+      fontWeight: FontWeight.w600,
+      color: Colors.white,
+    ),
+    bodyMedium: TextStyle(
+      fontSize: 12.sp,
+      fontFamily: 'Sora',
+      fontWeight: FontWeight.w600,
+      color: Colors.white,
+    ),
+    bodySmall: TextStyle(
+      fontSize: 10.sp,
+      fontFamily: 'Sora',
+      fontWeight: FontWeight.w300,
+      color: Colors.white,
+    ),
+    labelMedium: TextStyle(
+      fontSize: 14.sp,
+      fontFamily: 'Inter',
+      fontWeight: FontWeight.w700,
+      color: Colors.white,
+    ),
+    labelSmall: TextStyle(
+      fontSize: 10.sp,
+      fontFamily: 'Sora',
+      fontWeight: FontWeight.w400,
+      color: Colors.white,
+    ),
   );
 }

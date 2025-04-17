@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:foodtek/core/utils/app_text_styles.dart';
+import 'package:foodtek/core/constants/app_image_strings.dart';
+import 'package:foodtek/core/constants/app_strings.dart';
 import 'package:foodtek/core/utils/responsive.dart';
-
-import '../../../../core/theme/app_colors/app_light_colors.dart';
-import '../../../../core/constants/app_image_strings.dart';
-import '../../../../core/constants/app_strings.dart';
 
 class AuthScreenWrapper extends StatelessWidget {
   final Widget child;
@@ -20,7 +17,6 @@ class AuthScreenWrapper extends StatelessWidget {
             child: Image.asset(
               AppImageStrings.backgroundPattern,
               fit: BoxFit.cover,
-              color: AppLightColors.primary,
               colorBlendMode: BlendMode.dstATop,
             ),
           ),
@@ -33,7 +29,7 @@ class AuthScreenWrapper extends StatelessWidget {
                   ),
                   child: Text(
                     AppStrings.logo,
-                    style: AppTextStyles.logo,
+                    style: Theme.of(context).textTheme.headlineLarge,
                   ),
                 ),
                 Expanded(
@@ -49,7 +45,6 @@ class AuthScreenWrapper extends StatelessWidget {
                             vertical: responsiveHeight(context, 24),
                           ),
                           decoration: BoxDecoration(
-                            color: Colors.white,
                             borderRadius: BorderRadius.circular(20),
                             boxShadow: [
                               BoxShadow(

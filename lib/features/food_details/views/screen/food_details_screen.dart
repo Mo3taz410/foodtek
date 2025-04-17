@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:foodtek/core/theme/app_colors/app_light_colors.dart';
-import 'package:foodtek/core/extensions/localization_extension.dart';
+import 'package:foodtek/core/localization/localization_extension.dart';
 import 'package:foodtek/core/models/food_model.dart';
-import 'package:foodtek/core/utils/app_text_styles.dart';
 import 'package:foodtek/core/utils/responsive.dart';
 import 'package:foodtek/core/widgets/app_custom_button.dart';
 import 'package:foodtek/features/app/views/widgets/app_custom_header.dart';
@@ -25,159 +23,183 @@ class FoodDetailsScreen extends StatelessWidget {
         child: Padding(
           padding: EdgeInsets.symmetric(
             horizontal: responsiveWidth(context, 20),
-            vertical: responsiveHeight(context, 12),
+            vertical: responsiveHeight(context, 20),
           ),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              Column(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  AppCustomHeader(),
-                  AppSearchBar(controller: TextEditingController()),
-                ],
-              ),
-              Column(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Image.asset(
+          child: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const AppCustomHeader(),
+                SizedBox(height: responsiveHeight(context, 10)),
+                AppSearchBar(controller: TextEditingController()),
+                SizedBox(height: responsiveHeight(context, 20)),
+                Center(
+                  child: Image.asset(
                     food.image,
                     height: responsiveHeight(context, 180),
                     fit: BoxFit.contain,
                   ),
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(food.name, style: AppTextStyles.appTitle),
-                      Row(
-                        children: [
-                          StarsRating(rating: food.rating),
-                          const SizedBox(width: 6),
-                          Text('${food.rating} (89 ${context.l10n.reviews})',
-                              style: AppTextStyles.appSubTitle),
-                        ],
-                      ),
-                      Row(
-                        crossAxisAlignment: CrossAxisAlignment.end,
-                        children: [
-                          Text(
-                            '\$${food.currentPrice.toStringAsFixed(2)}',
-                            style: AppTextStyles.appTitle,
-                          ),
-                          if (food.discountedPrice != null)
-                            Padding(
-                              padding: const EdgeInsets.only(left: 8.0),
-                              child: Text(
-                                '\$${food.originalPrice.toStringAsFixed(2)}',
-                                style: const TextStyle(
-                                  color: Colors.grey,
-                                  fontSize: 20,
-                                  decoration: TextDecoration.lineThrough,
-                                ),
-                              ),
-                            ),
-                        ],
-                      ),
+                ),
+                SizedBox(height: responsiveHeight(context, 16)),
+
+                // Food Name + Rating
+                Text(food.name, style: Theme.of(context).textTheme.titleLarge),
+                SizedBox(height: responsiveHeight(context, 6)),
+                Row(
+                  children: [
+                    StarsRating(rating: food.rating),
+                    SizedBox(width: responsiveWidth(context, 6)),
+                    Text(
+                      '${food.rating} (89 ${context.l10n.reviews})',
+                      style: Theme.of(context).textTheme.labelMedium,
+                    ),
+                  ],
+                ),
+
+                SizedBox(height: responsiveHeight(context, 12)),
+
+                // Price + Discount
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    Text(
+                      '\$${food.currentPrice.toStringAsFixed(2)}',
+                      style: Theme.of(context).textTheme.titleLarge,
+                    ),
+                    if (food.discountedPrice != null)
                       Padding(
                         padding:
-                            EdgeInsets.only(top: responsiveHeight(context, 6)),
+                            EdgeInsets.only(left: responsiveWidth(context, 8)),
                         child: Text(
-                          food.description,
-                          style: AppTextStyles.appSubTitle,
+                          '\$${food.originalPrice.toStringAsFixed(2)}',
+                          style:
+                              Theme.of(context).textTheme.bodyLarge?.copyWith(
+                                    decoration: TextDecoration.lineThrough,
+                                    color: Colors.grey,
+                                    fontSize: 16,
+                                  ),
                         ),
                       ),
-                    ],
-                  ),
-                  BlocBuilder<FoodDetailsCubit, FoodDetailsState>(
-                    builder: (context, state) {
-                      return Padding(
-                        padding: const EdgeInsets.only(top: 8.0),
-                        child: Row(
-                          children: [
-                            Expanded(
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
+                  ],
+                ),
+
+                SizedBox(height: responsiveHeight(context, 12)),
+
+                // Description
+                Text(
+                  food.description,
+                  style: Theme.of(context).textTheme.bodySmall,
+                ),
+
+                SizedBox(height: responsiveHeight(context, 20)),
+
+                // Spicy Level + Quantity
+                BlocBuilder<FoodDetailsCubit, FoodDetailsState>(
+                  builder: (context, state) {
+                    return Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        // Spicy Slider
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(context.l10n.spicy,
+                                  style:
+                                      Theme.of(context).textTheme.labelMedium),
+                              Slider(
+                                value: state.spiceLevel.toDouble(),
+                                min: 0,
+                                max: 4,
+                                divisions: 4,
+                                onChanged: (value) {
+                                  context
+                                      .read<FoodDetailsCubit>()
+                                      .setSpiceLevel(value.toInt());
+                                },
+                                activeColor: Colors.red,
+                              ),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
                                 children: [
-                                  Text(context.l10n.spicy,
-                                      style: AppTextStyles.appSubTitle),
-                                  Slider(
-                                    value: state.spiceLevel.toDouble(),
-                                    min: 0,
-                                    max: 4,
-                                    divisions: 4,
-                                    onChanged: (value) {
-                                      context
-                                          .read<FoodDetailsCubit>()
-                                          .setSpiceLevel(value.toInt());
-                                    },
-                                    activeColor: Colors.red,
+                                  Text(
+                                    context.l10n.mild,
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .labelSmall
+                                        ?.copyWith(color: Colors.grey),
                                   ),
-                                  Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Text(context.l10n.mild,
-                                          style: const TextStyle(
-                                              color: Colors.grey)),
-                                      Text(context.l10n.hot,
-                                          style: const TextStyle(
-                                              color: Colors.red)),
-                                    ],
+                                  Text(
+                                    context.l10n.hot,
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .labelSmall
+                                        ?.copyWith(color: Colors.red),
                                   ),
                                 ],
                               ),
-                            ),
-                            SizedBox(width: responsiveWidth(context, 12)),
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
+                            ],
+                          ),
+                        ),
+
+                        SizedBox(width: responsiveWidth(context, 16)),
+
+                        // Quantity Controls
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(context.l10n.quantity,
+                                style: Theme.of(context).textTheme.labelMedium),
+                            Row(
                               children: [
-                                Text(context.l10n.quantity,
-                                    style: AppTextStyles.appSubTitle),
-                                Row(
-                                  children: [
-                                    QuantityButton(
-                                      icon: Icons.remove,
-                                      onTap: () => context
-                                          .read<FoodDetailsCubit>()
-                                          .decreaseQuantity(),
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.symmetric(
-                                          horizontal: 12),
-                                      child: Text('${state.quantity}',
-                                          style: AppTextStyles.appSubTitle),
-                                    ),
-                                    QuantityButton(
-                                      icon: Icons.add,
-                                      onTap: () => context
-                                          .read<FoodDetailsCubit>()
-                                          .increaseQuantity(),
-                                    ),
-                                  ],
+                                QuantityButton(
+                                  icon: Icons.remove,
+                                  onTap: () => context
+                                      .read<FoodDetailsCubit>()
+                                      .decreaseQuantity(),
+                                ),
+                                Padding(
+                                  padding: EdgeInsets.symmetric(
+                                      horizontal: responsiveWidth(context, 12)),
+                                  child: Text(
+                                    '${state.quantity}',
+                                    style:
+                                        Theme.of(context).textTheme.labelMedium,
+                                  ),
+                                ),
+                                QuantityButton(
+                                  icon: Icons.add,
+                                  onTap: () => context
+                                      .read<FoodDetailsCubit>()
+                                      .increaseQuantity(),
                                 ),
                               ],
                             ),
                           ],
                         ),
-                      );
-                    },
-                  ),
-                  AppCustomButton(
-                    text: context.l10n.add_to_cart,
-                    onPressed: () {
-                      context.read<CartCubit>().addToCart(food,
+                      ],
+                    );
+                  },
+                ),
+
+                SizedBox(height: responsiveHeight(context, 20)),
+
+                AppCustomButton(
+                  text: context.l10n.add_to_cart,
+                  onPressed: () {
+                    context.read<CartCubit>().addToCart(
+                          food,
                           quantity:
-                              context.read<FoodDetailsCubit>().state.quantity);
-                    },
-                    color: AppLightColors.secondary,
-                    height: responsiveHeight(context, 48),
-                    width: double.infinity,
-                    textStyle: AppTextStyles.appButton,
-                  ),
-                ],
-              ),
-            ],
+                              context.read<FoodDetailsCubit>().state.quantity,
+                        );
+                  },
+                  height: responsiveHeight(context, 48),
+                  width: double.infinity,
+                  textStyle: Theme.of(context).textTheme.labelMedium,
+                ),
+              ],
+            ),
           ),
         ),
       ),

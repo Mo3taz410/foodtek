@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:foodtek/core/extensions/localization_extension.dart';
-import 'package:foodtek/core/utils/app_text_styles.dart';
+import 'package:foodtek/core/localization/localization_extension.dart';
 import 'package:foodtek/core/utils/responsive.dart';
 import 'package:foodtek/features/home/controllers/category_nav_cubit.dart';
-
-import '../../../../core/theme/app_colors/app_light_colors.dart';
 import '../../../../core/constants/app_image_strings.dart';
 import '../../../../core/models/food_model.dart';
 
@@ -55,9 +52,10 @@ class CategorySelector extends StatelessWidget {
                   margin: EdgeInsets.only(right: responsiveWidth(context, 12)),
                   decoration: BoxDecoration(
                     color: isSelected
-                        ? AppLightColors.secondary
+                        ? Theme.of(context).colorScheme.primary
                         : Colors.transparent,
-                    border: Border.all(color: AppLightColors.quinary),
+                    border: Border.all(
+                        color: Theme.of(context).colorScheme.surface),
                     borderRadius: BorderRadius.circular(12),
                   ),
                   child: Row(
@@ -77,13 +75,7 @@ class CategorySelector extends StatelessWidget {
                         SizedBox(width: responsiveWidth(context, 6)),
                       AnimatedDefaultTextStyle(
                         duration: const Duration(milliseconds: 500),
-                        style: AppTextStyles.tabBarItemTitle.copyWith(
-                          color: isSelected
-                              ? Colors.white
-                              : AppLightColors.secondary,
-                          fontWeight:
-                              isSelected ? FontWeight.bold : FontWeight.normal,
-                        ),
+                        style: Theme.of(context).textTheme.titleSmall!,
                         child: Text(labels[category]!),
                       ),
                     ],

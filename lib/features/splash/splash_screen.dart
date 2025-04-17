@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:foodtek/core/helpers/shared_preferences_helper.dart';
-import 'package:foodtek/core/utils/app_text_styles.dart';
-import '../../core/theme/app_colors/app_light_colors.dart';
 import '../../core/constants/app_image_strings.dart';
 import '../../core/constants/app_strings.dart';
 

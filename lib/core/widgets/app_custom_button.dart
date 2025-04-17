@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:foodtek/core/theme/app_colors/app_light_colors.dart';
 
 class AppCustomButton extends StatelessWidget {
   final String text;
-  final TextStyle textStyle;
+  final TextStyle? textStyle;
   final VoidCallback onPressed;
   final Color? color;
   final Gradient? gradient;
@@ -14,7 +13,7 @@ class AppCustomButton extends StatelessWidget {
   const AppCustomButton({
     super.key,
     required this.text,
-    required this.textStyle,
+    this.textStyle,
     this.width,
     this.height,
     required this.onPressed,
@@ -25,6 +24,8 @@ class AppCustomButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     return SizedBox(
       width: width ?? double.infinity,
       height: height ?? double.infinity,
@@ -38,14 +39,17 @@ class AppCustomButton extends StatelessWidget {
         onPressed: onPressed,
         child: Container(
           decoration: BoxDecoration(
-            color: gradient == null ? color ?? AppLightColors.quaternary : null,
+            color: gradient == null ? color ?? theme.colorScheme.primary : null,
             gradient: gradient,
             borderRadius: BorderRadius.circular(borderRadius),
           ),
           child: Center(
             child: Text(
               text,
-              style: textStyle,
+              style: textStyle ??
+                  theme.textTheme.labelLarge
+                      ?.copyWith(color: Theme.of(context).colorScheme.surface),
+              textAlign: TextAlign.center,
             ),
           ),
         ),

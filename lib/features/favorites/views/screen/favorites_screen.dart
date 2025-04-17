@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:foodtek/core/extensions/localization_extension.dart';
+import 'package:foodtek/core/localization/localization_extension.dart';
 import 'package:foodtek/core/models/food_model.dart';
-import 'package:foodtek/core/utils/app_text_styles.dart';
 import 'package:foodtek/core/utils/responsive.dart';
 import 'package:foodtek/features/app/views/widgets/app_custom_header.dart';
 import 'package:foodtek/features/app/views/widgets/app_search_bar.dart';
@@ -29,7 +28,10 @@ class FavoritesScreen extends StatelessWidget {
             AppSearchBar(controller: TextEditingController()),
             Text(
               context.l10n.favorites,
-              style: AppTextStyles.topRated.copyWith(fontSize: 20),
+              style: Theme.of(context)
+                  .textTheme
+                  .bodyLarge
+                  ?.copyWith(fontSize: 20), // topRated
             ),
             SizedBox(height: responsiveHeight(context, 40)),
             BlocBuilder<FavoritesCubit, Set<String>>(
@@ -42,7 +44,9 @@ class FavoritesScreen extends StatelessWidget {
                   return Center(
                     child: Text(
                       context.l10n.no_favorites_yet,
-                      style: AppTextStyles.appSubTitle,
+                      style: Theme.of(context)
+                          .textTheme
+                          .titleMedium, // appSubTitle
                     ),
                   );
                 }

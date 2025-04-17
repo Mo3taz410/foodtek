@@ -138,5 +138,8 @@
   "no_food_founds_in_this_category": "No food found in this category",
   "remove_from_cart": "Are you sure you want to remove it from cart?",
   "checkout": "Checkout",
-  "add_card": "Add Card"
+  "add_card": "Add Card",
+  "choose_language": "Choose Language",
+  "top_recommendations": "Top Recommendations",
+  "loading": "Loading..."
 }

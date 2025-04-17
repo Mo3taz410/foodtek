@@ -1,16 +1,15 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
-import 'package:foodtek/core/extensions/localization_extension.dart';
 import 'package:foodtek/core/constants/app_animation_strings.dart';
+import 'package:foodtek/core/constants/app_icon_strings.dart';
+import 'package:foodtek/core/localization/localization_extension.dart';
+import 'package:foodtek/core/utils/responsive.dart';
 import 'package:foodtek/core/widgets/app_custom_button.dart';
+import 'package:foodtek/core/widgets/app_custom_text_field.dart';
 import 'package:foodtek/core/widgets/app_svg_icons.dart';
 import 'package:lottie/lottie.dart';
-import '../../../../core/theme/app_colors/app_light_colors.dart';
-import '../../../../core/constants/app_icon_strings.dart';
-import '../../../../core/utils/app_text_styles.dart';
-import '../../../../core/utils/responsive.dart';
 import '../widgets/auth_screen_wrapper.dart';
-import '../../../../core/widgets/app_custom_text_field.dart';
-import 'dart:ui';
 
 class ResetPasswordScreen extends StatelessWidget {
   const ResetPasswordScreen({super.key});
@@ -18,12 +17,12 @@ class ResetPasswordScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final emailController = TextEditingController();
+
     return AuthScreenWrapper(
       child: Column(
         spacing: responsiveHeight(context, 15),
         children: [
           Row(
-            textDirection: TextDirection.ltr,
             children: [
               IconButton(
                 icon: AppSvgIcons(
@@ -35,7 +34,7 @@ class ResetPasswordScreen extends StatelessWidget {
               ),
               Text(
                 context.l10n.back_to_login,
-                style: AppTextStyles.appSubTitle,
+                style: Theme.of(context).textTheme.bodySmall,
               ),
             ],
           ),
@@ -44,27 +43,27 @@ class ResetPasswordScreen extends StatelessWidget {
             children: [
               Text(
                 context.l10n.reset_password,
-                style: AppTextStyles.appTitle,
+                style: Theme.of(context).textTheme.titleLarge,
                 textAlign: TextAlign.center,
               ),
-              Text(context.l10n.reset_password_description,
-                  style: AppTextStyles.appSubTitle,
-                  textAlign: TextAlign.center),
+              Text(
+                context.l10n.reset_password_description,
+                style: Theme.of(context).textTheme.bodySmall,
+                textAlign: TextAlign.center,
+              ),
             ],
           ),
           AppCustomTextField(
             controller: emailController,
             hintText: context.l10n.email,
-            hintStyle: AppTextStyles.appTextFieldsHint,
-            keyboardType: TextInputType.emailAddress,
             label: context.l10n.email,
+            keyboardType: TextInputType.emailAddress,
           ),
           AppCustomButton(
             text: context.l10n.send,
-            textStyle: AppTextStyles.appButton,
+            textStyle: Theme.of(context).textTheme.labelMedium,
             width: double.infinity,
             height: responsiveHeight(context, 48),
-            color: AppLightColors.primary,
             onPressed: () {
               showDialog(
                 context: context,
@@ -103,7 +102,7 @@ class ResetPasswordScreen extends StatelessWidget {
                                 Text(
                                   context.l10n.enter_code,
                                   textAlign: TextAlign.center,
-                                  style: AppTextStyles.appSubTitle,
+                                  style: Theme.of(context).textTheme.bodyMedium,
                                 ),
                                 Row(
                                   mainAxisAlignment:
@@ -115,9 +114,20 @@ class ResetPasswordScreen extends StatelessWidget {
                                         keyboardType: TextInputType.number,
                                         textAlign: TextAlign.center,
                                         maxLength: 1,
-                                        decoration: const InputDecoration(
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .titleMedium,
+                                        decoration: InputDecoration(
                                           counterText: '',
-                                          border: OutlineInputBorder(),
+                                          border: OutlineInputBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(8),
+                                            borderSide: BorderSide(
+                                              color: Theme.of(context)
+                                                  .colorScheme
+                                                  .outline,
+                                            ),
+                                          ),
                                         ),
                                       ),
                                     );
@@ -125,15 +135,15 @@ class ResetPasswordScreen extends StatelessWidget {
                                 ),
                                 AppCustomButton(
                                   text: context.l10n.verify,
-                                  textStyle: AppTextStyles.appButton,
-                                  color: AppLightColors.primary,
+                                  textStyle:
+                                      Theme.of(context).textTheme.labelMedium,
                                   width: double.infinity,
                                   height: responsiveHeight(context, 48),
                                   onPressed: () {
                                     Navigator.pushNamed(
                                         context, '/new_password');
                                   },
-                                )
+                                ),
                               ],
                             ),
                           ),
@@ -144,7 +154,7 @@ class ResetPasswordScreen extends StatelessWidget {
                 },
               );
             },
-          )
+          ),
         ],
       ),
     );

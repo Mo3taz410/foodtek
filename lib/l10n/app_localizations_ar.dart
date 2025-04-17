@@ -424,4 +424,13 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get add_card => 'أضف بطاقة';
+
+  @override
+  String get choose_language => 'اختر اللغة';
+
+  @override
+  String get top_recommendations => 'أكثر العناصر الموصى بها';
+
+  @override
+  String get loading => 'جار التحميل...';
 }
