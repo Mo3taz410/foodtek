@@ -107,6 +107,8 @@ class AppThemes {
     bottomNavigationBarTheme: BottomNavigationBarThemeData(
       selectedItemColor: AppDarkColors.primary,
       unselectedItemColor: AppLightColors.primary,
+      selectedLabelStyle: AppTextThemes.darkTextTheme.labelMedium,
+      unselectedLabelStyle: AppTextThemes.darkTextTheme.labelMedium,
     ),
   );
 }
