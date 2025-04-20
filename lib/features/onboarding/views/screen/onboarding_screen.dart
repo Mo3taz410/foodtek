@@ -56,8 +56,6 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               ),
             ),
           ),
-
-          // Main onboarding content
           Positioned(
             top: topOffset,
             left: 0,

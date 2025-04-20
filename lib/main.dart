@@ -66,7 +66,8 @@ class MyApp extends StatelessWidget {
             BlocProvider(create: (_) => CartCubit()),
             BlocProvider(create: (_) => ThemeCubit()),
             BlocProvider(
-                create: (_) => LocalizationCubit(LocalizationRepository())),
+              create: (_) => LocalizationCubit(LocalizationRepository()),
+            ),
           ],
           child: BlocBuilder<ThemeCubit, ThemeMode>(
             builder: (context, themeMode) {
