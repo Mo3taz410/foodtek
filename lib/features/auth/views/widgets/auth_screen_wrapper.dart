@@ -11,13 +11,13 @@ class AuthScreenWrapper extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Theme.of(context).colorScheme.primary,
       body: Stack(
         children: [
           SizedBox.expand(
             child: Image.asset(
               AppImageStrings.backgroundPattern,
               fit: BoxFit.cover,
-              colorBlendMode: BlendMode.dstATop,
             ),
           ),
           SafeArea(
@@ -39,22 +39,11 @@ class AuthScreenWrapper extends StatelessWidget {
                         padding: EdgeInsets.symmetric(
                           horizontal: responsiveWidth(context, 43.5),
                         ),
-                        child: Container(
-                          padding: EdgeInsets.symmetric(
-                            horizontal: responsiveWidth(context, 24),
-                            vertical: responsiveHeight(context, 24),
+                        child: Card(
+                          child: Padding(
+                            padding: const EdgeInsets.all(20),
+                            child: child,
                           ),
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(20),
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.black12,
-                                blurRadius: 12,
-                                offset: Offset(0, 4),
-                              ),
-                            ],
-                          ),
-                          child: child,
                         ),
                       ),
                     ),

@@ -11,7 +11,7 @@ class TopRatedFoodCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
+    return InkWell(
       onTap: () {
         Navigator.pushNamed(
           context,
@@ -21,62 +21,80 @@ class TopRatedFoodCard extends StatelessWidget {
       },
       child: Container(
         width: responsiveWidth(context, 155),
-        padding: EdgeInsets.symmetric(
-          horizontal: responsiveWidth(context, 12),
-          vertical: responsiveHeight(context, 8),
-        ),
+        padding: EdgeInsets.all(responsiveWidth(context, 8)),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(12),
-          border: Border.all(width: 1.5),
+          border: Border.all(
+            color: Theme.of(context).colorScheme.outline,
+            width: 1.5,
+          ),
         ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Row(
               children: [
                 Icon(
                   Icons.star,
+                  size: 16,
                   color: Colors.amber,
                 ),
-                const SizedBox(width: 4),
-                Text(food.rating.toString(),
-                    style: Theme.of(context).textTheme.labelMedium),
+                SizedBox(width: responsiveWidth(context, 4)),
+                Text(
+                  food.rating.toString(),
+                  style: Theme.of(context).textTheme.displaySmall,
+                ),
               ],
             ),
-            Column(
-              spacing: responsiveHeight(context, 3),
+            SizedBox(height: responsiveHeight(context, 8)),
+            Center(
+              child: Image.asset(
+                food.image,
+                height: responsiveHeight(context, 80),
+                fit: BoxFit.contain,
+              ),
+            ),
+            SizedBox(height: responsiveHeight(context, 8)),
+            Text(
+              food.name,
+              style: Theme.of(context).textTheme.displayMedium,
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+            ),
+            SizedBox(height: responsiveHeight(context, 4)),
+            ConstrainedBox(
+              constraints: BoxConstraints(
+                minHeight: responsiveHeight(context, 30),
+              ),
+              child: Text(
+                food.description,
+                style: Theme.of(context).textTheme.displaySmall,
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
+              ),
+            ),
+            SizedBox(height: responsiveHeight(context, 8)),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Image.asset(
-                  food.image,
-                  height: responsiveHeight(context, 70),
-                  width: responsiveWidth(context, 80),
-                ),
                 Text(
-                  food.name,
-                  style: Theme.of(context).textTheme.bodyMedium,
-                  overflow: TextOverflow.ellipsis,
-                ),
-                Text(
-                  food.description,
-                  style: Theme.of(context).textTheme.bodySmall,
-                  overflow: TextOverflow.ellipsis,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      '\$${food.currentPrice.toStringAsFixed(2)}',
-                      style: Theme.of(context).textTheme.labelMedium,
-                    ),
-                    IconButton(
-                      onPressed: () {
-                        context.read<CartCubit>().addToCart(food);
-                      },
-                      icon: Icon(
-                        Icons.add_circle,
+                  '\$${food.currentPrice.toStringAsFixed(2)}',
+                  style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                        color: Theme.of(context).colorScheme.primary,
                       ),
-                    ),
-                  ],
+                ),
+                IconButton(
+                  padding: EdgeInsets.zero,
+                  constraints: BoxConstraints(),
+                  onPressed: () {
+                    context.read<CartCubit>().addToCart(food);
+                  },
+                  icon: Icon(
+                    Icons.add_circle,
+                    size: 24,
+                    color: Theme.of(context).colorScheme.primary,
+                  ),
                 ),
               ],
             ),

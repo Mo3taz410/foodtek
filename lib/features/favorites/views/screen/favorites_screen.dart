@@ -27,11 +27,7 @@ class FavoritesScreen extends StatelessWidget {
             const AppCustomHeader(),
             AppSearchBar(controller: TextEditingController()),
             Text(
-              context.l10n.favorites,
-              style: Theme.of(context)
-                  .textTheme
-                  .bodyLarge
-                  ?.copyWith(fontSize: 20), // topRated
+              context.l10n.favorites, // topRated
             ),
             SizedBox(height: responsiveHeight(context, 40)),
             BlocBuilder<FavoritesCubit, Set<String>>(
@@ -43,10 +39,7 @@ class FavoritesScreen extends StatelessWidget {
                 if (favorites.isEmpty) {
                   return Center(
                     child: Text(
-                      context.l10n.no_favorites_yet,
-                      style: Theme.of(context)
-                          .textTheme
-                          .titleMedium, // appSubTitle
+                      context.l10n.no_favorites_yet, // appSubTitle
                     ),
                   );
                 }

@@ -38,7 +38,9 @@ class RecommendedFoodCard extends StatelessWidget {
                 ),
                 child: Text(
                   '\$${food.discountedPrice?.toStringAsFixed(2) ?? food.originalPrice.toStringAsFixed(2)}',
-                  style: Theme.of(context).textTheme.labelMedium,
+                  style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                        color: Theme.of(context).colorScheme.onPrimary,
+                      ),
                 ),
               ),
             ),

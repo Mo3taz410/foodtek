@@ -39,19 +39,21 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
             height: responsiveHeight(context, 300),
             child: ShaderMask(
               shaderCallback: (Rect bounds) {
-                return LinearGradient(
+                return const LinearGradient(
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter,
                   colors: [
-                    Theme.of(context).colorScheme.primary,
-                    Theme.of(context).colorScheme.secondary,
+                    Colors.black,
+                    Colors.transparent,
                   ],
-                  stops: [0.0, 0.3],
+                  stops: [0.0, 1.0],
                 ).createShader(bounds);
               },
               blendMode: BlendMode.dstIn,
               child: Image.asset(
-                AppImageStrings.backgroundPattern,
+                currentIndex == 3
+                    ? AppImageStrings.backgroundMap
+                    : AppImageStrings.backgroundPattern,
                 fit: BoxFit.cover,
               ),
             ),
@@ -110,14 +112,12 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                         subtitle: context.l10n.location_description,
                         isLast: true,
                         onPressed: () async {
-                          final prefs = SharedPreferencesHelper();
-                          await prefs.setPrefBool(
-                              key: 'isFirstTime', value: false);
+                          await SharedPreferencesHelper()
+                              .setPrefBool(key: 'isFirstTime', value: false);
                           if (!context.mounted) return;
-
                           final address =
                               await LocationHelper.getCurrentAddress(context);
-                          await prefs.setPrefString(
+                          await SharedPreferencesHelper().setPrefString(
                               key: 'userAddress', value: address ?? '');
                           if (!context.mounted) return;
 
@@ -146,13 +146,17 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                           },
                           child: Text(
                             context.l10n.skip,
-                            style: Theme.of(context).textTheme.labelLarge,
+                            style: Theme.of(context).textTheme.headlineSmall,
                           ),
                         ),
                         SmoothPageIndicator(
                           controller: pageController,
                           count: 3,
-                          effect: WormEffect(),
+                          effect: WormEffect(
+                            dotColor: Theme.of(context).colorScheme.secondary,
+                            activeDotColor:
+                                Theme.of(context).colorScheme.primary,
+                          ),
                           onDotClicked: (index) => pageController.animateToPage(
                             index,
                             duration: const Duration(milliseconds: 500),
@@ -168,6 +172,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                                   ),
                           icon: Icon(
                             Icons.arrow_forward,
+                            color: Theme.of(context).colorScheme.primary,
                           ),
                         ),
                       ],

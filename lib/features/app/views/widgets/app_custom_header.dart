@@ -24,9 +24,8 @@ class _AppCustomHeaderState extends State<AppCustomHeader> {
   }
 
   Future<void> _loadStoredAddress() async {
-    final prefs = SharedPreferencesHelper();
-    final stored =
-        await prefs.getPrefString(key: 'userAddress', defaultValue: '');
+    final stored = await SharedPreferencesHelper()
+        .getPrefString(key: 'userAddress', defaultValue: '');
     setState(() {
       placeName = stored;
     });
@@ -50,24 +49,38 @@ class _AppCustomHeaderState extends State<AppCustomHeader> {
           child: Row(
             children: [
               Container(
+                width: responsiveWidth(context, 34),
+                height: responsiveHeight(context, 34),
                 padding: EdgeInsets.all(responsiveWidth(context, 8)),
                 decoration: BoxDecoration(
+                  color: Theme.of(context).colorScheme.secondary,
                   borderRadius: BorderRadius.circular(4),
                 ),
-                child: AppSvgIcons(iconPath: AppIconStrings.mapPinUnderlined),
+                child: AppSvgIcons(
+                  iconPath: AppIconStrings.mapPinUnderlined,
+                ),
               ),
               const SizedBox(width: 8),
               Expanded(
                 child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     TextButton(
                       onPressed: _fetchLocationAndUpdate,
+                      style: TextButton.styleFrom(
+                        padding: EdgeInsets.zero,
+                        minimumSize: Size(0, 0),
+                        tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                      ),
                       child: Row(
+                        mainAxisSize: MainAxisSize.min,
                         children: [
-                          Text(context.l10n.current_location,
-                              style: Theme.of(context).textTheme.labelMedium),
-                          const SizedBox(width: 4),
+                          Text(
+                            context.l10n.current_location,
+                            style: Theme.of(context).textTheme.bodySmall,
+                          ),
+                          SizedBox(width: responsiveWidth(context, 4)),
                           AppSvgIcons(
                             iconPath: AppIconStrings.dropDownCursor,
                             width: responsiveWidth(context, 6),
@@ -76,19 +89,25 @@ class _AppCustomHeaderState extends State<AppCustomHeader> {
                         ],
                       ),
                     ),
+                    SizedBox(
+                      height: responsiveHeight(context, 3),
+                    ),
                     Text(
                       placeName.isNotEmpty
                           ? placeName
                           : context.l10n.location_unknown,
+                      style: Theme.of(context).textTheme.bodyMedium,
                       overflow: TextOverflow.ellipsis,
                       maxLines: 1,
-                      style: Theme.of(context).textTheme.labelMedium,
                     ),
                   ],
                 ),
               ),
               Container(
+                width: responsiveWidth(context, 34),
+                height: responsiveHeight(context, 34),
                 decoration: BoxDecoration(
+                  color: Theme.of(context).colorScheme.secondary,
                   borderRadius: BorderRadius.circular(4),
                 ),
                 child: IconButton(

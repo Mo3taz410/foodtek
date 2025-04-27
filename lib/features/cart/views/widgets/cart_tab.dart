@@ -92,11 +92,13 @@ class CartTab extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(food.name,
-                      style: Theme.of(context)
-                          .textTheme
-                          .bodyLarge
-                          ?.copyWith(fontWeight: FontWeight.bold)),
+                  Text(
+                    food.name,
+                    // style: Theme.of(context)
+                    //     .textTheme
+                    //     .bodyLarge
+                    //     ?.copyWith(fontWeight: FontWeight.bold),
+                  ),
                   Text(
                     '\$${food.currentPrice.toStringAsFixed(2)}',
                     style: Theme.of(context)
@@ -117,8 +119,9 @@ class CartTab extends StatelessWidget {
                     context.read<CartCubit>().updateQuantity(food, newQty);
                   },
                 ),
-                Text('${food.inCartQuantity}',
-                    style: Theme.of(context).textTheme.bodyMedium),
+                Text(
+                  '${food.inCartQuantity}',
+                ),
                 IconButton(
                   icon: Icon(
                     Icons.add,
@@ -156,12 +159,10 @@ class CartTab extends StatelessWidget {
                 Text(
                   context.l10n.remove_from_cart,
                   textAlign: TextAlign.center,
-                  style: Theme.of(context).textTheme.bodyMedium,
                 ),
                 SizedBox(height: responsiveHeight(context, 30)),
                 AppCustomButton(
                   text: context.l10n.yes,
-                  textStyle: Theme.of(context).textTheme.labelMedium,
                   width: double.infinity,
                   height: responsiveHeight(context, 48),
                   onPressed: () => Navigator.pop(context, true),
@@ -184,12 +185,13 @@ class CartTab extends StatelessWidget {
           children: [
             Lottie.asset(AppAnimationStrings.emptyCart, repeat: false),
             const SizedBox(height: 24),
-            Text(title, style: Theme.of(context).textTheme.titleMedium),
+            Text(
+              title,
+            ),
             const SizedBox(height: 8),
             Text(
               subtitle,
               textAlign: TextAlign.center,
-              style: Theme.of(context).textTheme.bodySmall,
             ),
           ],
         ),

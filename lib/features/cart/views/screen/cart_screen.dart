@@ -18,8 +18,6 @@ class CartScreen extends StatelessWidget {
             children: [
               const AppCustomHeader(),
               TabBar(
-                labelStyle: Theme.of(context).textTheme.labelLarge,
-                unselectedLabelStyle: Theme.of(context).textTheme.labelMedium,
                 tabs: [
                   Tab(text: context.l10n.cart),
                   Tab(text: context.l10n.history),

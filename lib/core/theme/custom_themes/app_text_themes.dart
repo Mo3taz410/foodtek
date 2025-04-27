@@ -1,55 +1,64 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:foodtek/core/theme/app_colors/app_light_colors.dart';
 
 class AppTextThemes {
   static TextTheme lightTextTheme = TextTheme(
     headlineLarge: TextStyle(
       fontSize: 80.sp,
       fontFamily: 'ProtestRiot',
-      color: Colors.black,
+      color: AppLightColors.onPrimary,
     ),
     headlineMedium: TextStyle(
       fontSize: 32.sp,
       fontFamily: 'Poppins',
       fontWeight: FontWeight.w700,
-      color: Colors.black,
     ),
-    // subtitles
     headlineSmall: TextStyle(
-      fontSize: 14.sp,
+      fontSize: 16.sp,
       fontFamily: 'Poppins',
       fontWeight: FontWeight.w400,
-      color: Colors.black,
     ),
     bodyLarge: TextStyle(
+      fontSize: 24.sp,
+      fontFamily: 'Inter',
+      fontWeight: FontWeight.w400,
+    ),
+    bodyMedium: TextStyle(
+      fontSize: 14.sp,
+      fontFamily: 'Inter',
+      fontWeight: FontWeight.w600,
+    ),
+    bodySmall: TextStyle(
+      fontSize: 12.sp,
+      fontFamily: 'Inter',
+      fontWeight: FontWeight.w500,
+    ),
+    labelLarge: TextStyle(
       fontSize: 16.sp,
       fontFamily: 'Inter',
       fontWeight: FontWeight.w600,
-      color: Colors.black,
-    ),
-    bodyMedium: TextStyle(
-      fontSize: 12.sp,
-      fontFamily: 'Sora',
-      fontWeight: FontWeight.w600,
-      color: Colors.black,
-    ),
-    bodySmall: TextStyle(
-      fontSize: 10.sp,
-      fontFamily: 'Sora',
-      fontWeight: FontWeight.w300,
-      color: Colors.black,
     ),
     labelMedium: TextStyle(
       fontSize: 14.sp,
       fontFamily: 'Inter',
-      fontWeight: FontWeight.w700,
-      color: Colors.black,
+      fontWeight: FontWeight.w600,
     ),
     labelSmall: TextStyle(
-      fontSize: 10.sp,
-      fontFamily: 'Sora',
+      fontSize: 12.sp,
+      fontFamily: 'Inter',
       fontWeight: FontWeight.w400,
-      color: Colors.black,
+      color: Color(0xFF6C7278), // change this
+    ),
+    displayMedium: TextStyle(
+      fontSize: 18.sp,
+      fontFamily: 'Avenir',
+      fontWeight: FontWeight.w600,
+    ),
+    displaySmall: TextStyle(
+      fontSize: 12.sp,
+      fontFamily: 'Avenir',
+      fontWeight: FontWeight.w400,
     ),
   );
 
@@ -57,50 +66,57 @@ class AppTextThemes {
     headlineLarge: TextStyle(
       fontSize: 80.sp,
       fontFamily: 'ProtestRiot',
-      color: Colors.white,
+      color: AppLightColors.onPrimary,
     ),
     headlineMedium: TextStyle(
       fontSize: 32.sp,
       fontFamily: 'Poppins',
       fontWeight: FontWeight.w700,
-      color: Colors.white,
     ),
-    // subtitles
     headlineSmall: TextStyle(
-      fontSize: 14.sp,
+      fontSize: 16.sp,
       fontFamily: 'Poppins',
       fontWeight: FontWeight.w400,
-      color: Colors.white,
     ),
     bodyLarge: TextStyle(
+      fontSize: 24.sp,
+      fontFamily: 'Inter',
+      fontWeight: FontWeight.w400,
+    ),
+    bodyMedium: TextStyle(
+      fontSize: 14.sp,
+      fontFamily: 'Sora',
+      fontWeight: FontWeight.w600,
+    ),
+    bodySmall: TextStyle(
+      fontSize: 12.sp,
+      fontFamily: 'Inter',
+      fontWeight: FontWeight.w500,
+    ),
+    labelLarge: TextStyle(
       fontSize: 16.sp,
       fontFamily: 'Inter',
       fontWeight: FontWeight.w600,
-      color: Colors.white,
-    ),
-    bodyMedium: TextStyle(
-      fontSize: 12.sp,
-      fontFamily: 'Sora',
-      fontWeight: FontWeight.w600,
-      color: Colors.white,
-    ),
-    bodySmall: TextStyle(
-      fontSize: 10.sp,
-      fontFamily: 'Sora',
-      fontWeight: FontWeight.w300,
-      color: Colors.white,
     ),
     labelMedium: TextStyle(
-      fontSize: 14.sp,
+      fontSize: 12.sp,
       fontFamily: 'Inter',
       fontWeight: FontWeight.w700,
-      color: Colors.white,
     ),
     labelSmall: TextStyle(
       fontSize: 10.sp,
-      fontFamily: 'Sora',
+      fontFamily: 'Inter',
       fontWeight: FontWeight.w400,
-      color: Colors.white,
+    ),
+    displayMedium: TextStyle(
+      fontSize: 18.sp,
+      fontFamily: 'Avenir',
+      fontWeight: FontWeight.w600,
+    ),
+    displaySmall: TextStyle(
+      fontSize: 12.sp,
+      fontFamily: 'Avenir',
+      fontWeight: FontWeight.w400,
     ),
   );
 }

@@ -34,7 +34,6 @@ class ResetPasswordScreen extends StatelessWidget {
               ),
               Text(
                 context.l10n.back_to_login,
-                style: Theme.of(context).textTheme.bodySmall,
               ),
             ],
           ),
@@ -43,13 +42,13 @@ class ResetPasswordScreen extends StatelessWidget {
             children: [
               Text(
                 context.l10n.reset_password,
-                style: Theme.of(context).textTheme.titleLarge,
                 textAlign: TextAlign.center,
+                style: Theme.of(context).textTheme.headlineMedium,
               ),
               Text(
                 context.l10n.reset_password_description,
-                style: Theme.of(context).textTheme.bodySmall,
                 textAlign: TextAlign.center,
+                style: Theme.of(context).textTheme.bodySmall,
               ),
             ],
           ),
@@ -61,7 +60,6 @@ class ResetPasswordScreen extends StatelessWidget {
           ),
           AppCustomButton(
             text: context.l10n.send,
-            textStyle: Theme.of(context).textTheme.labelMedium,
             width: double.infinity,
             height: responsiveHeight(context, 48),
             onPressed: () {
@@ -102,30 +100,30 @@ class ResetPasswordScreen extends StatelessWidget {
                                 Text(
                                   context.l10n.enter_code,
                                   textAlign: TextAlign.center,
-                                  style: Theme.of(context).textTheme.bodyMedium,
+                                  style: Theme.of(context).textTheme.bodySmall,
                                 ),
                                 Row(
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceEvenly,
                                   children: List.generate(4, (index) {
                                     return SizedBox(
-                                      width: 50,
-                                      child: TextField(
-                                        keyboardType: TextInputType.number,
-                                        textAlign: TextAlign.center,
-                                        maxLength: 1,
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .titleMedium,
-                                        decoration: InputDecoration(
-                                          counterText: '',
-                                          border: OutlineInputBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(8),
-                                            borderSide: BorderSide(
-                                              color: Theme.of(context)
-                                                  .colorScheme
-                                                  .outline,
+                                      width: responsiveWidth(context, 60),
+                                      height: responsiveHeight(context, 70),
+                                      child: Center(
+                                        child: TextField(
+                                          keyboardType: TextInputType.number,
+                                          textAlign: TextAlign.center,
+                                          maxLength: 1,
+                                          decoration: InputDecoration(
+                                            counterText: '',
+                                            border: OutlineInputBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(8),
+                                              borderSide: BorderSide(
+                                                color: Theme.of(context)
+                                                    .colorScheme
+                                                    .outline,
+                                              ),
                                             ),
                                           ),
                                         ),
@@ -135,8 +133,6 @@ class ResetPasswordScreen extends StatelessWidget {
                                 ),
                                 AppCustomButton(
                                   text: context.l10n.verify,
-                                  textStyle:
-                                      Theme.of(context).textTheme.labelMedium,
                                   width: double.infinity,
                                   height: responsiveHeight(context, 48),
                                   onPressed: () {

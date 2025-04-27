@@ -193,11 +193,7 @@ class _LocationPickerScreenState extends State<LocationPickerScreen> {
                         'placeName': _placeName,
                       });
                     },
-                    child: Text("Set Location",
-                        style: Theme.of(context)
-                            .textTheme
-                            .labelMedium
-                            ?.copyWith(color: Colors.white)),
+                    child: Text("Set Location"),
                   ),
                 ],
               ),

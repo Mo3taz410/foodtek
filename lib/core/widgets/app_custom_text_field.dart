@@ -12,6 +12,7 @@ class AppCustomTextField extends StatelessWidget {
   final String? errorText;
   final FocusNode? focusNode;
   final String? label;
+  final bool? readOnly;
 
   const AppCustomTextField({
     super.key,
@@ -24,7 +25,8 @@ class AppCustomTextField extends StatelessWidget {
     this.keyboardType = TextInputType.text,
     this.errorText,
     this.focusNode,
-    required this.label,
+    this.label,
+    this.readOnly,
   });
 
   @override
@@ -32,60 +34,57 @@ class AppCustomTextField extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Padding(
-          padding: EdgeInsets.only(
-            bottom: responsiveHeight(context, 4),
-            left: responsiveWidth(context, 4),
+        if (label != null)
+          Padding(
+            padding: EdgeInsets.only(
+              bottom: responsiveHeight(context, 4),
+              left: responsiveWidth(context, 4),
+            ),
+            child: Text(
+              label ?? '',
+              style: Theme.of(context).textTheme.labelSmall,
+            ),
           ),
-          child: Text(
-            label ?? '',
-            style: Theme.of(context).textTheme.labelMedium,
-          ),
-        ),
         SizedBox(
-          width: responsiveWidth(context, 295),
+          width: double.infinity,
           height: responsiveHeight(context, 45),
           child: TextField(
+            readOnly: readOnly ?? false,
             controller: controller,
             obscureText: obscureText,
             keyboardType: keyboardType,
             focusNode: focusNode,
             textAlignVertical: TextAlignVertical.center,
-            style: Theme.of(context).textTheme.bodyMedium,
             decoration: InputDecoration(
               hintText: hintText,
-              hintStyle: hintStyle ?? Theme.of(context).textTheme.bodySmall,
+              hintStyle: hintStyle ?? Theme.of(context).textTheme.labelMedium,
               prefixIcon: prefixIcon,
               suffixIcon: suffixIcon,
               errorText: errorText,
               filled: true,
-              contentPadding: EdgeInsets.only(
-                left: responsiveWidth(context, 14),
+              contentPadding: EdgeInsets.symmetric(
+                horizontal: responsiveWidth(context, 14),
+                vertical: responsiveHeight(context, -20),
               ),
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(12),
                 borderSide: BorderSide(
-                  color: Theme.of(context)
-                      .colorScheme
-                      .outline
-                      .withValues(alpha: .3),
                   width: 1,
+                  color: Theme.of(context).colorScheme.outline,
                 ),
               ),
               enabledBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(12),
                 borderSide: BorderSide(
-                  color: Theme.of(context)
-                      .colorScheme
-                      .outline
-                      .withValues(alpha: .3),
                   width: 1,
+                  color: Theme.of(context).colorScheme.outline,
                 ),
               ),
               focusedBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(12),
                 borderSide: BorderSide(
-                  width: 1.5,
+                  width: 1,
+                  color: Theme.of(context).colorScheme.primary,
                 ),
               ),
             ),

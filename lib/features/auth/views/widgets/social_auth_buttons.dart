@@ -29,11 +29,17 @@ class SocialAuthButtons extends StatelessWidget {
       child: OutlinedButton.icon(
         onPressed: onTap,
         icon: Image.asset(iconPath, height: 18.sp),
-        label: Text(label, style: Theme.of(context).textTheme.labelMedium),
+        label: Text(
+          label,
+          style: Theme.of(context).textTheme.bodyMedium,
+        ),
         style: OutlinedButton.styleFrom(
-          side: BorderSide(),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(12),
+          ),
+          side: BorderSide(
+            width: 1,
+            color: Theme.of(context).colorScheme.outline,
           ),
         ),
       ),

@@ -30,9 +30,6 @@ class RecommendedBottomSheet extends StatelessWidget {
         children: [
           Text(
             context.l10n.top_recommendations,
-            style: Theme.of(context).textTheme.labelMedium?.copyWith(
-                  fontWeight: FontWeight.bold,
-                ),
           ),
           const SizedBox(height: 12),
           SizedBox(

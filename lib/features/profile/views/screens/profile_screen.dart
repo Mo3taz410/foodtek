@@ -6,7 +6,7 @@ import 'package:foodtek/core/localization/localization_cubit.dart';
 import 'package:foodtek/core/localization/localization_extension.dart';
 import 'package:foodtek/core/utils/responsive.dart';
 import 'package:foodtek/core/widgets/app_svg_icons.dart';
-
+import 'package:foodtek/features/splash/splash_screen.dart';
 import '../../../../core/theme/theme_cubit.dart';
 
 class ProfileScreen extends StatelessWidget {
@@ -25,7 +25,6 @@ class ProfileScreen extends StatelessWidget {
               Center(
                 child: Text(
                   context.l10n.profile,
-                  style: Theme.of(context).textTheme.titleLarge,
                 ),
               ),
               Center(
@@ -36,11 +35,11 @@ class ProfileScreen extends StatelessWidget {
                       backgroundImage:
                           AssetImage(AppImageStrings.profilePicture),
                     ),
-                    Text('Waseem Samour',
-                        style: Theme.of(context).textTheme.titleMedium),
+                    Text(
+                      'Waseem Samour',
+                    ),
                     Text(
                       'waseemsamour@gmail.com',
-                      style: Theme.of(context).textTheme.bodySmall,
                     ),
                   ],
                 ),
@@ -62,7 +61,7 @@ class ProfileScreen extends StatelessWidget {
                   ),
                   _buildTile(
                     context,
-                    AppIconStrings.profile,
+                    AppIconStrings.settings,
                     context.l10n.settings,
                   ),
                   _buildTile(
@@ -73,13 +72,13 @@ class ProfileScreen extends StatelessWidget {
                       Localizations.localeOf(context).languageCode == 'ar'
                           ? 'العربية'
                           : 'English',
-                      style: Theme.of(context).textTheme.bodyMedium,
                     ),
                     onTap: () => _showLanguagePicker(context),
                   ),
-                  _buildThemeSwitchTile(
+                  _buildSwitchTile(
                     context,
-                    Icons.dark_mode,
+                    Icon(Icons.dark_mode_outlined,
+                        size: responsiveHeight(context, 22)),
                     context.l10n.dark_mode,
                     _isDarkMode(context),
                     onChanged: (value) {
@@ -94,13 +93,13 @@ class ProfileScreen extends StatelessWidget {
                 children: [
                   _buildSwitchTile(
                     context,
-                    Icons.notifications,
+                    AppSvgIcons(iconPath: AppIconStrings.pushNotifications),
                     context.l10n.push_notifications,
                     true,
                   ),
                   _buildSwitchTile(
                     context,
-                    Icons.notifications_none,
+                    AppSvgIcons(iconPath: AppIconStrings.pushNotifications),
                     context.l10n.promotional_notifications,
                     false,
                   ),
@@ -116,12 +115,16 @@ class ProfileScreen extends StatelessWidget {
                     context.l10n.help_center,
                   ),
                   _buildTile(
-                    context,
-                    AppIconStrings.logOut,
-                    context.l10n.log_out,
+                    context, AppIconStrings.logOut, context.l10n.log_out,
                     iconColor: Colors.red,
                     titleColor: Colors.red,
-                    onTap: () => Navigator.pushNamed(context, '/login'),
+                    // onTap: () => Navigator.pushNamed(context, '/login'),
+                    onTap: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => SplashScreen(),
+                      ),
+                    ),
                   ),
                 ],
               ),
@@ -134,25 +137,18 @@ class ProfileScreen extends StatelessWidget {
 
   Widget _buildCard(BuildContext context,
       {required String title, required List<Widget> children}) {
-    return Container(
-      margin: EdgeInsets.only(bottom: responsiveHeight(context, 16)),
-      padding: EdgeInsets.all(responsiveWidth(context, 16)),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(responsiveWidth(context, 16)),
-        boxShadow: const [
-          BoxShadow(color: Colors.black12, blurRadius: 4, offset: Offset(0, 2)),
-        ],
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(title,
-              style: Theme.of(context)
-                  .textTheme
-                  .titleSmall
-                  ?.copyWith(fontWeight: FontWeight.bold)),
-          ...children,
-        ],
+    return Card(
+      child: Padding(
+        padding: const EdgeInsets.all(12),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              title,
+            ),
+            ...children,
+          ],
+        ),
       ),
     );
   }
@@ -176,9 +172,6 @@ class ProfileScreen extends StatelessWidget {
         ),
         title: Text(
           title,
-          style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                color: titleColor,
-              ),
         ),
         trailing: trailing,
         onTap: onTap ?? () {},
@@ -186,28 +179,20 @@ class ProfileScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildThemeSwitchTile(
+  Widget _buildSwitchTile(
     BuildContext context,
-    IconData icon,
+    Widget icon,
     String title,
     bool value, {
     void Function(bool)? onChanged,
   }) {
     return ListTile(
       contentPadding: EdgeInsets.zero,
-      leading: Icon(icon, size: responsiveHeight(context, 22)),
-      title: Text(title, style: Theme.of(context).textTheme.bodyMedium),
+      leading: icon,
+      title: Text(
+        title,
+      ),
       trailing: Switch(value: value, onChanged: onChanged),
-    );
-  }
-
-  Widget _buildSwitchTile(
-      BuildContext context, IconData icon, String title, bool value) {
-    return ListTile(
-      contentPadding: EdgeInsets.zero,
-      leading: Icon(icon, size: responsiveHeight(context, 22)),
-      title: Text(title, style: Theme.of(context).textTheme.bodyMedium),
-      trailing: Switch(value: value, onChanged: (v) {}),
     );
   }
 
@@ -236,10 +221,6 @@ class ProfileScreen extends StatelessWidget {
             children: [
               Text(
                 context.l10n.choose_language,
-                style: Theme.of(context)
-                    .textTheme
-                    .titleMedium
-                    ?.copyWith(fontWeight: FontWeight.bold),
               ),
               const Divider(),
               ListTile(

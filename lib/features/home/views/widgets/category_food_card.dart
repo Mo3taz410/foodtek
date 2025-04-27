@@ -1,10 +1,12 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:foodtek/core/constants/app_icon_strings.dart';
 import 'package:foodtek/core/localization/localization_extension.dart';
 import 'package:foodtek/core/models/food_model.dart';
 import 'package:foodtek/core/utils/responsive.dart';
 import 'package:foodtek/core/widgets/app_custom_button.dart';
+import 'package:foodtek/core/widgets/app_svg_icons.dart';
 import 'package:foodtek/features/favorites/controllers/favorites_cubit.dart';
 
 class CategoryFoodCard extends StatelessWidget {
@@ -44,11 +46,9 @@ class CategoryFoodCard extends StatelessWidget {
                         Text(
                           context.l10n.remove_from_favorites,
                           textAlign: TextAlign.center,
-                          style: Theme.of(context).textTheme.labelMedium,
                         ),
                         AppCustomButton(
                           text: context.l10n.yes,
-                          textStyle: Theme.of(context).textTheme.labelMedium,
                           width: double.infinity,
                           height: responsiveHeight(context, 48),
                           onPressed: () {
@@ -98,20 +98,15 @@ class CategoryFoodCard extends StatelessWidget {
                   SizedBox(height: responsiveHeight(context, 10)),
                   Text(
                     food.name,
-                    style: Theme.of(context).textTheme.bodyMedium,
                     textAlign: TextAlign.center,
-                    overflow: TextOverflow.ellipsis,
                   ),
                   Text(
                     food.description,
-                    style: Theme.of(context).textTheme.bodySmall,
                     textAlign: TextAlign.center,
                     maxLines: 2,
-                    overflow: TextOverflow.ellipsis,
                   ),
                   Text(
                     '\$${food.currentPrice.toStringAsFixed(2)}',
-                    style: Theme.of(context).textTheme.labelMedium,
                   ),
                 ],
               ),
@@ -140,21 +135,30 @@ class CategoryFoodCard extends StatelessWidget {
               ),
             ),
             Positioned(
-              top: responsiveHeight(context, -10),
-              right: responsiveWidth(context, 10),
-              child: Container(
-                width: responsiveWidth(context, 30),
-                height: responsiveHeight(context, 30),
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                ),
-                child: IconButton(
-                  padding: EdgeInsets.zero,
-                  onPressed: () => _handleFavoriteTap(context, isFavorite),
-                  icon: Icon(
-                    isFavorite ? Icons.favorite : Icons.favorite_border,
-                    color: isFavorite ? Colors.red : Colors.black,
-                    size: 25,
+              top: responsiveHeight(context, -20),
+              right: responsiveWidth(context, 0),
+              child: InkWell(
+                onTap: () => _handleFavoriteTap(context, isFavorite),
+                child: Container(
+                  width: responsiveWidth(context, 35),
+                  height: responsiveHeight(context, 35),
+                  padding: EdgeInsets.symmetric(
+                    horizontal: responsiveWidth(context, 10),
+                    vertical: responsiveHeight(context, 10),
+                  ),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(14),
+                    color: Theme.of(context).colorScheme.secondary,
+                  ),
+                  child: AppSvgIcons(
+                    iconPath: isFavorite
+                        ? AppIconStrings.favoritesFilled
+                        : AppIconStrings.favorites,
+                    color: isFavorite
+                        ? Colors.red
+                        : Theme.of(context)
+                            .colorScheme
+                            .onSecondary, // keep in mind
                   ),
                 ),
               ),
@@ -173,7 +177,6 @@ class CategoryFoodCard extends StatelessWidget {
                   height: responsiveHeight(context, 40),
                   width: responsiveWidth(context, 100),
                   borderRadius: 30,
-                  textStyle: Theme.of(context).textTheme.labelSmall,
                 ),
               ),
             ),

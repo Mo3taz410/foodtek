@@ -15,7 +15,6 @@ class NotificationModal extends StatelessWidget {
       builder: (context, scrollController) {
         return Container(
           decoration: BoxDecoration(
-            color: Theme.of(context).colorScheme.surface,
             borderRadius: const BorderRadius.vertical(top: Radius.circular(20)),
           ),
           child: DefaultTabController(
@@ -37,15 +36,14 @@ class NotificationModal extends StatelessWidget {
                 const SizedBox(height: 12),
                 Text(
                   context.l10n.notifications,
-                  style: Theme.of(context).textTheme.titleLarge,
                 ),
                 TabBar(
-                  indicatorColor: Theme.of(context).colorScheme.primary,
-                  labelColor: Theme.of(context).colorScheme.primary,
-                  unselectedLabelColor: Theme.of(context)
-                      .colorScheme
-                      .onSurface
-                      .withValues(alpha: .6),
+                  // indicatorColor: Theme.of(context).colorScheme.primary,
+                  // labelColor: Theme.of(context).colorScheme.primary,
+                  // unselectedLabelColor: Theme.of(context)
+                  //     .colorScheme
+                  //     .onSurface
+                  //     .withValues(alpha: .6),
                   tabs: [
                     Tab(text: context.l10n.all),
                     Tab(text: context.l10n.unread),

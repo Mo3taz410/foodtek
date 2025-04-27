@@ -72,8 +72,10 @@ class _HomeScreenState extends State<HomeScreen> {
               spacing: responsiveHeight(context, 10),
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(context.l10n.top_rated,
-                    style: Theme.of(context).textTheme.bodyLarge),
+                Text(
+                  context.l10n.top_rated,
+                  style: Theme.of(context).textTheme.labelLarge,
+                ),
                 const TopRatedList(),
               ],
             ),
@@ -82,8 +84,10 @@ class _HomeScreenState extends State<HomeScreen> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text(context.l10n.recommend,
-                        style: Theme.of(context).textTheme.bodyLarge),
+                    Text(
+                      context.l10n.recommend,
+                      style: Theme.of(context).textTheme.labelLarge,
+                    ),
                     TextButton(
                       onPressed: () {
                         showModalBottomSheet(
@@ -98,12 +102,12 @@ class _HomeScreenState extends State<HomeScreen> {
                         children: [
                           Text(
                             context.l10n.view_all,
-                            style: Theme.of(context).textTheme.labelMedium,
+                            style: Theme.of(context).textTheme.bodySmall,
                           ),
                           AppSvgIcons(
                             iconPath: AppIconStrings.rightArrow,
-                            width: responsiveWidth(context, 12),
-                            height: responsiveHeight(context, 12),
+                            width: responsiveWidth(context, 10),
+                            height: responsiveHeight(context, 10),
                           ),
                         ],
                       ),

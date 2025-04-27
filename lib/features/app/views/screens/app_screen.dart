@@ -39,8 +39,6 @@ class AppScreen extends StatelessWidget {
           floatingActionButtonLocation:
               FloatingActionButtonLocation.centerDocked,
           bottomNavigationBar: BottomNavigationBar(
-            type: BottomNavigationBarType.fixed,
-            elevation: 0,
             currentIndex: selectedIndex,
             onTap: (index) {
               if (index != 2) {
@@ -53,24 +51,39 @@ class AppScreen extends StatelessWidget {
                   iconPath: AppIconStrings.home,
                   color: selectedIndex == 0
                       ? Theme.of(context).colorScheme.primary
-                      : Theme.of(context).colorScheme.secondary,
+                      : null,
                 ),
                 label: context.l10n.home,
               ),
               BottomNavigationBarItem(
-                icon: AppSvgIcons(iconPath: AppIconStrings.favorites),
+                icon: AppSvgIcons(
+                  iconPath: AppIconStrings.favorites,
+                  color: selectedIndex == 1
+                      ? Theme.of(context).colorScheme.primary
+                      : null,
+                ),
                 label: context.l10n.favorites,
               ),
               const BottomNavigationBarItem(
-                icon: SizedBox.shrink(), // FAB takes the center
+                icon: SizedBox.shrink(),
                 label: '',
               ),
               BottomNavigationBarItem(
-                icon: AppSvgIcons(iconPath: AppIconStrings.track),
+                icon: AppSvgIcons(
+                  iconPath: AppIconStrings.track,
+                  color: selectedIndex == 3
+                      ? Theme.of(context).colorScheme.primary
+                      : null,
+                ),
                 label: context.l10n.track,
               ),
               BottomNavigationBarItem(
-                icon: AppSvgIcons(iconPath: AppIconStrings.profile),
+                icon: AppSvgIcons(
+                  iconPath: AppIconStrings.profile,
+                  color: selectedIndex == 4
+                      ? Theme.of(context).colorScheme.primary
+                      : null,
+                ),
                 label: context.l10n.profile,
               ),
             ],

@@ -18,9 +18,8 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   void _navigateToNextScreen() async {
-    final prefs = SharedPreferencesHelper();
     await Future.delayed(const Duration(seconds: 3));
-    bool isFirstTime = await prefs.getPrefBool(
+    bool isFirstTime = await SharedPreferencesHelper().getPrefBool(
       key: 'isFirstTime',
       defaultValue: true,
     );
@@ -36,13 +35,13 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Theme.of(context).colorScheme.primary,
       body: Stack(
         children: [
           Positioned.fill(
             child: Image.asset(
               AppImageStrings.backgroundPattern,
               fit: BoxFit.cover,
-              colorBlendMode: BlendMode.dstATop,
             ),
           ),
           Center(

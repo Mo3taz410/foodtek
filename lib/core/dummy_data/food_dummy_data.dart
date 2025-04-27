@@ -4,7 +4,7 @@ import '../models/food_model.dart';
 final List<FoodModel> dummyFoods = [
   FoodModel(
     id: 'f1',
-    name: 'Monetize Synergistic Metrics',
+    name: 'Mexican Green Wave Pizza',
     description: 'Young fall fill page.',
     originalPrice: 6.14,
     discountedPrice: 5.33,
@@ -20,7 +20,7 @@ final List<FoodModel> dummyFoods = [
   ),
   FoodModel(
     id: 'f2',
-    name: 'Maximize Killer Convergence',
+    name: 'Peppy Paneer Pizza',
     description: 'Fact pretty prepare dark third American.',
     originalPrice: 5.01,
     discountedPrice: null,
@@ -36,7 +36,7 @@ final List<FoodModel> dummyFoods = [
   ),
   FoodModel(
     id: 'f3',
-    name: 'Generate E-Business Schemas',
+    name: 'Pepperoni Pizza',
     description: 'Bill price example population.',
     originalPrice: 5.11,
     discountedPrice: null,
@@ -52,7 +52,7 @@ final List<FoodModel> dummyFoods = [
   ),
   FoodModel(
     id: 'f4',
-    name: 'Leverage Value-Added Interfaces',
+    name: 'Pepperoni Pizza',
     description: 'Trouble sister memory over pay.',
     originalPrice: 8.57,
     discountedPrice: 3.63,
@@ -68,7 +68,7 @@ final List<FoodModel> dummyFoods = [
   ),
   FoodModel(
     id: 'f5',
-    name: 'Facilitate Magnetic Synergies',
+    name: 'Chicken Burger',
     description: 'As attack pay fight.',
     originalPrice: 5.32,
     discountedPrice: null,
@@ -84,7 +84,7 @@ final List<FoodModel> dummyFoods = [
   ),
   FoodModel(
     id: 'f6',
-    name: 'Incentivize Proactive Niches',
+    name: 'Chicken Burger',
     description: 'Cover question but moment pay still institution.',
     originalPrice: 8.62,
     discountedPrice: 3.67,
@@ -100,7 +100,7 @@ final List<FoodModel> dummyFoods = [
   ),
   FoodModel(
     id: 'f7',
-    name: 'Implement Interactive Users',
+    name: 'Pepperoni Pizza',
     description: 'Note front forward truth support fill.',
     originalPrice: 8.83,
     discountedPrice: null,
@@ -116,7 +116,7 @@ final List<FoodModel> dummyFoods = [
   ),
   FoodModel(
     id: 'f8',
-    name: 'E-Enable Cross-Platform Bandwidth',
+    name: 'Chicken Burger',
     description: 'Commercial partner our across forward really check cold.',
     originalPrice: 5.65,
     discountedPrice: 6.35,
@@ -132,7 +132,7 @@ final List<FoodModel> dummyFoods = [
   ),
   FoodModel(
     id: 'f9',
-    name: 'Harness Out-Of-The-Box Interfaces',
+    name: 'Pepperoni Pizza',
     description: 'Power discover notice focus wall what move.',
     originalPrice: 6.46,
     discountedPrice: 4.07,
@@ -148,7 +148,7 @@ final List<FoodModel> dummyFoods = [
   ),
   FoodModel(
     id: 'f10',
-    name: 'Facilitate Robust Synergies',
+    name: 'Mexican Green Wave Pizza',
     description: 'Yeah measure law soldier media.',
     originalPrice: 8.01,
     discountedPrice: null,
@@ -164,7 +164,7 @@ final List<FoodModel> dummyFoods = [
   ),
   FoodModel(
     id: 'f11',
-    name: 'Leverage Out-Of-The-Box Synergies',
+    name: 'Pepperoni Pizza',
     description: 'Join life end run both over.',
     originalPrice: 7.02,
     discountedPrice: null,
@@ -180,7 +180,7 @@ final List<FoodModel> dummyFoods = [
   ),
   FoodModel(
     id: 'f12',
-    name: 'Engage Granular Info-Mediaries',
+    name: 'Cheese Burger',
     description: 'Final fly close every along local.',
     originalPrice: 8.27,
     discountedPrice: 7.17,
@@ -196,7 +196,7 @@ final List<FoodModel> dummyFoods = [
   ),
   FoodModel(
     id: 'f13',
-    name: 'Cultivate Dynamic Solutions',
+    name: 'Mexican Green Wave Pizza',
     description: 'Wind act image remain stand effort perform.',
     originalPrice: 5.52,
     discountedPrice: 6.17,
@@ -212,7 +212,7 @@ final List<FoodModel> dummyFoods = [
   ),
   FoodModel(
     id: 'f14',
-    name: 'Engineer Intuitive Web Services',
+    name: 'Peppy Paneer Pizza',
     description: 'None amount range suffer either.',
     originalPrice: 7.19,
     discountedPrice: null,
@@ -228,7 +228,7 @@ final List<FoodModel> dummyFoods = [
   ),
   FoodModel(
     id: 'f15',
-    name: 'Exploit Cutting-Edge Schemas',
+    name: 'Chicken Burger',
     description: 'Industry spring central turn reach.',
     originalPrice: 6.43,
     discountedPrice: 3.9,
@@ -244,7 +244,7 @@ final List<FoodModel> dummyFoods = [
   ),
   FoodModel(
     id: 'f16',
-    name: 'Brand Viral Infrastructures',
+    name: 'Cheese Pizza',
     description: 'Next rise almost child just inside here fish.',
     originalPrice: 7.73,
     discountedPrice: 6.58,
@@ -260,7 +260,7 @@ final List<FoodModel> dummyFoods = [
   ),
   FoodModel(
     id: 'f17',
-    name: 'Innovate Vertical Niches',
+    name: 'Peppy Paneer Pizza',
     description: 'Yes third environmental itself woman wife possible respond.',
     originalPrice: 5.95,
     discountedPrice: 4.83,
@@ -276,7 +276,7 @@ final List<FoodModel> dummyFoods = [
   ),
   FoodModel(
     id: 'f18',
-    name: 'Engage Distributed Synergies',
+    name: 'Cheese Pizza',
     description: 'Unit amount view stop office task.',
     originalPrice: 7.14,
     discountedPrice: 6.35,
@@ -292,7 +292,7 @@ final List<FoodModel> dummyFoods = [
   ),
   FoodModel(
     id: 'f19',
-    name: 'Embrace Clicks-And-Mortar Methodologies',
+    name: 'Chicken Burger',
     description: 'Knowledge finish return.',
     originalPrice: 6.0,
     discountedPrice: 5.2,
@@ -308,7 +308,7 @@ final List<FoodModel> dummyFoods = [
   ),
   FoodModel(
     id: 'f20',
-    name: 'Brand Scalable Content',
+    name: 'Pepperoni Pizza',
     description: 'Home education as tree.',
     originalPrice: 6.49,
     discountedPrice: null,

@@ -35,7 +35,6 @@ class EditProfileScreen extends StatelessWidget {
                       BackButton(onPressed: () => Navigator.pop(context)),
                       Text(
                         context.l10n.profile,
-                        style: Theme.of(context).textTheme.titleLarge,
                       ),
                     ],
                   ),
@@ -46,59 +45,49 @@ class EditProfileScreen extends StatelessWidget {
                 ),
                 Text(
                   'Ahmad Daboor',
-                  style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                        fontWeight: FontWeight.w600,
-                      ),
                 ),
                 Text(
                   'emmie1709@gmail.com',
-                  style: Theme.of(context).textTheme.bodySmall,
                 ),
-                Container(
-                  padding: EdgeInsets.symmetric(
-                    vertical: responsiveHeight(context, 23),
-                    horizontal: responsiveWidth(context, 12),
-                  ),
-                  decoration: BoxDecoration(
-                    borderRadius:
-                        BorderRadius.circular(responsiveWidth(context, 12)),
-                  ),
-                  child: Column(
-                    spacing: responsiveHeight(context, 10),
-                    children: [
-                      AppCustomTextField(
-                        controller: nameController,
-                        hintText: context.l10n.full_name,
-                        label: context.l10n.full_name,
-                      ),
-                      AppCustomTextField(
-                        hintText: context.l10n.email,
-                        controller: emailController,
-                        keyboardType: TextInputType.emailAddress,
-                        label: context.l10n.email,
-                      ),
-                      AppCustomTextField(
-                        hintText: context.l10n.phone_number,
-                        controller: phoneController,
-                        keyboardType: TextInputType.phone,
-                        label: context.l10n.phone_number,
-                      ),
-                      AppCustomTextField(
-                        controller: passwordController,
-                        hintText: context.l10n.password,
-                        label: context.l10n.password,
-                      ),
-                      AppCustomTextField(
-                        hintText: context.l10n.address,
-                        controller: addressController,
-                        label: context.l10n.address,
-                      ),
-                    ],
+                Card(
+                  child: Padding(
+                    padding: const EdgeInsets.all(12),
+                    child: Column(
+                      spacing: responsiveHeight(context, 10),
+                      children: [
+                        AppCustomTextField(
+                          controller: nameController,
+                          hintText: context.l10n.full_name,
+                          label: context.l10n.full_name,
+                        ),
+                        AppCustomTextField(
+                          hintText: context.l10n.email,
+                          controller: emailController,
+                          keyboardType: TextInputType.emailAddress,
+                          label: context.l10n.email,
+                        ),
+                        AppCustomTextField(
+                          hintText: context.l10n.phone_number,
+                          controller: phoneController,
+                          keyboardType: TextInputType.phone,
+                          label: context.l10n.phone_number,
+                        ),
+                        AppCustomTextField(
+                          controller: passwordController,
+                          hintText: context.l10n.password,
+                          label: context.l10n.password,
+                        ),
+                        AppCustomTextField(
+                          hintText: context.l10n.address,
+                          controller: addressController,
+                          label: context.l10n.address,
+                        ),
+                      ],
+                    ),
                   ),
                 ),
                 AppCustomButton(
                   text: context.l10n.update,
-                  textStyle: Theme.of(context).textTheme.labelMedium,
                   onPressed: () {},
                   height: responsiveHeight(context, 48),
                   width: responsiveWidth(context, 300),

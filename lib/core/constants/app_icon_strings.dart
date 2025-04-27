@@ -1,4 +1,5 @@
 class AppIconStrings {
+  static const String eye = 'assets/icons/eye.svg';
   static const String eyeOff = 'assets/icons/eye_off.svg';
   static const String leftLongArrow = 'assets/icons/left_long_arrow.svg';
   static const String calendar = 'assets/icons/calendar.svg';
@@ -10,6 +11,7 @@ class AppIconStrings {
   static const String rightArrow = 'assets/icons/right_arrow.svg';
   static const String home = 'assets/icons/bottom_nav_bar/home.svg';
   static const String favorites = 'assets/icons/bottom_nav_bar/favorites.svg';
+  static const String favoritesFilled = 'assets/icons/favorites_filled.svg';
   static const String cart = 'assets/icons/bottom_nav_bar/cart.svg';
   static const String track = 'assets/icons/bottom_nav_bar/track_location.svg';
   static const String profile = 'assets/icons/bottom_nav_bar/profile.svg';

@@ -27,20 +27,17 @@ class FloatingCartIcon extends StatelessWidget {
             onPressed: onTap,
             elevation: 0,
             shape: RoundedRectangleBorder(
-              side: BorderSide(
-                width: 4,
-              ),
               borderRadius: BorderRadius.circular(100),
             ),
             child: AppSvgIcons(
               iconPath: AppIconStrings.cart,
-              color: Theme.of(context).colorScheme.surface,
+              color: Theme.of(context).colorScheme.onPrimary,
             ),
           ),
           if (itemCount > 0)
             Positioned(
-              top: 5,
-              right: 5,
+              top: 2,
+              right: 2,
               child: Container(
                 padding: const EdgeInsets.all(4),
                 decoration: BoxDecoration(
@@ -50,7 +47,6 @@ class FloatingCartIcon extends StatelessWidget {
                 child: Center(
                   child: Text(
                     itemCount > 99 ? '99+' : '$itemCount',
-                    style: Theme.of(context).textTheme.labelSmall,
                   ),
                 ),
               ),

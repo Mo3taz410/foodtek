@@ -45,13 +45,16 @@ class OnboardingWidget extends StatelessWidget {
                   children: [
                     Text(
                       title,
-                      style: Theme.of(context).textTheme.headlineMedium,
                       textAlign: TextAlign.center,
+                      style:
+                          Theme.of(context).textTheme.headlineMedium!.copyWith(
+                                fontWeight: isLast ? null : FontWeight.w500,
+                              ),
                     ),
                     Text(
                       subtitle,
-                      style: Theme.of(context).textTheme.headlineSmall,
                       textAlign: TextAlign.center,
+                      style: Theme.of(context).textTheme.headlineSmall,
                     ),
                   ],
                 ),
@@ -67,13 +70,6 @@ class OnboardingWidget extends StatelessWidget {
                 width: responsiveWidth(context, 307),
                 height: responsiveHeight(context, 48),
                 borderRadius: 69,
-                // gradient: LinearGradient(
-                //   colors: [
-                //     Theme.of(context).
-                //   ],
-                //   begin: Alignment.centerLeft,
-                //   end: Alignment.centerRight,
-                // ),
                 onPressed: onPressed,
               ),
               if (isLast)
@@ -82,10 +78,10 @@ class OnboardingWidget extends StatelessWidget {
                   width: responsiveWidth(context, 307),
                   height: responsiveHeight(context, 48),
                   borderRadius: 69,
-                  // textStyle: Theme.of(context).textTheme.labelMedium,
                   onPressed: () {
                     Navigator.pushReplacementNamed(context, '/login');
                   },
+                  color: Color(0xFFC2C2C2),
                 ),
             ],
           ),

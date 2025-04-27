@@ -1,6 +1,5 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:foodtek/core/constants/app_animation_strings.dart';
 import 'package:foodtek/core/constants/app_icon_strings.dart';
 import 'package:foodtek/core/localization/localization_extension.dart';
@@ -39,7 +38,7 @@ class NewPasswordScreen extends StatelessWidget {
           ),
           Text(
             context.l10n.reset_password,
-            style: Theme.of(context).textTheme.titleLarge,
+            style: Theme.of(context).textTheme.headlineMedium,
           ),
           AuthBottomTextRow(
             label: context.l10n.remember_password,
@@ -58,7 +57,6 @@ class NewPasswordScreen extends StatelessWidget {
           ),
           AppCustomButton(
             text: context.l10n.update_password,
-            textStyle: Theme.of(context).textTheme.labelMedium,
             width: double.infinity,
             height: responsiveHeight(context, 48),
             onPressed: () {
@@ -93,21 +91,16 @@ class NewPasswordScreen extends StatelessWidget {
                               textAlign: TextAlign.center,
                               style: Theme.of(context)
                                   .textTheme
-                                  .titleLarge
-                                  ?.copyWith(
-                                    color: Colors.white,
-                                  ),
+                                  .headlineMedium!
+                                  .copyWith(color: Colors.white),
                             ),
                             Text(
                               context.l10n.password_reset_success,
                               textAlign: TextAlign.center,
                               style: Theme.of(context)
                                   .textTheme
-                                  .bodySmall
-                                  ?.copyWith(
-                                    color: Colors.white,
-                                    fontSize: 16.sp,
-                                  ),
+                                  .bodyLarge!
+                                  .copyWith(color: Colors.white),
                             ),
                           ],
                         ),
@@ -116,6 +109,10 @@ class NewPasswordScreen extends StatelessWidget {
                   ),
                 ),
               );
+              Future.delayed(const Duration(seconds: 3), () {
+                if (!context.mounted) return;
+                Navigator.pushNamed(context, '/login');
+              });
             },
           ),
         ],

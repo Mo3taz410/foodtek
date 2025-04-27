@@ -28,6 +28,7 @@ class CartSummaryBox extends StatelessWidget {
       margin: const EdgeInsets.all(12),
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
+        color: Theme.of(context).colorScheme.secondary,
         image: DecorationImage(
           image: AssetImage(AppImageStrings.checkoutBackgroundPattern),
           fit: BoxFit.cover,
@@ -53,7 +54,6 @@ class CartSummaryBox extends StatelessWidget {
           const SizedBox(height: 16),
           AppCustomButton(
             text: context.l10n.place_order,
-            textStyle: Theme.of(context).textTheme.labelMedium,
             onPressed: () {
               Navigator.pushNamed(context, '/checkout');
             },

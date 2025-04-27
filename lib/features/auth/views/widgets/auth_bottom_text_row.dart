@@ -17,12 +17,18 @@ class AuthBottomTextRow extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Text(label, style: Theme.of(context).textTheme.labelSmall),
+        Text(
+          label,
+          style: Theme.of(context).textTheme.bodySmall,
+        ),
         TextButton(
           onPressed: onPressed,
           child: Text(
             actionText,
-            style: Theme.of(context).textTheme.labelSmall,
+            style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                  color: Theme.of(context).colorScheme.primary,
+                  fontWeight: FontWeight.w600,
+                ),
           ),
         ),
       ],

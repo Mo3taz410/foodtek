@@ -23,8 +23,7 @@ class NotificationList extends StatelessWidget {
       controller: controller,
       padding: const EdgeInsets.all(16),
       itemCount: notifications.length,
-      separatorBuilder: (_, __) =>
-          Divider(color: Theme.of(context).colorScheme.outline),
+      separatorBuilder: (_, __) => Divider(),
       itemBuilder: (context, index) {
         final item = notifications[index];
         return Column(
@@ -32,25 +31,14 @@ class NotificationList extends StatelessWidget {
           children: [
             Text(
               item['title']!,
-              style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                    fontWeight: FontWeight.bold,
-                    color: Theme.of(context).colorScheme.onSurface,
-                  ),
             ),
             const SizedBox(height: 4),
             Text(
               item['message']!,
-              style: Theme.of(context).textTheme.bodyMedium,
             ),
             const SizedBox(height: 4),
             Text(
               item['time']!,
-              style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                    color: Theme.of(context)
-                        .colorScheme
-                        .onSurface
-                        .withValues(alpha: .6),
-                  ),
             ),
           ],
         );

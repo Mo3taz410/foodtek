@@ -27,7 +27,6 @@ class CategoryGridView extends StatelessWidget {
               ),
               child: Text(
                 context.l10n.no_food_founds_in_this_category,
-                style: Theme.of(context).textTheme.labelMedium,
                 textAlign: TextAlign.center,
               ),
             ),

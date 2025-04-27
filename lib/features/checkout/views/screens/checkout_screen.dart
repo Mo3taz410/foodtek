@@ -47,7 +47,6 @@ class CheckoutScreen extends StatelessWidget {
             SizedBox(height: responsiveHeight(context, 30)),
             Text(
               context.l10n.checkout,
-              style: Theme.of(context).textTheme.titleLarge,
             ),
           ],
         ),

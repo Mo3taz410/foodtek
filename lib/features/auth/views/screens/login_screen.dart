@@ -26,8 +26,10 @@ class LoginScreen extends StatelessWidget {
         spacing: responsiveHeight(context, 15),
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Text(context.l10n.login,
-              style: Theme.of(context).textTheme.titleLarge),
+          Text(
+            context.l10n.login,
+            style: Theme.of(context).textTheme.headlineMedium,
+          ),
           AuthBottomTextRow(
             label: context.l10n.dont_have_account,
             actionText: context.l10n.sign_up,
@@ -38,7 +40,6 @@ class LoginScreen extends StatelessWidget {
           AppCustomTextField(
             controller: emailController,
             hintText: context.l10n.email,
-            hintStyle: Theme.of(context).textTheme.bodySmall,
             keyboardType: TextInputType.emailAddress,
             label: context.l10n.email,
           ),
@@ -48,10 +49,11 @@ class LoginScreen extends StatelessWidget {
               return AppCustomTextField(
                 controller: passwordController,
                 hintText: context.l10n.password,
-                hintStyle: Theme.of(context).textTheme.bodySmall,
                 obscureText: isHidden,
                 suffixIcon: IconButton(
-                  icon: AppSvgIcons(iconPath: AppIconStrings.eyeOff),
+                  icon: isHidden
+                      ? AppSvgIcons(iconPath: AppIconStrings.eyeOff)
+                      : AppSvgIcons(iconPath: AppIconStrings.eye),
                   onPressed: () =>
                       context.read<AuthCubit>().togglePasswordVisibility(),
                 ),
@@ -79,8 +81,8 @@ class LoginScreen extends StatelessWidget {
                         Text(
                           context.l10n.remember_me,
                           style:
-                              Theme.of(context).textTheme.labelMedium?.copyWith(
-                                    fontWeight: FontWeight.w600,
+                              Theme.of(context).textTheme.bodySmall!.copyWith(
+                                    fontWeight: FontWeight.w700,
                                   ),
                         ),
                       ],
@@ -92,7 +94,6 @@ class LoginScreen extends StatelessWidget {
                     },
                     child: Text(
                       context.l10n.forgot_password,
-                      style: Theme.of(context).textTheme.bodySmall,
                     ),
                   ),
                 ],
@@ -114,7 +115,6 @@ class LoginScreen extends StatelessWidget {
                     : context.l10n.login,
                 width: double.infinity,
                 height: responsiveHeight(context, 48),
-                textStyle: Theme.of(context).textTheme.labelMedium,
                 onPressed: () {
                   final user = UserModel(
                     email: emailController.text,
@@ -134,7 +134,6 @@ class LoginScreen extends StatelessWidget {
                     horizontal: responsiveWidth(context, 8)),
                 child: Text(
                   context.l10n.or,
-                  style: Theme.of(context).textTheme.labelMedium,
                 ),
               ),
               const Expanded(child: Divider(thickness: 1)),

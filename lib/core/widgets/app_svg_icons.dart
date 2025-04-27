@@ -17,10 +17,10 @@ class AppSvgIcons extends StatelessWidget {
   Widget build(BuildContext context) {
     return SvgPicture.asset(
       iconPath,
-      width: width ?? 22,
-      height: height ?? 22,
+      width: width ?? 20,
+      height: height ?? 20,
       colorFilter: ColorFilter.mode(
-        color ?? Theme.of(context).colorScheme.primary,
+        color ?? Theme.of(context).colorScheme.onSecondary,
         BlendMode.srcIn,
       ),
     );

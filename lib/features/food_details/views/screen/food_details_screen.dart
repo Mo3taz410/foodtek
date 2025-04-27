@@ -22,7 +22,7 @@ class FoodDetailsScreen extends StatelessWidget {
       body: SafeArea(
         child: Padding(
           padding: EdgeInsets.symmetric(
-            horizontal: responsiveWidth(context, 20),
+            horizontal: responsiveWidth(context, 30),
             vertical: responsiveHeight(context, 20),
           ),
           child: SingleChildScrollView(
@@ -41,9 +41,9 @@ class FoodDetailsScreen extends StatelessWidget {
                   ),
                 ),
                 SizedBox(height: responsiveHeight(context, 16)),
-
-                // Food Name + Rating
-                Text(food.name, style: Theme.of(context).textTheme.titleLarge),
+                Text(
+                  food.name,
+                ),
                 SizedBox(height: responsiveHeight(context, 6)),
                 Row(
                   children: [
@@ -51,20 +51,15 @@ class FoodDetailsScreen extends StatelessWidget {
                     SizedBox(width: responsiveWidth(context, 6)),
                     Text(
                       '${food.rating} (89 ${context.l10n.reviews})',
-                      style: Theme.of(context).textTheme.labelMedium,
                     ),
                   ],
                 ),
-
                 SizedBox(height: responsiveHeight(context, 12)),
-
-                // Price + Discount
                 Row(
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
                     Text(
                       '\$${food.currentPrice.toStringAsFixed(2)}',
-                      style: Theme.of(context).textTheme.titleLarge,
                     ),
                     if (food.discountedPrice != null)
                       Padding(
@@ -72,41 +67,27 @@ class FoodDetailsScreen extends StatelessWidget {
                             EdgeInsets.only(left: responsiveWidth(context, 8)),
                         child: Text(
                           '\$${food.originalPrice.toStringAsFixed(2)}',
-                          style:
-                              Theme.of(context).textTheme.bodyLarge?.copyWith(
-                                    decoration: TextDecoration.lineThrough,
-                                    color: Colors.grey,
-                                    fontSize: 16,
-                                  ),
                         ),
                       ),
                   ],
                 ),
-
                 SizedBox(height: responsiveHeight(context, 12)),
-
-                // Description
                 Text(
                   food.description,
-                  style: Theme.of(context).textTheme.bodySmall,
                 ),
-
                 SizedBox(height: responsiveHeight(context, 20)),
-
-                // Spicy Level + Quantity
                 BlocBuilder<FoodDetailsCubit, FoodDetailsState>(
                   builder: (context, state) {
                     return Row(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        // Spicy Slider
                         Expanded(
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text(context.l10n.spicy,
-                                  style:
-                                      Theme.of(context).textTheme.labelMedium),
+                              Text(
+                                context.l10n.spicy,
+                              ),
                               Slider(
                                 value: state.spiceLevel.toDouble(),
                                 min: 0,
@@ -125,32 +106,22 @@ class FoodDetailsScreen extends StatelessWidget {
                                 children: [
                                   Text(
                                     context.l10n.mild,
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .labelSmall
-                                        ?.copyWith(color: Colors.grey),
                                   ),
                                   Text(
                                     context.l10n.hot,
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .labelSmall
-                                        ?.copyWith(color: Colors.red),
                                   ),
                                 ],
                               ),
                             ],
                           ),
                         ),
-
                         SizedBox(width: responsiveWidth(context, 16)),
-
-                        // Quantity Controls
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(context.l10n.quantity,
-                                style: Theme.of(context).textTheme.labelMedium),
+                            Text(
+                              context.l10n.quantity,
+                            ),
                             Row(
                               children: [
                                 QuantityButton(
@@ -169,6 +140,7 @@ class FoodDetailsScreen extends StatelessWidget {
                                   ),
                                 ),
                                 QuantityButton(
+                                  color: Theme.of(context).colorScheme.primary,
                                   icon: Icons.add,
                                   onTap: () => context
                                       .read<FoodDetailsCubit>()
@@ -182,9 +154,7 @@ class FoodDetailsScreen extends StatelessWidget {
                     );
                   },
                 ),
-
-                SizedBox(height: responsiveHeight(context, 20)),
-
+                SizedBox(height: responsiveHeight(context, 100)),
                 AppCustomButton(
                   text: context.l10n.add_to_cart,
                   onPressed: () {
@@ -196,7 +166,6 @@ class FoodDetailsScreen extends StatelessWidget {
                   },
                   height: responsiveHeight(context, 48),
                   width: double.infinity,
-                  textStyle: Theme.of(context).textTheme.labelMedium,
                 ),
               ],
             ),

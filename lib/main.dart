@@ -66,8 +66,7 @@ class MyApp extends StatelessWidget {
             BlocProvider(create: (_) => CartCubit()),
             BlocProvider(create: (_) => ThemeCubit()),
             BlocProvider(
-              create: (_) => LocalizationCubit(LocalizationRepository()),
-            ),
+                create: (_) => LocalizationCubit(LocalizationRepository())),
           ],
           child: BlocBuilder<ThemeCubit, ThemeMode>(
             builder: (context, themeMode) {
@@ -90,7 +89,7 @@ class MyApp extends StatelessWidget {
                     themeMode: themeMode,
                     theme: AppThemes.lightTheme,
                     darkTheme: AppThemes.darkTheme,
-                    home: SplashScreen(),
+                    home: LoginScreen(),
                     routes: {
                       '/onboarding': (context) => OnboardingScreen(),
                       '/login': (context) => LoginScreen(),

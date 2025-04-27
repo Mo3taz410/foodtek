@@ -67,8 +67,10 @@ class _SignupScreenState extends State<SignupScreen> {
               onPressed: () => Navigator.pop(context),
             ),
           ),
-          Text(context.l10n.sign_up,
-              style: Theme.of(context).textTheme.titleLarge),
+          Text(
+            context.l10n.sign_up,
+            style: Theme.of(context).textTheme.headlineMedium,
+          ),
           AuthBottomTextRow(
             label: context.l10n.already_have_account,
             actionText: context.l10n.login,
@@ -85,37 +87,51 @@ class _SignupScreenState extends State<SignupScreen> {
             keyboardType: TextInputType.emailAddress,
             label: context.l10n.email,
           ),
-          GestureDetector(
-            onTap: () async {
-              final picked = await showDatePicker(
-                context: context,
-                initialDate:
-                    DateTime.now().subtract(const Duration(days: 365 * 18)),
-                firstDate: DateTime(1900),
-                lastDate: DateTime.now(),
+          BlocBuilder<AuthCubit, AuthState>(
+            builder: (context, state) {
+              final birthDate =
+                  state is AuthInitial ? state.selectedBirthDate : null;
+              return AppCustomTextField(
+                controller: TextEditingController(
+                  text: birthDate != null
+                      ? "${birthDate.toLocal()}".split(" ")[0]
+                      : '',
+                ),
+                hintText: context.l10n.birth_date,
+                label: context.l10n.birth_date,
+                readOnly: true,
+                suffixIcon: IconButton(
+                  icon: AppSvgIcons(
+                    iconPath: AppIconStrings.calendar,
+                  ),
+                  onPressed: () async {
+                    final picked = await showDatePicker(
+                      context: context,
+                      initialDate: DateTime.now()
+                          .subtract(const Duration(days: 365 * 18)),
+                      firstDate: DateTime(1900),
+                      lastDate: DateTime.now(),
+                      builder: (context, child) {
+                        return Theme(
+                          data: Theme.of(context).copyWith(
+                            textTheme: Theme.of(context).textTheme.copyWith(
+                                  headlineLarge: Theme.of(context)
+                                      .textTheme
+                                      .headlineMedium,
+                                ),
+                          ),
+                          child: child!,
+                        );
+                      },
+                    );
+                    if (picked != null) {
+                      if (!context.mounted) return;
+                      context.read<AuthCubit>().updateBirthDate(picked);
+                    }
+                  },
+                ),
               );
-              if (picked != null) {
-                if (!context.mounted) return;
-                context.read<AuthCubit>().updateBirthDate(picked);
-              }
             },
-            child: AbsorbPointer(
-              child: BlocBuilder<AuthCubit, AuthState>(
-                builder: (context, state) {
-                  final birthDate =
-                      state is AuthInitial ? state.selectedBirthDate : null;
-                  return AppCustomTextField(
-                    controller: TextEditingController(
-                      text: birthDate != null
-                          ? "${birthDate.toLocal()}".split(" ")[0]
-                          : '',
-                    ),
-                    hintText: context.l10n.birth_date,
-                    label: context.l10n.birth_date,
-                  );
-                },
-              ),
-            ),
           ),
           AppCustomTextField(
             controller: phoneController,
@@ -131,7 +147,9 @@ class _SignupScreenState extends State<SignupScreen> {
                 hintText: context.l10n.set_password,
                 obscureText: isHidden,
                 suffixIcon: IconButton(
-                  icon: AppSvgIcons(iconPath: AppIconStrings.eyeOff),
+                  icon: isHidden
+                      ? AppSvgIcons(iconPath: AppIconStrings.eyeOff)
+                      : AppSvgIcons(iconPath: AppIconStrings.eye),
                   onPressed: () =>
                       context.read<AuthCubit>().togglePasswordVisibility(),
                 ),
@@ -148,7 +166,9 @@ class _SignupScreenState extends State<SignupScreen> {
                 hintText: context.l10n.confirm_new_password,
                 obscureText: isHidden,
                 suffixIcon: IconButton(
-                  icon: AppSvgIcons(iconPath: AppIconStrings.eyeOff),
+                  icon: isHidden
+                      ? AppSvgIcons(iconPath: AppIconStrings.eyeOff)
+                      : AppSvgIcons(iconPath: AppIconStrings.eye),
                   onPressed: () => context
                       .read<AuthCubit>()
                       .toggleConfirmPasswordVisibility(),
@@ -171,7 +191,6 @@ class _SignupScreenState extends State<SignupScreen> {
                     state is AuthLoading ? "Loading..." : context.l10n.register,
                 width: double.infinity,
                 height: responsiveHeight(context, 48),
-                textStyle: Theme.of(context).textTheme.labelMedium,
                 onPressed: () => _validateAndSubmit(context),
               );
             },

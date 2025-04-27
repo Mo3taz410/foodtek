@@ -34,7 +34,6 @@ class OrderHistoryTab extends StatelessWidget {
               padding: const EdgeInsets.all(12),
               child: Text(
                 context.l10n.load_more,
-                style: Theme.of(context).textTheme.bodyMedium,
               ),
             ),
           );
@@ -58,14 +57,12 @@ class OrderHistoryTab extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(food.name,
-                        style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                              fontWeight: FontWeight.bold,
-                            )),
+                    Text(
+                      food.name,
+                    ),
                     const SizedBox(height: 6),
                     Text(
                       '\$${food.currentPrice.toStringAsFixed(2)}',
-                      style: Theme.of(context).textTheme.bodyMedium,
                     ),
                   ],
                 ),
@@ -79,7 +76,9 @@ class OrderHistoryTab extends StatelessWidget {
                         size: 16,
                       ),
                       const SizedBox(width: 4),
-                      Text(date, style: Theme.of(context).textTheme.bodySmall),
+                      Text(
+                        date,
+                      ),
                     ],
                   ),
                   const SizedBox(height: 8),
@@ -89,7 +88,6 @@ class OrderHistoryTab extends StatelessWidget {
                     },
                     child: Text(
                       context.l10n.reorder,
-                      style: Theme.of(context).textTheme.labelMedium,
                     ),
                   )
                 ],
@@ -113,15 +111,11 @@ class OrderHistoryTab extends StatelessWidget {
             SizedBox(height: responsiveHeight(context, 24)),
             Text(
               title,
-              style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                    fontWeight: FontWeight.bold,
-                  ),
             ),
             SizedBox(height: responsiveHeight(context, 12)),
             Text(
               subtitle,
               textAlign: TextAlign.center,
-              style: Theme.of(context).textTheme.bodySmall,
             ),
           ],
         ),

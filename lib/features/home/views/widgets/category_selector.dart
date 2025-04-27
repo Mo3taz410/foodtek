@@ -37,8 +37,7 @@ class CategorySelector extends StatelessWidget {
             itemBuilder: (context, index) {
               final category = categories[index];
               final isSelected = selectedIndex == category;
-
-              return GestureDetector(
+              return InkWell(
                 onTap: () {
                   context.read<CategoryNavCubit>().updateCategory(category);
                 },
@@ -55,7 +54,9 @@ class CategorySelector extends StatelessWidget {
                         ? Theme.of(context).colorScheme.primary
                         : Colors.transparent,
                     border: Border.all(
-                        color: Theme.of(context).colorScheme.surface),
+                      color: Theme.of(context).colorScheme.outline,
+                      width: 1.5,
+                    ),
                     borderRadius: BorderRadius.circular(12),
                   ),
                   child: Row(
@@ -64,7 +65,7 @@ class CategorySelector extends StatelessWidget {
                       if (images[category]!.isNotEmpty)
                         AnimatedScale(
                           scale: isSelected ? 1.1 : 1.0,
-                          duration: const Duration(milliseconds: 500),
+                          duration: const Duration(milliseconds: 250),
                           child: Image.asset(
                             images[category]!,
                             width: responsiveWidth(context, 20),
@@ -74,8 +75,11 @@ class CategorySelector extends StatelessWidget {
                       if (images[category]!.isNotEmpty)
                         SizedBox(width: responsiveWidth(context, 6)),
                       AnimatedDefaultTextStyle(
-                        duration: const Duration(milliseconds: 500),
-                        style: Theme.of(context).textTheme.titleSmall!,
+                        duration: const Duration(milliseconds: 250),
+                        style: TextStyle(
+                            color: isSelected
+                                ? Theme.of(context).colorScheme.onPrimary
+                                : null),
                         child: Text(labels[category]!),
                       ),
                     ],
