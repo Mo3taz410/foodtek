@@ -24,7 +24,7 @@ class RecommendedFoodCard extends StatelessWidget {
             Image.asset(
               food.image,
               width: responsiveWidth(context, 80),
-              height: responsiveHeight(context, 108),
+              height: responsiveHeight(context, 110),
               fit: BoxFit.contain,
             ),
             Positioned(

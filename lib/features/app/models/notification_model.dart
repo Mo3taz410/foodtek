@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:foodtek/core/localization/localization_extension.dart';
-import 'notification_list.dart';
+import 'package:foodtek/features/app/models/notification_list.dart';
 
 class NotificationModal extends StatelessWidget {
   const NotificationModal({super.key});
@@ -15,40 +15,47 @@ class NotificationModal extends StatelessWidget {
       builder: (context, scrollController) {
         return Container(
           decoration: BoxDecoration(
+            color: Theme.of(context).colorScheme.secondary, // bottom part
             borderRadius: const BorderRadius.vertical(top: Radius.circular(20)),
           ),
           child: DefaultTabController(
             length: 3,
             child: Column(
               children: [
-                const SizedBox(height: 12),
                 Container(
-                  width: 40,
-                  height: 5,
+                  // this is top part
                   decoration: BoxDecoration(
                     color: Theme.of(context)
                         .colorScheme
-                        .outline
-                        .withValues(alpha: .3),
-                    borderRadius: BorderRadius.circular(20),
+                        .surface, // top color different
+                    borderRadius:
+                        const BorderRadius.vertical(top: Radius.circular(20)),
                   ),
-                ),
-                const SizedBox(height: 12),
-                Text(
-                  context.l10n.notifications,
-                ),
-                TabBar(
-                  // indicatorColor: Theme.of(context).colorScheme.primary,
-                  // labelColor: Theme.of(context).colorScheme.primary,
-                  // unselectedLabelColor: Theme.of(context)
-                  //     .colorScheme
-                  //     .onSurface
-                  //     .withValues(alpha: .6),
-                  tabs: [
-                    Tab(text: context.l10n.all),
-                    Tab(text: context.l10n.unread),
-                    Tab(text: context.l10n.read),
-                  ],
+                  child: Column(
+                    children: [
+                      const SizedBox(height: 12),
+                      Container(
+                        width: 40,
+                        height: 5,
+                        decoration: BoxDecoration(
+                          color: Theme.of(context).colorScheme.outline,
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                      ),
+                      const SizedBox(height: 12),
+                      Text(
+                        context.l10n.notifications,
+                        style: Theme.of(context).textTheme.titleLarge,
+                      ),
+                      TabBar(
+                        tabs: [
+                          Tab(text: context.l10n.all),
+                          Tab(text: context.l10n.unread),
+                          Tab(text: context.l10n.read),
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
                 Expanded(
                   child: TabBarView(

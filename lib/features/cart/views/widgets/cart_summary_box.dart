@@ -28,7 +28,7 @@ class CartSummaryBox extends StatelessWidget {
       margin: const EdgeInsets.all(12),
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
-        color: Theme.of(context).colorScheme.secondary,
+        color: Theme.of(context).colorScheme.primary,
         image: DecorationImage(
           image: AssetImage(AppImageStrings.checkoutBackgroundPattern),
           fit: BoxFit.cover,
@@ -59,6 +59,10 @@ class CartSummaryBox extends StatelessWidget {
             },
             width: responsiveWidth(context, 360),
             height: responsiveHeight(context, 50),
+            color: Theme.of(context).colorScheme.surface,
+            textStyle: Theme.of(context).textTheme.labelMedium!.copyWith(
+                  color: Theme.of(context).colorScheme.primary,
+                ),
           ),
         ],
       ),
@@ -77,14 +81,18 @@ class CartSummaryBox extends StatelessWidget {
             style: (isBold
                     ? Theme.of(context).textTheme.titleMedium
                     : Theme.of(context).textTheme.bodyMedium)
-                ?.copyWith(color: Colors.white),
+                ?.copyWith(
+              color: Theme.of(context).colorScheme.onPrimary,
+            ),
           ),
           Text(
             value,
             style: (isBold
                     ? Theme.of(context).textTheme.titleMedium
                     : Theme.of(context).textTheme.bodyMedium)
-                ?.copyWith(color: Colors.white),
+                ?.copyWith(
+              color: Theme.of(context).colorScheme.onPrimary,
+            ),
           ),
         ],
       ),

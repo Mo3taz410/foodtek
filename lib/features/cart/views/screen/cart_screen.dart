@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:foodtek/core/localization/localization_extension.dart';
 import 'package:foodtek/features/cart/views/widgets/cart_tab.dart';
 import '../../../app/views/widgets/app_custom_header.dart';
-import '../widgets/order_history_tab.dart';
+import '../widgets/history_tab.dart';
 
 class CartScreen extends StatelessWidget {
   const CartScreen({super.key});
@@ -28,7 +28,7 @@ class CartScreen extends StatelessWidget {
                 child: TabBarView(
                   children: [
                     const CartTab(),
-                    OrderHistoryTab(),
+                    HistoryTab(),
                   ],
                 ),
               ),

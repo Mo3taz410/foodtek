@@ -189,7 +189,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get favorites => 'المفضلة';
 
   @override
-  String get profile => 'الملف';
+  String get profile => 'الملف الشخصي';
 
   @override
   String get notifications => 'الإشعارات';
@@ -436,4 +436,10 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get dark_mode => 'الوضع الليلي';
+
+  @override
+  String get delivery_path => 'طريق التوصيل:';
+
+  @override
+  String get back => 'الرجوع';
 }

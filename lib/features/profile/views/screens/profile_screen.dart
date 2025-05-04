@@ -25,6 +25,7 @@ class ProfileScreen extends StatelessWidget {
               Center(
                 child: Text(
                   context.l10n.profile,
+                  style: Theme.of(context).textTheme.titleMedium,
                 ),
               ),
               Center(
@@ -37,9 +38,11 @@ class ProfileScreen extends StatelessWidget {
                     ),
                     Text(
                       'Waseem Samour',
+                      style: Theme.of(context).textTheme.labelLarge,
                     ),
                     Text(
                       'waseemsamour@gmail.com',
+                      style: Theme.of(context).textTheme.labelSmall,
                     ),
                   ],
                 ),
@@ -72,6 +75,7 @@ class ProfileScreen extends StatelessWidget {
                       Localizations.localeOf(context).languageCode == 'ar'
                           ? 'العربية'
                           : 'English',
+                      style: Theme.of(context).textTheme.labelMedium,
                     ),
                     onTap: () => _showLanguagePicker(context),
                   ),
@@ -145,6 +149,7 @@ class ProfileScreen extends StatelessWidget {
           children: [
             Text(
               title,
+              style: Theme.of(context).textTheme.labelLarge,
             ),
             ...children,
           ],
@@ -172,6 +177,7 @@ class ProfileScreen extends StatelessWidget {
         ),
         title: Text(
           title,
+          style: Theme.of(context).textTheme.labelMedium,
         ),
         trailing: trailing,
         onTap: onTap ?? () {},
@@ -188,11 +194,22 @@ class ProfileScreen extends StatelessWidget {
   }) {
     return ListTile(
       contentPadding: EdgeInsets.zero,
-      leading: icon,
+      leading: SizedBox(
+        width: responsiveWidth(context, 24),
+        height: responsiveHeight(context, 24),
+        child: Center(child: icon),
+      ),
       title: Text(
         title,
+        style: Theme.of(context).textTheme.labelMedium,
       ),
-      trailing: Switch(value: value, onChanged: onChanged),
+      trailing: Transform.scale(
+        scale: 0.8,
+        child: Switch(
+          value: value,
+          onChanged: onChanged,
+        ),
+      ),
     );
   }
 
@@ -209,35 +226,57 @@ class ProfileScreen extends StatelessWidget {
 
   void _showLanguagePicker(BuildContext context) {
     showModalBottomSheet(
+      backgroundColor: Theme.of(context).colorScheme.primary,
       context: context,
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
       ),
       builder: (context) {
-        return Padding(
-          padding: EdgeInsets.all(responsiveHeight(context, 16)),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Text(
-                context.l10n.choose_language,
-              ),
-              const Divider(),
-              ListTile(
-                title: const Text('English'),
-                onTap: () {
-                  context.read<LocalizationCubit>().changeLocale('en');
-                  Navigator.pop(context);
-                },
-              ),
-              ListTile(
-                title: const Text('العربية'),
-                onTap: () {
-                  context.read<LocalizationCubit>().changeLocale('ar');
-                  Navigator.pop(context);
-                },
-              ),
-            ],
+        return Container(
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage(AppImageStrings.backgroundPattern),
+              fit: BoxFit.cover,
+            ),
+          ),
+          child: Padding(
+            padding: EdgeInsets.all(responsiveHeight(context, 16)),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text(
+                  context.l10n.choose_language,
+                  style: Theme.of(context).textTheme.labelLarge?.copyWith(
+                        color: Theme.of(context).colorScheme.onPrimary,
+                      ),
+                ),
+                const Divider(),
+                ListTile(
+                  title: Text(
+                    'English',
+                    style: Theme.of(context).textTheme.labelMedium?.copyWith(
+                          color: Theme.of(context).colorScheme.onPrimary,
+                        ),
+                  ),
+                  onTap: () {
+                    context.read<LocalizationCubit>().changeLocale('en');
+                    Navigator.pop(context);
+                  },
+                ),
+                ListTile(
+                  title: Text(
+                    'العربية',
+                    style: Theme.of(context).textTheme.labelMedium?.copyWith(
+                          color: Theme.of(context).colorScheme.onPrimary,
+                        ),
+                  ),
+                  onTap: () {
+                    context.read<LocalizationCubit>().changeLocale('ar');
+                    Navigator.pop(context);
+                  },
+                ),
+              ],
+            ),
           ),
         );
       },

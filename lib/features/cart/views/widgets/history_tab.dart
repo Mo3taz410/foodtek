@@ -6,10 +6,10 @@ import 'package:foodtek/core/models/food_model.dart';
 import 'package:foodtek/core/utils/responsive.dart';
 import 'package:lottie/lottie.dart';
 
-class OrderHistoryTab extends StatelessWidget {
+class HistoryTab extends StatelessWidget {
   final List<String> orderHistoryIds = ['b2', 'p1', 'b3']; // Example IDs
 
-  OrderHistoryTab({super.key});
+  HistoryTab({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -111,11 +111,13 @@ class OrderHistoryTab extends StatelessWidget {
             SizedBox(height: responsiveHeight(context, 24)),
             Text(
               title,
+              style: Theme.of(context).textTheme.headlineMedium,
             ),
             SizedBox(height: responsiveHeight(context, 12)),
             Text(
               subtitle,
               textAlign: TextAlign.center,
+              style: Theme.of(context).textTheme.headlineSmall,
             ),
           ],
         ),

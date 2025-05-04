@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:foodtek/core/constants/app_image_strings.dart';
 import 'package:foodtek/core/dummy_data/food_dummy_data.dart';
 import 'package:foodtek/core/localization/localization_extension.dart';
 import 'package:foodtek/core/models/food_model.dart';
@@ -19,6 +20,10 @@ class RecommendedBottomSheet extends StatelessWidget {
     return Container(
       height: responsiveHeight(context, 240),
       decoration: BoxDecoration(
+        image: DecorationImage(
+          image: AssetImage(AppImageStrings.backgroundPattern),
+          fit: BoxFit.cover,
+        ),
         borderRadius: const BorderRadius.vertical(top: Radius.circular(24)),
       ),
       padding: EdgeInsets.symmetric(
@@ -30,6 +35,9 @@ class RecommendedBottomSheet extends StatelessWidget {
         children: [
           Text(
             context.l10n.top_recommendations,
+            style: Theme.of(context).textTheme.labelLarge!.copyWith(
+                  color: Theme.of(context).colorScheme.onPrimary,
+                ),
           ),
           const SizedBox(height: 12),
           SizedBox(

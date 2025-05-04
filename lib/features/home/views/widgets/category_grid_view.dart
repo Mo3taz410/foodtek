@@ -40,8 +40,7 @@ class CategoryGridView extends StatelessWidget {
           itemCount: filteredFoods.length,
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 2,
-            mainAxisExtent: responsiveHeight(context, 320),
-            mainAxisSpacing: responsiveHeight(context, 20),
+            mainAxisExtent: responsiveHeight(context, 275),
             crossAxisSpacing: responsiveWidth(context, 16),
           ),
           itemBuilder: (context, index) {

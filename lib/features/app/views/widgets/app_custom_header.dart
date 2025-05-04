@@ -58,6 +58,7 @@ class _AppCustomHeaderState extends State<AppCustomHeader> {
                 ),
                 child: AppSvgIcons(
                   iconPath: AppIconStrings.mapPinUnderlined,
+                  color: Theme.of(context).colorScheme.primary,
                 ),
               ),
               const SizedBox(width: 8),
@@ -124,7 +125,7 @@ class _AppCustomHeaderState extends State<AppCustomHeader> {
                     );
                   },
                 ),
-              )
+              ),
             ],
           ),
         ),

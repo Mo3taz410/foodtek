@@ -77,9 +77,10 @@ class CategorySelector extends StatelessWidget {
                       AnimatedDefaultTextStyle(
                         duration: const Duration(milliseconds: 250),
                         style: TextStyle(
-                            color: isSelected
-                                ? Theme.of(context).colorScheme.onPrimary
-                                : null),
+                          color: isSelected
+                              ? Theme.of(context).colorScheme.onPrimary
+                              : Theme.of(context).colorScheme.onSurface,
+                        ),
                         child: Text(labels[category]!),
                       ),
                     ],

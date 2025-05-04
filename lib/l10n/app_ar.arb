@@ -118,7 +118,7 @@
   "unread": "غير مقروئة",
   "read": "مقروئة",
   "my_account": "حسابي",
-  "profile": "الملف",
+  "profile": "الملف الشخصي",
   "personal_information": "المعلومات الشخصية",
   "language": "اللغة",
   "privacy_policy": "سياسة الخصوصية",
@@ -142,5 +142,7 @@
   "choose_language": "اختر اللغة",
   "top_recommendations": "أكثر العناصر الموصى بها",
   "loading": "جار التحميل...",
-  "dark_mode": "الوضع الليلي"
+  "dark_mode": "الوضع الليلي",
+  "delivery_path": "طريق التوصيل:",
+  "back": "الرجوع"
 }

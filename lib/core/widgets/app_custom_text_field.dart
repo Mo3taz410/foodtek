@@ -51,6 +51,7 @@ class AppCustomTextField extends StatelessWidget {
           child: TextField(
             readOnly: readOnly ?? false,
             controller: controller,
+            style: Theme.of(context).textTheme.labelMedium,
             obscureText: obscureText,
             keyboardType: keyboardType,
             focusNode: focusNode,
@@ -64,7 +65,6 @@ class AppCustomTextField extends StatelessWidget {
               filled: true,
               contentPadding: EdgeInsets.symmetric(
                 horizontal: responsiveWidth(context, 14),
-                vertical: responsiveHeight(context, -20),
               ),
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(12),

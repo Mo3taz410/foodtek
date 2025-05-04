@@ -52,8 +52,12 @@ class LoginScreen extends StatelessWidget {
                 obscureText: isHidden,
                 suffixIcon: IconButton(
                   icon: isHidden
-                      ? AppSvgIcons(iconPath: AppIconStrings.eyeOff)
-                      : AppSvgIcons(iconPath: AppIconStrings.eye),
+                      ? AppSvgIcons(
+                          iconPath: AppIconStrings.eyeOff,
+                          color: Theme.of(context).colorScheme.primary)
+                      : AppSvgIcons(
+                          iconPath: AppIconStrings.eye,
+                          color: Theme.of(context).colorScheme.primary),
                   onPressed: () =>
                       context.read<AuthCubit>().togglePasswordVisibility(),
                 ),

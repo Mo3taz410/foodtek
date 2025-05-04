@@ -42,11 +42,15 @@ class FloatingCartIcon extends StatelessWidget {
                 padding: const EdgeInsets.all(4),
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
+                  color: Colors.red,
                 ),
                 constraints: const BoxConstraints(minWidth: 20, minHeight: 20),
                 child: Center(
                   child: Text(
                     itemCount > 99 ? '99+' : '$itemCount',
+                    style: Theme.of(context).textTheme.bodySmall!.copyWith(
+                          color: Colors.white,
+                        ),
                   ),
                 ),
               ),

@@ -12,6 +12,7 @@ class AppIconStrings {
   static const String home = 'assets/icons/bottom_nav_bar/home.svg';
   static const String favorites = 'assets/icons/bottom_nav_bar/favorites.svg';
   static const String favoritesFilled = 'assets/icons/favorites_filled.svg';
+  static const String thunder = 'assets/icons/thunder.svg';
   static const String cart = 'assets/icons/bottom_nav_bar/cart.svg';
   static const String track = 'assets/icons/bottom_nav_bar/track_location.svg';
   static const String profile = 'assets/icons/bottom_nav_bar/profile.svg';
@@ -25,4 +26,7 @@ class AppIconStrings {
   static const String helpCenter = 'assets/icons/profile/help_center.svg';
   static const String logOut = 'assets/icons/profile/log_out.svg';
   static const String delete = 'assets/icons/delete.svg';
+  static const String restaurentLocation =
+      'assets/icons/restaurant_location.svg';
+  static const String userLocation = 'assets/icons/user_location.svg';
 }

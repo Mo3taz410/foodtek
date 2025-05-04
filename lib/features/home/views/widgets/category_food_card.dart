@@ -20,13 +20,17 @@ class CategoryFoodCard extends StatelessWidget {
       showDialog(
         context: context,
         barrierColor: Colors.transparent,
+        barrierDismissible: true,
         builder: (BuildContext context) {
           return Stack(
             children: [
-              BackdropFilter(
-                filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
-                child: Container(
-                  color: Colors.black.withValues(alpha: .6),
+              GestureDetector(
+                onTap: () => Navigator.of(context).pop(),
+                child: BackdropFilter(
+                  filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
+                  child: Container(
+                    color: Colors.black.withValues(alpha: .6),
+                  ),
                 ),
               ),
               Center(
@@ -41,12 +45,13 @@ class CategoryFoodCard extends StatelessWidget {
                     ),
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
-                      spacing: responsiveHeight(context, 30),
                       children: [
                         Text(
                           context.l10n.remove_from_favorites,
                           textAlign: TextAlign.center,
+                          style: Theme.of(context).textTheme.bodySmall,
                         ),
+                        SizedBox(height: responsiveHeight(context, 30)),
                         AppCustomButton(
                           text: context.l10n.yes,
                           width: double.infinity,
@@ -55,7 +60,7 @@ class CategoryFoodCard extends StatelessWidget {
                             cubit.toggleFavorite(food.id);
                             Navigator.pop(context);
                           },
-                        )
+                        ),
                       ],
                     ),
                   ),
@@ -75,7 +80,6 @@ class CategoryFoodCard extends StatelessWidget {
     return BlocBuilder<FavoritesCubit, Set<String>>(
       builder: (context, favorites) {
         final isFavorite = favorites.contains(food.id);
-
         return Stack(
           clipBehavior: Clip.none,
           children: [
@@ -88,7 +92,9 @@ class CategoryFoodCard extends StatelessWidget {
               ),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(25),
-                border: Border.all(),
+                border: Border.all(
+                  color: Theme.of(context).colorScheme.outline,
+                ),
               ),
               child: Column(
                 spacing: responsiveHeight(context, 15),
@@ -99,14 +105,37 @@ class CategoryFoodCard extends StatelessWidget {
                   Text(
                     food.name,
                     textAlign: TextAlign.center,
+                    style: Theme.of(context).textTheme.labelMedium,
                   ),
-                  Text(
-                    food.description,
-                    textAlign: TextAlign.center,
-                    maxLines: 2,
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Container(
+                        width: responsiveWidth(context, 10),
+                        height: responsiveHeight(context, 45),
+                        alignment: Alignment.topCenter,
+                        child: AppSvgIcons(
+                          iconPath: AppIconStrings.thunder,
+                          width: responsiveWidth(context, 8),
+                          height: responsiveHeight(context, 10),
+                          color: Colors.amber,
+                        ),
+                      ),
+                      SizedBox(width: responsiveWidth(context, 4)),
+                      Expanded(
+                        child: Text(
+                          food.description,
+                          maxLines: 3,
+                          overflow: TextOverflow.ellipsis,
+                          textAlign: TextAlign.start,
+                          style: Theme.of(context).textTheme.labelSmall,
+                        ),
+                      ),
+                    ],
                   ),
                   Text(
                     '\$${food.currentPrice.toStringAsFixed(2)}',
+                    style: Theme.of(context).textTheme.labelMedium,
                   ),
                 ],
               ),
@@ -123,12 +152,16 @@ class CategoryFoodCard extends StatelessWidget {
                 ),
                 child: Center(
                   child: Container(
-                    width: responsiveWidth(context, 75),
-                    height: responsiveHeight(context, 75),
-                    decoration: const BoxDecoration(shape: BoxShape.circle),
+                    width: responsiveWidth(context, 90),
+                    height: responsiveHeight(context, 90),
+                    decoration: const BoxDecoration(
+                      shape: BoxShape.circle,
+                    ),
                     child: Image.asset(
                       food.image,
-                      fit: BoxFit.cover,
+                      fit: BoxFit.contain,
+                      width: responsiveWidth(context, 75),
+                      height: responsiveHeight(context, 75),
                     ),
                   ),
                 ),
@@ -164,17 +197,20 @@ class CategoryFoodCard extends StatelessWidget {
               ),
             ),
             Positioned(
-              bottom: responsiveHeight(context, 100),
+              bottom: responsiveHeight(context, 60),
               left: 0,
               right: 0,
               child: Center(
                 child: AppCustomButton(
                   text: context.l10n.order_now,
+                  textStyle: Theme.of(context).textTheme.labelSmall?.copyWith(
+                        color: Theme.of(context).colorScheme.onPrimary,
+                      ),
                   onPressed: () {
                     Navigator.pushNamed(context, '/food_details',
                         arguments: food);
                   },
-                  height: responsiveHeight(context, 40),
+                  height: responsiveHeight(context, 30),
                   width: responsiveWidth(context, 100),
                   borderRadius: 30,
                 ),

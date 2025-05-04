@@ -4,6 +4,7 @@ class AppCustomButton extends StatelessWidget {
   final String text;
   final VoidCallback onPressed;
   final Color? color;
+  final TextStyle? textStyle;
   final double borderRadius;
   final double? width;
   final double? height;
@@ -16,6 +17,7 @@ class AppCustomButton extends StatelessWidget {
     required this.onPressed,
     this.color,
     this.borderRadius = 8.0,
+    this.textStyle,
   });
 
   @override
@@ -36,9 +38,10 @@ class AppCustomButton extends StatelessWidget {
         child: Text(
           text,
           textAlign: TextAlign.center,
-          style: Theme.of(context).textTheme.labelMedium!.copyWith(
-                color: Theme.of(context).colorScheme.onPrimary,
-              ),
+          style: textStyle ??
+              Theme.of(context).textTheme.labelMedium!.copyWith(
+                    color: Theme.of(context).colorScheme.onPrimary,
+                  ),
         ),
       ),
     );

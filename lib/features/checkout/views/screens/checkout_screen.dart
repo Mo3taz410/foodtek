@@ -23,10 +23,15 @@ class CheckoutScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 Container(
+                  width: responsiveWidth(context, 34),
+                  height: responsiveHeight(context, 34),
                   decoration: BoxDecoration(
+                    color: Theme.of(context).colorScheme.secondary,
                     borderRadius: BorderRadius.circular(4),
                   ),
                   child: IconButton(
+                    icon:
+                        AppSvgIcons(iconPath: AppIconStrings.notificationsBell),
                     onPressed: () {
                       showModalBottomSheet(
                         context: context,
@@ -35,11 +40,9 @@ class CheckoutScreen extends StatelessWidget {
                           borderRadius:
                               BorderRadius.vertical(top: Radius.circular(20)),
                         ),
-                        builder: (context) => const NotificationModal(),
+                        builder: (_) => const NotificationModal(),
                       );
                     },
-                    icon:
-                        AppSvgIcons(iconPath: AppIconStrings.notificationsBell),
                   ),
                 ),
               ],
@@ -47,6 +50,26 @@ class CheckoutScreen extends StatelessWidget {
             SizedBox(height: responsiveHeight(context, 30)),
             Text(
               context.l10n.checkout,
+              style: Theme.of(context).textTheme.titleMedium,
+            ),
+            SizedBox(height: responsiveHeight(context, 20)),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              spacing: responsiveHeight(context, 20), // for now,,,,,,
+              children: [
+                Text(
+                  context.l10n.delivery_path,
+                  style: Theme.of(context).textTheme.titleSmall,
+                ),
+                AppSvgIcons(
+                  iconPath: AppIconStrings.restaurentLocation,
+                  color: Theme.of(context).colorScheme.primary,
+                ),
+                AppSvgIcons(
+                  iconPath: AppIconStrings.userLocation,
+                  color: Theme.of(context).colorScheme.primary,
+                ),
+              ],
             ),
           ],
         ),

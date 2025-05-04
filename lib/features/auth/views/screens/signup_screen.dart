@@ -21,6 +21,7 @@ class SignupScreen extends StatefulWidget {
 class _SignupScreenState extends State<SignupScreen> {
   final fullNameController = TextEditingController();
   final emailController = TextEditingController();
+  final birthDateController = TextEditingController();
   final phoneController = TextEditingController();
   final passwordController = TextEditingController();
   final confirmPasswordController = TextEditingController();
@@ -29,6 +30,7 @@ class _SignupScreenState extends State<SignupScreen> {
   void dispose() {
     fullNameController.dispose();
     emailController.dispose();
+    birthDateController.dispose();
     phoneController.dispose();
     passwordController.dispose();
     confirmPasswordController.dispose();
@@ -89,20 +91,17 @@ class _SignupScreenState extends State<SignupScreen> {
           ),
           BlocBuilder<AuthCubit, AuthState>(
             builder: (context, state) {
-              final birthDate =
-                  state is AuthInitial ? state.selectedBirthDate : null;
+              // final birthDate =
+              //     state is AuthInitial ? state.selectedBirthDate : null;
               return AppCustomTextField(
-                controller: TextEditingController(
-                  text: birthDate != null
-                      ? "${birthDate.toLocal()}".split(" ")[0]
-                      : '',
-                ),
+                controller: birthDateController,
                 hintText: context.l10n.birth_date,
                 label: context.l10n.birth_date,
                 readOnly: true,
                 suffixIcon: IconButton(
                   icon: AppSvgIcons(
                     iconPath: AppIconStrings.calendar,
+                    color: Theme.of(context).colorScheme.primary,
                   ),
                   onPressed: () async {
                     final picked = await showDatePicker(
@@ -127,6 +126,8 @@ class _SignupScreenState extends State<SignupScreen> {
                     if (picked != null) {
                       if (!context.mounted) return;
                       context.read<AuthCubit>().updateBirthDate(picked);
+                      birthDateController.text =
+                          "${picked.toLocal()}".split(" ")[0];
                     }
                   },
                 ),
@@ -148,8 +149,12 @@ class _SignupScreenState extends State<SignupScreen> {
                 obscureText: isHidden,
                 suffixIcon: IconButton(
                   icon: isHidden
-                      ? AppSvgIcons(iconPath: AppIconStrings.eyeOff)
-                      : AppSvgIcons(iconPath: AppIconStrings.eye),
+                      ? AppSvgIcons(
+                          iconPath: AppIconStrings.eyeOff,
+                          color: Theme.of(context).colorScheme.primary)
+                      : AppSvgIcons(
+                          iconPath: AppIconStrings.eye,
+                          color: Theme.of(context).colorScheme.primary),
                   onPressed: () =>
                       context.read<AuthCubit>().togglePasswordVisibility(),
                 ),
@@ -167,8 +172,12 @@ class _SignupScreenState extends State<SignupScreen> {
                 obscureText: isHidden,
                 suffixIcon: IconButton(
                   icon: isHidden
-                      ? AppSvgIcons(iconPath: AppIconStrings.eyeOff)
-                      : AppSvgIcons(iconPath: AppIconStrings.eye),
+                      ? AppSvgIcons(
+                          iconPath: AppIconStrings.eyeOff,
+                          color: Theme.of(context).colorScheme.primary)
+                      : AppSvgIcons(
+                          iconPath: AppIconStrings.eye,
+                          color: Theme.of(context).colorScheme.primary),
                   onPressed: () => context
                       .read<AuthCubit>()
                       .toggleConfirmPasswordVisibility(),

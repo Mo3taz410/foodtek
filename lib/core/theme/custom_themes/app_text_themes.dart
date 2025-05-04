@@ -42,7 +42,7 @@ class AppTextThemes {
     labelMedium: TextStyle(
       fontSize: 14.sp,
       fontFamily: 'Inter',
-      fontWeight: FontWeight.w600,
+      fontWeight: FontWeight.w500,
     ),
     labelSmall: TextStyle(
       fontSize: 12.sp,
@@ -59,6 +59,21 @@ class AppTextThemes {
       fontSize: 12.sp,
       fontFamily: 'Avenir',
       fontWeight: FontWeight.w400,
+    ),
+    titleLarge: TextStyle(
+      fontSize: 24.sp,
+      fontFamily: 'Inter',
+      fontWeight: FontWeight.w600,
+    ),
+    titleMedium: TextStyle(
+      fontSize: 20.sp,
+      fontFamily: 'Inter',
+      fontWeight: FontWeight.w600,
+    ),
+    titleSmall: TextStyle(
+      fontSize: 18.sp,
+      fontFamily: 'Inter',
+      fontWeight: FontWeight.w600,
     ),
   );
 
@@ -99,9 +114,12 @@ class AppTextThemes {
       fontWeight: FontWeight.w600,
     ),
     labelMedium: TextStyle(
-      fontSize: 12.sp,
+      // fontSize: 12.sp,
+      // fontFamily: 'Inter',
+      // fontWeight: FontWeight.w700,
+      fontSize: 14.sp,
       fontFamily: 'Inter',
-      fontWeight: FontWeight.w700,
+      fontWeight: FontWeight.w500,
     ),
     labelSmall: TextStyle(
       fontSize: 10.sp,
@@ -117,6 +135,21 @@ class AppTextThemes {
       fontSize: 12.sp,
       fontFamily: 'Avenir',
       fontWeight: FontWeight.w400,
+    ),
+    titleLarge: TextStyle(
+      fontSize: 24.sp,
+      fontFamily: 'Inter',
+      fontWeight: FontWeight.w600,
+    ),
+    titleMedium: TextStyle(
+      fontSize: 20.sp,
+      fontFamily: 'Inter',
+      fontWeight: FontWeight.w600,
+    ),
+    titleSmall: TextStyle(
+      fontSize: 18.sp,
+      fontFamily: 'Inter',
+      fontWeight: FontWeight.w600,
     ),
   );
 }

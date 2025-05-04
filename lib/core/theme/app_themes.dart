@@ -43,6 +43,20 @@ class AppThemes {
         textStyle: AppTextThemes.lightTextTheme.bodySmall,
       ),
     ),
+    tabBarTheme: TabBarTheme(
+      labelColor: AppLightColors.primary,
+      labelStyle: AppTextThemes.lightTextTheme.labelLarge,
+      unselectedLabelStyle: AppTextThemes.lightTextTheme.labelLarge,
+      dividerColor: AppLightColors.outline,
+    ),
+    bottomSheetTheme: BottomSheetThemeData(
+      modalBackgroundColor: AppLightColors.secondary,
+    ),
+    dividerTheme: DividerThemeData(color: AppLightColors.outline),
+    switchTheme: SwitchThemeData(
+      thumbColor: MaterialStateProperty.all(AppLightColors.secondary),
+      trackColor: MaterialStateProperty.all(AppLightColors.primary),
+    ),
   );
 
   static ThemeData darkTheme = ThemeData(
@@ -82,6 +96,20 @@ class AppThemes {
         foregroundColor: AppDarkColors.onPrimary,
         textStyle: AppTextThemes.darkTextTheme.bodySmall,
       ),
+    ),
+    tabBarTheme: TabBarTheme(
+      labelColor: AppDarkColors.primary,
+      labelStyle: AppTextThemes.darkTextTheme.labelLarge,
+      unselectedLabelStyle: AppTextThemes.darkTextTheme.labelLarge,
+      dividerColor: AppDarkColors.outline,
+    ),
+    bottomSheetTheme: BottomSheetThemeData(
+      modalBackgroundColor: AppDarkColors.secondary,
+    ),
+    dividerTheme: DividerThemeData(color: AppDarkColors.outline),
+    switchTheme: SwitchThemeData(
+      thumbColor: MaterialStateProperty.all(AppDarkColors.secondary),
+      trackColor: MaterialStateProperty.all(AppDarkColors.primary),
     ),
   );
 }

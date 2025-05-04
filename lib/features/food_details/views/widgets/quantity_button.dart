@@ -4,12 +4,14 @@ class QuantityButton extends StatelessWidget {
   final IconData icon;
   final VoidCallback onTap;
   final Color? color;
+  final Color? iconColor;
 
   const QuantityButton({
     super.key,
     required this.icon,
     required this.onTap,
     this.color,
+    this.iconColor,
   });
 
   @override
@@ -17,14 +19,19 @@ class QuantityButton extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         color: color ?? Colors.transparent,
-        border: Border.all(),
-        borderRadius: BorderRadius.circular(8),
+        border: Border.all(
+          color: Theme.of(context).colorScheme.primary,
+        ),
+        borderRadius: BorderRadius.circular(12),
       ),
       child: InkWell(
         onTap: onTap,
         child: Padding(
           padding: const EdgeInsets.all(4.0),
-          child: Icon(icon, color: Theme.of(context).colorScheme.onSecondary),
+          child: Icon(
+            icon,
+            color: iconColor ?? Theme.of(context).colorScheme.primary,
+          ),
         ),
       ),
     );

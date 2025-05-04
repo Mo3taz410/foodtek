@@ -98,13 +98,13 @@ abstract class AppLocalizations {
   /// No description provided for @welcome_title.
   ///
   /// In en, this message translates to:
-  /// **'Welcome To Sahlah'**
+  /// **'Welcome to Sahlah'**
   String get welcome_title;
 
   /// No description provided for @welcome_subtitle.
   ///
   /// In en, this message translates to:
-  /// **'Enjoy A Fast And Smooth Food Delivery At Your Doorstep'**
+  /// **'Enjoy fast and smooth food delivery to your doorstep'**
   String get welcome_subtitle;
 
   /// No description provided for @continue_.
@@ -122,13 +122,13 @@ abstract class AppLocalizations {
   /// No description provided for @delivery_on_time.
   ///
   /// In en, this message translates to:
-  /// **'Get Delivery On Time'**
+  /// **'Get Delivery on Time'**
   String get delivery_on_time;
 
   /// No description provided for @delivery_description.
   ///
   /// In en, this message translates to:
-  /// **'Order Your Favorite Food Within The Palm Of Your Hand And The Zone Of Your Comfort'**
+  /// **'Order your favorite food from the palm of your hand and within the comfort of your zone'**
   String get delivery_description;
 
   /// No description provided for @choose_food.
@@ -146,7 +146,7 @@ abstract class AppLocalizations {
   /// No description provided for @location_description.
   ///
   /// In en, this message translates to:
-  /// **'To Continue, Let Your Device Turn On Location, Which Uses Google’s Location Service'**
+  /// **'To continue, please allow your device to turn on location services, which use Google’s Location Service'**
   String get location_description;
 
   /// No description provided for @yes_turn_on.
@@ -194,7 +194,7 @@ abstract class AppLocalizations {
   /// No description provided for @remember_me.
   ///
   /// In en, this message translates to:
-  /// **'Remember me'**
+  /// **'Remember Me'**
   String get remember_me;
 
   /// No description provided for @forgot_password.
@@ -296,7 +296,7 @@ abstract class AppLocalizations {
   /// No description provided for @error_invalid_password.
   ///
   /// In en, this message translates to:
-  /// **'Password must include upper, lower, digit and symbol'**
+  /// **'Password must include uppercase, lowercase, a digit, and a symbol'**
   String get error_invalid_password;
 
   /// No description provided for @error_passwords_mismatch.
@@ -320,7 +320,7 @@ abstract class AppLocalizations {
   /// No description provided for @reset_password_description.
   ///
   /// In en, this message translates to:
-  /// **'Enter your e-mail or phone and we’ll send you a code to reset your account'**
+  /// **'Enter your email or phone number and we’ll send you a code to reset your account'**
   String get reset_password_description;
 
   /// No description provided for @send.
@@ -332,7 +332,7 @@ abstract class AppLocalizations {
   /// No description provided for @enter_code.
   ///
   /// In en, this message translates to:
-  /// **'A 4-digit code has been sent to your email. Please enter it below.'**
+  /// **'A 4-digit code has been sent to your email. Please enter it below'**
   String get enter_code;
 
   /// No description provided for @verify.
@@ -380,7 +380,7 @@ abstract class AppLocalizations {
   /// No description provided for @search_menu.
   ///
   /// In en, this message translates to:
-  /// **'Search menu, restaurant or etc'**
+  /// **'Search menu, restaurant, or more'**
   String get search_menu;
 
   /// No description provided for @all.
@@ -410,7 +410,7 @@ abstract class AppLocalizations {
   /// No description provided for @experience_new_dish.
   ///
   /// In en, this message translates to:
-  /// **'Experience our delicious new dish'**
+  /// **'Experience Our Delicious New Dish'**
   String get experience_new_dish;
 
   /// No description provided for @discount_30.
@@ -428,7 +428,7 @@ abstract class AppLocalizations {
   /// No description provided for @recommend.
   ///
   /// In en, this message translates to:
-  /// **'Recommend'**
+  /// **'Recommended'**
   String get recommend;
 
   /// No description provided for @view_all.
@@ -488,7 +488,7 @@ abstract class AppLocalizations {
   /// No description provided for @promotional_offer_msg.
   ///
   /// In en, this message translates to:
-  /// **'Craving something delicious? Get 20% off on your next order. Use code: YUMMY20.'**
+  /// **'Craving something delicious? Get 20% off your next order. Use code: YUMMY20.'**
   String get promotional_offer_msg;
 
   /// No description provided for @out_for_delivery.
@@ -500,7 +500,7 @@ abstract class AppLocalizations {
   /// No description provided for @out_for_delivery_msg.
   ///
   /// In en, this message translates to:
-  /// **'Your order is on the way! Estimated arrival: 15 mins. Stay hungry!'**
+  /// **'Your order is on the way! Estimated arrival: 15 minutes. Stay hungry!'**
   String get out_for_delivery_msg;
 
   /// No description provided for @order_confirmation.
@@ -530,7 +530,7 @@ abstract class AppLocalizations {
   /// No description provided for @remove_from_favorites.
   ///
   /// In en, this message translates to:
-  /// **'Are you sure you want to remove it from favorites?'**
+  /// **'Are you sure you want to remove this from favorites?'**
   String get remove_from_favorites;
 
   /// No description provided for @yes.
@@ -542,13 +542,13 @@ abstract class AppLocalizations {
   /// No description provided for @current_location.
   ///
   /// In en, this message translates to:
-  /// **'Current location'**
+  /// **'Current Location'**
   String get current_location;
 
   /// No description provided for @search_placeholder.
   ///
   /// In en, this message translates to:
-  /// **'Search menu, restaurant or etc'**
+  /// **'Search menu, restaurant, or more'**
   String get search_placeholder;
 
   /// No description provided for @cheeseburger_title.
@@ -560,7 +560,7 @@ abstract class AppLocalizations {
   /// No description provided for @reviews.
   ///
   /// In en, this message translates to:
-  /// **'reviews'**
+  /// **'Reviews'**
   String get reviews;
 
   /// No description provided for @spicy.
@@ -590,7 +590,7 @@ abstract class AppLocalizations {
   /// No description provided for @add_to_cart.
   ///
   /// In en, this message translates to:
-  /// **'Add To Cart'**
+  /// **'Add to Cart'**
   String get add_to_cart;
 
   /// No description provided for @filter.
@@ -602,7 +602,7 @@ abstract class AppLocalizations {
   /// No description provided for @price_range.
   ///
   /// In en, this message translates to:
-  /// **'Price range'**
+  /// **'Price Range'**
   String get price_range;
 
   /// No description provided for @min.
@@ -638,7 +638,7 @@ abstract class AppLocalizations {
   /// No description provided for @sea_food.
   ///
   /// In en, this message translates to:
-  /// **'Sea Food'**
+  /// **'Seafood'**
   String get sea_food;
 
   /// No description provided for @dessert.
@@ -728,7 +728,7 @@ abstract class AppLocalizations {
   /// No description provided for @sub_total.
   ///
   /// In en, this message translates to:
-  /// **'Sub-Total'**
+  /// **'Subtotal'**
   String get sub_total;
 
   /// No description provided for @delivery_charge.
@@ -758,7 +758,7 @@ abstract class AppLocalizations {
   /// No description provided for @load_more.
   ///
   /// In en, this message translates to:
-  /// **'Load More..'**
+  /// **'Load More...'**
   String get load_more;
 
   /// No description provided for @cart_empty.
@@ -770,7 +770,7 @@ abstract class AppLocalizations {
   /// No description provided for @cart_empty_message.
   ///
   /// In en, this message translates to:
-  /// **'You didn’t have add any foods in cart at this time'**
+  /// **'You haven’t added any foods to your cart yet'**
   String get cart_empty_message;
 
   /// No description provided for @history_empty.
@@ -782,7 +782,7 @@ abstract class AppLocalizations {
   /// No description provided for @history_empty_message.
   ///
   /// In en, this message translates to:
-  /// **'You didn’t have order any foods before'**
+  /// **'You haven’t ordered any foods before'**
   String get history_empty_message;
 
   /// No description provided for @track.
@@ -794,13 +794,13 @@ abstract class AppLocalizations {
   /// No description provided for @unread.
   ///
   /// In en, this message translates to:
-  /// **'unread'**
+  /// **'Unread'**
   String get unread;
 
   /// No description provided for @read.
   ///
   /// In en, this message translates to:
-  /// **'read'**
+  /// **'Read'**
   String get read;
 
   /// No description provided for @my_account.
@@ -812,7 +812,7 @@ abstract class AppLocalizations {
   /// No description provided for @personal_information.
   ///
   /// In en, this message translates to:
-  /// **'Personal information'**
+  /// **'Personal Information'**
   String get personal_information;
 
   /// No description provided for @language.
@@ -884,25 +884,25 @@ abstract class AppLocalizations {
   /// No description provided for @location_permission_denied.
   ///
   /// In en, this message translates to:
-  /// **'Permission denied.'**
+  /// **'Location permission denied.'**
   String get location_permission_denied;
 
   /// No description provided for @location_permission_denied_forever.
   ///
   /// In en, this message translates to:
-  /// **'Permission denied forever.'**
+  /// **'Location permission denied permanently.'**
   String get location_permission_denied_forever;
 
   /// No description provided for @location_unknown.
   ///
   /// In en, this message translates to:
-  /// **'Unknown location'**
+  /// **'Unknown Location'**
   String get location_unknown;
 
   /// No description provided for @no_favorites_yet.
   ///
   /// In en, this message translates to:
-  /// **'No favorites yet'**
+  /// **'No Favorites Yet'**
   String get no_favorites_yet;
 
   /// No description provided for @no_food_founds_in_this_category.
@@ -914,7 +914,7 @@ abstract class AppLocalizations {
   /// No description provided for @remove_from_cart.
   ///
   /// In en, this message translates to:
-  /// **'Are you sure you want to remove it from cart?'**
+  /// **'Are you sure you want to remove this from your cart?'**
   String get remove_from_cart;
 
   /// No description provided for @checkout.
@@ -952,6 +952,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Dark Mode'**
   String get dark_mode;
+
+  /// No description provided for @delivery_path.
+  ///
+  /// In en, this message translates to:
+  /// **'Delivery Path:'**
+  String get delivery_path;
+
+  /// No description provided for @back.
+  ///
+  /// In en, this message translates to:
+  /// **'Back'**
+  String get back;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

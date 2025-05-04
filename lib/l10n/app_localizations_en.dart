@@ -9,10 +9,10 @@ class AppLocalizationsEn extends AppLocalizations {
   AppLocalizationsEn([String locale = 'en']) : super(locale);
 
   @override
-  String get welcome_title => 'Welcome To Sahlah';
+  String get welcome_title => 'Welcome to Sahlah';
 
   @override
-  String get welcome_subtitle => 'Enjoy A Fast And Smooth Food Delivery At Your Doorstep';
+  String get welcome_subtitle => 'Enjoy fast and smooth food delivery to your doorstep';
 
   @override
   String get continue_ => 'Continue';
@@ -21,10 +21,10 @@ class AppLocalizationsEn extends AppLocalizations {
   String get skip => 'Skip';
 
   @override
-  String get delivery_on_time => 'Get Delivery On Time';
+  String get delivery_on_time => 'Get Delivery on Time';
 
   @override
-  String get delivery_description => 'Order Your Favorite Food Within The Palm Of Your Hand And The Zone Of Your Comfort';
+  String get delivery_description => 'Order your favorite food from the palm of your hand and within the comfort of your zone';
 
   @override
   String get choose_food => 'Choose Your Food';
@@ -33,7 +33,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get turn_on_location => 'Turn On Your Location';
 
   @override
-  String get location_description => 'To Continue, Let Your Device Turn On Location, Which Uses Google’s Location Service';
+  String get location_description => 'To continue, please allow your device to turn on location services, which use Google’s Location Service';
 
   @override
   String get yes_turn_on => 'Yes, Turn It On';
@@ -57,7 +57,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get password => 'Password';
 
   @override
-  String get remember_me => 'Remember me';
+  String get remember_me => 'Remember Me';
 
   @override
   String get forgot_password => 'Forgot Password?';
@@ -108,7 +108,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get error_invalid_phone => 'Please enter a valid phone number';
 
   @override
-  String get error_invalid_password => 'Password must include upper, lower, digit and symbol';
+  String get error_invalid_password => 'Password must include uppercase, lowercase, a digit, and a symbol';
 
   @override
   String get error_passwords_mismatch => 'Passwords do not match';
@@ -120,13 +120,13 @@ class AppLocalizationsEn extends AppLocalizations {
   String get reset_password => 'Reset Password';
 
   @override
-  String get reset_password_description => 'Enter your e-mail or phone and we’ll send you a code to reset your account';
+  String get reset_password_description => 'Enter your email or phone number and we’ll send you a code to reset your account';
 
   @override
   String get send => 'Send';
 
   @override
-  String get enter_code => 'A 4-digit code has been sent to your email. Please enter it below.';
+  String get enter_code => 'A 4-digit code has been sent to your email. Please enter it below';
 
   @override
   String get verify => 'Verify';
@@ -150,7 +150,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get password_reset_success => 'Password reset successfully';
 
   @override
-  String get search_menu => 'Search menu, restaurant or etc';
+  String get search_menu => 'Search menu, restaurant, or more';
 
   @override
   String get all => 'All';
@@ -165,7 +165,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get sandwich => 'Sandwich';
 
   @override
-  String get experience_new_dish => 'Experience our delicious new dish';
+  String get experience_new_dish => 'Experience Our Delicious New Dish';
 
   @override
   String get discount_30 => '30% OFF';
@@ -174,7 +174,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get top_rated => 'Top Rated';
 
   @override
-  String get recommend => 'Recommend';
+  String get recommend => 'Recommended';
 
   @override
   String get view_all => 'View All';
@@ -204,13 +204,13 @@ class AppLocalizationsEn extends AppLocalizations {
   String get promotional_offer => 'Promotional Offer';
 
   @override
-  String get promotional_offer_msg => 'Craving something delicious? Get 20% off on your next order. Use code: YUMMY20.';
+  String get promotional_offer_msg => 'Craving something delicious? Get 20% off your next order. Use code: YUMMY20.';
 
   @override
   String get out_for_delivery => 'Out for Delivery';
 
   @override
-  String get out_for_delivery_msg => 'Your order is on the way! Estimated arrival: 15 mins. Stay hungry!';
+  String get out_for_delivery_msg => 'Your order is on the way! Estimated arrival: 15 minutes. Stay hungry!';
 
   @override
   String get order_confirmation => 'Order Confirmation';
@@ -225,22 +225,22 @@ class AppLocalizationsEn extends AppLocalizations {
   String get delivered_msg => 'Enjoy your meal! Your order has been delivered.';
 
   @override
-  String get remove_from_favorites => 'Are you sure you want to remove it from favorites?';
+  String get remove_from_favorites => 'Are you sure you want to remove this from favorites?';
 
   @override
   String get yes => 'Yes';
 
   @override
-  String get current_location => 'Current location';
+  String get current_location => 'Current Location';
 
   @override
-  String get search_placeholder => 'Search menu, restaurant or etc';
+  String get search_placeholder => 'Search menu, restaurant, or more';
 
   @override
   String get cheeseburger_title => 'Cheeseburger Wendy\'s Burger';
 
   @override
-  String get reviews => 'reviews';
+  String get reviews => 'Reviews';
 
   @override
   String get spicy => 'Spicy';
@@ -255,13 +255,13 @@ class AppLocalizationsEn extends AppLocalizations {
   String get quantity => 'Quantity';
 
   @override
-  String get add_to_cart => 'Add To Cart';
+  String get add_to_cart => 'Add to Cart';
 
   @override
   String get filter => 'Filter';
 
   @override
-  String get price_range => 'Price range';
+  String get price_range => 'Price Range';
 
   @override
   String get min => 'Min';
@@ -279,7 +279,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get fast_food => 'Fast Food';
 
   @override
-  String get sea_food => 'Sea Food';
+  String get sea_food => 'Seafood';
 
   @override
   String get dessert => 'Dessert';
@@ -324,7 +324,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get history => 'History';
 
   @override
-  String get sub_total => 'Sub-Total';
+  String get sub_total => 'Subtotal';
 
   @override
   String get delivery_charge => 'Delivery Charge';
@@ -339,34 +339,34 @@ class AppLocalizationsEn extends AppLocalizations {
   String get reorder => 'Reorder';
 
   @override
-  String get load_more => 'Load More..';
+  String get load_more => 'Load More...';
 
   @override
   String get cart_empty => 'Cart Empty';
 
   @override
-  String get cart_empty_message => 'You didn’t have add any foods in cart at this time';
+  String get cart_empty_message => 'You haven’t added any foods to your cart yet';
 
   @override
   String get history_empty => 'History Empty';
 
   @override
-  String get history_empty_message => 'You didn’t have order any foods before';
+  String get history_empty_message => 'You haven’t ordered any foods before';
 
   @override
   String get track => 'Track';
 
   @override
-  String get unread => 'unread';
+  String get unread => 'Unread';
 
   @override
-  String get read => 'read';
+  String get read => 'Read';
 
   @override
   String get my_account => 'My Account';
 
   @override
-  String get personal_information => 'Personal information';
+  String get personal_information => 'Personal Information';
 
   @override
   String get language => 'Language';
@@ -402,22 +402,22 @@ class AppLocalizationsEn extends AppLocalizations {
   String get location_service_disabled => 'Location services are disabled.';
 
   @override
-  String get location_permission_denied => 'Permission denied.';
+  String get location_permission_denied => 'Location permission denied.';
 
   @override
-  String get location_permission_denied_forever => 'Permission denied forever.';
+  String get location_permission_denied_forever => 'Location permission denied permanently.';
 
   @override
-  String get location_unknown => 'Unknown location';
+  String get location_unknown => 'Unknown Location';
 
   @override
-  String get no_favorites_yet => 'No favorites yet';
+  String get no_favorites_yet => 'No Favorites Yet';
 
   @override
   String get no_food_founds_in_this_category => 'No food found in this category';
 
   @override
-  String get remove_from_cart => 'Are you sure you want to remove it from cart?';
+  String get remove_from_cart => 'Are you sure you want to remove this from your cart?';
 
   @override
   String get checkout => 'Checkout';
@@ -436,4 +436,10 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get dark_mode => 'Dark Mode';
+
+  @override
+  String get delivery_path => 'Delivery Path:';
+
+  @override
+  String get back => 'Back';
 }

@@ -9,6 +9,7 @@ import 'package:foodtek/core/widgets/app_svg_icons.dart';
 import 'package:lottie/lottie.dart';
 import 'package:foodtek/core/models/food_model.dart';
 import 'package:foodtek/features/cart/controllers/cart_cubit.dart';
+import '../../../food_details/views/widgets/quantity_button.dart';
 import 'cart_summary_box.dart';
 
 class CartTab extends StatelessWidget {
@@ -25,7 +26,6 @@ class CartTab extends StatelessWidget {
             subtitle: context.l10n.cart_empty_message,
           );
         }
-
         return Stack(
           children: [
             ListView.builder(
@@ -61,22 +61,37 @@ class CartTab extends StatelessWidget {
 
   Widget _buildSwipeDelete(BuildContext context) {
     final isRtl = Directionality.of(context) == TextDirection.rtl;
-
     return Container(
       alignment: isRtl ? Alignment.centerLeft : Alignment.centerRight,
       padding: EdgeInsets.symmetric(horizontal: responsiveWidth(context, 20)),
       margin: EdgeInsets.all(responsiveHeight(context, 20)),
       decoration: BoxDecoration(
+        color: Color(0xFFFDAC1D),
         borderRadius: BorderRadius.circular(12),
       ),
-      child: AppSvgIcons(iconPath: AppIconStrings.delete),
+      child: AppSvgIcons(
+        iconPath: AppIconStrings.delete,
+        color: Theme.of(context).colorScheme.onPrimary,
+        width: responsiveWidth(context, 24),
+        height: responsiveHeight(context, 24),
+      ),
     );
   }
 
   Widget _buildCartItem(BuildContext context, FoodModel food) {
-    return Card(
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-      margin: EdgeInsets.all(responsiveHeight(context, 20)),
+    return Container(
+      padding: EdgeInsets.only(
+        top: responsiveWidth(context, 20),
+        bottom: responsiveHeight(context, 20),
+      ),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(8),
+        border: Border.all(
+          color: Theme.of(context).colorScheme.outline,
+          width: 1,
+        ),
+      ),
+      margin: EdgeInsets.symmetric(vertical: responsiveHeight(context, 20)),
       child: Padding(
         padding: EdgeInsets.symmetric(horizontal: responsiveWidth(context, 22)),
         child: Row(
@@ -94,39 +109,42 @@ class CartTab extends StatelessWidget {
                 children: [
                   Text(
                     food.name,
-                    // style: Theme.of(context)
-                    //     .textTheme
-                    //     .bodyLarge
-                    //     ?.copyWith(fontWeight: FontWeight.bold),
+                    style: Theme.of(context).textTheme.labelMedium,
                   ),
                   Text(
                     '\$${food.currentPrice.toStringAsFixed(2)}',
-                    style: Theme.of(context)
-                        .textTheme
-                        .bodyMedium
-                        ?.copyWith(fontWeight: FontWeight.bold),
+                    style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                          fontWeight: FontWeight.w700,
+                          color: Theme.of(context).colorScheme.primary,
+                        ),
                   ),
                 ],
               ),
             ),
             Row(
               children: [
-                IconButton(
-                  icon: Icon(Icons.remove),
-                  onPressed: () {
+                QuantityButton(
+                  icon: Icons.remove,
+                  onTap: () {
                     final newQty =
                         (food.inCartQuantity > 1) ? food.inCartQuantity - 1 : 1;
                     context.read<CartCubit>().updateQuantity(food, newQty);
                   },
                 ),
-                Text(
-                  '${food.inCartQuantity}',
-                ),
-                IconButton(
-                  icon: Icon(
-                    Icons.add,
+                Padding(
+                  padding: EdgeInsets.symmetric(
+                    horizontal: responsiveWidth(context, 12),
                   ),
-                  onPressed: () {
+                  child: Text(
+                    '${food.inCartQuantity}',
+                    style: Theme.of(context).textTheme.titleMedium,
+                  ),
+                ),
+                QuantityButton(
+                  icon: Icons.add,
+                  color: Theme.of(context).colorScheme.primary,
+                  iconColor: Theme.of(context).colorScheme.onPrimary,
+                  onTap: () {
                     context
                         .read<CartCubit>()
                         .updateQuantity(food, food.inCartQuantity + 1);
@@ -146,8 +164,9 @@ class CartTab extends StatelessWidget {
       barrierDismissible: true,
       builder: (context) {
         return Dialog(
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(20),
+          ),
           child: Padding(
             padding: EdgeInsets.symmetric(
               horizontal: responsiveWidth(context, 24),
@@ -159,6 +178,7 @@ class CartTab extends StatelessWidget {
                 Text(
                   context.l10n.remove_from_cart,
                   textAlign: TextAlign.center,
+                  style: Theme.of(context).textTheme.bodySmall,
                 ),
                 SizedBox(height: responsiveHeight(context, 30)),
                 AppCustomButton(
@@ -187,11 +207,13 @@ class CartTab extends StatelessWidget {
             const SizedBox(height: 24),
             Text(
               title,
+              style: Theme.of(context).textTheme.headlineMedium,
             ),
             const SizedBox(height: 8),
             Text(
               subtitle,
               textAlign: TextAlign.center,
+              style: Theme.of(context).textTheme.headlineSmall,
             ),
           ],
         ),

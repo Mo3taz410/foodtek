@@ -27,7 +27,8 @@ class FavoritesScreen extends StatelessWidget {
             const AppCustomHeader(),
             AppSearchBar(controller: TextEditingController()),
             Text(
-              context.l10n.favorites, // topRated
+              context.l10n.favorites,
+              style: Theme.of(context).textTheme.titleMedium,
             ),
             SizedBox(height: responsiveHeight(context, 40)),
             BlocBuilder<FavoritesCubit, Set<String>>(
@@ -43,15 +44,13 @@ class FavoritesScreen extends StatelessWidget {
                     ),
                   );
                 }
-
                 return GridView.builder(
                   shrinkWrap: true,
                   physics: const NeverScrollableScrollPhysics(),
                   itemCount: favorites.length,
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 2,
-                    mainAxisExtent: responsiveHeight(context, 320),
-                    mainAxisSpacing: responsiveHeight(context, 40),
+                    mainAxisExtent: responsiveHeight(context, 275),
                     crossAxisSpacing: responsiveWidth(context, 16),
                   ),
                   itemBuilder: (context, index) {

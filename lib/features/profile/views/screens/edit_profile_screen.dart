@@ -9,12 +9,11 @@ import '../../../../core/constants/app_image_strings.dart';
 class EditProfileScreen extends StatelessWidget {
   EditProfileScreen({super.key});
 
-  final nameController = TextEditingController(text: 'Ahmad Daboor');
-  final emailController = TextEditingController(text: 'Loisbecket@gmail.com');
-  final phoneController = TextEditingController(text: '0797653948');
-  final passwordController = TextEditingController(text: '12345678');
-  final addressController =
-      TextEditingController(text: '123 Al-Madina Street, Abdali,...');
+  final nameController = TextEditingController();
+  final emailController = TextEditingController();
+  final phoneController = TextEditingController();
+  final passwordController = TextEditingController();
+  final addressController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -35,19 +34,27 @@ class EditProfileScreen extends StatelessWidget {
                       BackButton(onPressed: () => Navigator.pop(context)),
                       Text(
                         context.l10n.profile,
+                        style: Theme.of(context).textTheme.titleMedium,
                       ),
                     ],
                   ),
                 ),
-                CircleAvatar(
-                  radius: responsiveWidth(context, 40),
-                  backgroundImage: AssetImage(AppImageStrings.profilePicture),
-                ),
-                Text(
-                  'Ahmad Daboor',
-                ),
-                Text(
-                  'emmie1709@gmail.com',
+                Column(
+                  children: [
+                    CircleAvatar(
+                      radius: responsiveWidth(context, 40),
+                      backgroundImage:
+                          AssetImage(AppImageStrings.profilePicture),
+                    ),
+                    Text(
+                      'Waseem Samour',
+                      style: Theme.of(context).textTheme.labelLarge,
+                    ),
+                    Text(
+                      'waseemsamour@gmail.com',
+                      style: Theme.of(context).textTheme.labelSmall,
+                    ),
+                  ],
                 ),
                 Card(
                   child: Padding(
