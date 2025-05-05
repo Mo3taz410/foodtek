@@ -10,7 +10,7 @@ import 'package:lottie/lottie.dart';
 import 'package:foodtek/core/models/food_model.dart';
 import 'package:foodtek/features/cart/controllers/cart_cubit.dart';
 import '../../../food_details/views/widgets/quantity_button.dart';
-import 'cart_summary_box.dart';
+import '../../../../core/widgets/cart_summary_box.dart';
 
 class CartTab extends StatelessWidget {
   const CartTab({super.key});

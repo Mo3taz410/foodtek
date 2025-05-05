@@ -144,5 +144,13 @@
   "loading": "Loading...",
   "dark_mode": "Dark Mode",
   "delivery_path": "Delivery Path:",
-  "back": "Back"
+  "back": "Back",
+  "change": "Change",
+  "promo_code": "Promo Code?",
+  "enter_your_promo_code": "Enter Your Promo Code",
+  "add": "Add",
+  "payment_method": "Payment Method:",
+  "card": "Card",
+  "cash": "Cash",
+  "card_type": "Card Type:"
 }

@@ -4,7 +4,7 @@ import 'package:foodtek/core/dummy_data/food_dummy_data.dart';
 import 'package:foodtek/core/localization/localization_extension.dart';
 import 'package:foodtek/core/models/food_model.dart';
 import 'package:foodtek/features/home/controllers/category_nav_cubit.dart';
-import 'package:foodtek/features/home/views/widgets/category_food_card.dart';
+import 'package:foodtek/core/widgets/category_food_card.dart';
 import 'package:foodtek/core/utils/responsive.dart';
 
 class CategoryGridView extends StatelessWidget {

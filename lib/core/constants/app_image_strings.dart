@@ -1,9 +1,9 @@
 class AppImageStrings {
   static const backgroundPattern = 'assets/images/background_pattern.png';
   static const backgroundMap = 'assets/images/background_map.png';
-  static const String google = 'assets/images/google.png';
-  static const String facebook = 'assets/images/facebook.png';
-  static const String apple = 'assets/images/apple.png';
+  static const String google = 'assets/images/auth/google.png';
+  static const String facebook = 'assets/images/auth/facebook.png';
+  static const String apple = 'assets/images/auth/apple.png';
   static const String promo = 'assets/images/promo.png';
   static const String sushi = 'assets/images/sushi.png';
   static const String lazania = 'assets/images/lazania.png';
@@ -25,4 +25,6 @@ class AppImageStrings {
   static const String profilePicture = 'assets/images/profile_picture.png';
   static const String checkoutBackgroundPattern =
       'assets/images/checkout_background_pattern.png';
+  static const String mastercard = 'assets/images/mastercard.png';
+  static const String visa = 'assets/images/visa.png';
 }

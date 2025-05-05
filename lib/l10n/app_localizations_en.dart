@@ -442,4 +442,28 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get back => 'Back';
+
+  @override
+  String get change => 'Change';
+
+  @override
+  String get promo_code => 'Promo Code?';
+
+  @override
+  String get enter_your_promo_code => 'Enter Your Promo Code';
+
+  @override
+  String get add => 'Add';
+
+  @override
+  String get payment_method => 'Payment Method:';
+
+  @override
+  String get card => 'Card';
+
+  @override
+  String get cash => 'Cash';
+
+  @override
+  String get card_type => 'Card Type:';
 }

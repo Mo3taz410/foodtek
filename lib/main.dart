@@ -19,7 +19,6 @@ import 'package:foodtek/features/home/controllers/category_nav_cubit.dart';
 import 'package:foodtek/features/app/views/screens/app_screen.dart';
 import 'package:foodtek/features/home/views/screen/home_screen.dart';
 import 'package:foodtek/features/profile/views/screens/edit_profile_screen.dart';
-import 'package:foodtek/features/splash/splash_screen.dart';
 import 'package:foodtek/l10n/app_localizations.dart';
 import 'package:foodtek/features/app/controllers/bottom_nav_cubit.dart';
 import 'package:foodtek/features/app/views/screens/track_screen.dart';
@@ -32,6 +31,9 @@ import 'package:foodtek/features/favorites/views/screen/favorites_screen.dart';
 import 'package:foodtek/features/location/views/screen/location_picker_screen.dart';
 import 'package:foodtek/features/onboarding/views/screen/onboarding_screen.dart';
 import 'package:foodtek/features/profile/views/screens/profile_screen.dart';
+
+import 'features/checkout/controllers/card_type_cubit.dart';
+import 'features/checkout/controllers/payment_method_cubit.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -67,6 +69,8 @@ class MyApp extends StatelessWidget {
             BlocProvider(create: (_) => ThemeCubit()),
             BlocProvider(
                 create: (_) => LocalizationCubit(LocalizationRepository())),
+            BlocProvider(create: (_) => PaymentMethodCubit()),
+            BlocProvider(create: (_) => CardTypeCubit()),
           ],
           child: BlocBuilder<ThemeCubit, ThemeMode>(
             builder: (context, themeMode) {

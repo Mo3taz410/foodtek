@@ -964,6 +964,54 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Back'**
   String get back;
+
+  /// No description provided for @change.
+  ///
+  /// In en, this message translates to:
+  /// **'Change'**
+  String get change;
+
+  /// No description provided for @promo_code.
+  ///
+  /// In en, this message translates to:
+  /// **'Promo Code?'**
+  String get promo_code;
+
+  /// No description provided for @enter_your_promo_code.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter Your Promo Code'**
+  String get enter_your_promo_code;
+
+  /// No description provided for @add.
+  ///
+  /// In en, this message translates to:
+  /// **'Add'**
+  String get add;
+
+  /// No description provided for @payment_method.
+  ///
+  /// In en, this message translates to:
+  /// **'Payment Method:'**
+  String get payment_method;
+
+  /// No description provided for @card.
+  ///
+  /// In en, this message translates to:
+  /// **'Card'**
+  String get card;
+
+  /// No description provided for @cash.
+  ///
+  /// In en, this message translates to:
+  /// **'Cash'**
+  String get cash;
+
+  /// No description provided for @card_type.
+  ///
+  /// In en, this message translates to:
+  /// **'Card Type:'**
+  String get card_type;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

@@ -442,4 +442,28 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get back => 'الرجوع';
+
+  @override
+  String get change => 'تغيير';
+
+  @override
+  String get promo_code => 'كود خصم؟';
+
+  @override
+  String get enter_your_promo_code => 'أدخل كود الخصم هنا';
+
+  @override
+  String get add => 'أضف';
+
+  @override
+  String get payment_method => 'طريقة الدفع:';
+
+  @override
+  String get card => 'بطاقة';
+
+  @override
+  String get cash => 'نقدي';
+
+  @override
+  String get card_type => 'نوع البطاقة:';
 }

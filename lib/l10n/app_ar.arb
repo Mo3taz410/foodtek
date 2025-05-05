@@ -144,5 +144,13 @@
   "loading": "جار التحميل...",
   "dark_mode": "الوضع الليلي",
   "delivery_path": "طريق التوصيل:",
-  "back": "الرجوع"
+  "back": "الرجوع",
+  "change": "تغيير",
+  "promo_code": "كود خصم؟",
+  "enter_your_promo_code": "أدخل كود الخصم هنا",
+  "add": "أضف",
+  "payment_method": "طريقة الدفع:",
+  "card": "بطاقة",
+  "cash": "نقدي",
+  "card_type": "نوع البطاقة:"
 }

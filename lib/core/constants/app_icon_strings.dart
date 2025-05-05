@@ -1,8 +1,8 @@
 class AppIconStrings {
-  static const String eye = 'assets/icons/eye.svg';
-  static const String eyeOff = 'assets/icons/eye_off.svg';
+  static const String eye = 'assets/icons/auth/eye.svg';
+  static const String eyeOff = 'assets/icons/auth/eye_off.svg';
   static const String leftLongArrow = 'assets/icons/left_long_arrow.svg';
-  static const String calendar = 'assets/icons/calendar.svg';
+  static const String calendar = 'assets/icons/auth/calendar.svg';
   static const String mapPinUnderlined = 'assets/icons/map_pin_underlined.svg';
   static const String search = 'assets/icons/search.svg';
   static const String filterSearch = 'assets/icons/filter_search.svg';

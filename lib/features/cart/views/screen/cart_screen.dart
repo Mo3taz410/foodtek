@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:foodtek/core/localization/localization_extension.dart';
 import 'package:foodtek/features/cart/views/widgets/cart_tab.dart';
-import '../../../app/views/widgets/app_custom_header.dart';
+import '../../../../core/widgets/app_custom_header.dart';
 import '../widgets/history_tab.dart';
 
 class CartScreen extends StatelessWidget {

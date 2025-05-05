@@ -125,10 +125,12 @@ flutter:
           weight: 300
   assets:
     - assets/images/
+    - assets/images/auth/
     - assets/animations/onboarding/
     - assets/animations/auth/
     - assets/animations/cart/
     - assets/icons/
+    - assets/icons/auth/
     - assets/icons/food_categories/
     - assets/icons/profile/
     - assets/icons/bottom_nav_bar/
