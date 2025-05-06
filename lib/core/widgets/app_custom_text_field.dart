@@ -5,6 +5,7 @@ class AppCustomTextField extends StatelessWidget {
   final TextEditingController controller;
   final String hintText;
   final TextStyle? hintStyle;
+  final TextAlign? textAllign;
   final Widget? prefixIcon;
   final Widget? suffixIcon;
   final bool obscureText;
@@ -19,6 +20,7 @@ class AppCustomTextField extends StatelessWidget {
     required this.controller,
     required this.hintText,
     this.hintStyle,
+    this.textAllign,
     this.prefixIcon,
     this.suffixIcon,
     this.obscureText = false,
@@ -56,6 +58,7 @@ class AppCustomTextField extends StatelessWidget {
             keyboardType: keyboardType,
             focusNode: focusNode,
             textAlignVertical: TextAlignVertical.center,
+            textAlign: textAllign ?? TextAlign.start,
             decoration: InputDecoration(
               hintText: hintText,
               hintStyle: hintStyle ?? Theme.of(context).textTheme.labelMedium,

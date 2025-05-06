@@ -1012,6 +1012,60 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Card Type:'**
   String get card_type;
+
+  /// No description provided for @name_on_card.
+  ///
+  /// In en, this message translates to:
+  /// **'Name'**
+  String get name_on_card;
+
+  /// No description provided for @card_number.
+  ///
+  /// In en, this message translates to:
+  /// **'Card Number'**
+  String get card_number;
+
+  /// No description provided for @expiry_date.
+  ///
+  /// In en, this message translates to:
+  /// **'Expiry'**
+  String get expiry_date;
+
+  /// No description provided for @cvv.
+  ///
+  /// In en, this message translates to:
+  /// **'CVV'**
+  String get cvv;
+
+  /// No description provided for @payment_success_note.
+  ///
+  /// In en, this message translates to:
+  /// **'We will send you an order details to your email after the successfull payment'**
+  String get payment_success_note;
+
+  /// No description provided for @pay_for_the_order.
+  ///
+  /// In en, this message translates to:
+  /// **'Pay For The Order'**
+  String get pay_for_the_order;
+
+  /// No description provided for @order_done_successfully.
+  ///
+  /// In en, this message translates to:
+  /// **'Order Done Successfully'**
+  String get order_done_successfully;
+
+  /// No description provided for @order_done_description.
+  ///
+  /// In en, this message translates to:
+  /// **'you will get your order within 12min. thanks for using our services'**
+  String get order_done_description;
+
+  /// No description provided for @track_your_order.
+  ///
+  /// In en, this message translates to:
+  /// **'Track Your Order'**
+  String get track_your_order;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

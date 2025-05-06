@@ -29,4 +29,5 @@ class AppIconStrings {
   static const String restaurentLocation =
       'assets/icons/restaurant_location.svg';
   static const String userLocation = 'assets/icons/user_location.svg';
+  static const String card = 'assets/icons/card.svg';
 }

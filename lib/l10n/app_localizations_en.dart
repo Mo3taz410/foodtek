@@ -466,4 +466,31 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get card_type => 'Card Type:';
+
+  @override
+  String get name_on_card => 'Name';
+
+  @override
+  String get card_number => 'Card Number';
+
+  @override
+  String get expiry_date => 'Expiry';
+
+  @override
+  String get cvv => 'CVV';
+
+  @override
+  String get payment_success_note => 'We will send you an order details to your email after the successfull payment';
+
+  @override
+  String get pay_for_the_order => 'Pay For The Order';
+
+  @override
+  String get order_done_successfully => 'Order Done Successfully';
+
+  @override
+  String get order_done_description => 'you will get your order within 12min. thanks for using our services';
+
+  @override
+  String get track_your_order => 'Track Your Order';
 }

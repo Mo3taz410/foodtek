@@ -34,6 +34,8 @@ import 'package:foodtek/features/profile/views/screens/profile_screen.dart';
 
 import 'features/checkout/controllers/card_type_cubit.dart';
 import 'features/checkout/controllers/payment_method_cubit.dart';
+import 'features/checkout/views/screens/add_card_screen.dart';
+import 'features/checkout/views/screens/order_done_screen.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -118,6 +120,8 @@ class MyApp extends StatelessWidget {
                         );
                       },
                       '/checkout': (context) => CheckoutScreen(),
+                      '/add_card': (context) => AddCardScreen(),
+                      '/order_done': (context) => OrderDoneScreen(),
                     },
                   );
                 },

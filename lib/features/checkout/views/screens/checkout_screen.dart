@@ -7,9 +7,9 @@ import 'package:foodtek/core/utils/responsive.dart';
 import 'package:foodtek/core/widgets/app_custom_button.dart';
 import 'package:foodtek/core/widgets/app_custom_text_field.dart';
 import 'package:foodtek/core/widgets/app_svg_icons.dart';
-import 'package:foodtek/features/app/models/notification_model.dart';
 
 import '../../../../core/models/food_model.dart';
+import '../../../../core/models/notification_model.dart';
 import '../../../cart/controllers/cart_cubit.dart';
 import '../../../../core/widgets/cart_summary_box.dart';
 import '../../controllers/card_type_cubit.dart';
@@ -59,9 +59,24 @@ class CheckoutScreen extends StatelessWidget {
                 ),
               ],
             ),
-            Text(
-              context.l10n.checkout,
-              style: Theme.of(context).textTheme.titleMedium,
+            Row(
+              spacing: responsiveWidth(context, 20),
+              children: [
+                InkWell(
+                  onTap: () {
+                    Navigator.pop(context);
+                  },
+                  child: AppSvgIcons(
+                    iconPath: AppIconStrings.leftLongArrow,
+                    width: responsiveWidth(context, 12),
+                    height: responsiveHeight(context, 12),
+                  ),
+                ),
+                Text(
+                  context.l10n.checkout,
+                  style: Theme.of(context).textTheme.titleMedium,
+                ),
+              ],
             ),
             Column(
               spacing: responsiveHeight(context, 20),
@@ -304,7 +319,12 @@ class CheckoutScreen extends StatelessWidget {
             ),
             BlocBuilder<CartCubit, List<FoodModel>>(
               builder: (context, cartItems) {
-                return CartSummaryBox(cartItems: cartItems);
+                return CartSummaryBox(
+                  cartItems: cartItems,
+                  onPressed: () {
+                    Navigator.pushNamed(context, '/add_card');
+                  },
+                );
               },
             ),
           ],

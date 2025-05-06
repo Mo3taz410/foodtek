@@ -51,7 +51,12 @@ class CartTab extends StatelessWidget {
               left: 0,
               right: 0,
               bottom: 0,
-              child: CartSummaryBox(cartItems: cartItems),
+              child: CartSummaryBox(
+                cartItems: cartItems,
+                onPressed: () {
+                  Navigator.pushNamed(context, '/checkout');
+                },
+              ),
             ),
           ],
         );

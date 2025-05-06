@@ -152,5 +152,14 @@
   "payment_method": "طريقة الدفع:",
   "card": "بطاقة",
   "cash": "نقدي",
-  "card_type": "نوع البطاقة:"
+  "card_type": "نوع البطاقة:",
+  "name_on_card": "الاسم",
+  "card_number": "رقم البطافة",
+  "expiry_date": "تاريخ الانتهاء",
+  "cvv": "CVV رمز",
+  "payment_success_note": "سوف نرسل لك تفاصيل الطلب إلى بريدك الإلكتروني بعد إتمام الدفع بنجاح",
+  "pay_for_the_order": "ادفع لإتمام الطلب",
+  "order_done_successfully": "تم إتمام الطلب بنجاح",
+  "order_done_description": "سيصلك طلبك خلال ١٢ دقيقة. شكرًا لاستخدامك خدماتنا",
+  "track_your_order": "تتبع طلبك"
 }

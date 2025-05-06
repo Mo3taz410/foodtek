@@ -7,10 +7,12 @@ import 'package:foodtek/core/widgets/app_custom_button.dart';
 
 class CartSummaryBox extends StatelessWidget {
   final List<FoodModel> cartItems;
+  final VoidCallback onPressed;
 
   const CartSummaryBox({
     super.key,
     required this.cartItems,
+    required this.onPressed,
   });
 
   @override
@@ -54,9 +56,7 @@ class CartSummaryBox extends StatelessWidget {
           const SizedBox(height: 16),
           AppCustomButton(
             text: context.l10n.place_order,
-            onPressed: () {
-              Navigator.pushNamed(context, '/checkout');
-            },
+            onPressed: onPressed,
             width: responsiveWidth(context, 360),
             height: responsiveHeight(context, 50),
             color: Theme.of(context).colorScheme.surface,

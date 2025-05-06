@@ -63,7 +63,7 @@ class AppTextThemes {
     titleLarge: TextStyle(
       fontSize: 24.sp,
       fontFamily: 'Inter',
-      fontWeight: FontWeight.w600,
+      fontWeight: FontWeight.w700,
     ),
     titleMedium: TextStyle(
       fontSize: 20.sp,

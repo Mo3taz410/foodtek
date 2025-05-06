@@ -4,7 +4,7 @@ import 'package:foodtek/core/localization/localization_extension.dart';
 import 'package:foodtek/core/helpers/location_helper.dart';
 import 'package:foodtek/core/helpers/shared_preferences_helper.dart';
 import 'package:foodtek/core/utils/responsive.dart';
-import '../../features/app/models/notification_model.dart';
+import '../models/notification_model.dart';
 import 'app_svg_icons.dart';
 
 class AppCustomHeader extends StatefulWidget {

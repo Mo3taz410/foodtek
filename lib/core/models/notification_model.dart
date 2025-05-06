@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:foodtek/core/localization/localization_extension.dart';
-import 'package:foodtek/features/app/models/notification_list.dart';
+import 'package:foodtek/core/models/notification_list.dart';
 
 class NotificationModal extends StatelessWidget {
   const NotificationModal({super.key});

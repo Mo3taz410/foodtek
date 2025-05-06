@@ -27,4 +27,5 @@ class AppImageStrings {
       'assets/images/checkout_background_pattern.png';
   static const String mastercard = 'assets/images/mastercard.png';
   static const String visa = 'assets/images/visa.png';
+  static const String visaCard = 'assets/images/visa_card.png';
 }

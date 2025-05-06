@@ -466,4 +466,31 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get card_type => 'نوع البطاقة:';
+
+  @override
+  String get name_on_card => 'الاسم';
+
+  @override
+  String get card_number => 'رقم البطافة';
+
+  @override
+  String get expiry_date => 'تاريخ الانتهاء';
+
+  @override
+  String get cvv => 'CVV رمز';
+
+  @override
+  String get payment_success_note => 'سوف نرسل لك تفاصيل الطلب إلى بريدك الإلكتروني بعد إتمام الدفع بنجاح';
+
+  @override
+  String get pay_for_the_order => 'ادفع لإتمام الطلب';
+
+  @override
+  String get order_done_successfully => 'تم إتمام الطلب بنجاح';
+
+  @override
+  String get order_done_description => 'سيصلك طلبك خلال ١٢ دقيقة. شكرًا لاستخدامك خدماتنا';
+
+  @override
+  String get track_your_order => 'تتبع طلبك';
 }
