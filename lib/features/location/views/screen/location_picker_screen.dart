@@ -122,7 +122,10 @@ class _LocationPickerScreenState extends State<LocationPickerScreen> {
               ),
               child: Row(
                 children: [
-                  Icon(Icons.search),
+                  Icon(
+                    Icons.search,
+                    color: Colors.black,
+                  ),
                   SizedBox(width: responsiveWidth(context, 8)),
                   Expanded(
                     child: TextField(
@@ -130,8 +133,10 @@ class _LocationPickerScreenState extends State<LocationPickerScreen> {
                       onSubmitted: (_) => _searchLocation(),
                       decoration: InputDecoration(
                         hintText: 'Find your location',
-                        hintStyle:
-                            Theme.of(context).textTheme.bodySmall?.copyWith(),
+                        hintStyle: Theme.of(context)
+                            .textTheme
+                            .bodySmall
+                            ?.copyWith(color: Colors.black),
                         border: InputBorder.none,
                         isDense: true,
                         contentPadding: EdgeInsets.zero,
@@ -146,7 +151,10 @@ class _LocationPickerScreenState extends State<LocationPickerScreen> {
             top: responsiveHeight(context, 14),
             left: responsiveWidth(context, 2),
             child: IconButton(
-              icon: Icon(Icons.arrow_back),
+              icon: Icon(
+                Icons.arrow_back,
+                color: Colors.black,
+              ),
               onPressed: () => Navigator.pop(context),
             ),
           ),

@@ -10,7 +10,7 @@ import 'package:foodtek/features/cart/views/screen/cart_screen.dart';
 import 'package:foodtek/features/favorites/views/screen/favorites_screen.dart';
 import 'package:foodtek/features/home/views/screen/home_screen.dart';
 import 'package:foodtek/features/profile/views/screens/profile_screen.dart';
-import 'track_screen.dart';
+import '../../../track/views/screen/track_screen.dart';
 
 class AppScreen extends StatelessWidget {
   const AppScreen({super.key});

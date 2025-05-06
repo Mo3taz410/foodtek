@@ -17,7 +17,7 @@ class TopRatedList extends StatelessWidget {
     final List<FoodModel> top10 = top10Rated.take(10).toList();
 
     return SizedBox(
-      height: responsiveHeight(context, 250),
+      height: responsiveHeight(context, 255),
       child: ListView.separated(
         scrollDirection: Axis.horizontal,
         itemCount: top10.length,
