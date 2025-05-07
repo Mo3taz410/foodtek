@@ -104,6 +104,7 @@ class _LocationPickerScreenState extends State<LocationPickerScreen> {
             child: Icon(
               Icons.location_on,
               size: 40,
+              color: Colors.black,
             ),
           ),
           Positioned(
@@ -129,6 +130,7 @@ class _LocationPickerScreenState extends State<LocationPickerScreen> {
                   SizedBox(width: responsiveWidth(context, 8)),
                   Expanded(
                     child: TextField(
+                      style: TextStyle(color: Colors.black, fontSize: 12),
                       controller: _searchController,
                       onSubmitted: (_) => _searchLocation(),
                       decoration: InputDecoration(

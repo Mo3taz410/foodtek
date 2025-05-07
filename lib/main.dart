@@ -21,7 +21,6 @@ import 'package:foodtek/features/home/views/screen/home_screen.dart';
 import 'package:foodtek/features/profile/views/screens/edit_profile_screen.dart';
 import 'package:foodtek/l10n/app_localizations.dart';
 import 'package:foodtek/features/app/controllers/bottom_nav_cubit.dart';
-import 'package:foodtek/features/track/views/screen/track_screen.dart';
 import 'package:foodtek/features/auth/controllers/auth_cubit.dart';
 import 'package:foodtek/features/auth/controllers/remember_me_cubit.dart';
 import 'package:foodtek/features/auth/views/screens/new_password_screen.dart';
@@ -106,7 +105,6 @@ class MyApp extends StatelessWidget {
                       '/home': (context) => HomeScreen(),
                       '/favorites': (context) => FavoritesScreen(),
                       '/cart': (context) => CartScreen(),
-                      '/track': (context) => TrackScreen(),
                       '/profile': (context) => ProfileScreen(),
                       '/edit_profile': (context) => EditProfileScreen(),
                       '/locationPicker': (context) =>

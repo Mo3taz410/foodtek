@@ -1,14 +1,20 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:foodtek/features/track/views/widgets/order_status.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-
+import 'package:foodtek/features/track/views/widgets/order_status.dart';
 import '../../../order_details/views/screen/order_details_screen.dart';
 
 enum DeliveryStatus { orderPlaced, onTheWay, delivered }
 
 class TrackScreen extends StatefulWidget {
-  const TrackScreen({super.key});
+  final LatLng deliveryLocation;
+  final String placeName;
+
+  const TrackScreen({
+    super.key,
+    required this.deliveryLocation,
+    required this.placeName,
+  });
 
   @override
   State<TrackScreen> createState() => _TrackScreenState();
@@ -17,16 +23,35 @@ class TrackScreen extends StatefulWidget {
 class _TrackScreenState extends State<TrackScreen> {
   final Completer<GoogleMapController> _controller = Completer();
 
-  final LatLng _driverLocation = const LatLng(31.9655, 35.9270);
-  final LatLng _deliveryLocation = const LatLng(31.9632, 35.9304);
+  final LatLng _driverLocation =
+      const LatLng(31.925063200173774, 35.89917597552506);
+  late LatLng _deliveryLocation;
+  late String _placeName;
+
   DeliveryStatus currentStatus = DeliveryStatus.onTheWay;
+
+  late BitmapDescriptor homeIcon;
+  late BitmapDescriptor resIcon;
 
   @override
   void initState() {
     super.initState();
-    _animateToDriver();
+    _deliveryLocation = widget.deliveryLocation;
+    _placeName = widget.placeName;
     _loadCustomMarker();
     _animateToDriver();
+  }
+
+  Future<void> _loadCustomMarker() async {
+    homeIcon = await BitmapDescriptor.asset(
+      ImageConfiguration(size: Size(48, 48)),
+      'assets/images/home_marker1.png',
+    );
+    resIcon = await BitmapDescriptor.asset(
+      ImageConfiguration(size: Size(48, 48)),
+      'assets/images/restaurant.png',
+    );
+    setState(() {});
   }
 
   Future<void> _animateToDriver() async {
@@ -38,10 +63,8 @@ class _TrackScreenState extends State<TrackScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-
       body: Stack(
         children: [
-          /// Google Map
           GoogleMap(
             initialCameraPosition:
                 CameraPosition(target: _driverLocation, zoom: 15),
@@ -57,7 +80,7 @@ class _TrackScreenState extends State<TrackScreen> {
                 markerId: const MarkerId("destination"),
                 position: _deliveryLocation,
                 icon: homeIcon,
-                infoWindow: const InfoWindow(title: "Your Location"),
+                infoWindow: InfoWindow(title: _placeName),
               ),
             },
             polylines: {
@@ -71,7 +94,6 @@ class _TrackScreenState extends State<TrackScreen> {
             myLocationEnabled: true,
             myLocationButtonEnabled: false,
           ),
-
           Align(
             alignment: Alignment.bottomCenter,
             child: Container(
@@ -94,8 +116,6 @@ class _TrackScreenState extends State<TrackScreen> {
           ),
         ],
       ),
-
-      /// Bottom Navigation Bar
     );
   }
 
@@ -129,7 +149,9 @@ class _TrackScreenState extends State<TrackScreen> {
               onTap: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (_) => const OrderDetailsScreen()),
+                  MaterialPageRoute(
+                    builder: (_) => OrderDetailsScreen(placeName: _placeName),
+                  ),
                 );
               },
               child: const Text(
@@ -141,8 +163,6 @@ class _TrackScreenState extends State<TrackScreen> {
           ],
         ),
         const SizedBox(height: 12),
-
-        /// Status bar
         Row(
           children: [
             _buildStep("Order Placed", currentStatus.index >= 0,
@@ -179,21 +199,5 @@ class _TrackScreenState extends State<TrackScreen> {
         ],
       ),
     );
-  }
-
-  late BitmapDescriptor homeIcon;
-  late BitmapDescriptor resIcon;
-
-  Future<void> _loadCustomMarker() async {
-    homeIcon = await BitmapDescriptor.asset(
-      ImageConfiguration(size: Size(48, 48)),
-      'assets/images/home_marker1.png',
-    );
-    resIcon = await BitmapDescriptor.asset(
-      ImageConfiguration(size: Size(48, 48)),
-      'assets/images/restaurant.png',
-    );
-
-    setState(() {});
   }
 }

@@ -27,7 +27,7 @@ class OrderStatus extends StatelessWidget {
                 Row(
                   children: [
                     Text(
-                      "Waseem",
+                      "Waseem S.",
                       style: TextStyle(color: Colors.black),
                     ),
                     Icon(Icons.star, size: 16, color: Colors.orange),

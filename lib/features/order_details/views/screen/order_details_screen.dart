@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
 class OrderDetailsScreen extends StatelessWidget {
-  const OrderDetailsScreen({super.key});
+  final String placeName;
+
+  const OrderDetailsScreen({super.key, required this.placeName});
 
   @override
   Widget build(BuildContext context) {
@@ -67,7 +69,7 @@ class OrderDetailsScreen extends StatelessWidget {
                     Row(
                       children: [
                         Text(
-                          "Aleksandr V.",
+                          "Motaz Y.",
                           style: TextStyle(color: Colors.black),
                         ),
                         Icon(Icons.star, size: 16, color: Colors.orange),
@@ -96,13 +98,15 @@ class OrderDetailsScreen extends StatelessWidget {
               height: 20,
             ),
             Row(
-              children: const [
+              children: [
                 Icon(Icons.location_on, color: Colors.green),
                 SizedBox(width: 4),
                 Expanded(
-                  child: Text(
-                    "123 Al-Madina Street, Abdali, Amman, Jordan",
-                    style: TextStyle(color: Colors.black),
+                  child: Expanded(
+                    child: Text(
+                      placeName,
+                      style: TextStyle(color: Colors.black),
+                    ),
                   ),
                 ),
               ],
